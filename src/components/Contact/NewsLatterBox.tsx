@@ -1,39 +1,57 @@
 "use client";
 
+import type { Dictionary } from "@/i18n/config";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-const NewsLatterBox = () => {
-  const { theme } = useTheme();
+const LIGHT_THEME_ACCENT = "#4A6CF7";
+const DARK_THEME_ACCENT = "#fff";
+
+type NewsLatterBoxProps = {
+  copy: Dictionary["contact"]["newsletter"];
+};
+
+const NewsLatterBox = ({ copy }: NewsLatterBoxProps) => {
+  const { resolvedTheme } = useTheme();
+  const [accentColor, setAccentColor] = useState(DARK_THEME_ACCENT);
+
+  useEffect(() => {
+    if (!resolvedTheme) {
+      return;
+    }
+    setAccentColor(
+      resolvedTheme === "light" ? LIGHT_THEME_ACCENT : DARK_THEME_ACCENT,
+    );
+  }, [resolvedTheme]);
 
   return (
     <div className="shadow-three dark:bg-gray-dark relative z-10 rounded-xs bg-white p-8 sm:p-11 lg:p-8 xl:p-11">
       <h3 className="mb-4 text-2xl leading-tight font-bold text-black dark:text-white">
-        Subscribe to receive future updates
+        {copy.title}
       </h3>
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
-        Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
-        massa quis lectus.
+        {copy.paragraph}
       </p>
       <div>
         <input
           type="text"
           name="name"
-          placeholder="Enter your name"
+          placeholder={copy.namePlaceholder}
           className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
         />
         <input
           type="email"
           name="email"
-          placeholder="Enter your email"
+          placeholder={copy.emailPlaceholder}
           className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
         />
         <input
           type="submit"
-          value="Subscribe"
+          value={copy.submit}
           className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
         />
         <p className="text-body-color dark:text-body-color-dark text-center text-base leading-relaxed">
-          No spam guaranteed, So please don’t send any spam mail.
+          {copy.disclaimer}
         </p>
       </div>
 
@@ -60,15 +78,8 @@ const NewsLatterBox = () => {
                 y2="15.3509"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0.62"
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>
@@ -96,15 +107,8 @@ const NewsLatterBox = () => {
                 y2="10.2511"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0.62"
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>
@@ -132,15 +136,8 @@ const NewsLatterBox = () => {
                 y2="26.7564"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0.62"
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>
@@ -182,72 +179,44 @@ const NewsLatterBox = () => {
                 x1="291.35"
                 y1="12.1032"
                 x2="179.211"
-                y2="237.617"
+                y2="-61.6427"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint1_linear_1028_603"
                 x1="333.35"
                 y1="-12.8968"
                 x2="221.211"
-                y2="212.617"
+                y2="-86.6427"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint2_linear_1028_603"
                 x1="294.35"
-                y1="-3.89678"
+                y1="21.1032"
                 x2="182.211"
-                y2="221.617"
+                y2="-52.6427"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
               <linearGradient
                 id="paint3_linear_1028_603"
                 x1="331.35"
-                y1="-36.8968"
+                y1="-11.8968"
                 x2="219.211"
-                y2="188.617"
+                y2="-85.6427"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
-                  offset="0.328125"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                />
-                <stop
-                  offset="1"
-                  stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
-                  stopOpacity="0"
-                />
+                <stop stopColor={accentColor} stopOpacity="0.62" />
+                <stop offset="1" stopColor={accentColor} stopOpacity="0" />
               </linearGradient>
             </defs>
           </svg>

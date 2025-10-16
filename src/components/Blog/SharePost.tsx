@@ -1,9 +1,9 @@
-const SharePost = () => {
+const SharePost = ({ ariaLabel }: { ariaLabel: string }) => {
   return (
     <>
       <a
         href="#0"
-        aria-label="social-share"
+        aria-label={ariaLabel}
         className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xs bg-gray-light text-body-color duration-300 hover:bg-primary hover:text-white dark:bg-gray-dark dark:hover:bg-primary sm:ml-3"
       >
         <svg
@@ -17,7 +17,7 @@ const SharePost = () => {
       </a>
       <a
         href="#0"
-        aria-label="social-share"
+        aria-label={ariaLabel}
         className="mb-3 ml-3 inline-flex h-9 w-9 items-center justify-center rounded-xs bg-gray-light text-body-color duration-300 hover:bg-primary hover:text-white dark:bg-gray-dark dark:hover:bg-primary"
       >
         <svg
@@ -37,7 +37,7 @@ const SharePost = () => {
       </a>
       <a
         href="#0"
-        aria-label="social-share"
+        aria-label={ariaLabel}
         className="mb-3 ml-3 inline-flex h-9 w-9 items-center justify-center rounded-xs bg-gray-light text-body-color duration-300 hover:bg-primary hover:text-white dark:bg-gray-dark dark:hover:bg-primary"
       >
         <svg

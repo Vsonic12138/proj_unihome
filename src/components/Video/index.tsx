@@ -1,11 +1,17 @@
 "use client";
 
 import VideoModal from "@/components/video-modal";
+import type { Dictionary } from "@/i18n/config";
 import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 
-export default function Video() {
+type VideoProps = {
+  copy: Dictionary["video"];
+  closeLabel: string;
+};
+
+export default function Video({ copy, closeLabel }: VideoProps) {
   const [isOpen, setOpen] = useState(false);
 
   return (
@@ -13,8 +19,8 @@ export default function Video() {
       <section className="relative z-10 py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
-            title="We are ready to help"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+            title={copy.title}
+            paragraph={copy.paragraph}
             center
             mb="80px"
           />
@@ -29,10 +35,11 @@ export default function Video() {
                     alt="video image"
                     className="object-cover"
                     fill
+                    sizes="(min-width: 1024px) 770px, 100vw"
                   />
                   <div className="absolute top-0 right-0 flex h-full w-full items-center justify-center">
                     <button
-                      aria-label="video play button"
+                      aria-label={copy.buttonAriaLabel}
                       onClick={() => setOpen(true)}
                       className="text-primary flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white/75 transition hover:bg-white"
                     >
@@ -63,7 +70,8 @@ export default function Video() {
         onClose={() => setOpen(false)}
         channel="youtube"
         videoId="L61p2uyiMSo"
+        closeLabel={closeLabel}
       />
     </>
   );
-};
+}

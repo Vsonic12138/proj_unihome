@@ -1,15 +1,21 @@
+import type { Dictionary } from "@/i18n/config";
 import SectionTitle from "../Common/SectionTitle";
 import SingleFeature from "./SingleFeature";
-import featuresData from "./featuresData";
+import buildFeatures from "./featuresData";
 
-const Features = () => {
+type FeaturesProps = {
+  copy: Dictionary["features"];
+};
+
+const Features = ({ copy }: FeaturesProps) => {
+  const featuresData = buildFeatures(copy.items);
   return (
     <>
       <section id="features" className="py-16 md:py-20 lg:py-28">
         <div className="container">
           <SectionTitle
-            title="Main Features"
-            paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+            title={copy.title}
+            paragraph={copy.paragraph}
             center
           />
 

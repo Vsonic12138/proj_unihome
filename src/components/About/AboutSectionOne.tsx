@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Dictionary } from "@/i18n/config";
 import SectionTitle from "../Common/SectionTitle";
 
 const checkIcon = (
@@ -7,8 +8,16 @@ const checkIcon = (
   </svg>
 );
 
-const AboutSectionOne = () => {
-  const List = ({ text }) => (
+type AboutSectionOneProps = {
+  copy: Dictionary["about"]["sectionOne"];
+};
+
+const AboutSectionOne = ({ copy }: AboutSectionOneProps) => {
+  const midPoint = Math.ceil(copy.bulletPoints.length / 2);
+  const firstColumn = copy.bulletPoints.slice(0, midPoint);
+  const secondColumn = copy.bulletPoints.slice(midPoint);
+
+  const List = ({ text }: { text: string }) => (
     <p className="text-body-color mb-5 flex items-center text-lg font-medium">
       <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
         {checkIcon}
@@ -24,8 +33,8 @@ const AboutSectionOne = () => {
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <SectionTitle
-                title="Crafted for Startup, SaaS and Business Sites."
-                paragraph="The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables."
+                title={copy.title}
+                paragraph={copy.paragraph}
                 mb="44px"
               />
 
@@ -35,15 +44,15 @@ const AboutSectionOne = () => {
               >
                 <div className="mx-[-12px] flex flex-wrap">
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Premium quality" />
-                    <List text="Tailwind CSS" />
-                    <List text="Use for lifetime" />
+                    {firstColumn.map((item) => (
+                      <List key={item} text={item} />
+                    ))}
                   </div>
 
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
-                    <List text="Next.js" />
-                    <List text="Rich documentation" />
-                    <List text="Developer friendly" />
+                    {secondColumn.map((item) => (
+                      <List key={item} text={item} />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -56,12 +65,14 @@ const AboutSectionOne = () => {
                   alt="about-image"
                   fill
                   className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
+                  sizes="(min-width: 1024px) 500px, 100vw"
                 />
                 <Image
                   src="/images/about/about-image-dark.svg"
                   alt="about-image"
                   fill
                   className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
+                  sizes="(min-width: 1024px) 500px, 100vw"
                 />
               </div>
             </div>

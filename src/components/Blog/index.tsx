@@ -1,8 +1,19 @@
+import type { Dictionary, Locale } from "@/i18n/config";
+import { withLocalePath } from "@/i18n/utils";
 import SectionTitle from "../Common/SectionTitle";
 import SingleBlog from "./SingleBlog";
-import blogData from "./blogData";
+import buildBlogData from "./blogData";
 
-const Blog = () => {
+type BlogSectionProps = {
+  copy: Dictionary["blog"];
+  labels: Dictionary["blog"]["labels"];
+  locale: Locale;
+};
+
+const Blog = ({ copy, labels, locale }: BlogSectionProps) => {
+  const posts = buildBlogData(copy.posts);
+  const blogDetailHref = withLocalePath(locale, "/blog-details");
+
   return (
     <section
       id="blog"
@@ -10,15 +21,19 @@ const Blog = () => {
     >
       <div className="container">
         <SectionTitle
-          title="Our Latest Blogs"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title={copy.title}
+          paragraph={copy.paragraph}
           center
         />
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 md:gap-x-6 lg:gap-x-8 xl:grid-cols-3">
-          {blogData.map((blog) => (
+          {posts.map((blog) => (
             <div key={blog.id} className="w-full">
-              <SingleBlog blog={blog} />
+              <SingleBlog
+                blog={blog}
+                labels={labels}
+                detailHref={blogDetailHref}
+              />
             </div>
           ))}
         </div>

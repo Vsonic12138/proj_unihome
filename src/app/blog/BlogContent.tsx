@@ -1,32 +1,47 @@
+import buildBlogData from "@/components/Blog/blogData";
 import SingleBlog from "@/components/Blog/SingleBlog";
-import blogData from "@/components/Blog/blogData";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import type { Dictionary, Locale } from "@/i18n/config";
+import { withLocalePath } from "@/i18n/utils";
 
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Blog Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Page for Startup Nextjs Template",
-  // other metadata
+type BlogContentProps = {
+  pageCopy: Dictionary["pages"]["blog"];
+  blogCopy: Dictionary["blog"];
+  breadcrumbs: Dictionary["breadcrumbs"];
+  locale: Locale;
 };
 
-const Blog = () => {
+const BlogContent = ({
+  pageCopy,
+  blogCopy,
+  breadcrumbs,
+  locale,
+}: BlogContentProps) => {
+  const posts = buildBlogData(blogCopy.posts);
+  const blogDetailHref = withLocalePath(locale, "/blog-details");
+
   return (
     <>
       <Breadcrumb
-        pageName="Blog Grid"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero."
+        pageName={pageCopy.title}
+        description={pageCopy.description}
+        homeLabel={breadcrumbs.home}
+        homeHref={withLocalePath(locale, "/")}
       />
 
       <section className="pt-[120px] pb-[120px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center">
-            {blogData.map((blog) => (
+            {posts.map((blog) => (
               <div
                 key={blog.id}
                 className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
               >
-                <SingleBlog blog={blog} />
+                <SingleBlog
+                  blog={blog}
+                  labels={blogCopy.labels}
+                  detailHref={blogDetailHref}
+                />
               </div>
             ))}
           </div>
@@ -39,7 +54,7 @@ const Blog = () => {
                     href="#0"
                     className="bg-body-color/15 text-body-color hover:bg-primary flex h-9 min-w-[36px] items-center justify-center rounded-md px-4 text-sm transition hover:text-white"
                   >
-                    Prev
+                    {blogCopy.pagination.prev}
                   </a>
                 </li>
                 <li className="mx-1">
@@ -84,7 +99,7 @@ const Blog = () => {
                     href="#0"
                     className="bg-body-color/15 text-body-color hover:bg-primary flex h-9 min-w-[36px] items-center justify-center rounded-md px-4 text-sm transition hover:text-white"
                   >
-                    Next
+                    {blogCopy.pagination.next}
                   </a>
                 </li>
               </ul>
@@ -96,4 +111,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogContent;

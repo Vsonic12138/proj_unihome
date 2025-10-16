@@ -1,20 +1,31 @@
+"use client";
+
 import { createPortal } from "react-dom";
 
-type PropsType = {
+type BaseProps = {
   isOpen: boolean;
   onClose: () => void;
-} & (
-  | {
-      channel: "youtube";
-      videoId: string;
-    }
-  | {
-      channel?: "custom";
-      src: string;
-    }
-);
+  closeLabel: string;
+};
 
-export default function VideoModal({ isOpen, onClose, ...props }: PropsType) {
+type PropsType = BaseProps &
+  (
+    | {
+        channel: "youtube";
+        videoId: string;
+      }
+    | {
+        channel?: "custom";
+        src: string;
+      }
+  );
+
+export default function VideoModal({
+  isOpen,
+  onClose,
+  closeLabel,
+  ...props
+}: PropsType) {
   if (!isOpen) return null;
 
   let src = "";
@@ -32,7 +43,7 @@ export default function VideoModal({ isOpen, onClose, ...props }: PropsType) {
           onClick={onClose}
           className="absolute -top-2 -right-4 translate-x-full text-7xl leading-none text-white"
         >
-          <span className="sr-only">Close modal</span>
+          <span className="sr-only">{closeLabel}</span>
           &times;
         </button>
         <iframe width="100%" height="500" src={src} allowFullScreen />

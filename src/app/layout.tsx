@@ -1,37 +1,29 @@
-"use client";
-
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import ScrollToTop from "@/components/ScrollToTop";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
 
+import { Providers } from "./providers";
+
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale?: Locale }>;
 }) {
-  return (
-    <html suppressHydrationWarning lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
-      <head />
+  const resolvedParams = await params;
+  const localeParam = resolvedParams?.locale;
+  const locale = SUPPORTED_LOCALES.includes((localeParam ?? "") as Locale)
+    ? (localeParam as Locale)
+    : DEFAULT_LOCALE;
 
+  return (
+    <html suppressHydrationWarning lang={locale}>
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-          <ScrollToTop />
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
 }
-
-import { Providers } from "./providers";
-

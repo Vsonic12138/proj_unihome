@@ -1,18 +1,30 @@
 "use client";
+
+import type { Dictionary } from "@/i18n/config";
 import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
 
-const Pricing = () => {
+const PRICE_MATRIX = [
+  { monthly: "40", yearly: "120" },
+  { monthly: "399", yearly: "789" },
+  { monthly: "589", yearly: "999" },
+] as const;
+
+type PricingProps = {
+  copy: Dictionary["pricing"];
+};
+
+const Pricing = ({ copy }: PricingProps) => {
   const [isMonthly, setIsMonthly] = useState(true);
 
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
         <SectionTitle
-          title="Simple and Affordable Pricing"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title={copy.title}
+          paragraph={copy.paragraph}
           center
           width="665px"
         />
@@ -27,10 +39,10 @@ const Pricing = () => {
                   : "text-dark dark:text-white"
               } mr-4 cursor-pointer text-base font-semibold`}
             >
-              Monthly
+              {copy.toggle.monthly}
             </span>
             <div
-              onClick={() => setIsMonthly(!isMonthly)}
+              onClick={() => setIsMonthly((value) => !value)}
               className="flex cursor-pointer items-center"
             >
               <div className="relative">
@@ -52,51 +64,37 @@ const Pricing = () => {
                   : "pointer-events-none text-primary"
               } ml-4 cursor-pointer text-base font-semibold`}
             >
-              Yearly
+              {copy.toggle.yearly}
             </span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          <PricingBox
-            packageName="Lite"
-            price={isMonthly ? "40" : "120"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="inactive" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Basic"
-            price={isMonthly ? "399" : "789"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
-          </PricingBox>
-          <PricingBox
-            packageName="Plus"
-            price={isMonthly ? "589" : "999"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="active" />
-          </PricingBox>
+          {copy.packages.map((pricingPackage, index) => {
+            const prices = PRICE_MATRIX[index] ?? PRICE_MATRIX[0];
+            const price = isMonthly ? prices.monthly : prices.yearly;
+            const duration = isMonthly
+              ? copy.durationSuffix.monthly
+              : copy.durationSuffix.yearly;
+            return (
+              <PricingBox
+                key={pricingPackage.name}
+                packageName={pricingPackage.name}
+                price={price}
+                duration={duration}
+                subtitle={pricingPackage.subtitle}
+                ctaLabel={copy.cta}
+              >
+                {pricingPackage.offers.map((offer) => (
+                  <OfferList
+                    key={`${pricingPackage.name}-${offer.text}`}
+                    text={offer.text}
+                    status={offer.status === "active" ? "active" : "inactive"}
+                  />
+                ))}
+              </PricingBox>
+            );
+          })}
         </div>
       </div>
 
