@@ -21,12 +21,6 @@ const buildMenu = (
       newTab: false,
     },
     {
-      id: 33,
-      title: menu.blog,
-      path: withLocalePath(locale, "/blog"),
-      newTab: false,
-    },
-    {
       id: 3,
       title: menu.support,
       path: withLocalePath(locale, "/contact"),
@@ -37,18 +31,6 @@ const buildMenu = (
       title: menu.pages,
       newTab: false,
       submenu: [
-        {
-          id: 44,
-          title: menu.submenu.blogSidebar,
-          path: withLocalePath(locale, "/blog-sidebar"),
-          newTab: false,
-        },
-        {
-          id: 45,
-          title: menu.submenu.blogDetails,
-          path: withLocalePath(locale, "/blog-details"),
-          newTab: false,
-        },
         {
           id: 48,
           title: menu.submenu.error,

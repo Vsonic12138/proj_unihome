@@ -34,6 +34,41 @@
 
 ---
 
+V1.2.0 remove(blog): 移除博客相关页面及导航入口
+
+类型: remove
+
+范围: blog, header, pages
+
+说明:
+
+本次更新移除了博客相关的所有页面及其在导航菜单中的入口，简化了网站结构，聚焦核心业务内容。
+
+实现细节:
+
+1. 页面移除
+   - `src/app/[locale]/blog-details/page.tsx`、`src/app/[locale]/blog-sidebar/page.tsx`、`src/app/[locale]/blog/page.tsx`：全部内容替换为 `notFound()`，原有博客详情、侧边栏、列表页功能被废弃。
+   - `src/app/[locale]/page.tsx`：主页移除 `BlogSection` 组件，不再展示博客板块。
+
+2. 导航菜单调整
+   - `src/components/Header/menuData.tsx`：移除主导航中的“博客”入口，以及“页面”子菜单下的“博客侧边栏”和“博客详情”入口。
+
+文件变更:
+
+- 修改: src/app/[locale]/blog-details/page.tsx
+- 修改: src/app/[locale]/blog-sidebar/page.tsx
+- 修改: src/app/[locale]/blog/page.tsx
+- 修改: src/app/[locale]/page.tsx
+- 修改: src/components/Header/menuData.tsx
+
+改进效果:
+
+- 网站结构更简洁，用户聚焦于核心产品与服务内容
+- 移除无用页面，减少维护成本
+- 导航菜单更清晰，提升用户体验
+
+---
+
 V1.1.2 feat(i18n): 英文和日文版本国际化内容优化
 
 类型: feat
