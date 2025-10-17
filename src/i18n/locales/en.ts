@@ -29,183 +29,88 @@ export const dictionary = {
       },
     },
     hero: {
-      title: "Leading Provider of Intelligent Robotics Education Solutions",
+      title: "Global Leader in Embodied Intelligence Innovation",
       description:
-        "Youni Tongchuang specializes in professional educational robotics for universities—including modular cars, mecanum wheel cars, omni wheel cars, embodied intelligent robots, and ROS2 cars—empowering robotics education and research innovation.",
+        "Located at Shougang Park Winter Olympic Plaza in Beijing's Shijingshan District, Youni Tongchuang partners with Shougang Group to build a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics to teaching, research, and real-world scenarios, providing integrated hardware, software, and curriculum solutions for universities and vocational schools.",
       primaryCta: "Explore Products",
       secondaryCta: "Contact Us",
     },
     features: {
-      title: "Product Advantages",
+      title: "Core Advantages",
       paragraph:
-        "Youni Tongchuang delivers comprehensive educational robotics solutions for universities, supporting everything from foundational teaching to research innovation while cultivating the next generation of robotics talent.",
+        "Built on the principles of \"Inspire, Explore, Innovate, and Share,\" we create embodied intelligent robotics learning platforms with accessible, intelligent, and cost-effective products paired with comprehensive curriculum systems.",
       items: [
         {
           id: 1,
-          title: "Modular Assembly Cars",
+          title: "Progressive Learning System",
           paragraph:
-            "A modular design enables flexible builds that help students grasp core robotic structures and principles, making it ideal for entry-level robotics courses and hands-on teaching.",
+            "Systematically analyzing embodied robotics technology and tailoring it to different educational levels, we design tiered, diverse curricula that enable every robotics enthusiast to progressively master robotic technologies.",
         },
         {
           id: 2,
-          title: "Mecanum Wheel Car",
+          title: "Cost-Effective Smart Products",
           paragraph:
-            "Powered by mecanum wheel technology for omnidirectional movement and outstanding maneuverability—great for courses covering motion control and path planning.",
+            "We transform complex robotics technology into compact robot products, lowering the learning barrier and making embodied intelligent robotics education accessible to more schools and students.",
         },
         {
           id: 3,
-          title: "Fulai Wheel Car (Mecanum)",
+          title: "Comprehensive Solutions",
           paragraph:
-            "Equipped with a Fulai (mecanum) drive system that supports in-place rotation and diagonal movement, providing students with an advanced platform for motion research.",
+            "Providing integrated hardware, software, and curriculum solutions aligned with contemporary educational development strategies, we build AI + robotics embodied intelligence education systems for schools.",
         },
         {
           id: 4,
-          title: "Embodied Intelligent Robots",
+          title: "Embodied Intelligence Tech",
           paragraph:
-            "Integrated sensors and AI algorithms enable perception and intelligent decision-making, making them suitable for AI and human-robot interaction research.",
+            "Focusing on teaching, research, and application of embodied intelligent robotics, we help students understand how robots interact with their environment through physical embodiment, cultivating AI-era innovators.",
         },
         {
           id: 5,
-          title: "ROS2 Car Platform",
+          title: "Open-Source Community",
           paragraph:
-            "Built on the ROS2 operating system with a complete development environment and feature packages, supporting advanced robotics applications like SLAM and navigation.",
+            "Continuously building an open-source online learning community that brings together teachers, students, and developers to advance the popularization and innovation of embodied intelligent robotics.",
         },
         {
           id: 6,
-          title: "Professional Technical Support",
+          title: "Industry-Level Platform",
           paragraph:
-            "Comprehensive technical documentation, teaching resources, and after-sales services—paired with lab-ready course designs—help universities launch robotics programs quickly.",
+            "Partnering with Shougang Group to create an embodied intelligence innovation platform, we provide universities and vocational schools with integrated education-research environments and industry collaboration opportunities.",
         },
       ],
-    },
-    video: {
-      title: "Always Ready to Support You",
-      paragraph:
-        "We built this template around real team needs and provide advanced resources so you can ship the next version of your site faster.",
-      buttonAriaLabel: "Play intro video",
     },
     about: {
       sectionOne: {
         title: "About Youni Tongchuang",
         paragraph:
-          "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. was founded on September 20, 2024, at 11F, Suite 1107, Building 6, Yard 19, Xincheng East Street, Mentougou District, Beijing. We focus on delivering professional educational robotics products and solutions for universities.",
+          "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. is located at Shougang Park Winter Olympic Plaza in Beijing's Shijingshan District. Partnering with Shougang Group, we are building a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics to teaching and research while continuously exploring real-world application scenarios, providing integrated hardware, software, and curriculum solutions for universities and vocational schools.",
         bulletPoints: [
-          "Educational Robotics",
-          "ROS2 Platform",
-          "Professional Technical Support",
-          "Complete Curriculum System",
-          "Research Collaboration",
-          "Customized Services",
+          "Embodied Intelligent Robotics",
+          "Progressive Learning System",
+          "Open-Source Community",
+          "Industry-Academia Integration",
+          "Cost-Effective Smart Products",
+          "Complete Education Solutions",
         ],
       },
       sectionTwo: {
         items: [
           {
-            title: "Product Quality Assurance",
+            title: "Inspire, Explore, Innovate",
             paragraph:
-              "Every product undergoes rigorous testing and quality control to ensure stable, reliable performance that supports both teaching and research.",
+              "Built on the core principles of \"Inspire, Explore, Innovate, and Share,\" we construct embodied intelligent robotics learning platforms that spark students' interest and creativity in robotics technology.",
           },
           {
-            title: "Technical Service Team",
+            title: "Tiered Curriculum System",
             paragraph:
-              "Professional pre-sales consulting and after-sales technical support are paired with complete documentation and teaching resources, helping universities ramp up quickly.",
+              "Systematically analyzing embodied robotics technology and tailoring content to different educational levels, we design progressive, diverse curricula that make learning gradual and accessible.",
           },
           {
-            title: "Continuous Innovation",
+            title: "Open-Source Ecosystem",
             paragraph:
-              "We stay aligned with advancements in robotics to continually optimize product capabilities and offer cutting-edge educational robotics solutions to universities.",
+              "Continuously building an open-source online learning community that aggregates quality teaching resources and technical documentation, promoting the popularization and development of embodied intelligent robotics education.",
           },
         ],
       },
-    },
-    testimonials: {
-      title: "Real Feedback from Users",
-      paragraph:
-        "Voices from our community and customers help us refine the experience and give you confidence when choosing us.",
-      items: [
-        {
-          id: 1,
-          name: "Musharof Chy",
-          designation: "Founder, TailGrids",
-          image: "/images/testimonials/auth-01.png",
-          star: 5,
-          content:
-            "Our members love this template. The interface is intuitive and clean, and community setup is effortless.",
-        },
-        {
-          id: 2,
-          name: "Devid Weilium",
-          designation: "Founder, UIdeck",
-          image: "/images/testimonials/auth-02.png",
-          star: 5,
-          content:
-            "The structure is clear and easy to maintain. It integrates perfectly with our design system and is very friendly for the content team.",
-        },
-        {
-          id: 3,
-          name: "Lethium Frenci",
-          designation: "Founder, Lineicons",
-          image: "/images/testimonials/auth-03.png",
-          star: 5,
-          content:
-            "The responsive behavior is excellent and optimization is fast. It's a reliable choice for teams preparing to launch an MVP.",
-        },
-      ],
-    },
-    pricing: {
-      title: "Simple, Transparent Pricing",
-      paragraph:
-        "Pick the plan that fits your team size, upgrade services as needed, and avoid getting tied up in complicated terms.",
-      toggle: {
-        monthly: "Monthly Billing",
-        yearly: "Yearly Billing",
-      },
-      durationSuffix: {
-        monthly: "mo",
-        yearly: "yr",
-      },
-      cta: "Start Free Trial",
-      packages: [
-        {
-          name: "Lite",
-          subtitle:
-            "Covers core components and page structures so you can assemble a minimum viable version fast.",
-          offers: [
-            { text: "Complete UI component library", status: "active" },
-            { text: "Unlimited project usage", status: "active" },
-            { text: "Commercial license", status: "active" },
-            { text: "Email support", status: "active" },
-            { text: "Lifetime access", status: "inactive" },
-            { text: "Free lifetime updates", status: "inactive" },
-          ],
-        },
-        {
-          name: "Basic",
-          subtitle:
-            "Great for growing teams, unlocking more templates and use cases.",
-          offers: [
-            { text: "Complete UI component library", status: "active" },
-            { text: "Unlimited project usage", status: "active" },
-            { text: "Commercial license", status: "active" },
-            { text: "Email support", status: "active" },
-            { text: "Lifetime access", status: "active" },
-            { text: "Free lifetime updates", status: "inactive" },
-          ],
-        },
-        {
-          name: "Plus",
-          subtitle:
-            "Advanced support and update services designed for professional teams.",
-          offers: [
-            { text: "Complete UI component library", status: "active" },
-            { text: "Unlimited project usage", status: "active" },
-            { text: "Commercial license", status: "active" },
-            { text: "Email support", status: "active" },
-            { text: "Lifetime access", status: "active" },
-            { text: "Free lifetime updates", status: "active" },
-          ],
-        },
-      ],
     },
     blog: {
       title: "Latest Insights",
@@ -288,7 +193,7 @@ export const dictionary = {
     },
     footer: {
       description:
-        "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd.\n- Focused on educational robotics solutions for universities.\n- Address: Unit 101-2, 3F, Building 10, Yard 6, Liaocang Road, Shijingshan District, Beijing.",
+        "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd.\n- Located at Shougang Park Winter Olympic Plaza, Shijingshan District, Beijing\n- Focused on embodied intelligent robotics teaching, research, and applications\n- Address: Unit 101-2, 3F, Building 10, Yard 6, Liaocang Road, Shijingshan District, Beijing",
       columns: {
         usefulLinks: {
           title: "Useful Links",

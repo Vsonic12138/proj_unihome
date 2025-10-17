@@ -34,6 +34,80 @@
 
 ---
 
+V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专注核心业务展示
+
+类型: remove, ui, refactor
+
+范围: homepage, components, branding, content
+
+说明:
+
+本次更新移除了网站中的模板化组件（定价、客户评价、视频展示），进一步简化网站结构，专注于智能机器人教育解决方案的核心业务内容展示。同时更新了品牌标识和相关内容，使网站更加专业和聚焦。
+
+实现细节:
+
+1. 模板化组件移除
+   - `src/components/Pricing/`：删除整个定价组件目录，包括 `OfferList.tsx`、`PricingBox.tsx`、`index.tsx`
+   - `src/components/Testimonials/`：删除客户评价组件目录，包括 `SingleTestimonial.tsx`、`index.tsx`
+   - `src/components/Video/index.tsx`：删除视频展示组件
+
+2. 首页结构简化
+   - `src/app/[locale]/page.tsx`：移除 `Video`、`Testimonials`、`Pricing` 组件的导入和使用
+   - 简化后的首页结构为：Hero → Features → Brands → AboutSectionOne → AboutSectionTwo → Contact
+   - 保留核心业务展示内容，移除营销导向的模板化内容
+
+3. 品牌标识优化
+   - `public/images/logo/logo.svg`：主品牌标识文件优化，文件大小减少 70% (1340 → 393 行)
+   - `public/images/logo/logo-2.svg`：品牌变体标识优化，文件大小减少 45% (739 → 437 行)
+   - `public/images/logo/logo-text.svg`：文字标识大幅优化，文件大小减少 73% (2305 → 611 行)
+   - `public/images/logo/logo-text-inverse.svg`：反色文字标识优化，文件大小减少 66% (1617 → 551 行)
+   - 所有标识文件在保持视觉效果的同时大幅提升了加载性能
+
+4. 国际化内容更新
+   - `src/i18n/locales/en.ts`：英文版本内容专业化更新，标题从"智能机器人教育解决方案领先提供商"更新为"具身智能创新全球领导者"
+   - `src/i18n/locales/ja.ts`：日文版本对应内容同步更新
+   - `src/i18n/locales/zh.ts`：中文版本内容本地化优化
+   - 所有版本的内容都更加聚焦于核心技术优势和解决方案定位
+
+5. 页脚信息微调
+   - `src/components/Footer/index.tsx`：更新底部联系信息和展示内容
+
+文件变更:
+
+删除文件:
+- src/components/Pricing/OfferList.tsx
+- src/components/Pricing/PricingBox.tsx
+- src/components/Pricing/index.tsx
+- src/components/Testimonials/SingleTestimonial.tsx
+- src/components/Testimonials/index.tsx
+- src/components/Video/index.tsx
+
+修改文件:
+- src/app/[locale]/page.tsx (移除模板组件)
+- src/components/Footer/index.tsx (信息更新)
+- src/i18n/locales/en.ts (内容专业化)
+- src/i18n/locales/ja.ts (内容同步)
+- src/i18n/locales/zh.ts (本地化优化)
+- public/images/logo/logo.svg (性能优化)
+- public/images/logo/logo-2.svg (性能优化)
+- public/images/logo/logo-text.svg (性能优化)
+- public/images/logo/logo-text-inverse.svg (性能优化)
+
+改进效果:
+
+- 网站更聚焦：移除营销导向的模板内容，专注于核心业务价值展示
+- 性能提升：品牌标识文件大幅优化，提升页面加载速度
+- 用户体验：简化后的页面结构让用户更容易获取关键信息
+- 品牌一致：统一的国际化内容表达，强化专业定位
+- 维护简化：减少组件数量，降低后续维护复杂度
+
+影响范围:
+- 首页用户体验显著改变
+- 移除了价格展示和客户评价等销售导向内容
+- 网站更加偏向技术解决方案展示而非产品销售
+
+---
+
 V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研究板块
 
 类型: feat

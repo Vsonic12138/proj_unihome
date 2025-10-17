@@ -75,8 +75,8 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
       <div className="container">
-        <div className="-mx-4 flex flex-col gap-14 lg:flex-row lg:items-stretch lg:gap-16">
-          <div className="w-full px-4 lg:w-[25%] xl:w-[26%]">
+        <div className="-mx-4 flex flex-col gap-14 lg:flex-row lg:items-stretch lg:gap-12">
+          <div className="w-full px-4 lg:w-[38%] xl:w-[40%]">
             <div className="mb-12 lg:mb-16">
               <Link href={homeHref} className="mb-8 inline-block">
                 <Image
@@ -97,8 +97,8 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                 />
               </Link>
               <div
-                className={`mb-10 space-y-4 leading-8 tracking-wide text-body-color dark:text-body-color-dark ${
-                  locale === "zh" ? "text-base lg:text-lg" : "text-sm lg:text-base"
+                className={`mb-10 space-y-3 leading-relaxed text-body-color dark:text-body-color-dark ${
+                  locale === "zh" ? "text-sm lg:text-base" : "text-sm"
                 }`}
               >
                 {copy.description.split("\n").map((line, index) => (
@@ -134,8 +134,8 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
           <div className="hidden lg:flex lg:w-6 lg:flex-none lg:justify-center">
             <span className="h-full w-px bg-body-color/30 dark:bg-white/15" />
           </div>
-          <div className="w-full px-4 lg:w-[75%] xl:w-[74%]">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
+          <div className="w-full px-4 lg:w-[62%] xl:w-[60%]">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
               {columns.map((column) => (
                 <div key={column.title} className="space-y-5">
                   <h2 className="text-lg font-semibold text-black dark:text-white">
