@@ -34,6 +34,89 @@
 
 ---
 
+V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研究板块
+
+类型: feat
+
+范围: website, navigation, pages, branding
+
+说明:
+
+本次更新对网站进行了全面重构，移除了原有的通用模板内容，专注于智能机器人教育解决方案的专业展示，新增产品、开发者服务、定制解决方案和案例研究等核心业务板块。
+
+实现细节:
+
+1. 导航架构重新设计
+   - `src/components/Header/menuData.tsx`：完全重构导航菜单，从通用模板结构改为业务导向布局
+   - 新增"产品"、"开发者服务"、"定制解决方案"、"案例研究"等核心导航项
+   - 移除"博客"、"支持"、"更多页面"等通用模板导航
+   - 案例研究下设"大学项目"、"K12教育"、"联合研究"子菜单
+
+2. 新增核心业务页面
+   - `src/app/[locale]/products/page.tsx`：产品组合展示页面
+   - `src/app/[locale]/developers/page.tsx`：开发者服务总览
+   - `src/app/[locale]/developers/knowledge-base/page.tsx`：知识库页面
+   - `src/app/[locale]/developers/open-source/page.tsx`：开源项目页面
+   - `src/app/[locale]/custom-solutions/page.tsx`：定制解决方案页面
+   - `src/app/[locale]/case-studies/page.tsx`：案例研究总览
+   - `src/app/[locale]/case-studies/universities/page.tsx`：大学合作案例
+   - `src/app/[locale]/case-studies/k12/page.tsx`：K12教育案例
+   - `src/app/[locale]/case-studies/co-research/page.tsx`：联合研究案例
+
+3. 国际化内容全面升级
+   - `src/i18n/locales/en.ts`：英文版本专业化内容，突出智能机器人教育解决方案定位
+   - `src/i18n/locales/ja.ts`：日文版本本地化适配
+   - `src/i18n/locales/zh.ts`：中文版本品牌信息更新
+   - 所有页面均有对应的国际化内容支持
+
+4. 品牌视觉识别更新
+   - `public/favicon.ico`：更新网站图标
+   - `public/images/logo/logo.svg`：主品牌标识全面升级
+   - `public/images/logo/logo-2.svg`：品牌变体标识更新
+   - 新增`public/images/logo/logo-text.svg`和`public/images/logo/logo-text-inverse.svg`：纯文字版本标识
+
+5. 通用组件优化
+   - `src/components/Common/PageIntro.tsx`：新增页面介绍组件，统一新页面的展示格式
+   - `src/components/Header/index.tsx`：头部组件适配新导航结构
+   - `src/components/Footer/index.tsx`：底部信息更新，包括公司地址等联系信息
+
+文件变更:
+
+新增文件:
+- src/app/[locale]/products/page.tsx
+- src/app/[locale]/developers/page.tsx
+- src/app/[locale]/developers/knowledge-base/page.tsx
+- src/app/[locale]/developers/open-source/page.tsx
+- src/app/[locale]/custom-solutions/page.tsx
+- src/app/[locale]/case-studies/page.tsx
+- src/app/[locale]/case-studies/universities/page.tsx
+- src/app/[locale]/case-studies/k12/page.tsx
+- src/app/[locale]/case-studies/co-research/page.tsx
+- src/components/Common/PageIntro.tsx
+- public/images/logo/logo-text.svg
+- public/images/logo/logo-text-inverse.svg
+
+修改文件:
+- src/components/Header/menuData.tsx (完全重构)
+- src/components/Header/index.tsx (适配新导航)
+- src/components/Footer/index.tsx (信息更新)
+- src/i18n/locales/en.ts (内容专业化)
+- src/i18n/locales/ja.ts (本地化优化)
+- src/i18n/locales/zh.ts (品牌信息更新)
+- public/favicon.ico (图标更新)
+- public/images/logo/logo.svg (品牌升级)
+- public/images/logo/logo-2.svg (标识变体)
+
+改进效果:
+
+- 专业定位: 网站从通用模板转变为专业的智能机器人教育解决方案平台
+- 业务聚焦: 围绕产品、服务、案例的核心业务架构，提升用户导航体验
+- 品牌一致: 统一的视觉识别和专业化的内容表达
+- 国际化支持: 三语言版本的专业内容适配
+- 可扩展性: 模块化的页面结构便于后续功能扩展
+
+---
+
 V1.2.0 remove(blog): 移除博客相关页面及导航入口
 
 类型: remove

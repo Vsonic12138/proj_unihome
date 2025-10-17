@@ -64,20 +64,28 @@ const Header = ({
                 sticky ? "py-5 lg:py-2" : "py-8"
               } `}
             >
-              <Image
-                src="/images/logo/logo-2.svg"
-                alt="logo"
-                width={140}
-                height={30}
-                className="w-full dark:hidden"
-              />
-              <Image
-                src="/images/logo/logo.svg"
-                alt="logo"
-                width={140}
-                height={30}
-                className="hidden w-full dark:block"
-              />
+              <div
+                className={`relative transition-[height] ${
+                  sticky ? "h-10" : "h-14"
+                } w-36 max-w-full`}
+              >
+                <Image
+                  src="/images/logo/logo-2.svg"
+                  alt="logo"
+                  fill
+                  priority
+                  sizes="144px"
+                  className="object-contain dark:hidden"
+                />
+                <Image
+                  src="/images/logo/logo.svg"
+                  alt="logo"
+                  fill
+                  priority
+                  sizes="144px"
+                  className="hidden object-contain dark:block"
+                />
+              </div>
             </Link>
           </div>
           <div className="flex w-full items-center justify-between px-4">

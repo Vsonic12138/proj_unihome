@@ -2,18 +2,17 @@ export const dictionary = {
     header: {
       menu: {
         home: "ホーム",
+        products: "製品紹介",
+        developer: "開発者サービス",
+        customSolutions: "カスタム協業",
+        caseStudies: "導入事例",
         about: "会社概要",
-        blog: "ブログ",
-        support: "サポート",
-        pages: "その他のページ",
         submenu: {
-          about: "会社概要",
-          blog: "ブログ一覧",
-          blogSidebar: "ブログ（サイドバー付き）",
-          blogDetails: "ブログ詳細",
-          signin: "ログイン",
-          signup: "新規登録",
-          error: "エラーページ",
+          knowledgeBase: "ナレッジベース",
+          openSource: "オープンソース",
+          caseUniversities: "大学事例",
+          caseK12: "K12事例",
+          caseCoResearch: "共同研究",
         },
       },
       auth: {
@@ -284,7 +283,8 @@ export const dictionary = {
       },
     },
     footer: {
-      description: "有你同创知能ロボット科技（北京）有限公司 - 大学向け教育ロボットソリューションに特化しています。住所：北京市門頭溝区新城東街19号院6号楼11階1107室",
+      description:
+        "有你同创知能ロボット科技（北京）有限公司\n- 大学向け教育ロボットソリューションに特化しています。\n- 住所：北京市石景山区料仓路6号院10号楼3階101-2",
       columns: {
         usefulLinks: {
           title: "よく使うリンク",
@@ -311,12 +311,6 @@ export const dictionary = {
           ],
         },
       },
-      bottomNote: {
-        text: "テンプレート提供",
-        and: "と",
-        uideck: "UIdeck",
-        nextJsTemplates: "Next.js Templates",
-      },
     },
     pages: {
       about: {
@@ -328,6 +322,51 @@ export const dictionary = {
         title: "お問い合わせ",
         description:
           "ご質問や協力提案がある場合は、お気軽にお知らせください。できるだけ早く返信いたします。",
+      },
+      products: {
+        title: "製品紹介",
+        description:
+          "教育用ロボット製品ラインアップや主要機能、導入形態を確認し、授業や研究に最適なソリューションを見つけてください。",
+      },
+      developerServices: {
+        title: "開発者サービス",
+        description:
+          "ロボットプラットフォーム向けの技術サポート、SDKガイド、連携リソースを提供し、開発をスピードアップします。",
+      },
+      knowledgeBase: {
+        title: "ナレッジベース",
+        description:
+          "ハードウェアのセットアップ、ソフトウェア設定、授業運用に関するドキュメントやチュートリアルを参照できます。",
+      },
+      openSource: {
+        title: "オープンソース",
+        description:
+          "ロボットやAIに関連するオープンリポジトリ、コミュニティの取り組み、共同プロジェクトをご覧ください。",
+      },
+      customSolutions: {
+        title: "カスタム協業",
+        description:
+          "大学や企業パートナー向けに、ハードウェアカスタマイズ、カリキュラム設計、研究グレードのロボットソリューションを提供します。",
+      },
+      caseStudies: {
+        title: "導入事例",
+        description:
+          "授業、競技会、共同研究などで、各パートナーが当社ロボットソリューションをどのように活用しているかをご紹介します。",
+      },
+      caseUniversities: {
+        title: "大学事例",
+        description:
+          "大学が実験室構築や授業カリキュラム、イノベーションセンターに当社プラットフォームをどのように導入しているかをご覧ください。",
+      },
+      caseK12: {
+        title: "K12事例",
+        description:
+          "小中高校が当社のロボット教材を用いて、STEM教育やロボットリテラシーをどのように育成しているかを紹介します。",
+      },
+      caseCoResearch: {
+        title: "共同研究",
+        description:
+          "知能ロボットやAIなどの分野で当社技術を活用した共同研究の成果をご覧ください。",
       },
       blog: {
         title: "ブログ一覧",

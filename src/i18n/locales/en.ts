@@ -2,18 +2,17 @@ export const dictionary = {
     header: {
       menu: {
         home: "Home",
-        about: "About",
-        blog: "Blog",
-        support: "Support",
-        pages: "More Pages",
+        products: "Products",
+        developer: "Developer Services",
+        customSolutions: "Custom Solutions",
+        caseStudies: "Case Studies",
+        about: "About Us",
         submenu: {
-          about: "About",
-          blog: "Blog List",
-          blogSidebar: "Blog Sidebar",
-          blogDetails: "Blog Details",
-          signin: "Sign In",
-          signup: "Sign Up",
-          error: "Error",
+          knowledgeBase: "Knowledge Base",
+          openSource: "Open Source Projects",
+          caseUniversities: "Universities",
+          caseK12: "K12 Education",
+          caseCoResearch: "Co-Research",
         },
       },
       auth: {
@@ -289,7 +288,7 @@ export const dictionary = {
     },
     footer: {
       description:
-        "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. — Focused on educational robotics solutions for universities. Address: Suite 1107, 11F, Building 6, Yard 19, Xincheng East Street, Mentougou District, Beijing.",
+        "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd.\n- Focused on educational robotics solutions for universities.\n- Address: Unit 101-2, 3F, Building 10, Yard 6, Liaocang Road, Shijingshan District, Beijing.",
       columns: {
         usefulLinks: {
           title: "Useful Links",
@@ -316,12 +315,6 @@ export const dictionary = {
           ],
         },
       },
-      bottomNote: {
-        text: "Template by",
-        and: "and",
-        uideck: "UIdeck",
-        nextJsTemplates: "Next.js Templates",
-      },
     },
     pages: {
       about: {
@@ -333,6 +326,51 @@ export const dictionary = {
         title: "Contact Us",
         description:
           "If you have questions or collaboration ideas, leave a message and we'll respond soon.",
+      },
+      products: {
+        title: "Product Portfolio",
+        description:
+          "Review our robotics platforms, feature highlights, and deployment options to find the right fit for your teaching or research scenario.",
+      },
+      developerServices: {
+        title: "Developer Services",
+        description:
+          "Access technical support, SDK guides, and integration resources to accelerate development on our robotics platforms.",
+      },
+      knowledgeBase: {
+        title: "Knowledge Base",
+        description:
+          "Browse documentation, tutorials, and troubleshooting guides covering hardware installation, software configuration, and classroom deployment.",
+      },
+      openSource: {
+        title: "Open Source Projects",
+        description:
+          "Explore our open repositories, community contributions, and collaborative projects built around robotics and AI.",
+      },
+      customSolutions: {
+        title: "Custom Collaboration",
+        description:
+          "Partner with us for tailored hardware, curriculum design, and research-grade robotics solutions built around your requirements.",
+      },
+      caseStudies: {
+        title: "Success Stories",
+        description:
+          "See how different partners deploy our robotics solutions across teaching, competitions, and joint research initiatives.",
+      },
+      caseUniversities: {
+        title: "University Programs",
+        description:
+          "Discover how higher-education institutions integrate our robotics platforms into labs, coursework, and innovation centers.",
+      },
+      caseK12: {
+        title: "K12 Education",
+        description:
+          "Learn how middle and high schools use our kits to inspire early-stage STEM learning and robotics literacy.",
+      },
+      caseCoResearch: {
+        title: "Joint Research",
+        description:
+          "Review collaborative R&D efforts that leverage our technology for advanced robotics, AI, and interdisciplinary exploration.",
       },
       blog: {
         title: "Blog List",

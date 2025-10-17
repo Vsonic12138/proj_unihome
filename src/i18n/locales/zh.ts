@@ -2,18 +2,17 @@ export const dictionary = {
     header: {
       menu: {
         home: "首页",
+        products: "产品介绍",
+        developer: "开发者服务",
+        customSolutions: "定制合作",
+        caseStudies: "服务案例",
         about: "关于我们",
-        blog: "博客",
-        support: "支持",
-        pages: "更多页面",
         submenu: {
-          about: "关于我们",
-          blog: "博客列表",
-          blogSidebar: "博客侧栏",
-          blogDetails: "博客详情",
-          signin: "登录",
-          signup: "注册",
-          error: "错误页",
+          knowledgeBase: "知识库",
+          openSource: "开源项目",
+          caseUniversities: "高校案例",
+          caseK12: "K12案例",
+          caseCoResearch: "共研案例",
         },
       },
       auth: {
@@ -284,7 +283,8 @@ export const dictionary = {
       },
     },
     footer: {
-      description: "有你同创智能机器人科技（北京）有限公司 - 专注高校教育机器人解决方案。地址：北京市门头沟区新城东街19号院6号楼11层1107",
+      description:
+        "有你同创智能机器人科技（北京）有限公司\n- 专注高校教育机器人解决方案。\n- 地址：北京市石景山区料仓路6号院10号楼3层101-2",
       columns: {
         usefulLinks: {
           title: "常用链接",
@@ -311,12 +311,6 @@ export const dictionary = {
           ],
         },
       },
-      bottomNote: {
-        text: "模板由",
-        and: "与",
-        uideck: "UIdeck",
-        nextJsTemplates: "Next.js Templates",
-      },
     },
     pages: {
       about: {
@@ -328,6 +322,51 @@ export const dictionary = {
         title: "联系我们",
         description:
           "如果你有任何问题或合作想法，欢迎留下留言，我们会尽快回复。",
+      },
+      products: {
+        title: "产品介绍",
+        description:
+          "全面了解教育机器人产品矩阵、核心功能与配套方案，找到适合教学或科研的最佳选择。",
+      },
+      developerServices: {
+        title: "开发者服务",
+        description:
+          "获取技术支持、SDK指南与集成资源，帮助你快速在我们的机器人平台上进行二次开发。",
+      },
+      knowledgeBase: {
+        title: "知识库",
+        description:
+          "查阅硬件安装、软件配置、课程部署等文档教程，快速定位问题解决方案。",
+      },
+      openSource: {
+        title: "开源项目",
+        description:
+          "探索我们围绕机器人与人工智能推出的开源仓库，与社区一起共建共创。",
+      },
+      customSolutions: {
+        title: "定制合作",
+        description:
+          "面向高校与产业合作伙伴提供硬件定制、课程设计与科研级机器人解决方案。",
+      },
+      caseStudies: {
+        title: "服务案例",
+        description:
+          "了解不同合作伙伴如何在教学、竞赛与联合研发中应用我们的机器人产品。",
+      },
+      caseUniversities: {
+        title: "高校案例",
+        description:
+          "深入了解高校如何将我们的平台融入实验室建设、课程体系与创新中心。",
+      },
+      caseK12: {
+        title: "K12案例",
+        description:
+          "看看中小学如何用我们的机器人套件激发学生对STEM的兴趣与实践能力。",
+      },
+      caseCoResearch: {
+        title: "共研案例",
+        description:
+          "了解我们与合作伙伴在智能机器人、人工智能等领域的联合研发成果。",
       },
       blog: {
         title: "博客列表",

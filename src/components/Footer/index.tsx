@@ -67,45 +67,49 @@ type FooterProps = {
 
 const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
   const columns = [
-    {
-      ...copy.columns.usefulLinks,
-      className: "sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12",
-    },
-    {
-      ...copy.columns.terms,
-      className: "sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12",
-    },
-    {
-      ...copy.columns.support,
-      className: "md:w-1/2 lg:w-4/12 xl:w-3/12",
-    },
+    copy.columns.usefulLinks,
+    copy.columns.terms,
+    copy.columns.support,
   ];
 
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
       <div className="container">
-        <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
-            <div className="mb-12 max-w-[360px] lg:mb-16">
+        <div className="-mx-4 flex flex-col gap-14 lg:flex-row lg:items-stretch lg:gap-16">
+          <div className="w-full px-4 lg:w-[25%] xl:w-[26%]">
+            <div className="mb-12 lg:mb-16">
               <Link href={homeHref} className="mb-8 inline-block">
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src="/images/logo/logo-text.svg"
                   alt="logo"
-                  className="w-full dark:hidden"
-                  width={140}
-                  height={30}
+                  width={220}
+                  height={72}
+                  className="block w-full max-w-[15rem] object-contain dark:hidden"
+                  priority
                 />
                 <Image
-                  src="/images/logo/logo.svg"
+                  src="/images/logo/logo-text-inverse.svg"
                   alt="logo"
-                  className="hidden w-full dark:block"
-                  width={140}
-                  height={30}
+                  width={220}
+                  height={72}
+                  className="hidden w-full max-w-[15rem] object-contain dark:block"
+                  priority
                 />
               </Link>
-              <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                {copy.description}
-              </p>
+              <div
+                className={`mb-10 space-y-4 leading-8 tracking-wide text-body-color dark:text-body-color-dark ${
+                  locale === "zh" ? "text-base lg:text-lg" : "text-sm lg:text-base"
+                }`}
+              >
+                {copy.description.split("\n").map((line, index) => (
+                  <p
+                    key={`footer-description-${index}`}
+                    className="whitespace-normal"
+                  >
+                    {line}
+                  </p>
+                ))}
+              </div>
               <div className="flex items-center">
                 {socialLinks.map((link, index) => {
                   const href = withLocalePath(locale, link.href);
@@ -127,52 +131,37 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
               </div>
             </div>
           </div>
-          {columns.map((column) => (
-            <div key={column.title} className={`w-full px-4 ${column.className}`}>
-              <div className="mb-12 lg:mb-16">
-                <h2 className="mb-10 text-xl font-bold text-black dark:text-white">
-                  {column.title}
-                </h2>
-                <ul>
-                  {column.items.map((item) => (
-                    <li key={`${column.title}-${item.label}`}>
-                      <Link
-                        href={withLocalePath(locale, item.path)}
-                        className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="hidden lg:flex lg:w-6 lg:flex-none lg:justify-center">
+            <span className="h-full w-px bg-body-color/30 dark:bg-white/15" />
+          </div>
+          <div className="w-full px-4 lg:w-[75%] xl:w-[74%]">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
+              {columns.map((column) => (
+                <div key={column.title} className="space-y-5">
+                  <h2 className="text-lg font-semibold text-black dark:text-white">
+                    {column.title}
+                  </h2>
+                  <ul className="space-y-3">
+                    {column.items.map((item) => (
+                      <li key={`${column.title}-${item.label}`}>
+                        <Link
+                          href={withLocalePath(locale, item.path)}
+                          className="text-base text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
 
-        <div className="h-px w-full bg-linear-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
-        <div className="py-8">
-          <p className="text-center text-base text-body-color dark:text-white">
-            {copy.bottomNote.text}{" "}
-            <a
-              href="http://uideck.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary"
-            >
-              {copy.bottomNote.uideck}
-            </a>{" "}
-            {copy.bottomNote.and}{" "}
-            <a
-              href="https://nextjstemplates.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-primary"
-            >
-              {copy.bottomNote.nextJsTemplates}
-            </a>
-          </p>
-        </div>
+      </div>
+      <div className="border-t border-body-color/15 py-6 text-center text-sm text-body-color dark:border-white/10 dark:text-body-color-dark">
+        版权所有 有你同创智能机器人科技（北京）科技有限公司 京ICP备xxxxxxxx号-x 公安备案号：xxxxxxxxxxxxxx
       </div>
       <div className="absolute right-0 top-14 z-[-1]">
         <svg
