@@ -34,6 +34,64 @@
 
 ---
 
+V1.1.1 feat(contact): 新增浮动联系方式组件与深色主题样式优化
+
+类型: feat
+
+范围: contact
+
+说明:
+
+为官网新增智能浮动联系方式组件，提供QQ群、电话、淘宝、微信等多种联系渠道，并同步优化深色主题下的样式一致性，提升用户联系便利性和视觉体验。
+
+实现细节:
+
+1. 浮动联系方式组件开发
+    - 新增 `FloatingContact` 组件，包含可折叠的联系面板和浮动操作按钮
+    - 支持QQ群号复制、电话号码复制、淘宝店铺链接等功能
+    - 集成二维码展示、复制成功提示、键盘导航等交互特性
+    - 响应式设计，移动端自动切换为模态弹窗形式
+
+2. 多语言国际化支持
+    - 在 `en.ts`、`zh.ts`、`ja.ts` 中新增 `floatingContact` 词典配置
+    - 包含完整的文案国际化：QQ群、电话、淘宝、微信等联系方式的标签和提示信息
+    - 支持复制成功提示、访问链接等交互文案的本地化
+
+3. 联系方式资源集成
+    - 新增联系相关图标：QQ、电话、淘宝、微信填充图标
+    - 添加QQ群二维码图片资源，便于用户扫码加群
+    - 配置淘宝店铺链接和微信预留接口
+
+4. 深色主题样式统一
+    - 修正多个组件在深色模式下的背景色一致性（从 `#2C303B` 统一为 `#2d2520`）
+    - 更新错误页面的主色调，保持与品牌橙色 `#ff6b35` 一致
+    - 优化视频区域SVG渐变色，适配新的主题色彩
+
+5. 全局布局集成
+    - 在主布局文件中引入FloatingContact组件
+    - 传递多语言词典配置，确保组件支持国际化
+
+文件变更:
+
+- 新增: src/components/Common/FloatingContact.tsx (568行，核心组件)
+- 新增: public/images/contact/qq-group-qrcode.jpg (QQ群二维码)
+- 新增: public/images/icons/QQ.svg, phone.svg, taobao.svg, wechat-fill.svg (联系图标)
+- 修改: src/app/[locale]/layout.tsx (集成浮动组件)
+- 修改: src/i18n/locales/{en,zh,ja}.ts (新增floatingContact词典)
+- 修改: src/styles/index.css (主题色调整)
+- 修改: public/images/video/shape.svg (渐变色更新)
+- 修改: 多个组件的深色主题样式 (blog-sidebar, error, signin, signup, breadcrumb, pricing, testimonials, footer等)
+
+改进效果:
+
+- 联系便利性: 用户可通过浮动面板快速访问各种联系方式，无需跳转到联系页面
+- 交互体验: 复制功能、二维码展示、键盘导航等特性提供流畅的用户操作体验
+- 品牌一致性: 全站深色主题样式统一，保持橙色主题的视觉连贯性
+- 移动适配: 响应式设计确保在移动设备上也有良好的使用体验
+- 国际化完整: 新功能完全支持多语言，符合项目的国际化架构要求
+
+---
+
 V1.1.0 feat(branding): 官网品牌化内容重塑与主题色更新
 
 类型: feat

@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import FloatingContact from "@/components/Common/FloatingContact";
 import { getDictionary, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
 import type { ReactNode } from "react";
 
@@ -35,6 +36,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
         locale={locale}
       />
       <ScrollToTop label={dictionary.common.aria.scrollToTop} />
+      <FloatingContact copy={dictionary.floatingContact} />
     </>
   );
 };

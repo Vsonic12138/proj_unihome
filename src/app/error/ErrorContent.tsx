@@ -41,7 +41,7 @@ const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
                     cx="227.5"
                     cy="81.5"
                     r="68.5"
-                    fill="#4A6CF7"
+                    fill="#ff6b35"
                   />
                   <mask
                     id="mask0_116:1137"
@@ -57,7 +57,7 @@ const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
                       cx="227.5"
                       cy="81.5"
                       r="68.5"
-                      fill="#4A6CF7"
+                      fill="#ff6b35"
                     />
                   </mask>
                   <g mask="url(#mask0_116:1137)">
@@ -108,8 +108,8 @@ const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
                       y2="27.0837"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stopColor="#4A6CF7" stopOpacity="0" />
-                      <stop offset="1" stopColor="#4A6CF7" />
+                      <stop stopColor="#ff6b35" stopOpacity="0" />
+                      <stop offset="1" stopColor="#ff6b35" />
                     </linearGradient>
                     <linearGradient
                       id="paint1_linear_116:1137"
@@ -119,8 +119,8 @@ const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
                       y2="-2.91631"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stopColor="#4A6CF7" stopOpacity="0" />
-                      <stop offset="1" stopColor="#4A6CF7" />
+                      <stop stopColor="#ff6b35" stopOpacity="0" />
+                      <stop offset="1" stopColor="#ff6b35" />
                     </linearGradient>
                     <radialGradient
                       id="paint2_radial_116:1137"

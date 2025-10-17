@@ -353,6 +353,36 @@ export const dictionary = {
         closeModal: "Close modal",
       },
     },
+    floatingContact: {
+      panelLabel: "Quick contact panel",
+      fabLabel: "Open contact options",
+      closeLabel: "Close contact options",
+      qqGroup: {
+        label: "QQ Group",
+        number: "811348489",
+        tooltip: "Copy QQ group number",
+        copy: "Copy",
+        copied: "Copied!",
+      },
+      phone: {
+        label: "Phone",
+        name: "Mr. She",
+        number: "+86 176 1035 7571",
+        tooltip: "Copy phone number",
+        copy: "Copy",
+        copied: "Copied!",
+      },
+      taobao: {
+        label: "Taobao Store",
+        tooltip: "Visit Taobao store",
+        linkText: "Visit",
+      },
+      wechat: {
+        label: "WeChat",
+        tooltip: "Coming Soon",
+        comingSoon: "WeChat contact will be available soon",
+      },
+    },
     buttons: {
       readMore: "Read More",
       keepReading: "Keep Reading",

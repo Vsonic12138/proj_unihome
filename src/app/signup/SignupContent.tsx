@@ -21,7 +21,7 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                 {copy.subtitle}
               </p>
 
-              <button className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary mb-6 flex w-full items-center justify-center rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:hover:shadow-none">
+              <button className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary mb-6 flex w-full items-center justify-center rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2d2520] dark:hover:shadow-none">
                 <span className="mr-3">
                   <svg
                     width="20"
@@ -58,7 +58,7 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                 {copy.google}
               </button>
 
-              <button className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary mb-6 flex w-full items-center justify-center rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:hover:shadow-none">
+              <button className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color hover:border-primary hover:bg-primary/5 hover:text-primary dark:hover:border-primary dark:hover:bg-primary/5 dark:hover:text-primary mb-6 flex w-full items-center justify-center rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2d2520] dark:hover:shadow-none">
                 <span className="mr-3">
                   <svg
                     fill="currentColor"
@@ -85,7 +85,7 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                     type="text"
                     id="name"
                     placeholder={copy.namePlaceholder}
-                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2d2520] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                   />
                 </div>
                 <div className="mb-6">
@@ -99,7 +99,7 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                     type="email"
                     id="email"
                     placeholder={forms.emailPlaceholder}
-                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2d2520] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                   />
                 </div>
                 <div className="mb-6">
@@ -113,7 +113,7 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                     type="password"
                     id="password"
                     placeholder={forms.passwordPlaceholder}
-                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
+                    className="border-stroke w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2d2520] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                   />
                 </div>
                 <div className="mb-6">
@@ -134,8 +134,8 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
                           >
                             <path
                               d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
-                              fill="#3056D3"
-                              stroke="#3056D3"
+                              fill="#ff6b35"
+                              stroke="#ff6b35"
                               strokeWidth="0.4"
                             />
                           </svg>
@@ -201,8 +201,8 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
               y2="453.581"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              <stop stopColor="#ff6b35" />
+              <stop offset="1" stopColor="#ff6b35" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_95:1005"
@@ -212,8 +212,8 @@ const SignupContent = ({ copy, forms, signinHref }: SignupContentProps) => {
               y2="34.3113"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#4A6CF7" stopOpacity="0.08" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              <stop stopColor="#ff6b35" stopOpacity="0.08" />
+              <stop offset="1" stopColor="#ff6b35" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

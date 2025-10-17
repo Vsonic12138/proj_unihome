@@ -4,7 +4,7 @@ import type { Dictionary } from "@/i18n/config";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-const LIGHT_THEME_ACCENT = "#4A6CF7";
+const LIGHT_THEME_ACCENT = "#ff6b35";
 const DARK_THEME_ACCENT = "#fff";
 
 type NewsLatterBoxProps = {
@@ -37,13 +37,13 @@ const NewsLatterBox = ({ copy }: NewsLatterBoxProps) => {
           type="text"
           name="name"
           placeholder={copy.namePlaceholder}
-          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
+          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2d2520] dark:focus:shadow-none"
         />
         <input
           type="email"
           name="email"
           placeholder={copy.emailPlaceholder}
-          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
+          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2d2520] dark:focus:shadow-none"
         />
         <input
           type="submit"

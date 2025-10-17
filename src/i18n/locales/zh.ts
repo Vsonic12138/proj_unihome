@@ -348,6 +348,36 @@ export const dictionary = {
         closeModal: "关闭弹窗",
       },
     },
+    floatingContact: {
+      panelLabel: "快速联系我们面板",
+      fabLabel: "打开联系方式",
+      closeLabel: "关闭联系方式",
+      qqGroup: {
+        label: "QQ群",
+        number: "811348489",
+        tooltip: "复制QQ群号",
+        copy: "复制",
+        copied: "已复制！",
+      },
+      phone: {
+        label: "电话",
+        name: "佘先生",
+        number: "+86 176 1035 7571",
+        tooltip: "复制联系电话",
+        copy: "复制",
+        copied: "已复制！",
+      },
+      taobao: {
+        label: "淘宝店铺",
+        tooltip: "访问淘宝店铺",
+        linkText: "访问",
+      },
+      wechat: {
+        label: "微信",
+        tooltip: "即将推出",
+        comingSoon: "微信联系方式即将推出",
+      },
+    },
     buttons: {
       readMore: "阅读更多",
       keepReading: "继续阅读",

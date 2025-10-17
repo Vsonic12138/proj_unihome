@@ -46,7 +46,7 @@ const Pricing = ({ copy }: PricingProps) => {
               className="flex cursor-pointer items-center"
             >
               <div className="relative">
-                <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
+                <div className="h-5 w-14 rounded-full bg-primary/20 shadow-inner"></div>
                 <div
                   className={`${
                     isMonthly ? "" : "translate-x-full"
@@ -135,8 +135,8 @@ const Pricing = ({ copy }: PricingProps) => {
               y2="1131.65"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              <stop stopColor="#ff6b35" />
+              <stop offset="1" stopColor="#ff6b35" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_93:235"
@@ -146,8 +146,8 @@ const Pricing = ({ copy }: PricingProps) => {
               y2="915.952"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
+              <stop stopColor="#ff6b35" />
+              <stop offset="1" stopColor="#ff6b35" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

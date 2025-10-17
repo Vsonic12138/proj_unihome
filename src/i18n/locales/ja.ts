@@ -348,6 +348,36 @@ export const dictionary = {
         closeModal: "モーダルを閉じる",
       },
     },
+    floatingContact: {
+      panelLabel: "クイック連絡パネル",
+      fabLabel: "連絡先を開く",
+      closeLabel: "連絡先を閉じる",
+      qqGroup: {
+        label: "QQグループ",
+        number: "811348489",
+        tooltip: "QQグループ番号をコピー",
+        copy: "コピー",
+        copied: "コピーしました！",
+      },
+      phone: {
+        label: "電話",
+        name: "佘様",
+        number: "+86 176 1035 7571",
+        tooltip: "電話番号をコピー",
+        copy: "コピー",
+        copied: "コピーしました！",
+      },
+      taobao: {
+        label: "Taobaoストア",
+        tooltip: "Taobaoストアを訪問",
+        linkText: "訪問",
+      },
+      wechat: {
+        label: "WeChat",
+        tooltip: "近日公開",
+        comingSoon: "WeChat連絡先は近日公開予定です",
+      },
+    },
     buttons: {
       readMore: "続きを読む",
       keepReading: "読続を続ける",

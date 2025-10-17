@@ -205,7 +205,7 @@ const ArticleContent = ({ article, labels, shareLabel }: ArticleContentProps) =>
                 cx="37.5"
                 cy="37.5"
                 r="37.5"
-                fill="#4A6CF7"
+                fill="#ff6b35"
               />
               <mask
                 id="mask0_111:596"
@@ -221,7 +221,7 @@ const ArticleContent = ({ article, labels, shareLabel }: ArticleContentProps) =>
                   cx="37.5"
                   cy="37.5"
                   r="37.5"
-                  fill="#4A6CF7"
+                  fill="#ff6b35"
                 />
               </mask>
               <g mask="url(#mask0_111:596)">

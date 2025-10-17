@@ -36,7 +36,7 @@ const BlogSidebarContent = ({
                 <input
                   type="text"
                   placeholder={sidebar.searchPlaceholder}
-                  className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary mr-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
+                  className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary mr-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2d2520] dark:focus:shadow-none"
                 />
                 <button
                   aria-label={sidebar.searchPlaceholder}
