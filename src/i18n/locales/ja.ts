@@ -234,7 +234,7 @@ export const dictionary = {
       products: {
         title: "製品紹介",
         description:
-          "教育用ロボット製品ラインアップや主要機能、導入形態を確認し、授業や研究に最適なソリューションを見つけてください。",
+          "教育・研究分野に向けたプロフェッショナルな具現化ロボットソリューションを提供します。入門から上級までをカバーする8つのコア製品で構成された豊富な製品マトリクスは、機械・電子・人工知能の技術を深く融合し、柔軟な機能拡張性と充実したサポート体制を備えています。K12段階のロボット入門教育、中高等専門学校の実践的スキルトレーニング、さらには大学・研究機関での最先端研究まで、ニーズに的確にマッチ。利用者が具現化知能ロボットの無限の可能性を探求し、教育・研究の最良のパートナーを見つけられるよう支援します。",
       },
       developerServices: {
         title: "開発者サービス",
@@ -282,6 +282,204 @@ export const dictionary = {
           "最新の記事を閲覧し、製品設計、フロントエンド開発、成長実践に関するインスピレーションを入手してください。",
       },
     },
+    products: {
+      catalog: {
+        coreTitle: "8つのコア製品",
+        coreDescription:
+          "入門から上級まで、K12から大学・研究までをカバー。",
+        viewDetailsCta: "詳細を見る",
+        items: [
+          {
+            slug: "ubot-mr205",
+            name: "具現化ロボット革新デザインキット Ubot MR205",
+            model: "Ubot MR205",
+            image: "/images/video/video.jpg",
+            brief:
+              "150+部品、5種シャーシ + 3種アーム、20種複合形態、多言語プログラミング。対象: K12/専門・短大1年/学部1年。",
+          },
+          {
+            slug: "gx-mat-0916",
+            name: "具現化複合ロボット革新デザインセット（上級）",
+            model: "GX-MAT-0916",
+            image: "/images/video/video.jpg",
+            brief:
+              "8種シャーシ + 6種アーム、48種複合形態、STM32 + Arduino デュアル制御。大学実践・競技向け。",
+          },
+          {
+            slug: "gx-mat-09s23",
+            name: "具現化複合ロボット革新デザインセット（強化版）",
+            model: "GX-MAT-09S23",
+            image: "/images/video/video.jpg",
+            brief:
+              "11種シャーシ + 7種アーム、88種複合形態、LiDAR + RDK X5 追加。上級授業・研究向け。",
+          },
+          {
+            slug: "rai-p433",
+            name: "具現化ロボットタスク計画 総合実習プラットフォーム",
+            model: "RAI-P433",
+            image: "/images/video/video.jpg",
+            brief:
+              "AI音声/視覚、4自由度アーム、ROS2 対応。大規模言語モデル応用・コンピュータビジョン・ROS授業向け。",
+          },
+          {
+            slug: "rai-m438",
+            name: "具現化複合ロボット システム設計実習プラットフォーム",
+            model: "RAI-M438",
+            image: "/images/video/video.jpg",
+            brief:
+              "メカナム全方向シャーシ + 4軸アーム、DeepSeek/通義千問に接続。移動ロボット航法・LLM導入向け。",
+          },
+          {
+            slug: "rai-q242",
+            name: "具現化ビジョン認識・意思決定 実習プラットフォーム",
+            model: "RAI-Q242",
+            image: "/images/video/video.jpg",
+            brief:
+              "深度カメラ + 高精度回転台/昇降ガイド、OpenCV/YOLO/VLM 対応。ビジョン・ML授業向け。",
+          },
+          {
+            slug: "uni-wr245",
+            name: "携帯型 ROS ナビゲーション 学習プラットフォーム",
+            model: "UNI-WR245",
+            image: "/images/video/video.jpg",
+            brief:
+              "<13cm のコンパクト、デスクトップ展開（60×60cm）、3種のナビ方式。ROS・移動ロボット授業向け。",
+          },
+          {
+            slug: "alo-le449",
+            name: "具現化ロボット 操作計画 総合実習プラットフォーム",
+            model: "ALO-LE449",
+            image: "/images/video/video.jpg",
+            brief:
+              "二つの5自由度アーム（主従追従）、ACT アーキテクチャ、調光可能な照明。模倣学習・E2E制御研究向け。",
+          },
+        ],
+      },
+      faq: {
+        title: "重要な質問",
+        items: [
+          {
+            q: "Q1：本ドキュメントの製品はどの教育段階をカバーし、各段階で推奨されるコア製品は？",
+            a:
+              "A：K12、専門・高専、高等職業、学部、大学院／研究まで幅広くカバーします。段階別の推奨は以下の通りです。\n\n" +
+              "K12／専門・高専1年／学部1年：Ubot MR205（0.98 万元）。ゼロから始められるブロック型プログラミング、組立難易度も低く、ロボットの通識実践に最適。5種シャーシ＋3種アームの構築に対応し、入門的な認知ニーズを満たします。\n\n" +
+              "学部（基礎科目）：GX‑MAT‑0916（2.68 万元）。機械原理、センサ計測、マイコン基礎などのコア科目に対応。8種シャーシ＋6種アームを構築でき、5種類の競技に適合。授業実践や競技トレーニングに最適。\n\n" +
+              "学部（上級科目）・大学院／研究：GX‑MAT‑09S23（3.88 万元）または RAI‑P433（3.4 万元）。前者は LiDAR と RDK X5（10TOPS）を追加し、ROSや移動ロボット航法など上級授業に対応。後者は大規模言語モデルとロボットを統合し、知能システム統合の研究に適します。",
+          },
+          {
+            q: "Q2：大学で“ROS”および“移動ロボット航法”の授業を行う場合、どの製品が最適で、その強みは？",
+            a:
+              "A：UNI‑WR245（0.45 万元）と GX‑MAT‑09S23（3.88 万元）が最適です。\n\n" +
+              "UNI‑WR245：\n" +
+              "• 柔軟な導入：超小型（<13cm、<550g）。最小 60×60cm の机上で SLAM ナビが可能で、大規模なスペース不要。\n" +
+              "• 教育の深さ：ROS のエンジニアリング導入を 5段階（原理→デモ→フレームワーク分解→パッケージ設定→全パラ調整）に分解。Cartographer／Hector／Gmapping の3方式で段階的に学習。\n" +
+              "• コスト効率：0.45 万元で、グループ実験用の一括導入に最適。\n\n" +
+              "GX‑MAT‑09S23：\n" +
+              "• 機能の充実：ROS 授業を追加サポート。11種シャーシ＋7種アームの構築に対応し、LiDAR（0.12–8m）と組み合わせて航法と位置決めの実践が可能。\n" +
+              "• 計算資源：RDK X5（10TOPS）＋Ubuntu+ROS により、SLAM 地図作成や自律回避など複雑なアルゴリズムの実装・チューニングを支援。",
+          },
+          {
+            q: "Q3：大規模言語モデル統合に対応する製品はどれで、何ができますか？",
+            a:
+              "A：以下の3製品が LLM を活用した応用に対応します。\n\n" +
+              "RAI‑P433（3.4 万元）：通義千問、Deepseek、火山エンジンを統合。ASR（通義千問）、LLM（Deepseek）、TTS（火山）、Function‑call（音声対話電卓、音楽再生、ジンバル／アームのタスク計画）を実現。YOLO／顔追跡やアーム制御との統合も可能。\n\n" +
+              "RAI‑M438（2.4 万元）：Deepseek（LLM）と通義千問（ASR＋マルチモーダル）に接続。自然言語指示をロボットタスクへ（シャーシ移動／把持など）。通義千問のマルチモーダル認識により物体検出を実行。メカナム全方向シャーシ＋4軸アームで汎化操作に対応。\n\n" +
+              "RAI‑Q242（3.2 万元）：通義千問 VLM を活用したマルチモーダル視覚。果物の検出・ラベリングや未知物体の認識に対応。深度カメラ＋高精度ターンテーブルにより、視覚・LLM 配備の精密なチューニングと検証が可能。",
+          },
+        ],
+      },
+      detailLabels: {
+        highlights: "主な特長",
+        applicable: "対象/シナリオ",
+        experiments: "実験項目",
+        configuration: "構成",
+        specs: "技術仕様",
+        comingSoon: "近日公開",
+      },
+      details: {
+        "ubot-mr205": {
+          name: "具現化ロボット革新デザインキット Ubot MR205",
+          model: "Ubot MR205",
+          image: "/images/video/video.jpg",
+          overview:
+            "入門〜基礎学習向けの具現化ロボットキット。多言語プログラミングと多様な形態の組み合わせに対応。",
+          highlights: ["150+ 部品", "5種シャーシ + 3種アーム", "20種複合形態", "多言語プログラミング"],
+          applicable: "K12、専門/短大1年、学部1年",
+        },
+        "gx-mat-0916": {
+          name: "具現化複合ロボット革新デザインセット（上級）",
+          model: "GX-MAT-0916",
+          image: "/images/video/video.jpg",
+          overview:
+            "大学実習や各種コンテスト向けの複合ロボット設計プラットフォーム。多種シャーシ/アーム構成とデュアル制御に対応。",
+          highlights: ["8種シャーシ", "6種アーム", "48種複合形態", "STM32 + Arduino"],
+          applicable: "大学の授業実践、各種競技",
+        },
+        "gx-mat-09s23": {
+          name: "具現化複合ロボット革新デザインセット（強化版）",
+          model: "GX-MAT-09S23",
+          image: "/images/video/video.jpg",
+          overview:
+            "上級版をベースにセンサと計算資源を強化。LiDAR と RDK X5 を追加し、より多くの形態と研究応用に対応。",
+          highlights: ["11種シャーシ", "7種アーム", "88種複合形態", "LiDAR + RDK X5"],
+          applicable: "上級授業、研究開発",
+        },
+        "rai-p433": {
+          name: "具現化ロボットタスク計画 総合実習プラットフォーム",
+          model: "RAI-P433",
+          image: "/images/video/video.jpg",
+          overview:
+            "AI音声/視覚モジュールと4自由度アームを統合。ROS2 に対応し、計画と認識の学習に適します。",
+          highlights: ["AI音声/視覚", "4自由度アーム", "ROS2対応"],
+          applicable: "LLM応用、コンピュータビジョン、ROS",
+        },
+        "rai-m438": {
+          name: "具現化複合ロボット システム設計実習プラットフォーム",
+          model: "RAI-M438",
+          image: "/images/video/video.jpg",
+          overview:
+            "メカナム全方向シャーシと4軸アーム、各種LLMに接続可能。システム設計や航法授業に最適。",
+          highlights: ["メカナム全方向", "4軸アーム", "LLM接続"],
+          applicable: "移動ロボット航法、LLM導入",
+        },
+        "rai-q242": {
+          name: "具現化ビジョン認識・意思決定 実習プラットフォーム",
+          model: "RAI-Q242",
+          image: "/images/video/video.jpg",
+          overview:
+            "深度カメラと高精度ステージを搭載し、OpenCV/YOLO/VLM 等のアルゴリズム学習に対応。",
+          highlights: ["深度カメラ", "高精度回転台/昇降ガイド", "OpenCV/YOLO/VLM"],
+          applicable: "コンピュータビジョン、機械学習",
+        },
+        "uni-wr245": {
+          name: "携帯型 ROS ナビゲーション 学習プラットフォーム",
+          model: "UNI-WR245",
+          image: "/images/video/video.jpg",
+          overview:
+            "コンパクトなデスクトップ型ナビゲーションプラットフォームで、ROS実験環境を素早く構築可能。",
+          highlights: ["<13cm コンパクト", "60×60cm デスクトップ", "3種ナビ方式"],
+          applicable: "ROS、移動ロボット",
+        },
+        "alo-le449": {
+          name: "具現化ロボット 操作計画 総合実習プラットフォーム",
+          model: "ALO-LE449",
+          image: "/images/video/video.jpg",
+          overview:
+            "主従追従の二つの5自由度アームと調光照明、ACTアーキテクチャにより、模倣学習やE2E制御研究に適合。",
+          highlights: ["5自由度×2アーム（主従）", "ACTアーキテクチャ", "調光照明"],
+          applicable: "模倣学習、エンドツーエンド制御",
+        },
+      },
+      supportResources: {
+        title: "共通サポートリソース",
+        items: [
+          "実験チュートリアル：手順、原理解説、重要ポイント",
+          "ソースコード：プログラム一式とライブラリ",
+          "構造図面：3D 設計図（STP 形式）",
+          "ハードウェア：モジュール化部品、各種 IDE 対応（Keil5、Arduino IDE、VS Code など）",
+        ],
+      },
+    },
     breadcrumbs: {
       home: "ホーム",
     },
@@ -320,9 +518,9 @@ export const dictionary = {
         linkText: "訪問",
       },
       wechat: {
-        label: "WeChat",
-        tooltip: "近日公開",
-        comingSoon: "WeChat連絡先は近日公開予定です",
+        label: "WeChat公式アカウント",
+        tooltip: "QRコードを表示",
+        comingSoon: "QRコードをスキャンしてWeChat公式アカウントをフォローしてください",
       },
     },
     buttons: {
@@ -449,6 +647,6 @@ export const dictionary = {
         tags: ["テーマ", "UIキット", "Tailwind", "スタートアップ", "ビジネス"],
       },
     },
-  };
+};
   
   export type JapaneseDictionary = typeof dictionary;

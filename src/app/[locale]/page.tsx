@@ -1,6 +1,5 @@
 import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
-import Brands from "@/components/Brands";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
@@ -34,7 +33,6 @@ const HomePage = async ({ params }: PageParams) => {
       <ScrollUp />
       <Hero copy={dictionary.hero} />
       <Features copy={dictionary.features} />
-      <Brands />
       <AboutSectionOne copy={dictionary.about.sectionOne} />
       <AboutSectionTwo items={dictionary.about.sectionTwo.items} />
       <Contact copy={dictionary.contact} />

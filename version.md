@@ -34,6 +34,68 @@
 
 ---
 
+V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互体验
+
+类型: feat, ui
+
+范围: products, contact, components
+
+说明:
+
+本次更新引入了动态产品详情页，允许展示每个产品的详细信息、视频和常见问题解答(FAQ)。同时，新增了功能更强大的悬浮联系组件，集成了电话、QQ群和微信公众号等多种联系方式，极大地提升了用户获取信息和联系我们的便捷性。
+
+实现细节:
+
+1. 产品详情模块
+   - `src/app/[locale]/products/[slug]/page.tsx`: 新增产品动态路由页面，用于展示单个产品的详细信息。
+   - `src/components/Products/ProductCard.tsx`: 新增产品详情卡片组件，包含产品标题、描述、视频和功能列表等内容。
+   - `src/components/Products/FAQ.tsx`: 新增可折叠的常见问题解答(FAQ)组件，以更好地解答用户疑问。
+
+2. 悬浮联系组件增强
+   - `src/components/Common/FloatingContact.tsx`: 重构悬浮联系组件，从简单的电话图标链接变为一个可展开的联系方式面板。
+   - `public/images/contact/weChat-official-account.jpg`: 新增微信公众号二维码图片资源。
+   - `public/images/icons/phone.svg`: 更新了电话图标的视觉样式。
+   - 组件现在包含电话、QQ群二维码和微信公众号二维码，提供多种便捷的联系途径。
+
+3. 首页与产品页集成
+   - `src/app/[locale]/page.tsx`: 在首页右下角集成了新的悬浮联系组件，方便用户随时联系。
+   - `src/app/[locale]/products/page.tsx`: 更新了产品列表页面，为后续展示产品卡片列表做好了准备。
+
+4. 国际化内容支持
+   - `src/i18n/locales/*.ts`: 在 `en`, `ja`, `zh` 语言文件中添加了新组件所需的翻译，如 "常见问题"、"联系我们"、"QQ群"、"微信公众号" 等。
+
+文件变更:
+
+新增文件:
+- public/images/contact/weChat-official-account.jpg
+- src/app/[locale]/products/[slug]/page.tsx
+- src/components/Products/FAQ.tsx
+- src/components/Products/ProductCard.tsx
+- src/components/Products/index.tsx
+
+修改文件:
+- next-env.d.ts (类型定义清理)
+- public/images/icons/phone.svg (图标样式更新)
+- src/app/[locale]/page.tsx (集成悬浮联系组件)
+- src/app/[locale]/products/page.tsx (页面结构更新)
+- src/components/Common/FloatingContact.tsx (功能重构与UI增强)
+- src/i18n/locales/en.ts (新增翻译)
+- src/i18n/locales/ja.ts (新增翻译)
+- src/i18n/locales/zh.ts (新增翻译)
+
+改进效果:
+
+- 信息更丰富: 用户现在可以查看详细的产品介绍、功能和常见问题，做出更明智的决策。
+- 交互更便捷: 全局悬浮联系组件让用户可以随时随地找到联系方式，提升了客户服务的可及性。
+- 体验更统一: 通过组件化的方式构建产品详情和FAQ，确保了网站整体风格的一致性。
+
+影响范围:
+- 网站新增了 `/products/[slug]` 动态产品详情路由。
+- 网站所有页面的右下角将出现新的悬浮联系按钮，显著改变了用户联系我们的交互方式。
+- 产品列表页面的内容结构已更新，为下一步的产品展示奠定了基础。
+
+---
+
 V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专注核心业务展示
 
 类型: remove, ui, refactor

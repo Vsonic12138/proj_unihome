@@ -235,7 +235,7 @@ export const dictionary = {
       products: {
         title: "Product Portfolio",
         description:
-          "Review our robotics platforms, feature highlights, and deployment options to find the right fit for your teaching or research scenario.",
+          "We provide professional embodied robotics solutions for education and research. With a rich product matrix spanning eight core product lines from entry to advanced levels, our offerings deeply integrate mechanical, electronic, and AI technologies, featuring flexible expandability and comprehensive supporting resources. Whether it's K12 robotics enlightenment, vocational skill training for secondary and higher vocational programs, or cutting-edge research at universities and institutes, we precisely match your needs—empowering you to explore the limitless possibilities of embodied intelligent robotics and to find the best partner for teaching and research.",
       },
       developerServices: {
         title: "Developer Services",
@@ -283,6 +283,209 @@ export const dictionary = {
           "Browse the latest articles for inspiration on product design, front-end development, and growth practices.",
       },
     },
+    products: {
+      catalog: {
+        coreTitle: "8 Core Products",
+        coreDescription:
+          "From entry-level to advanced, covering K12 through universities and research.",
+        viewDetailsCta: "View details",
+        items: [
+          {
+            slug: "ubot-mr205",
+            name: "Embodied Robotics Innovation Kit Ubot MR205",
+            model: "Ubot MR205",
+            image: "/images/video/video.jpg",
+            brief:
+              "150+ parts; 5 chassis + 3 robotic arms; 20 composite forms; multi-language programming. Suitable for K12, vocational Year 1, freshman.",
+          },
+          {
+            slug: "gx-mat-0916",
+            name: "Embodied Composite Robotics Design Set (Advanced)",
+            model: "GX-MAT-0916",
+            image: "/images/video/video.jpg",
+            brief:
+              "8 chassis + 6 robotic arms; 48 composite forms; STM32 + Arduino dual control. For university practice and competitions.",
+          },
+          {
+            slug: "gx-mat-09s23",
+            name: "Embodied Composite Robotics Design Set (Enhanced)",
+            model: "GX-MAT-09S23",
+            image: "/images/video/video.jpg",
+            brief:
+              "11 chassis + 7 robotic arms; 88 composite forms; adds LiDAR + RDK X5 board. For advanced courses and research.",
+          },
+          {
+            slug: "rai-p433",
+            name: "Embodied Robot Task Planning Training Platform",
+            model: "RAI-P433",
+            image: "/images/video/video.jpg",
+            brief:
+              "Built-in AI voice/vision; 4-DOF arm; ROS2 support. For LLM apps, computer vision, and ROS courses.",
+          },
+          {
+            slug: "rai-m438",
+            name: "Embodied Composite Robot System Design Training Platform",
+            model: "RAI-M438",
+            image: "/images/video/video.jpg",
+            brief:
+              "Mecanum omni chassis + 4-axis arm; connects DeepSeek/Qwen. For mobile navigation and LLM deployment.",
+          },
+          {
+            slug: "rai-q242",
+            name: "Embodied Vision Perception & Decision Training Platform",
+            model: "RAI-Q242",
+            image: "/images/video/video.jpg",
+            brief:
+              "Depth camera + precision rotary/lift stages; supports OpenCV/YOLO/VLM. For vision and ML courses.",
+          },
+          {
+            slug: "uni-wr245",
+            name: "Portable ROS Navigation Learning Platform",
+            model: "UNI-WR245",
+            image: "/images/video/video.jpg",
+            brief:
+              "Compact (<13cm); desktop deployment (60×60cm); 3 navigation modes. For ROS and mobile robotics.",
+          },
+          {
+            slug: "alo-le449",
+            name: "Embodied Robot Manipulation Planning Training Platform",
+            model: "ALO-LE449",
+            image: "/images/video/video.jpg",
+            brief:
+              "Two 5-DOF arms (master-follower), ACT architecture, adjustable lighting. For imitation learning and end-to-end control.",
+          },
+        ],
+      },
+      faq: {
+        title: "Key Questions",
+        items: [
+          {
+            q: "Q1: Which education stages do these products cover, and which core products are recommended for each?",
+            a:
+              "A: The portfolio covers K12, secondary and higher vocational programs, undergraduate, and postgraduate/research. Recommended options by stage:\n\n" +
+              "K12, vocational Year 1, freshmen: Ubot MR205 (0.98 万元). Zero‑programming entry (block‑based), low assembly difficulty for generalized robotics practice; supports 5 chassis + 3 arms to meet entry‑level learning needs.\n\n" +
+              "Undergraduate (foundation courses): GX‑MAT‑0916 (2.68 万元). Supports core courses such as Mechanics, Sensor Principles, and Microcontroller Basics; builds 8 chassis + 6 arms; aligns with 5 competition categories for course practice and competition training.\n\n" +
+              "Undergraduate (advanced), Postgraduate/Research: GX‑MAT‑09S23 (3.88 万元) or RAI‑P433 (3.4 万元). The former adds LiDAR + RDK X5 (10TOPS) and supports ROS and mobile navigation advanced courses; the latter integrates LLMs and robotics to enable intelligent system integration research.",
+          },
+          {
+            q: "Q2: For university courses in ROS and mobile robot navigation, which products are most suitable and why?",
+            a:
+              "A: UNI‑WR245 (0.45 万元) and GX‑MAT‑09S23 (3.88 万元) are the best fits.\n\n" +
+              "UNI‑WR245:\n" +
+              "• Flexible deployment: ultra‑portable (<13cm, <550g); SLAM navigation on a 60×60cm desktop—no large lab required.\n" +
+              "• Teaching depth: engineering ROS workflow broken into 5 steps (principles → demo → framework breakdown → package config → full‑parameter tuning), with Cartographer/Hector/Gmapping navigation—progressive experiments for full‑process mastery.\n" +
+              "• Cost‑effective: only 0.45 万元, ideal for bulk purchase and group labs.\n\n" +
+              "GX‑MAT‑09S23:\n" +
+              "• Comprehensive: adds ROS course support; builds 11 chassis + 7 arms; with LiDAR (0.12–8m), supports mobile navigation and localization practice.\n" +
+              "• Compute: RDK X5 (10TOPS) with Ubuntu+ROS enables complex algorithms (e.g., SLAM mapping, obstacle avoidance) for advanced courses.",
+          },
+          {
+            q: "Q3: Which products support LLM integration and what can they do?",
+            a:
+              "A: Three products support LLM‑based applications:\n\n" +
+              "RAI‑P433 (3.4 万元): integrates Qwen, DeepSeek, and Volcano Engine. Enables ASR (Qwen), LLM (DeepSeek), TTS (Volcano), and function‑call workflows (e.g., voice calculator, music playback, gimbal/arm task planning), integrated with YOLO/face tracking and arm control.\n\n" +
+              "RAI‑M438 (2.4 万元): connects DeepSeek (LLM) and Qwen (ASR + multimodal). Converts natural‑language commands into robot tasks (move chassis/grasp with arm); multimodal object detection (Qwen) with a mecanum chassis + 4‑axis arm for generalized manipulation.\n\n" +
+              "RAI‑Q242 (3.2 万元): leverages Qwen VLM for multimodal vision. Supports tasks like fruit detection/labeling and unknown‑object recognition; with a depth camera + precision turntable, enables precise tuning/validation for vision and LLM deployment courses.",
+          },
+        ],
+      },
+      detailLabels: {
+        highlights: "Highlights",
+        applicable: "Applicable Audience/Scenarios",
+        experiments: "Experiments",
+        configuration: "Configuration",
+        specs: "Technical Specs",
+        comingSoon: "Coming soon",
+      },
+      details: {
+        "ubot-mr205": {
+          name: "Embodied Robotics Innovation Kit Ubot MR205",
+          model: "Ubot MR205",
+          image: "/images/video/video.jpg",
+          overview:
+            "An entry-to-foundation embodied robotics kit supporting multiple languages and many composable forms, suitable for K12 and lower undergraduate levels.",
+          highlights: [
+            "150+ parts",
+            "5 chassis + 3 arms",
+            "20 composite forms",
+            "Multi-language programming",
+          ],
+          applicable: "K12, vocational year 1, freshman",
+        },
+        "gx-mat-0916": {
+          name: "Embodied Composite Robotics Design Set (Advanced)",
+          model: "GX-MAT-0916",
+          image: "/images/video/video.jpg",
+          overview:
+            "A composite robotics design platform for university courses and competitions with multiple chassis/arm combinations and dual-controller architecture.",
+          highlights: ["8 chassis", "6 arms", "48 composite forms", "STM32 + Arduino"],
+          applicable: "University practice, competitions",
+        },
+        "gx-mat-09s23": {
+          name: "Embodied Composite Robotics Design Set (Enhanced)",
+          model: "GX-MAT-09S23",
+          image: "/images/video/video.jpg",
+          overview:
+            "Enhanced sensing and compute with added LiDAR and RDK X5, supporting more forms and research needs.",
+          highlights: ["11 chassis", "7 arms", "88 composite forms", "LiDAR + RDK X5"],
+          applicable: "Advanced courses, research",
+        },
+        "rai-p433": {
+          name: "Embodied Robot Task Planning Training Platform",
+          model: "RAI-P433",
+          image: "/images/video/video.jpg",
+          overview:
+            "Integrated AI voice/vision with a 4-DOF arm and ROS2 support, ideal for planning and perception teaching.",
+          highlights: ["AI voice/vision", "4-DOF arm", "ROS2 support"],
+          applicable: "LLM apps, computer vision, ROS",
+        },
+        "rai-m438": {
+          name: "Embodied Composite Robot System Design Training Platform",
+          model: "RAI-M438",
+          image: "/images/video/video.jpg",
+          overview:
+            "Mecanum omni-directional chassis with a 4-axis arm and LLM connectivity for system design and navigation.",
+          highlights: ["Mecanum omni chassis", "4-axis arm", "LLM connectivity"],
+          applicable: "Mobile navigation, LLM deployment",
+        },
+        "rai-q242": {
+          name: "Embodied Vision Perception & Decision Training Platform",
+          model: "RAI-Q242",
+          image: "/images/video/video.jpg",
+          overview:
+            "Depth camera and precision motion stages supporting OpenCV/YOLO/VLM for vision and ML instruction.",
+          highlights: ["Depth camera", "Precision stages", "OpenCV/YOLO/VLM"],
+          applicable: "Computer vision, machine learning",
+        },
+        "uni-wr245": {
+          name: "Portable ROS Navigation Learning Platform",
+          model: "UNI-WR245",
+          image: "/images/video/video.jpg",
+          overview:
+            "A compact desktop ROS navigation platform enabling quick setup for lab exercises.",
+          highlights: ["<13cm compact", "60×60cm desktop", "3 navigation modes"],
+          applicable: "ROS, mobile robotics",
+        },
+        "alo-le449": {
+          name: "Embodied Robot Manipulation Planning Training Platform",
+          model: "ALO-LE449",
+          image: "/images/video/video.jpg",
+          overview:
+            "Dual 5-DOF arms in master-follower mode with adjustable lighting, supporting ACT and imitation learning/end-to-end control research.",
+          highlights: ["Two 5-DOF arms", "ACT architecture", "Adjustable lighting"],
+          applicable: "Imitation learning, end-to-end control",
+        },
+      },
+      supportResources: {
+        title: "Common Support Resources",
+        items: [
+          "Experiment guides: step-by-step procedures, principles, and key points",
+          "Source code: complete program sources and libraries",
+          "3D design drawings: STP format",
+          "Hardware support: modular parts and IDE compatibility (Keil5, Arduino IDE, VS Code, etc.)",
+        ],
+      },
+    },
     breadcrumbs: {
       home: "Home",
     },
@@ -321,9 +524,9 @@ export const dictionary = {
         linkText: "Visit",
       },
       wechat: {
-        label: "WeChat",
-        tooltip: "Coming soon",
-        comingSoon: "WeChat contact coming soon",
+        label: "WeChat Official",
+        tooltip: "Show QR code",
+        comingSoon: "Scan to follow our WeChat Official Account",
       },
     },
     buttons: {
@@ -451,6 +654,6 @@ export const dictionary = {
         tags: ["Themes", "UI Kits", "Tailwind", "Startups", "Business"],
       },
     },
-  };
+};
 
 export type EnglishDictionary = typeof dictionary;

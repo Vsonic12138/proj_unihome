@@ -9,8 +9,9 @@ type FloatingContactProps = {
   copy: Dictionary["floatingContact"];
 };
 
-const WECHAT_TOOLTIP_ID = "floating-contact-wechat-tooltip";
 const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
+const WECHAT_OFFICIAL_QR_SRC =
+  "/images/contact/weChat-official-account.jpg" as const;
 const TAOBAO_LINK =
   "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1";
 const VISITED_STORAGE_KEY = "floatingContactVisited";
@@ -31,7 +32,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
   const [showHint, setShowHint] = useState(false);
   const [offsetForScrollTop, setOffsetForScrollTop] = useState(false);
   const [mobileModalOpen, setMobileModalOpen] = useState(false);
-  const [showWechatTooltip, setShowWechatTooltip] = useState(false);
+  const [hoveredQR, setHoveredQR] = useState<"qq" | "wechat" | null>(null);
   const hintTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copiedQQTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -117,7 +118,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
   const closePanel = () => {
     clearCloseTimeout();
     setIsPanelOpen(false);
-    setShowWechatTooltip(false);
+    setHoveredQR(null);
   };
 
   const handleMouseEnter = () => {
@@ -188,7 +189,11 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
 
           {/* QQ Group Section */}
           <div className="border-b border-stroke dark:border-stroke-dark">
-            <div className="flex items-center gap-3 p-3">
+            <div
+              className="flex items-center gap-3 p-3"
+              onMouseEnter={() => setHoveredQR("qq")}
+              onFocusCapture={() => setHoveredQR("qq")}
+            >
               {/* Icon Area - Always Visible */}
               <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.qqGroup.tooltip}>
                 <Image
@@ -225,7 +230,11 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
           </div>
 
           {/* WeChat Section */}
-          <div className="relative flex items-center gap-3 border-b border-stroke p-3 dark:border-stroke-dark">
+          <div
+            className="relative flex items-center gap-3 border-b border-stroke p-3 dark:border-stroke-dark"
+            onMouseEnter={() => setHoveredQR("wechat")}
+            onFocusCapture={() => setHoveredQR("wechat")}
+          >
             {/* Icon Area - Always Visible */}
             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.wechat.tooltip}>
               <Image
@@ -244,25 +253,10 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
               }`}
               aria-hidden={!isPanelOpen}
             >
-              <div className="mb-2 text-sm font-medium text-black dark:text-white">
+              <div className="mb-1 text-sm font-medium text-black dark:text-white">
                 {copy.wechat.label}
               </div>
-              <button
-                onClick={() => setShowWechatTooltip(!showWechatTooltip)}
-                className="w-full rounded bg-gray-100 px-3 py-1 text-xs font-medium text-body-color transition-colors hover:bg-gray-200 dark:bg-gray-dark dark:text-body-color-dark dark:hover:bg-gray-700"
-                aria-expanded={showWechatTooltip}
-                aria-controls={WECHAT_TOOLTIP_ID}
-              >
-                {copy.wechat.tooltip}
-              </button>
-              {showWechatTooltip && (
-                <div
-                  id={WECHAT_TOOLTIP_ID}
-                  className="mt-2 rounded bg-gray-50 p-2 text-xs text-body-color dark:bg-gray-800 dark:text-body-color-dark"
-                >
-                  {copy.wechat.comingSoon}
-                </div>
-              )}
+              
             </div>
           </div>
 
@@ -342,7 +336,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
           </div>
           <div
             className={`mr-3 rounded-lg border border-stroke bg-white p-3 shadow-two transition duration-300 dark:border-stroke-dark dark:bg-dark ${
-              isPanelOpen
+              isPanelOpen && hoveredQR
                 ? "translate-x-0 opacity-100 pointer-events-auto"
                 : "translate-x-2 opacity-0 pointer-events-none"
             }`}
@@ -351,8 +345,8 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
             onMouseLeave={handleMouseLeave}
           >
             <Image
-              src={QQ_GROUP_QR_SRC}
-              alt={copy.qqGroup.label}
+              src={hoveredQR === "wechat" ? WECHAT_OFFICIAL_QR_SRC : QQ_GROUP_QR_SRC}
+              alt={hoveredQR === "wechat" ? copy.wechat.label : copy.qqGroup.label}
               width={200}
               height={200}
               className="rounded"
@@ -494,6 +488,17 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                         {copy.wechat.comingSoon}
                       </div>
                     </div>
+                  </div>
+                  <div className="mb-3 flex justify-center">
+                    <Image
+                      src={WECHAT_OFFICIAL_QR_SRC}
+                      alt={copy.wechat.label}
+                      width={220}
+                      height={220}
+                      className="rounded-lg"
+                      priority
+                      unoptimized
+                    />
                   </div>
                 </div>
 
