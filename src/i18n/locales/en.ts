@@ -5,15 +5,15 @@ export const dictionary = {
         about: "About",
         blog: "Blog",
         support: "Support",
-        pages: "Pages",
+        pages: "More Pages",
         submenu: {
-          about: "About Page",
-          blog: "Blog Grid Page",
-          blogSidebar: "Blog Sidebar Page",
-          blogDetails: "Blog Details Page",
-          signin: "Sign In Page",
-          signup: "Sign Up Page",
-          error: "Error Page",
+          about: "About",
+          blog: "Blog List",
+          blogSidebar: "Blog Sidebar",
+          blogDetails: "Blog Details",
+          signin: "Sign In",
+          signup: "Sign Up",
+          error: "Error",
         },
       },
       auth: {
@@ -30,136 +30,136 @@ export const dictionary = {
       },
     },
     hero: {
-      title: "Free and Open-Source Next.js Template for Startup & SaaS",
+      title: "Leading Provider of Intelligent Robotics Education Solutions",
       description:
-        "Startup is free Next.js template for startups and SaaS business websites comes with all the essential pages, components, and sections you need to launch a complete business website, built-with Next 13.x and Tailwind CSS.",
-      primaryCta: "🔥 Get Pro",
-      secondaryCta: "Star on GitHub",
+        "Youni Tongchuang specializes in professional educational robotics for universities—including modular cars, mecanum wheel cars, omni wheel cars, embodied intelligent robots, and ROS2 cars—empowering robotics education and research innovation.",
+      primaryCta: "Explore Products",
+      secondaryCta: "Contact Us",
     },
     features: {
-      title: "Main Features",
+      title: "Product Advantages",
       paragraph:
-        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.",
+        "Youni Tongchuang delivers comprehensive educational robotics solutions for universities, supporting everything from foundational teaching to research innovation while cultivating the next generation of robotics talent.",
       items: [
         {
           id: 1,
-          title: "Crafted for Startups",
+          title: "Modular Assembly Cars",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "A modular design enables flexible builds that help students grasp core robotic structures and principles, making it ideal for entry-level robotics courses and hands-on teaching.",
         },
         {
           id: 2,
-          title: "High-quality Design",
+          title: "Mecanum Wheel Car",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "Powered by mecanum wheel technology for omnidirectional movement and outstanding maneuverability—great for courses covering motion control and path planning.",
         },
         {
           id: 3,
-          title: "Next.js 13 (Latest)",
+          title: "Fulai Wheel Car (Mecanum)",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "Equipped with a Fulai (mecanum) drive system that supports in-place rotation and diagonal movement, providing students with an advanced platform for motion research.",
         },
         {
           id: 4,
-          title: "Tailwind CSS",
+          title: "Embodied Intelligent Robots",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "Integrated sensors and AI algorithms enable perception and intelligent decision-making, making them suitable for AI and human-robot interaction research.",
         },
         {
           id: 5,
-          title: "Fully Customizable",
+          title: "ROS2 Car Platform",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "Built on the ROS2 operating system with a complete development environment and feature packages, supporting advanced robotics applications like SLAM and navigation.",
         },
         {
           id: 6,
-          title: "Free and Open-Source",
+          title: "Professional Technical Support",
           paragraph:
-            "Tuae nam ex similique incidunt expedita exercitationem laudantium. Repellendus quisquam numquam perferendis earum sapiente non tempore? Fugit repellat ut maiores.",
+            "Comprehensive technical documentation, teaching resources, and after-sales services—paired with lab-ready course designs—help universities launch robotics programs quickly.",
         },
       ],
     },
     video: {
-      title: "We are ready to help",
+      title: "Always Ready to Support You",
       paragraph:
-        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.",
-      buttonAriaLabel: "video play button",
+        "We built this template around real team needs and provide advanced resources so you can ship the next version of your site faster.",
+      buttonAriaLabel: "Play intro video",
     },
     about: {
       sectionOne: {
-        title: "Crafted for Startup, SaaS and Business Sites.",
+        title: "About Youni Tongchuang",
         paragraph:
-          "The main ‘thrust’ is to focus on educating attendees on how to best protect highly vulnerable business applications with interactive panel discussions and roundtables.",
+          "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. was founded on September 20, 2024, at 11F, Suite 1107, Building 6, Yard 19, Xincheng East Street, Mentougou District, Beijing. We focus on delivering professional educational robotics products and solutions for universities.",
         bulletPoints: [
-          "Premium quality",
-          "Tailwind CSS",
-          "Use for lifetime",
-          "Next.js",
-          "Rich documentation",
-          "Developer friendly",
+          "Educational Robotics",
+          "ROS2 Platform",
+          "Professional Technical Support",
+          "Complete Curriculum System",
+          "Research Collaboration",
+          "Customized Services",
         ],
       },
       sectionTwo: {
         items: [
           {
-            title: "Bug free code",
+            title: "Product Quality Assurance",
             paragraph:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              "Every product undergoes rigorous testing and quality control to ensure stable, reliable performance that supports both teaching and research.",
           },
           {
-            title: "Premier support",
+            title: "Technical Service Team",
             paragraph:
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.",
+              "Professional pre-sales consulting and after-sales technical support are paired with complete documentation and teaching resources, helping universities ramp up quickly.",
           },
           {
-            title: "Next.js",
+            title: "Continuous Innovation",
             paragraph:
-              "Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt consectetur adipiscing elit setim.",
+              "We stay aligned with advancements in robotics to continually optimize product capabilities and offer cutting-edge educational robotics solutions to universities.",
           },
         ],
       },
     },
     testimonials: {
-      title: "What Our Users Says",
+      title: "Real Feedback from Users",
       paragraph:
-        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.",
+        "Voices from our community and customers help us refine the experience and give you confidence when choosing us.",
       items: [
         {
           id: 1,
           name: "Musharof Chy",
-          designation: "Founder @TailGrids",
+          designation: "Founder, TailGrids",
           image: "/images/testimonials/auth-01.png",
           star: 5,
           content:
-            "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+            "Our members love this template. The interface is intuitive and clean, and community setup is effortless.",
         },
         {
           id: 2,
           name: "Devid Weilium",
-          designation: "Founder @UIdeck",
+          designation: "Founder, UIdeck",
           image: "/images/testimonials/auth-02.png",
           star: 5,
           content:
-            "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+            "The structure is clear and easy to maintain. It integrates perfectly with our design system and is very friendly for the content team.",
         },
         {
           id: 3,
           name: "Lethium Frenci",
-          designation: "Founder @Lineicons",
+          designation: "Founder, Lineicons",
           image: "/images/testimonials/auth-03.png",
           star: 5,
           content:
-            "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
+            "The responsive behavior is excellent and optimization is fast. It's a reliable choice for teams preparing to launch an MVP.",
         },
       ],
     },
     pricing: {
-      title: "Simple and Affordable Pricing",
+      title: "Simple, Transparent Pricing",
       paragraph:
-        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.",
+        "Pick the plan that fits your team size, upgrade services as needed, and avoid getting tied up in complicated terms.",
       toggle: {
-        monthly: "Monthly",
-        yearly: "Yearly",
+        monthly: "Monthly Billing",
+        yearly: "Yearly Billing",
       },
       durationSuffix: {
         monthly: "mo",
@@ -170,63 +170,63 @@ export const dictionary = {
         {
           name: "Lite",
           subtitle:
-            "Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim.",
+            "Covers core components and page structures so you can assemble a minimum viable version fast.",
           offers: [
-            { text: "All UI Components", status: "active" },
-            { text: "Use with Unlimited Projects", status: "active" },
-            { text: "Commercial Use", status: "active" },
-            { text: "Email Support", status: "active" },
-            { text: "Lifetime Access", status: "inactive" },
-            { text: "Free Lifetime Updates", status: "inactive" },
+            { text: "Complete UI component library", status: "active" },
+            { text: "Unlimited project usage", status: "active" },
+            { text: "Commercial license", status: "active" },
+            { text: "Email support", status: "active" },
+            { text: "Lifetime access", status: "inactive" },
+            { text: "Free lifetime updates", status: "inactive" },
           ],
         },
         {
           name: "Basic",
           subtitle:
-            "Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim.",
+            "Great for growing teams, unlocking more templates and use cases.",
           offers: [
-            { text: "All UI Components", status: "active" },
-            { text: "Use with Unlimited Projects", status: "active" },
-            { text: "Commercial Use", status: "active" },
-            { text: "Email Support", status: "active" },
-            { text: "Lifetime Access", status: "active" },
-            { text: "Free Lifetime Updates", status: "inactive" },
+            { text: "Complete UI component library", status: "active" },
+            { text: "Unlimited project usage", status: "active" },
+            { text: "Commercial license", status: "active" },
+            { text: "Email support", status: "active" },
+            { text: "Lifetime access", status: "active" },
+            { text: "Free lifetime updates", status: "inactive" },
           ],
         },
         {
           name: "Plus",
           subtitle:
-            "Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim.",
+            "Advanced support and update services designed for professional teams.",
           offers: [
-            { text: "All UI Components", status: "active" },
-            { text: "Use with Unlimited Projects", status: "active" },
-            { text: "Commercial Use", status: "active" },
-            { text: "Email Support", status: "active" },
-            { text: "Lifetime Access", status: "active" },
-            { text: "Free Lifetime Updates", status: "active" },
+            { text: "Complete UI component library", status: "active" },
+            { text: "Unlimited project usage", status: "active" },
+            { text: "Commercial license", status: "active" },
+            { text: "Email support", status: "active" },
+            { text: "Lifetime access", status: "active" },
+            { text: "Free lifetime updates", status: "active" },
           ],
         },
       ],
     },
     blog: {
-      title: "Our Latest Blogs",
+      title: "Latest Insights",
       paragraph:
-        "There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form.",
+        "We share lessons on design, development, and growth so your team can stay inspired and maintain momentum.",
       pagination: {
-        prev: "Prev",
+        prev: "Previous",
         next: "Next",
       },
       labels: {
-        by: "By",
-        date: "Date",
+        by: "Author",
+        date: "Published",
       },
       posts: [
         {
           id: 1,
-          title: "Best UI components for modern websites",
+          title: "Recommended UI components for modern websites",
           paragraph:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet dictum neque, laoreet dolor.",
-          tags: ["creative"],
+            "From navigation to CTAs, we curated combinations that balance aesthetics with usability.",
+          tags: ["Creative"],
           publishDate: "2025",
           image: "/images/blog/blog-01.jpg",
           author: {
@@ -237,24 +237,24 @@ export const dictionary = {
         },
         {
           id: 2,
-          title: "9 simple ways to improve your design skills",
+          title: "Nine simple ways to improve your design skills",
           paragraph:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet dictum neque, laoreet dolor.",
-          tags: ["computer"],
+            "Turn inspiration into actionable plans with suggestions covering intake, breakdown, and retrospectives.",
+          tags: ["Computing"],
           publishDate: "2025",
           image: "/images/blog/blog-02.jpg",
           author: {
             name: "Musharof Chy",
-            designation: "Content Writer",
+            designation: "Content Strategist",
             image: "/images/blog/author-02.png",
           },
         },
         {
           id: 3,
-          title: "Tips to quickly improve your coding speed.",
+          title: "Tricks to double your coding speed",
           paragraph:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet dictum neque, laoreet dolor.",
-          tags: ["design"],
+            "From scaffolding to debugging tools, build a more efficient front-end workflow.",
+          tags: ["Design"],
           publishDate: "2025",
           image: "/images/blog/blog-03.jpg",
           author: {
@@ -266,43 +266,43 @@ export const dictionary = {
       ],
     },
     contact: {
-      formTitle: "Need Help? Open a Ticket",
-      formDescription: "Our support team will get back to you ASAP via email.",
+      formTitle: "Need help? Submit a support ticket",
+      formDescription: "Our support team will respond via email as soon as possible.",
       form: {
         nameLabel: "Your Name",
-        namePlaceholder: "Enter your name",
+        namePlaceholder: "Please enter your name",
         emailLabel: "Your Email",
-        emailPlaceholder: "Enter your email",
+        emailPlaceholder: "Please enter your email",
         messageLabel: "Your Message",
-        messagePlaceholder: "Enter your Message",
+        messagePlaceholder: "Let us know what you need help with",
         submit: "Submit Ticket",
       },
       newsletter: {
-        title: "Subscribe to receive future updates",
+        title: "Subscribe for the latest updates",
         paragraph:
-          "Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare massa quis lectus.",
-        namePlaceholder: "Enter your name",
-        emailPlaceholder: "Enter your email",
+          "Receive template updates, best practices, and design resources regularly so you never miss an idea.",
+        namePlaceholder: "Please enter your name",
+        emailPlaceholder: "Please enter your email",
         submit: "Subscribe",
-        disclaimer: "No spam guaranteed, So please don’t send any spam mail.",
+        disclaimer: "We only send valuable updates and never spam.",
       },
     },
     footer: {
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lobortis.",
+        "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. — Focused on educational robotics solutions for universities. Address: Suite 1107, 11F, Building 6, Yard 19, Xincheng East Street, Mentougou District, Beijing.",
       columns: {
         usefulLinks: {
           title: "Useful Links",
           items: [
             { label: "Blog", path: "/blog" },
             { label: "Pricing", path: "/" },
-            { label: "About", path: "/about" },
+            { label: "About Us", path: "/about" },
           ],
         },
         terms: {
-          title: "Terms",
+          title: "Policies",
           items: [
-            { label: "TOS", path: "/" },
+            { label: "Terms of Service", path: "/" },
             { label: "Privacy Policy", path: "/" },
             { label: "Refund Policy", path: "/" },
           ],
@@ -312,7 +312,7 @@ export const dictionary = {
           items: [
             { label: "Open Support Ticket", path: "/contact" },
             { label: "Terms of Use", path: "/" },
-            { label: "About", path: "/about" },
+            { label: "About Us", path: "/about" },
           ],
         },
       },
@@ -325,19 +325,19 @@ export const dictionary = {
     },
     pages: {
       about: {
-        title: "About Page",
+        title: "About Us",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero.",
+          "Introduce the team's vision and capabilities so visitors can quickly understand our background and values.",
       },
       contact: {
-        title: "Contact Page",
+        title: "Contact Us",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero.",
+          "If you have questions or collaboration ideas, leave a message and we'll respond soon.",
       },
       blog: {
-        title: "Blog Grid",
+        title: "Blog List",
         description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In varius eros eget sapien consectetur ultrices. Ut quis dapibus libero.",
+          "Browse the latest articles for inspiration on product design, front-end development, and growth practices.",
       },
     },
     breadcrumbs: {
@@ -345,12 +345,12 @@ export const dictionary = {
     },
     common: {
       aria: {
-        mobileMenu: "Toggle navigation",
-        themeToggle: "Toggle theme",
-        scrollToTop: "Scroll to top",
-        sharePost: "Share this post",
-        socialLink: "Visit social profile",
-        closeModal: "Close modal",
+        mobileMenu: "Toggle navigation menu",
+        themeToggle: "Switch between light and dark themes",
+        scrollToTop: "Scroll back to the top",
+        sharePost: "Share on social platforms",
+        socialLink: "Visit our social profile",
+        closeModal: "Close dialog",
       },
     },
     floatingContact: {
@@ -379,8 +379,8 @@ export const dictionary = {
       },
       wechat: {
         label: "WeChat",
-        tooltip: "Coming Soon",
-        comingSoon: "WeChat contact will be available soon",
+        tooltip: "Coming soon",
+        comingSoon: "WeChat contact coming soon",
       },
     },
     buttons: {
@@ -388,14 +388,14 @@ export const dictionary = {
       keepReading: "Keep Reading",
     },
     forms: {
-      emailPlaceholder: "Enter your email",
-      passwordPlaceholder: "Enter your password",
+      emailPlaceholder: "Please enter your email",
+      passwordPlaceholder: "Please enter your password",
       passwordLabel: "Your Password",
     },
     auth: {
       signin: {
         title: "Sign in to your account",
-        subtitle: "Login to your account for a faster checkout.",
+        subtitle: "Log in to speed up purchases and management tasks.",
         google: "Sign in with Google",
         github: "Sign in with GitHub",
         emailLabel: "Email",
@@ -403,111 +403,111 @@ export const dictionary = {
         remember: "Keep me signed in",
         forgot: "Forgot Password?",
         submit: "Sign in",
-        noAccount: "Don’t you have an account?",
-        signupLink: "Sign up",
+        noAccount: "Don't have an account yet?",
+        signupLink: "Create one",
       },
       signup: {
         title: "Create your free account",
-        subtitle: "No credit card required. Start your 14-day free trial.",
+        subtitle: "No credit card required—start your 14-day free trial now.",
         google: "Sign up with Google",
         github: "Sign up with GitHub",
         nameLabel: "Full Name",
-        namePlaceholder: "Enter your full name",
+        namePlaceholder: "Please enter your full name",
         emailLabel: "Email",
         passwordLabel: "Password",
-        remember: "I agree to the Terms & Conditions",
+        remember: "I have read and agree to the Terms of Service",
         submit: "Create account",
         haveAccount: "Already have an account?",
         signinLink: "Sign in",
       },
     },
     error: {
-      title: "Page Not Found",
+      title: "The page is missing",
       description:
-        "The page you are looking for might have been removed or had its name changed.",
-      button: "Back to Home",
+        "The page you’re trying to reach may have been deleted or renamed. Try heading back to the homepage.",
+      button: "Return Home",
     },
     blogDetailPage: {
       article: {
         title:
-          "10 amazing sites to download stock photos & digital assets for free",
+          "10 excellent sites for free high-quality stock photos and digital assets",
         meta: {
           author: "Musharof Chy",
-          published: "12 Jan 2024",
+          published: "January 12, 2024",
           comments: "50",
           views: "35",
           tag: "Design",
         },
         intro:
-          "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.",
-        coverAlt: "Creative team reviewing design assets on a laptop",
+          "We curated ten continuously updated, license-friendly free resources so design teams can quickly source imagery and icons without worrying about usage rights.",
+        coverAlt: "Design team discussing brand assets",
         highlightParagraph: {
           before:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis enim lobortis scelerisque fermentum. Neque sodales ut etiam sit amet. Ligula ullamcorper ",
-          highlight: "malesuada",
+            "When selecting sites, we focus on download speed, commercial licensing, and file quality, ",
+          highlight: "so most of our recommendations support free commercial use",
           after:
-            " proin libero nunc consequat interdum varius. Quam pellentesque nec nam aliquam sem et tortor consequat. Pellentesque adipiscing commodo elit at imperdiet.",
+            " and provide high-resolution assets that keep you clear of copyright issues.",
         },
         emphasisParagraph: {
-          before: "Semper auctor neque vitae tempus quam pellentesque nec. ",
-          highlight: "Amet dictum sit amet justo",
+          before: "For more efficient asset management, remember to bookmark and classify resources, ",
+          highlight: "turning inspiration into reusable design assets",
           after:
-            " donec enim diam. Varius sit amet mattis vulputate enim nulla aliquet porttitor. Odio pellentesque diam volutpat commodo sed.",
+            ", so teammates can pull what they need quickly while maintaining visual consistency.",
         },
-        sectionHeading: "Digital marketplace for Ui/Ux designers.",
+        sectionHeading: "Digital asset marketplaces built for UI/UX designers",
         sectionParagraph:
-          "consectetur adipiscing elit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat mattis vulputate cupidatat.",
+          "These platforms deliver structured collections that you can filter by format, theme, and color—helping you maintain design quality even under tight iteration cycles.",
         bulletPoints: [
-          "Consectetur adipiscing elit in voluptate velit.",
-          "Mattis vulputate cupidatat.",
-          "Vulputate enim nulla aliquet porttitor odio pellentesque",
-          "Ligula ullamcorper malesuada proin",
+          "Covers common scenarios such as brand campaigns, product demos, and marketing activations.",
+          "Includes editable Figma, Sketch, or PSD source files.",
+          "Supports fast filtering by license, author, and file format.",
+          "Favorites and team workspaces keep everyone aligned on the latest assets.",
         ],
         quote:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt utionals labore et dolore magna aliqua. Quis lobortis scelerisque fermentum, The Neque ut etiam sit amet.",
+          "Maintaining an up-to-date asset library and copyright log greatly improves design delivery efficiency and keeps subsequent channel campaigns consistent.",
         conclusion:
-          "consectetur adipiscing elit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat mattis vulputate cupidatat.",
-        tagsTitle: "Popular Tags :",
-        shareTitle: "Share this post :",
-        tags: ["Design", "Development", "Info"],
+          "Organize your favorites regularly and follow platform updates to keep your brand asset library fresh so your site and marketing pages stay vibrant.",
+        tagsTitle: "Popular Tags:",
+        shareTitle: "Share this article:",
+        tags: ["Design", "Development", "Insights"],
       },
     },
     blogSidebarPage: {
       sidebar: {
-        searchPlaceholder: "Search here...",
+        searchPlaceholder: "Search articles...",
         relatedPostsTitle: "Related Posts",
         relatedPosts: [
           {
-            title: "Best way to boost your online sales.",
-            date: "12 Feb 2025",
+            title: "Best strategies to boost online sales",
+            date: "February 12, 2025",
             image: "/images/blog/post-01.jpg",
             slug: "#",
           },
           {
-            title: "50 Best web design tips & tricks that will help you.",
-            date: "15 Feb 2024",
+            title: "50 practical web design tips",
+            date: "February 15, 2024",
             image: "/images/blog/post-02.jpg",
             slug: "#",
           },
           {
-            title: "The 8 best landing page builders, reviewed",
-            date: "05 Jun 2024",
+            title: "Review of 8 excellent landing page builders",
+            date: "June 5, 2024",
             image: "/images/blog/post-03.jpg",
             slug: "#",
           },
         ],
-        categoriesTitle: "Popular Category",
+        categoriesTitle: "Popular Categories",
         categories: [
           "Tailwind Templates",
-          "Landing page",
-          "Startup",
+          "Landing Pages",
+          "Startups",
           "Business",
           "Multipurpose",
         ],
         tagsTitle: "Popular Tags",
-        tags: ["Themes", "UI Kit", "Tailwind", "Startup", "Business"],
+        tags: ["Themes", "UI Kits", "Tailwind", "Startups", "Business"],
       },
     },
-};
+  };
 
 export type EnglishDictionary = typeof dictionary;
