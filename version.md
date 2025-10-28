@@ -34,6 +34,87 @@
 
 ---
 
+V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向产品的功能
+
+类型: feat, ui
+
+范围: homepage, components, content
+
+说明:
+
+本次更新对网站首页进行了全面重构，引入了动态轮播的Hero组件，并重新设计了“核心优势”板块，将其升级为以产品为中心的“产品平台”展示区。通过移除部分冗余组件和内容，优化了页面结构，提升了视觉吸引力和信息传达效率。
+
+实现细节:
+
+1. 首页Hero区域重构
+   - `src/components/Hero/index.tsx`: 将原有的静态Hero区域替换为支持自动播放的动态轮播组件。
+   - `public/images/hero/`: 新增 `slide-1.png`, `slide-2.png`, `slide-3.png` 作为轮播图资源。
+   - `src/i18n/locales/*.ts`: 更新了 `hero` 部分的文案，以适应新的轮播图数据结构，包含图片、链接等。
+
+2. “产品平台”板块升级 (原“核心优势”)
+   - `src/components/Features/index.tsx`: 重构了该组件，现在分为“精选方案矩阵”和“亮点”两部分，更聚焦于产品展示。
+   - `src/components/Features/SingleFeature.tsx`: 更新了单个特性组件的UI，现在展示产品图片、摘要和关键词，而非简单的图标和段落。
+   - `src/types/feature.ts`: 修改了 `Feature` 类型定义，以匹配新的数据结构。
+   - `src/i18n/locales/*.ts`: 完全重写了 `features` 部分的文案，以反映新的“产品平台”定位。
+
+3. 内容与组件简化
+   - `src/components/About/AboutSectionOne.tsx`: 删除了此组件，简化了关于我们部分的介绍。
+   - `src/components/Contact/NewsLatterBox.tsx`: 移除了邮件订阅组件，使联系表单更简洁。
+   - `src/app/[locale]/page.tsx`: 更新首页布局，移除了已删除的组件。
+
+4. UI与资源优化
+   - `src/components/Footer/index.tsx`: 更新页脚的社交媒体图标，使用 `next/image` 组件加载SVG，并统一了图标风格。
+   - `public/images/icons/`: 新增 `bilibili.svg`, `qq.svg`, `wechat.svg` 等新版图标，移除了旧版或命名不一致的图标。
+   - `src/components/Common/FloatingContact.tsx`: 优化了悬浮联系组件的文案和图标。
+
+文件变更:
+
+新增文件:
+- public/images/about/section-two.jpg
+- public/images/hero/slide-1.png
+- public/images/hero/slide-2.png
+- public/images/hero/slide-3.png
+- public/images/icons/bilibili.svg
+- public/images/icons/qq.svg
+- public/images/icons/wechat.svg
+- public/images/products/placeholder.svg
+
+删除文件:
+- public/images/icons/QQ.svg
+- public/images/icons/wechat-fill.svg
+- src/components/About/AboutSectionOne.tsx
+- src/components/Contact/NewsLatterBox.tsx
+
+修改文件:
+- src/app/[locale]/page.tsx (页面结构调整)
+- src/components/Hero/index.tsx (组件完全重构)
+- src/components/Features/index.tsx (组件重构)
+- src/components/Features/SingleFeature.tsx (UI更新)
+- src/components/Features/featuresData.tsx (数据结构更新)
+- src/components/About/AboutSectionTwo.tsx (内容更新)
+- src/components/Contact/index.tsx (移除订阅组件)
+- src/components/Footer/index.tsx (图标实现方式更新)
+- src/components/Common/FloatingContact.tsx (文案与图标更新)
+- src/i18n/locales/en.ts (内容全面更新)
+- src/i18n/locales/ja.ts (内容全面更新)
+- src/i18n/locales/zh.ts (内容全面更新)
+- src/types/feature.ts (类型定义更新)
+- version.md (准备下一次版本记录)
+
+改进效果:
+
+- 视觉吸引力增强: 动态的首页轮播图提供了更强的视觉冲击力，能更好地展示核心业务场景。
+- 信息架构优化: 以产品为中心的“产品平台”板块，使用户能更快速地了解核心产品与解决方案。
+- 用户体验提升: 简化了页面内容，移除了非核心模块，使用户能更专注于关键信息。
+- 代码可维护性: 组件化的重构和类型定义的更新，提升了代码质量和后续的可维护性。
+
+影响范围:
+- 网站首页的整体外观和用户体验发生了显著变化。
+- “核心优势”板块被“产品平台”取代，信息传递的重心从抽象概念转向具体产品。
+- 移除了邮件订阅功能，简化了用户与我们联系的渠道。
+
+---
+
 V1.5.1 chore(dependencies): 更新Next.js依赖至最新版本并优化项目配置
 
 类型: chore

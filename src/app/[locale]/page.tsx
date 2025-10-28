@@ -1,4 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
@@ -16,11 +15,13 @@ export async function generateMetadata({
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
   const dictionary = await getDictionary(locale);
-  const hero = dictionary.hero;
+  const homeMeta = dictionary.pages.home;
 
   return {
-    title: hero.title,
-    description: hero.description,
+    title: homeMeta?.title ?? "Youni Tongchuang",
+    description:
+      homeMeta?.description ??
+      "Youni Tongchuang provides embodied intelligence robotics platforms for education and research.",
   };
 }
 
@@ -32,8 +33,11 @@ const HomePage = async ({ params }: PageParams) => {
     <>
       <ScrollUp />
       <Hero copy={dictionary.hero} />
-      <Features copy={dictionary.features} />
-      <AboutSectionOne copy={dictionary.about.sectionOne} />
+      <Features
+        locale={locale}
+        copy={dictionary.features}
+        productsCatalog={dictionary.products.catalog}
+      />
       <AboutSectionTwo items={dictionary.about.sectionTwo.items} />
       <Contact copy={dictionary.contact} />
     </>

@@ -29,69 +29,85 @@ export const dictionary = {
       },
     },
     hero: {
-      title: "Global Leader in Embodied Intelligence Innovation",
-      description:
-        "Located at Shougang Park Winter Olympic Plaza in Beijing's Shijingshan District, Youni Tongchuang partners with Shougang Group to build a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics to teaching, research, and real-world scenarios, providing integrated hardware, software, and curriculum solutions for universities and vocational schools.",
-      primaryCta: "Explore Products",
-      secondaryCta: "Contact Us",
-    },
-    features: {
-      title: "Core Advantages",
-      paragraph:
-        "Built on the principles of \"Inspire, Explore, Innovate, and Share,\" we create embodied intelligent robotics learning platforms with accessible, intelligent, and cost-effective products paired with comprehensive curriculum systems.",
-      items: [
+      slides: [
         {
           id: 1,
-          title: "Progressive Learning System",
-          paragraph:
-            "Systematically analyzing embodied robotics technology and tailoring it to different educational levels, we design tiered, diverse curricula that enable every robotics enthusiast to progressively master robotic technologies.",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-1.png",
+            alt: "Embodied intelligence innovation hub",
+          },
+          action: {
+            href: "/products",
+            label: "Discover Our Platform",
+          },
         },
         {
           id: 2,
-          title: "Cost-Effective Smart Products",
-          paragraph:
-            "We transform complex robotics technology into compact robot products, lowering the learning barrier and making embodied intelligent robotics education accessible to more schools and students.",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-2.png",
+            alt: "Full-stack embodied robotics solutions",
+          },
+          action: {
+            href: "/developers",
+            label: "Visit Developer Hub",
+          },
         },
         {
           id: 3,
-          title: "Comprehensive Solutions",
-          paragraph:
-            "Providing integrated hardware, software, and curriculum solutions aligned with contemporary educational development strategies, we build AI + robotics embodied intelligence education systems for schools.",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-3.png",
+            alt: "Industry-education integrated innovation space",
+          },
+          action: {
+            href: "/case-studies",
+            label: "Explore Case Studies",
+          },
+        },
+      ],
+      primaryCta: {
+        label: "Browse Product Platform",
+        href: "#features",
+      },
+      secondaryCta: {
+        label: "Talk with Us",
+        href: "#contact",
+      },
+      autoPlayInterval: 6000,
+    },
+    features: {
+      title: "Product Platform",
+      paragraph:
+        "Guided by the principles of Inspire, Explore, Innovate, and Share, we deliver an embodied intelligence product platform that unifies hardware, software, curriculum, and services for seamless teaching, research, and deployment.",
+      featuredProducts: {
+        title: "Curated Product Pathways",
+        description:
+          "We highlight three representative solutions covering activation, advanced courses, and research scenarios—helping teams launch embodied intelligence programs faster.",
+        ctaDescription: "Need the full catalog tailored to your teaching or research plans?",
+        viewAllLabel: "Browse all products",
+        slugs: ["ubot-mr205", "gx-mat-09s23", "rai-p433"],
+      },
+      highlights: [
+        {
+          title: "End-to-end delivery",
+          description:
+            "Hardware, software, curriculum, and services arrive together to keep deployment and maintenance overhead low.",
         },
         {
-          id: 4,
-          title: "Embodied Intelligence Tech",
-          paragraph:
-            "Focusing on teaching, research, and application of embodied intelligent robotics, we help students understand how robots interact with their environment through physical embodiment, cultivating AI-era innovators.",
+          title: "Multi-scenario coverage",
+          description:
+            "From K12 and vocational programs to university labs and research centers, every route extends into competitions and hands-on training.",
         },
         {
-          id: 5,
-          title: "Open-Source Community",
-          paragraph:
-            "Continuously building an open-source online learning community that brings together teachers, students, and developers to advance the popularization and innovation of embodied intelligent robotics.",
-        },
-        {
-          id: 6,
-          title: "Industry-Level Platform",
-          paragraph:
-            "Partnering with Shougang Group to create an embodied intelligence innovation platform, we provide universities and vocational schools with integrated education-research environments and industry collaboration opportunities.",
+          title: "Modular expansion",
+          description:
+            "Mix and match chassis, robotic arms, and AI modules to support cross-disciplinary practice in LLMs, vision, control, and more.",
         },
       ],
     },
     about: {
-      sectionOne: {
-        title: "About Youni Tongchuang",
-        paragraph:
-          "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd. is located at Shougang Park Winter Olympic Plaza in Beijing's Shijingshan District. Partnering with Shougang Group, we are building a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics to teaching and research while continuously exploring real-world application scenarios, providing integrated hardware, software, and curriculum solutions for universities and vocational schools.",
-        bulletPoints: [
-          "Embodied Intelligent Robotics",
-          "Progressive Learning System",
-          "Open-Source Community",
-          "Industry-Academia Integration",
-          "Cost-Effective Smart Products",
-          "Complete Education Solutions",
-        ],
-      },
       sectionTwo: {
         items: [
           {
@@ -181,15 +197,6 @@ export const dictionary = {
         messagePlaceholder: "Let us know what you need help with",
         submit: "Submit Ticket",
       },
-      newsletter: {
-        title: "Subscribe for the latest updates",
-        paragraph:
-          "Receive template updates, best practices, and design resources regularly so you never miss an idea.",
-        namePlaceholder: "Please enter your name",
-        emailPlaceholder: "Please enter your email",
-        submit: "Subscribe",
-        disclaimer: "We only send valuable updates and never spam.",
-      },
     },
     footer: {
       description:
@@ -222,6 +229,11 @@ export const dictionary = {
       },
     },
     pages: {
+      home: {
+        title: "Youni Tongchuang · Embodied Intelligence Platform",
+        description:
+          "Youni Tongchuang delivers integrated embodied robotics hardware, software, curriculum, and services to accelerate educational innovation for universities and vocational programs.",
+      },
       about: {
         title: "About Us",
         description:
@@ -500,7 +512,7 @@ export const dictionary = {
       },
     },
     floatingContact: {
-      panelLabel: "Quick contact panel",
+      panelLabel: "Contact Us",
       fabLabel: "Open contact options",
       closeLabel: "Close contact options",
       qqGroup: {

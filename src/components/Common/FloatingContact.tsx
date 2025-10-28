@@ -32,7 +32,6 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
   const [showHint, setShowHint] = useState(false);
   const [offsetForScrollTop, setOffsetForScrollTop] = useState(false);
   const [mobileModalOpen, setMobileModalOpen] = useState(false);
-  const [hoveredQR, setHoveredQR] = useState<"qq" | "wechat" | null>(null);
   const hintTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const copiedQQTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -118,7 +117,6 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
   const closePanel = () => {
     clearCloseTimeout();
     setIsPanelOpen(false);
-    setHoveredQR(null);
   };
 
   const handleMouseEnter = () => {
@@ -163,196 +161,124 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
   return (
     <>
       {/* Desktop Version - Side Panel */}
-      <div className="fixed right-0 top-1/2 z-50 hidden -translate-y-1/2 md:block">
-        <div className="flex flex-row-reverse items-start">
+      <div
+        className="fixed bottom-1/4 right-0 z-[35] hidden translate-y-1/2 md:block"
+        onMouseEnter={openPanel}
+        onMouseLeave={handleMouseLeave}
+        onFocusCapture={openPanel}
+        onBlurCapture={handleDesktopBlur}
+      >
+        <div className="flex items-center">
+          {/* Expanded Panel */}
           <div
-            className={`relative flex flex-col gap-0 overflow-visible rounded-l-lg bg-white shadow-two transition-all duration-300 dark:bg-dark ${
-              isPanelOpen ? "translate-x-0" : "translate-x-[calc(100%-48px)]"
-            } ${showHint ? "animate-pulse" : ""}`}
-            role="complementary"
-            aria-label={copy.panelLabel}
-            tabIndex={0}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onFocusCapture={openPanel}
-            onBlurCapture={handleDesktopBlur}
+            className={`flex items-center gap-2 rounded-l-full bg-white p-3 shadow-lg transition-all duration-300 dark:bg-dark ${
+              isPanelOpen
+                ? "pointer-events-auto translate-x-0 opacity-100"
+                : "pointer-events-none translate-x-4 opacity-0"
+            }`}
           >
-            {/* First Visit Hint Badge */}
-            {showHint && (
-              <div className="absolute -left-2 -top-2 flex h-6 w-6 animate-ping items-center justify-center rounded-full bg-primary opacity-75"></div>
-            )}
-            {showHint && (
-              <div className="absolute -left-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-primary">
-                <span className="text-xs font-bold text-white">!</span>
-              </div>
-            )}
-
-          {/* QQ Group Section */}
-          <div className="border-b border-stroke dark:border-stroke-dark">
-            <div
-              className="flex items-center gap-3 p-3"
-              onMouseEnter={() => setHoveredQR("qq")}
-              onFocusCapture={() => setHoveredQR("qq")}
-            >
-              {/* Icon Area - Always Visible */}
-              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.qqGroup.tooltip}>
+            {/* QQ */}
+            <div className="group relative">
+              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
                 <Image
-                  src="/images/icons/QQ.svg"
+                  src="/images/icons/qq.svg"
                   alt="QQ"
                   width={24}
                   height={24}
-                  className="dark:brightness-0 dark:invert dark:[filter:invert(73%)_sepia(11%)_saturate(545%)_hue-rotate(183deg)_brightness(93%)_contrast(87%)]"
+                  className="dark:invert"
                 />
               </div>
-
-              {/* Content - Visible when open */}
-              <div
-                className={`flex-1 transition-opacity duration-300 ${
-                  isPanelOpen ? "opacity-100" : "opacity-0"
-                }`}
-                aria-hidden={!isPanelOpen}
-              >
-                <div className="mb-1 text-sm font-medium text-black dark:text-white">
-                  {copy.qqGroup.label}
-                </div>
-                <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">
-                  {copy.qqGroup.number}
-                </div>
+              <div className="absolute bottom-full right-1/2 hidden w-48 translate-x-1/2 transform rounded-md bg-white p-3 text-center shadow-lg group-hover:block dark:bg-dark">
+                <Image
+                  src={QQ_GROUP_QR_SRC}
+                  alt={copy.qqGroup.label}
+                  width={160}
+                  height={160}
+                  className="mx-auto rounded"
+                />
+                <p className="mt-1 text-sm">{copy.qqGroup.number}</p>
                 <button
                   onClick={() => handleCopy(copy.qqGroup.number, "qq")}
-                  className="w-full rounded bg-primary/10 px-3 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
-                  aria-label={`${copy.qqGroup.tooltip}: ${copy.qqGroup.number}`}
+                  className="mt-2 w-full rounded bg-primary px-2 py-1 text-xs font-semibold text-white"
                 >
                   {copiedQQ ? copy.qqGroup.copied : copy.qqGroup.copy}
                 </button>
               </div>
             </div>
-          </div>
-
-          {/* WeChat Section */}
-          <div
-            className="relative flex items-center gap-3 border-b border-stroke p-3 dark:border-stroke-dark"
-            onMouseEnter={() => setHoveredQR("wechat")}
-            onFocusCapture={() => setHoveredQR("wechat")}
-          >
-            {/* Icon Area - Always Visible */}
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.wechat.tooltip}>
-              <Image
-                src="/images/icons/wechat-fill.svg"
-                alt="WeChat"
-                width={24}
-                height={24}
-                className="dark:brightness-0 dark:invert dark:[filter:invert(73%)_sepia(11%)_saturate(545%)_hue-rotate(183deg)_brightness(93%)_contrast(87%)]"
-              />
+            {/* WeChat */}
+            <div className="group relative">
+              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
+                <Image
+                  src="/images/icons/wechat.svg"
+                  alt="WeChat"
+                  width={24}
+                  height={24}
+                  className="dark:invert"
+                />
+              </div>
+              <div className="absolute bottom-full right-1/2 hidden w-48 translate-x-1/2 transform rounded-md bg-white p-3 text-center shadow-lg group-hover:block dark:bg-dark">
+                <Image
+                  src={WECHAT_OFFICIAL_QR_SRC}
+                  alt={copy.wechat.label}
+                  width={160}
+                  height={160}
+                  className="mx-auto rounded"
+                />
+                <p className="mt-1 text-xs">{copy.wechat.tooltip}</p>
+              </div>
             </div>
-
-            {/* Content - Visible when open */}
-            <div
-              className={`flex-1 transition-opacity duration-300 ${
-                isPanelOpen ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={!isPanelOpen}
+            {/* Phone */}
+            <div className="group relative">
+              <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
+                <Image
+                  src="/images/icons/phone.svg"
+                  alt="Phone"
+                  width={24}
+                  height={24}
+                  className="dark:invert"
+                />
+              </div>
+              <div className="absolute bottom-full right-1/2 hidden w-44 translate-x-1/2 transform rounded-md bg-white p-3 text-center shadow-lg group-hover:block dark:bg-dark">
+                <p className="text-sm font-semibold">{copy.phone.name}</p>
+                <p className="text-sm">{copy.phone.number}</p>
+                <button
+                  onClick={() => handleCopy(copy.phone.number, "phone")}
+                  className="mt-2 w-full rounded bg-primary px-2 py-1 text-xs font-semibold text-white"
+                >
+                  {copiedPhone ? copy.phone.copied : copy.phone.copy}
+                </button>
+              </div>
+            </div>
+            {/* Taobao */}
+            <a
+              href={TAOBAO_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
             >
-              <div className="mb-1 text-sm font-medium text-black dark:text-white">
-                {copy.wechat.label}
-              </div>
-              
-            </div>
-          </div>
-
-          {/* Phone Section */}
-          <div className="flex items-center gap-3 border-b border-stroke p-3 dark:border-stroke-dark">
-            {/* Icon Area - Always Visible */}
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.phone.tooltip}>
-              <Image
-                src="/images/icons/phone.svg"
-                alt="Phone"
-                width={24}
-                height={24}
-                className="dark:brightness-0 dark:invert dark:[filter:invert(73%)_sepia(11%)_saturate(545%)_hue-rotate(183deg)_brightness(93%)_contrast(87%)]"
-              />
-            </div>
-
-            {/* Content - Visible when open */}
-            <div
-              className={`flex-1 transition-opacity duration-300 ${
-                isPanelOpen ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={!isPanelOpen}
-            >
-              <div className="mb-1 text-sm font-medium text-black dark:text-white">
-                {copy.phone.label}
-              </div>
-              <div className="text-xs text-body-color dark:text-body-color-dark">
-                {copy.phone.name}
-              </div>
-              <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">
-                {copy.phone.number}
-              </div>
-              <button
-                onClick={() => handleCopy(copy.phone.number, "phone")}
-                className="w-full rounded bg-primary/10 px-3 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/20"
-                aria-label={`${copy.phone.tooltip}: ${copy.phone.number}`}
-              >
-                {copiedPhone ? copy.phone.copied : copy.phone.copy}
-              </button>
-            </div>
-          </div>
-
-          {/* Taobao Section */}
-          <div className="flex items-center gap-3 p-3">
-            {/* Icon Area - Always Visible */}
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center" title={copy.taobao.tooltip}>
               <Image
                 src="/images/icons/taobao.svg"
                 alt="Taobao"
                 width={24}
                 height={24}
-                className="dark:brightness-0 dark:invert dark:[filter:invert(73%)_sepia(11%)_saturate(545%)_hue-rotate(183deg)_brightness(93%)_contrast(87%)]"
+                className="dark:invert"
               />
-            </div>
-
-            {/* Content - Visible when open */}
-            <div
-              className={`flex-1 transition-opacity duration-300 ${
-                isPanelOpen ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={!isPanelOpen}
-            >
-              <div className="mb-2 text-sm font-medium text-black dark:text-white">
-                {copy.taobao.label}
-              </div>
-              <a
-                href={TAOBAO_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full rounded bg-primary/10 px-3 py-1 text-center text-xs font-medium text-primary transition-colors hover:bg-primary/20"
-                title={copy.taobao.tooltip}
-              >
-                {copy.taobao.linkText}
-              </a>
-            </div>
-            </div>
+            </a>
           </div>
-          <div
-            className={`mr-3 rounded-lg border border-stroke bg-white p-3 shadow-two transition duration-300 dark:border-stroke-dark dark:bg-dark ${
-              isPanelOpen && hoveredQR
-                ? "translate-x-0 opacity-100 pointer-events-auto"
-                : "translate-x-2 opacity-0 pointer-events-none"
-            }`}
-            aria-hidden={!isPanelOpen}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <Image
-              src={hoveredQR === "wechat" ? WECHAT_OFFICIAL_QR_SRC : QQ_GROUP_QR_SRC}
-              alt={hoveredQR === "wechat" ? copy.wechat.label : copy.qqGroup.label}
-              width={200}
-              height={200}
-              className="rounded"
-              priority
-              unoptimized
-            />
+
+          {/* Collapsed Vertical Tab */}
+          <div className="relative flex h-12 w-32 cursor-pointer items-center justify-center rounded-l-full bg-primary shadow-lg">
+            {showHint && (
+              <div className="absolute -left-1 -top-1 h-5 w-5 animate-ping rounded-full bg-white opacity-75"></div>
+            )}
+            {showHint && (
+              <div className="absolute -left-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-white">
+                <span className="text-xs font-bold text-primary">!</span>
+              </div>
+            )}
+            <span className="whitespace-nowrap text-sm font-semibold text-white">
+              {copy.panelLabel}
+            </span>
           </div>
         </div>
       </div>
@@ -368,7 +294,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
           aria-label={copy.fabLabel}
           aria-haspopup="dialog"
           aria-expanded={mobileModalOpen}
-          className={`fixed ${offsetForScrollTop ? "bottom-24" : "bottom-6"} right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-two transition-transform hover:scale-110 active:scale-95 ${
+          className={`fixed ${offsetForScrollTop ? "bottom-24" : "bottom-6"} right-6 z-[35] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-two transition-transform hover:scale-110 active:scale-95 ${
             showHint ? "animate-pulse" : ""
           }`}
         >
@@ -432,7 +358,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                   <div className="mb-3 flex items-center gap-3">
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                       <Image
-                        src="/images/icons/QQ.svg"
+                        src="/images/icons/qq.svg"
                         alt="QQ"
                         width={28}
                         height={28}
@@ -472,8 +398,8 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                 <div className="border-b border-stroke pb-6 dark:border-stroke-dark">
                   <div className="mb-4 flex items-center gap-3">
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                      <Image
-                        src="/images/icons/wechat-fill.svg"
+                    <Image
+                      src="/images/icons/wechat.svg"
                         alt="WeChat"
                         width={28}
                         height={28}

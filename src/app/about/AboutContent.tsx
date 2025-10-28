@@ -1,4 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import type { Dictionary, Locale } from "@/i18n/config";
@@ -25,7 +24,6 @@ const AboutContent = ({
         homeLabel={breadcrumbs.home}
         homeHref={withLocalePath(locale, "/")}
       />
-      <AboutSectionOne copy={aboutCopy.sectionOne} />
       <AboutSectionTwo items={aboutCopy.sectionTwo.items} />
     </>
   );

@@ -1,7 +1,6 @@
 import ArticleContent from "@/components/Blog/ArticleContent";
 import RelatedPost from "@/components/Blog/RelatedPost";
 import TagButton from "@/components/Blog/TagButton";
-import NewsLatterBox from "@/components/Contact/NewsLatterBox";
 import type { Dictionary } from "@/i18n/config";
 
 type BlogSidebarContentProps = {
@@ -9,7 +8,6 @@ type BlogSidebarContentProps = {
   labels: Dictionary["blog"]["labels"];
   sidebar: Dictionary["blogSidebarPage"]["sidebar"];
   shareLabel: string;
-  newsletterCopy: Dictionary["contact"]["newsletter"];
 };
 
 const BlogSidebarContent = ({
@@ -17,7 +15,6 @@ const BlogSidebarContent = ({
   labels,
   sidebar,
   shareLabel,
-  newsletterCopy,
 }: BlogSidebarContentProps) => {
   return (
     <section className="overflow-hidden pt-[180px] pb-[120px]">
@@ -111,7 +108,6 @@ const BlogSidebarContent = ({
                 ))}
               </div>
             </div>
-            <NewsLatterBox copy={newsletterCopy} />
           </div>
         </div>
       </div>

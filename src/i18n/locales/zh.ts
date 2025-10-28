@@ -29,69 +29,82 @@ export const dictionary = {
       },
     },
     hero: {
-      title: "全球领先的具身智能创新平台",
-      description:
-        "有你同创坐落于北京市石景山首钢园冬奥广场，携手首钢集团打造全球领先的具身智能创新平台。专注于将具身智能机器人技术应用于教学研究与落地场景，为高校、职校提供集硬件、软件、课程于一体的教育机器人产品和具身智能教育解决方案。",
-      primaryCta: "了解产品",
-      secondaryCta: "联系我们",
-    },
-    features: {
-      title: "核心优势",
-      paragraph:
-        "基于「启发、探索、创新、分享」的理念，构建具身智能机器人学习平台，打造奇妙、智能、低成本的机器人产品与配套课程体系。",
-      items: [
+      slides: [
         {
           id: 1,
-          title: "递进式学习体系",
-          paragraph:
-            "系统分析具身机器人技术，结合各学段特点，设计阶梯式、多元化的课程体系，让每一个对机器人感兴趣的用户都能递进式掌握机器人技术。",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-1.png",
+            alt: "有你同创具身智能创新平台",
+          },
+          action: {
+            href: "/products",
+            label: "了解整体方案",
+          },
         },
         {
           id: 2,
-          title: "低成本智能产品",
-          paragraph:
-            "将复杂的机器人技术制作成小机器人产品，降低学习门槛，让具身智能机器人教育惠及更多学校与学生。",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-2.png",
+            alt: "教育机器人全栈解决方案",
+          },
+          action: {
+            href: "/developers",
+            label: "进入开发者中心",
+          },
         },
         {
           id: 3,
-          title: "完整解决方案",
-          paragraph:
-            "提供集硬件、软件、课程于一体的教育机器人产品，紧密围绕当代教育发展战略，为学校打造人工智能+机器人的具身智能教育解决方案。",
+          media: {
+            kind: "image",
+            src: "/images/hero/slide-3.png",
+            alt: "首钢园产教融合空间",
+          },
+          action: {
+            href: "/case-studies",
+            label: "浏览联合案例",
+          },
+        },
+      ],
+      primaryCta: {
+        label: "浏览产品平台",
+        href: "#features",
+      },
+      secondaryCta: {
+        label: "联系团队",
+        href: "#contact",
+      },
+      autoPlayInterval: 6000,
+    },
+    features: {
+      title: "产品平台",
+      paragraph:
+        "基于「启发、探索、创新、分享」的理念，我们构建涵盖硬件、软件、课程与服务的具身智能产品平台，让教学、科研与产业落地一步到位。",
+      featuredProducts: {
+        title: "精选方案矩阵",
+        description:
+          "围绕“入门启发 → 项目进阶 → 科研创新”三大阶段，精选具有代表性的具身智能产品组合，帮助不同教学目标快速落地。",
+        ctaDescription: "想了解更多教学与科研场景的搭配？",
+        viewAllLabel: "浏览全部产品",
+        slugs: ["ubot-mr205", "gx-mat-09s23", "rai-p433"],
+      },
+      highlights: [
+        {
+          title: "全链路部署",
+          description: "硬件、软件、课程与服务打包交付，降低教学部署与运维成本。",
         },
         {
-          id: 4,
-          title: "具身智能技术",
-          paragraph:
-            "专注于具身智能机器人技术的教学研究与应用落地，帮助学生理解机器人如何通过身体与环境交互，培养AI时代的创新人才。",
+          title: "多场景适配",
+          description: "覆盖 K12、职教、高校与科研场景，兼容课堂教学、竞赛训练与实验室建设。",
         },
         {
-          id: 5,
-          title: "开源共享社区",
-          paragraph:
-            "持续构建开源共享的线上学习社区，汇聚教师、学生与开发者，共同推动具身智能机器人技术的普及与创新。",
-        },
-        {
-          id: 6,
-          title: "产业级合作平台",
-          paragraph:
-            "携手首钢集团打造具身智能创新平台，为高校、职校提供产学研一体化的教育研究环境与产业对接机会。",
+          title: "模块化拓展",
+          description: "多底盘、多机械臂与 AI 模块自由组合，支持大模型、视觉、控制等跨学科实践。",
         },
       ],
     },
     about: {
-      sectionOne: {
-        title: "关于有你同创",
-        paragraph:
-          "有你同创智能机器人科技（北京）有限公司坐落于北京市石景山首钢园冬奥广场内，携手首钢集团共同打造全球领先的具身智能创新平台。我们专注于将具身智能机器人技术应用于教学研究，持续探索落地应用场景，为高校、职校提供集硬件、软件、课程的教育机器人产品。",
-        bulletPoints: [
-          "具身智能机器人",
-          "递进式学习体系",
-          "开源共享社区",
-          "产学研一体化",
-          "低成本智能产品",
-          "完整教育解决方案",
-        ],
-      },
       sectionTwo: {
         items: [
           {
@@ -181,14 +194,6 @@ export const dictionary = {
         messagePlaceholder: "请填写想咨询的问题",
         submit: "提交工单",
       },
-      newsletter: {
-        title: "订阅最新动态",
-        paragraph: "定期获取模板更新、最佳实践与设计资源，不错过任何灵感。",
-        namePlaceholder: "请输入姓名",
-        emailPlaceholder: "请输入邮箱",
-        submit: "立即订阅",
-        disclaimer: "我们只发送有价值的更新内容，绝不骚扰。",
-      },
     },
     footer: {
       description:
@@ -221,6 +226,11 @@ export const dictionary = {
       },
     },
     pages: {
+      home: {
+        title: "有你同创 · 具身智能教育平台",
+        description:
+          "有你同创智能机器人科技（北京）有限公司专注具身智能教学与科研应用，提供覆盖硬件、软件、课程与服务的一体化解决方案。",
+      },
       about: {
         title: "关于我们",
         description:
@@ -626,7 +636,7 @@ export const dictionary = {
       },
     },
     floatingContact: {
-      panelLabel: "快速联系我们面板",
+      panelLabel: "联系我们",
       fabLabel: "打开联系方式",
       closeLabel: "关闭联系方式",
       qqGroup: {
