@@ -1,38 +1,75 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# 项目忽略规则参考：https://docs.github.com/articles/ignoring-files/
 
-# dependencies
+# 依赖与包管理
 /node_modules
 /.pnp
+.pnp.cjs
+.pnp.mjs
 .pnp.js
-.vscode
-# testing
-/coverage
+.pnp.data.cjs
+.pnp.data.mjs
+/.turbo
+/.swc
 
-# next.js
-/.next/
-/out/
-
-# production
+# 构建与发布产物
+/.next
+/.next/cache
+/out
 /build
+/dist
 
-# misc
-.DS_Store
-*.pem
-*.tsbuildinfo
+# 测试与覆盖率
+/coverage
+/.nyc_output
 
-# debug
+# 日志与调试文件
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 .pnpm-debug.log*
+lerna-debug.log*
 
-# local env files
+# 缓存文件
+.cache
+.eslintcache
+.stylelintcache
+.next-tmp
+*.tsbuildinfo
+
+# 环境变量
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
 .env*.local
 
-# vercel
+# 编辑器与系统文件
+/.vscode/
+/.idea/
+/.history/
+*.code-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.pem
+
+# 平台配置
 .vercel
 
-# AI
+# AI 辅助说明
 CLAUDE.md
 AGENT.md
 .roo

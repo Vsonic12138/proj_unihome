@@ -34,6 +34,49 @@
 
 ---
 
+V1.5.1 chore(dependencies): 更新Next.js依赖至最新版本并优化项目配置
+
+类型: chore
+
+范围: dependencies, config
+
+说明:
+
+本次更新主要包含Next.js核心依赖的版本升级以及项目配置的优化。Next.js框架从15.4.5升级至15.5.6，同时更新了相关的SWC编译器和环境依赖。此外，对.gitignore文件进行了全面优化，增加了更多类型的忽略规则，使项目配置更加完善。
+
+实现细节:
+
+1. Next.js依赖升级
+   - `package-lock.json`: 将Next.js主依赖从15.4.5升级至15.5.6
+   - `@next/env`: 从15.4.5升级至15.5.6
+   - 所有平台相关的SWC编译器依赖均从15.4.5升级至15.5.6 (darwin-arm64, darwin-x64, linux-arm64-gnu, linux-arm64-musl, linux-x64-gnu, linux-x64-musl, win32-arm64-msvc, win32-x64-msvc)
+   - 各依赖项添加了peer属性标记，明确依赖关系
+
+2. 项目配置优化
+   - `next-env.d.ts`: 添加了对路由类型的引用，增强类型安全
+   - `.gitignore`: 完全重构了忽略规则，增加了更全面的文件类型忽略，包括Turbo/SWC缓存、更多环境变量格式、编辑器配置文件等
+
+文件变更:
+
+修改文件:
+- .gitignore (全面优化忽略规则)
+- next-env.d.ts (添加路由类型引用)
+- package-lock.json (Next.js及相关依赖升级)
+
+改进效果:
+
+- 项目依赖保持最新：确保使用最新的Next.js功能和安全修复
+- 更完善的配置：.gitignore文件更加全面，避免不必要的文件被提交
+- 类型安全增强：next-env.d.ts的更新提供了更好的路由类型支持
+- 项目维护性提升：依赖关系更加清晰，便于后续维护
+
+影响范围:
+- 项目构建和运行基于更新后的Next.js版本
+- Git提交行为受更新的忽略规则影响
+- 类型检查包含新的路由类型定义
+
+---
+
 V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互体验
 
 类型: feat, ui
