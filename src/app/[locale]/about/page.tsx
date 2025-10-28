@@ -27,8 +27,6 @@ const AboutPage = async ({ params }: PageParams) => {
     <AboutContent
       pageCopy={dictionary.pages.about}
       aboutCopy={dictionary.about}
-      breadcrumbs={dictionary.breadcrumbs}
-      locale={locale}
     />
   );
 };

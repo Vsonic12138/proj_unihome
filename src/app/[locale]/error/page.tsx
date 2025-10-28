@@ -26,7 +26,6 @@ const ErrorPage = async ({ params }: PageParams) => {
   return (
     <ErrorContent
       copy={dictionary.error}
-      homeLabel={dictionary.breadcrumbs.home}
       locale={locale}
     />
   );

@@ -4,11 +4,10 @@ import Link from "next/link";
 
 type ErrorContentProps = {
   copy: Dictionary["error"];
-  homeLabel: string;
   locale: Locale;
 };
 
-const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
+const ErrorContent = ({ copy, locale }: ErrorContentProps) => {
   return (
     <section className="relative z-10 pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
       <div className="container">
@@ -146,7 +145,7 @@ const ErrorContent = ({ copy, homeLabel, locale }: ErrorContentProps) => {
                 href={withLocalePath(locale, "/")}
                 className="rounded-md bg-primary px-8 py-3 text-base font-bold text-white shadow-signUp duration-300 hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
               >
-                {copy.button ?? homeLabel}
+                {copy.button}
               </Link>
             </div>
           </div>

@@ -7,14 +7,12 @@ import { withLocalePath } from "@/i18n/utils";
 type BlogContentProps = {
   pageCopy: Dictionary["pages"]["blog"];
   blogCopy: Dictionary["blog"];
-  breadcrumbs: Dictionary["breadcrumbs"];
   locale: Locale;
 };
 
 const BlogContent = ({
   pageCopy,
   blogCopy,
-  breadcrumbs,
   locale,
 }: BlogContentProps) => {
   const posts = buildBlogData(blogCopy.posts);
@@ -25,8 +23,6 @@ const BlogContent = ({
       <Breadcrumb
         pageName={pageCopy.title}
         description={pageCopy.description}
-        homeLabel={breadcrumbs.home}
-        homeHref={withLocalePath(locale, "/")}
       />
 
       <section className="pt-[120px] pb-[120px]">

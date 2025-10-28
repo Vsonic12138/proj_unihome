@@ -1,6 +1,5 @@
 import PageIntro from "@/components/Common/PageIntro";
 import { getDictionary, type Locale } from "@/i18n/config";
-import { withLocalePath } from "@/i18n/utils";
 import type { Metadata } from "next";
 
 type PageParams = {
@@ -29,8 +28,6 @@ const CustomSolutionsPage = async ({ params }: PageParams) => {
     <PageIntro
       title={pageCopy.title}
       description={pageCopy.description}
-      homeLabel={dictionary.breadcrumbs.home}
-      homeHref={withLocalePath(locale, "/")}
     />
   );
 };

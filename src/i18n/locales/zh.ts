@@ -642,9 +642,6 @@ export const dictionary = {
         ],
       },
     },
-    breadcrumbs: {
-      home: "首页",
-    },
     common: {
       aria: {
         mobileMenu: "展开或收起导航菜单",

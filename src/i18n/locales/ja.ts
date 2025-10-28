@@ -512,9 +512,6 @@ export const dictionary = {
         ],
       },
     },
-    breadcrumbs: {
-      home: "ホーム",
-    },
     common: {
       aria: {
         mobileMenu: "ナビゲーションメニューを開閉",

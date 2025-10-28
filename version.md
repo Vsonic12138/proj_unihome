@@ -34,6 +34,64 @@
 
 ---
 
+V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组件
+
+类型: refactor, ui
+
+范围: components, pages, i18n
+
+说明:
+
+本次更新对面包屑（Breadcrumb）组件进行了重构，移除了传统的“首页 > 当前页面”导航路径，将其简化为一个只包含页面标题和描述的纯粹的页面介绍组件。此举旨在简化页面顶部UI，使用户更专注于当前页面的核心内容。
+
+实现细节:
+
+1. 面包屑组件重构
+   - `src/components/Common/Breadcrumb.tsx`: 核心重构文件。
+     - 完全移除了用于生成导航路径（如 "首页 / 关于我们"）的 `Link` 和 `ul` 列表结构。
+     - 删除了 `homeLabel` 和 `homeHref` 属性，组件现在只负责展示 `pageName` 和 `description`。
+     - 调整了布局样式，使其作为页面引言（Page Intro）的标题部分。
+
+2. 封装组件与页面适配
+   - `src/components/Common/PageIntro.tsx`: 作为 `Breadcrumb` 的直接封装组件，移除了对应的 `homeLabel` 和 `homeHref` 属性传递。
+   - `src/app/[locale]/**/*.tsx`: 所有使用 `PageIntro` 或 `Breadcrumb` 的页面都进行了更新，删除了不再需要的属性。这包括“关于我们”、“联系我们”、“案例研究”下的所有子页面、“开发者服务”下的所有子页面以及“产品”页面等。
+   - `src/app/*/AboutContent.tsx`, `ContactContent.tsx`, `BlogContent.tsx`, `ErrorContent.tsx`: 这些内容组件也同步更新，不再接收和传递面包屑相关的属性。
+
+3. 国际化文案清理
+   - `src/i18n/locales/*.ts`: 在 `en`, `ja`, `zh` 语言文件中，删除了已不再使用的 `breadcrumbs` 对象，保持了i18n配置的整洁。
+
+文件变更:
+
+修改文件:
+- src/components/Common/Breadcrumb.tsx (组件核心重构)
+- src/components/Common/PageIntro.tsx (移除废弃属性)
+- src/app/about/AboutContent.tsx (适配组件变更)
+- src/app/contact/ContactContent.tsx (适配组件变更)
+- src/app/error/ErrorContent.tsx (适配组件变更)
+- src/app/blog/BlogContent.tsx (适配组件变更)
+- src/app/[locale]/about/page.tsx (适配组件变更)
+- src/app/[locale]/case-studies/**/*.tsx (适配组件变更)
+- src/app/[locale]/contact/page.tsx (适配组件变更)
+- src/app/[locale]/custom-solutions/page.tsx (适配组件变更)
+- src/app/[locale]/developers/**/*.tsx (适配组件变更)
+- src/app/[locale]/error/page.tsx (适配组件变更)
+- src/app/[locale]/products/page.tsx (适配组件变更)
+- src/i18n/locales/en.ts (移除废弃文案)
+- src/i18n/locales/ja.ts (移除废弃文案)
+- src/i18n/locales/zh.ts (移除废弃文案)
+
+改进效果:
+
+- UI简化: 网站所有二级页面的顶部导航路径被移除，界面更加简洁、现代化。
+- 代码可维护性提升: 通过移除不再需要的属性传递（prop drilling），简化了组件之间的依赖关系，使代码更易于维护。
+- 职责单一: `Breadcrumb` 组件的职责更加明确，现在专注于作为页面标题展示，而非导航。
+
+影响范围:
+- 全站所有二级页面的顶部UI均已更新。
+- 传统的面包屑导航功能已被移除。
+
+---
+
 V1.7.0 feat(footer): 重构页脚，增加社交媒体弹窗并更新链接结构
 
 类型: feat, ui

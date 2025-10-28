@@ -27,8 +27,6 @@ const ContactPage = async ({ params }: PageParams) => {
     <ContactContent
       pageCopy={dictionary.pages.contact}
       contactCopy={dictionary.contact}
-      breadcrumbs={dictionary.breadcrumbs}
-      locale={locale}
     />
   );
 };

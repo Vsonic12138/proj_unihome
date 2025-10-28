@@ -520,9 +520,6 @@ export const dictionary = {
         ],
       },
     },
-    breadcrumbs: {
-      home: "Home",
-    },
     common: {
       aria: {
         mobileMenu: "Toggle navigation menu",

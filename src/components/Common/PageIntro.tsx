@@ -4,16 +4,12 @@ import Breadcrumb from "./Breadcrumb";
 type PageIntroProps = {
   title: string;
   description: string;
-  homeLabel: string;
-  homeHref: string;
   children?: ReactNode;
 };
 
 const PageIntro = ({
   title,
   description,
-  homeLabel,
-  homeHref,
   children,
 }: PageIntroProps) => {
   return (
@@ -21,8 +17,6 @@ const PageIntro = ({
       <Breadcrumb
         pageName={title}
         description={description}
-        homeLabel={homeLabel}
-        homeHref={homeHref}
       />
       <section className="py-14 md:py-20">
         <div className="container">
