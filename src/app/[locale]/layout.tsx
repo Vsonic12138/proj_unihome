@@ -23,7 +23,6 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
       <Header
         locale={locale}
         menu={dictionary.header.menu}
-        auth={dictionary.header.auth}
         languageSwitcher={dictionary.header.languageSwitcher}
         aria={dictionary.common.aria}
         themeToggleLabel={dictionary.common.aria.themeToggle}

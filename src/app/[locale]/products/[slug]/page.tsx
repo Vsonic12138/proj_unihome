@@ -12,8 +12,12 @@ export async function generateStaticParams() {
   const params: { locale: Locale; slug: string }[] = [];
   for (const locale of SUPPORTED_LOCALES) {
     const dict = await getDictionary(locale);
-    const items = dict.products.catalog.items as Array<{ slug: string }>;
-    items.forEach(({ slug }) => params.push({ locale, slug }));
+    const series = dict.products.catalog.series as Array<{
+      items: Array<{ slug: string }>;
+    }>;
+    series.forEach(({ items }) => {
+      items.forEach(({ slug }) => params.push({ locale, slug }));
+    });
   }
   return params;
 }

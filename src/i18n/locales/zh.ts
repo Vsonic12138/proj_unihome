@@ -15,10 +15,6 @@ export const dictionary = {
           caseCoResearch: "共研案例",
         },
       },
-      auth: {
-        signIn: "登录",
-        signUp: "注册",
-      },
       languageSwitcher: {
         label: "语言",
         options: [
@@ -87,7 +83,7 @@ export const dictionary = {
           "围绕“入门启发 → 项目进阶 → 科研创新”三大阶段，精选具有代表性的具身智能产品组合，帮助不同教学目标快速落地。",
         ctaDescription: "想了解更多教学与科研场景的搭配？",
         viewAllLabel: "浏览全部产品",
-        slugs: ["ubot-mr205", "gx-mat-09s23", "rai-p433"],
+        slugs: ["ubot-mr20", "gx-mat-09s", "rai-p4"],
       },
       highlights: [
         {
@@ -124,63 +120,6 @@ export const dictionary = {
           },
         ],
       },
-    },
-    blog: {
-      title: "最新洞察",
-      paragraph:
-        "分享设计、开发与增长经验，帮助团队保持灵感与实践节奏。",
-      pagination: {
-        prev: "上一页",
-        next: "下一页",
-      },
-      labels: {
-        by: "作者",
-        date: "发布日期",
-      },
-      posts: [
-        {
-          id: 1,
-          title: "现代网站常用的 UI 组件推荐",
-          paragraph:
-            "从导航到 CTA，我们总结了兼顾美观与可用性的组件组合。",
-          tags: ["创意"],
-          publishDate: "2025",
-          image: "/images/blog/blog-01.jpg",
-          author: {
-            name: "Samuyl Joshi",
-            designation: "平面设计师",
-            image: "/images/blog/author-03.png",
-          },
-        },
-        {
-          id: 2,
-          title: "提升设计功力的 9 个简单方法",
-          paragraph:
-            "把灵感落地为可执行方案，从输入、拆解到复盘的全流程建议。",
-          tags: ["计算机"],
-          publishDate: "2025",
-          image: "/images/blog/blog-02.jpg",
-          author: {
-            name: "Musharof Chy",
-            designation: "内容策划",
-            image: "/images/blog/author-02.png",
-          },
-        },
-        {
-          id: 3,
-          title: "让代码速度翻倍的小技巧",
-          paragraph:
-            "从脚手架到调试工具，带你构建更高效的前端开发工作流。",
-          tags: ["设计"],
-          publishDate: "2025",
-          image: "/images/blog/blog-03.jpg",
-          author: {
-            name: "Lethium Deo",
-            designation: "平面设计师",
-            image: "/images/blog/author-03.png",
-          },
-        },
-      ],
     },
     contact: {
       formTitle: "需要帮助？提交服务单",
@@ -264,7 +203,7 @@ export const dictionary = {
       products: {
         title: "产品介绍",
         description:
-          "致力于为教育与科研领域提供专业的具身机器人解决方案，凭借丰富的产品矩阵，涵盖从入门到高阶的 8 类核心产品，深度融合机械、电子、人工智能等技术，具备灵活的功能拓展性与完善的配套支持。无论是 K12 阶段的机器人启蒙教学，中职高职的专业技能实训，还是高校及科研机构的前沿技术研究，都能精准匹配需求，助力用户探索具身智能机器人的无限可能，找到教学与科研的最佳拍档。",
+          "致力于为教育与科研领域提供专业的具身机器人解决方案，凭借丰富的产品矩阵，涵盖从入门到高阶的 7 款核心产品，深度融合机械、电子、人工智能等技术，具备灵活的功能拓展性与完善的配套支持。无论是 K12 阶段的机器人启蒙教学，中职高职的专业技能实训，还是高校及科研机构的前沿技术研究，都能精准匹配需求，助力用户探索具身智能机器人的无限可能，找到教学与科研的最佳拍档。",
       },
       developerServices: {
         title: "开发者服务",
@@ -306,73 +245,75 @@ export const dictionary = {
         description:
           "了解我们与合作伙伴在智能机器人、人工智能等领域的联合研发成果。",
       },
-      blog: {
-        title: "博客列表",
-        description:
-          "浏览最新文章，获取产品设计、前端开发与增长实践的灵感。",
-      },
     },
     products: {
       catalog: {
-        coreTitle: "8类核心产品",
+        coreTitle: "7款核心产品",
         coreDescription: "从入门到进阶，覆盖K12到高校及科研场景。",
         viewDetailsCta: "查看详情",
-        items: [
+        series: [
           {
-            slug: "ubot-mr205",
-            name: "具身智能机器人创新设计套件 Ubot MR205",
-            model: "Ubot MR205",
-            image: "/images/video/video.jpg",
-            brief: "150+零件，5种底盘 + 3种机械臂，20种复合形态，多语言编程；适配K12/中高职/大一。",
+            key: "m-series",
+            title: "M 系列 · 课程设计平台",
+            description: "以启发、探索、创新为核心，覆盖入门搭建到科研提升的全链路课程与项目实践。",
+            items: [
+              {
+                slug: "ubot-mr20",
+                name: "具身机器人创新设计套装 Ubot MR20",
+                model: "Ubot MR20",
+                image: "/images/video/video.jpg",
+                brief: "150+零件，5种底盘 + 3种机械臂，20种复合形态，多语言编程；适配K12/中高职/大一。",
+              },
+              {
+                slug: "gx-mat-09s",
+                name: "具身机器人创新设计平台（增强版）GX-MAT-09S",
+                model: "GX-MAT-09S",
+                image: "/images/video/video.jpg",
+                brief: "11种底盘 + 7种机械臂，88种复合形态，新增激光雷达 + RDK X5 主板；适配进阶课程、科研。",
+              },
+            ],
           },
           {
-            slug: "gx-mat-0916",
-            name: "具身复合机器人创新设计套装（高级版）",
-            model: "GX-MAT-0916",
-            image: "/images/video/video.jpg",
-            brief: "8种底盘 + 6种机械臂，48种复合形态，STM32 + Arduino 双控；适配高校课程实践、竞赛。",
-          },
-          {
-            slug: "gx-mat-09s23",
-            name: "具身复合机器人创新设计套装（增强版）",
-            model: "GX-MAT-09S23",
-            image: "/images/video/video.jpg",
-            brief: "11种底盘 + 7种机械臂，88种复合形态，新增激光雷达 + RDK X5 主板；适配进阶课程、科研。",
-          },
-          {
-            slug: "rai-p433",
-            name: "具身机器人任务规划综合实训平台",
-            model: "RAI-P433",
-            image: "/images/video/video.jpg",
-            brief: "集成AI语音/视觉，4自由度机械臂，支持ROS2；适配大模型应用、机器视觉、ROS课程。",
-          },
-          {
-            slug: "rai-m438",
-            name: "具身复合机器人系统设计实训平台",
-            model: "RAI-M438",
-            image: "/images/video/video.jpg",
-            brief: "麦轮全向底盘 + 4轴机械臂，接入DeepSeek/通义千问；适配移动机器人导航与大模型部署。",
-          },
-          {
-            slug: "rai-q242",
-            name: "具身视觉感知决策实训平台",
-            model: "RAI-Q242",
-            image: "/images/video/video.jpg",
-            brief: "深度相机 + 高精度转台/升降导轨，支持OpenCV/YOLO/VLM；适配机器视觉、机器学习课程。",
-          },
-          {
-            slug: "uni-wr245",
-            name: "便携式ROS导航机器人学习平台",
-            model: "UNI-WR245",
-            image: "/images/video/video.jpg",
-            brief: "<13cm 便携尺寸，桌面部署（60×60cm），3种导航方式；适配ROS与移动机器人课程。",
-          },
-          {
-            slug: "alo-le449",
-            name: "具身机器人操作规划综合实训平台",
-            model: "ALO-LE449",
-            image: "/images/video/video.jpg",
-            brief: "双5自由度机械臂（主从跟随），ACT架构，可调光源；适配模仿学习与端到端控制研究。",
+            key: "p-series",
+            title: "P 系列 · 任务实训平台",
+            description: "聚焦具身智能任务落地，提供视觉、导航、规划与大模型融合的实训系统。",
+            items: [
+              {
+                slug: "rai-p4",
+                name: "具身智能任务规划实训平台 RAI-P4",
+                model: "RAI-P4",
+                image: "/images/video/video.jpg",
+                brief: "集成AI语音/视觉，4自由度机械臂，支持ROS2；适配大模型应用、机器视觉、ROS课程。",
+              },
+              {
+                slug: "uni-wr2",
+                name: "便携式ROS导航机器人学习平台 UNI-WR2",
+                model: "UNI-WR2",
+                image: "/images/video/video.jpg",
+                brief: "<13cm 便携尺寸，桌面部署（60×60cm），3种导航方式；适配ROS与移动机器人课程。",
+              },
+              {
+                slug: "rai-q2",
+                name: "具身视觉感知决策实训平台 RAI-Q2",
+                model: "RAI-Q2",
+                image: "/images/video/video.jpg",
+                brief: "深度相机 + 高精度转台/升降导轨，支持OpenCV/YOLO/VLM；适配机器视觉、机器学习课程。",
+              },
+              {
+                slug: "rai-m4",
+                name: "具身复合机器人系统设计实训平台 RAI-M4",
+                model: "RAI-M4",
+                image: "/images/video/video.jpg",
+                brief: "麦轮全向底盘 + 4轴机械臂，接入DeepSeek/通义千问；适配移动机器人导航与大模型部署。",
+              },
+              {
+                slug: "alo-le4",
+                name: "具身机器人操作规划综合实训平台 ALO-LE4",
+                model: "ALO-LE4",
+                image: "/images/video/video.jpg",
+                brief: "双5自由度机械臂（主从跟随），ACT架构，可调光源；适配模仿学习与端到端控制研究。",
+              },
+            ],
           },
         ],
       },
@@ -383,29 +324,29 @@ export const dictionary = {
             q: "问题 1：该文档中的产品可覆盖哪些教育阶段，不同阶段推荐哪些核心产品？",
             a:
               "答案：文档产品覆盖K12、中职、高职、本科、研究生 / 科研全教育阶段，不同阶段推荐产品如下：\n\n" +
-              "K12、中职 / 高职一年级、大一：推荐具身智能机器人创新设计套件 Ubot MR205（0.98 万元），其零编程基础入门（图形化编程）、低组装难度，可开展机器人通识实践，适配 5 种底盘 + 3 种机械臂搭建，满足入门认知需求；\n\n" +
-              "本科（基础课程）：推荐具身复合机器人创新设计套装（高级版）GX-MAT-0916（2.68 万元），支持机械原理、传感器检测、单片机原理等核心课程，可搭 8 种底盘 + 6 种机械臂，且适配 5 类竞赛，满足课程实践与竞赛训练；\n\n" +
-              "本科（进阶课程）、研究生 / 科研：推荐具身复合机器人创新设计套装（增强版）GX-MAT-09S23（3.88 万元）或具身机器人任务规划综合实训平台 RAI-P433（3.4 万元），前者新增激光雷达 + RDK X5 主板（10TOPS 算力），支持 ROS、移动机器人导航等进阶课程，后者集成大模型与机器人技术，可开展智能系统集成研究，满足科研级需求。",
+              "K12、中职 / 高职一年级、大一：推荐具身机器人创新设计套装 Ubot MR20（0.98 万元），其零编程基础入门（图形化编程）、低组装难度，可开展机器人通识实践，适配 5 种底盘 + 3 种机械臂搭建，满足入门认知需求；\n\n" +
+              "本科（基础课程）：推荐具身机器人创新设计平台（增强版）GX-MAT-09S（3.88 万元），支持机械原理、传感器检测、ROS 入门等核心课程，可搭 11 种底盘 + 7 种机械臂，覆盖课堂实验与竞赛训练；\n\n" +
+              "本科（进阶课程）、研究生 / 科研：推荐具身智能任务规划实训平台 RAI-P4（3.4 万元），集成大模型与机器人技术，可开展任务规划、语音/视觉融合等智能系统研究。",
           },
           {
             q: "问题 2：若高校需开展 ROS 与移动机器人导航课程，文档中哪些产品最适配，核心优势是什么？",
             a:
-              "答案：最适配的产品为便携式 ROS 导航机器人学习平台 UNI-WR245（0.45 万元）和具身复合机器人创新设计套装（增强版）GX-MAT-09S23（3.88 万元），核心优势如下：\n\n" +
-              "UNI-WR245：\n" +
+              "答案：最适配的产品为便携式 ROS 导航机器人学习平台 UNI-WR2（0.45 万元）和具身机器人创新设计平台（增强版）GX-MAT-09S（3.88 万元），核心优势如下：\n\n" +
+              "UNI-WR2：\n" +
               "• 部署灵活：极致便携（<13cm，<550g），最小 60cm×60cm 桌面即可实现 SLAM 导航，无需大型场地；\n" +
               "• 教学深度：将 ROS 工程化部署拆解为 5 步（原理→演示→框架解构→功能包配置→全参调试），结合 Cartographer / Hector / Gmapping 3 种导航方式，设计递进式实验；\n" +
               "• 成本友好：单价 0.45 万元，适合批量采购用于学生分组实验。\n\n" +
-              "GX-MAT-09S23：\n" +
-              "• 功能全面：新增 ROS 课程支持，可搭 11 种底盘 + 7 种机械臂，结合激光雷达（测距 0.12-8m），覆盖移动机器人导航与定位实践；\n" +
+              "GX-MAT-09S：\n" +
+              "• 功能全面：支持 ROS 课程，可搭 11 种底盘 + 7 种机械臂，结合激光雷达（测距 0.12-8m），覆盖移动机器人导航与定位实践；\n" +
               "• 算力支撑：配备 RDK X5 主板（10TOPS），预装 Ubuntu+ROS，支撑 SLAM 建图、自主避障等复杂算法的运行与调试。",
           },
           {
             q: "问题 3：文档中哪些产品支持大模型集成应用，具体可实现哪些大模型相关功能？",
             a:
               "答案：支持大模型集成应用的产品有 3 款：\n\n" +
-              "RAI-P433（3.4 万元）：集成通义千问、Deepseek、火山引擎；可实现 ASR（通义千问）、LLM（Deepseek）、TTS（火山引擎）、Function-call（如语音对话计算器、音乐播放、云台 / 机械臂任务规划），并支持与 YOLO / 人脸追踪、机械臂控制的集成应用。\n\n" +
-              "RAI-M438（2.4 万元）：接入 Deepseek（LLM）、通义千问（ASR + 多模态）；可实现自然语言转机器人任务流程（语音指令控制底盘 / 机械臂）、多模态物体检测（通义千问），结合麦轮底盘与 4 轴机械臂实现泛化操作。\n\n" +
-              "RAI-Q242（3.2 万元）：调用通义千问 VLM；可实现多模态视觉检测（水果检测与标记、未知物体识别），结合深度相机和高精度转台，适配机器视觉与大模型部署课程。",
+              "RAI-P4（3.4 万元）：集成通义千问、Deepseek、火山引擎；可实现 ASR（通义千问）、LLM（Deepseek）、TTS（火山引擎）、Function-call（如语音对话计算器、音乐播放、云台 / 机械臂任务规划），并支持与 YOLO / 人脸追踪、机械臂控制的集成应用。\n\n" +
+              "RAI-M4（2.4 万元）：接入 Deepseek（LLM）、通义千问（ASR + 多模态）；可实现自然语言转机器人任务流程（语音指令控制底盘 / 机械臂）、多模态物体检测（通义千问），结合麦轮底盘与 4 轴机械臂实现泛化操作。\n\n" +
+              "RAI-Q2（3.2 万元）：调用通义千问 VLM；可实现多模态视觉检测（水果检测与标记、未知物体识别），结合深度相机和高精度转台，适配机器视觉与大模型部署课程。",
           },
         ],
       },
@@ -418,9 +359,9 @@ export const dictionary = {
         comingSoon: "内容即将更新",
       },
       details: {
-        "ubot-mr205": {
-          name: "具身智能机器人创新设计套件 Ubot MR205",
-          model: "Ubot MR205",
+        "ubot-mr20": {
+          name: "具身机器人创新设计套装 Ubot MR20",
+          model: "Ubot MR20",
           image: "/images/video/video.jpg",
           overview: "面向入门到打基础阶段的具身机器人创新套件，支持多语言编程与多种形态组合，适配K12到高校低年级教学。",
           highlights: [
@@ -445,41 +386,11 @@ export const dictionary = {
             "直流电机（减速比 48）、舵机（30kgf.cm 扭矩）",
           ],
         },
-        "gx-mat-0916": {
-          name: "具身复合机器人创新设计套装（高级版）",
-          model: "GX-MAT-0916",
+        "gx-mat-09s": {
+          name: "具身机器人创新设计平台（增强版）GX-MAT-09S",
+          model: "GX-MAT-09S",
           image: "/images/video/video.jpg",
-          overview: "面向高校课程实践与多类竞赛的复合机器人设计平台，提供多底盘与机械臂组合，支持双控制器架构。",
-          highlights: [
-            "8种底盘",
-            "6种机械臂",
-            "48种复合形态",
-            "STM32 + Arduino 双控",
-            "解构移动复合机器人",
-            "模块化设计",
-            "双主控适配不同层次教学",
-          ],
-          applicable: "高校课程实践、多类竞赛",
-          configuration: [
-            "结构零件：90+ 金属件（航空铝）、17 个轮零件（含差速轮 / 麦轮）",
-            "电机：4 个编码直流电机（12V，1Nm 额定扭矩）、8 个舵机（30kgf.cm）",
-          ],
-          experiments: [
-            "覆盖单片机（如 STM32 / Arduino 认知）",
-            "电机控制（PID 速度控制）",
-            "底盘 / 机械臂搭建（8 种底盘 + 6 种机械臂）",
-            "复合机器人设计（48 种构型）",
-          ],
-          specs: [
-            "驱动扩展板支持 6 路直流电机 + 11 路舵机",
-            "传感器：3 个超声波、1 个视觉摄像头、陀螺仪等",
-          ],
-        },
-        "gx-mat-09s23": {
-          name: "具身复合机器人创新设计套装（增强版）",
-          model: "GX-MAT-09S23",
-          image: "/images/video/video.jpg",
-          overview: "在高级版基础上增强传感与运算能力，新增激光雷达与RDK X5主板，支持更多形态组合与科研开发。",
+          overview: "在课程设计平台基础上增强传感与运算能力，新增激光雷达与RDK X5主板，支持更多形态组合与科研开发。",
           highlights: [
             "硬件升级：激光雷达、单目摄像头、RDK X5 主板（9TOPS，预装 Ubuntu+ROS）",
             "构型升级：11 种底盘（含 6 轮六驱差速底盘）、7 种机械臂（含 8 自由度双臂）",
@@ -496,9 +407,9 @@ export const dictionary = {
             "新增激光雷达（测距 0.12-8m）",
           ],
         },
-        "rai-p433": {
-          name: "具身机器人任务规划综合实训平台",
-          model: "RAI-P433",
+        "rai-p4": {
+          name: "具身智能任务规划实训平台 RAI-P4",
+          model: "RAI-P4",
           image: "/images/video/video.jpg",
           overview: "集成AI语音/视觉模块与4自由度机械臂，支持ROS2与任务规划教学。",
           highlights: [
@@ -523,9 +434,9 @@ export const dictionary = {
             "控制器支持 8 路舵机驱动",
           ],
         },
-        "rai-m438": {
-          name: "具身复合机器人系统设计实训平台",
-          model: "RAI-M438",
+        "rai-m4": {
+          name: "具身复合机器人系统设计实训平台 RAI-M4",
+          model: "RAI-M4",
           image: "/images/video/video.jpg",
           overview: "麦轮全向底盘配合4轴机械臂，支持接入DeepSeek、通义千问等大模型，面向系统设计与导航教学。",
           highlights: [
@@ -549,9 +460,9 @@ export const dictionary = {
             "YOLOv8 人脸检测 100fps（参考指标）",
           ],
         },
-        "rai-q242": {
-          name: "具身视觉感知决策实训平台",
-          model: "RAI-Q242",
+        "rai-q2": {
+          name: "具身视觉感知决策实训平台 RAI-Q2",
+          model: "RAI-Q2",
           image: "/images/video/video.jpg",
           overview: "集成深度相机与高精度运动机构，支持OpenCV/YOLO/VLM等算法教学与实验。",
           highlights: [
@@ -576,9 +487,9 @@ export const dictionary = {
             "转台最大速度 40rpm",
           ],
         },
-        "uni-wr245": {
-          name: "便携式ROS导航机器人学习平台",
-          model: "UNI-WR245",
+        "uni-wr2": {
+          name: "便携式ROS导航机器人学习平台 UNI-WR2",
+          model: "UNI-WR2",
           image: "/images/video/video.jpg",
           overview: "便携小巧的桌面级导航机器人平台，快速搭建ROS导航实验环境。",
           highlights: [
@@ -603,9 +514,9 @@ export const dictionary = {
             "1m 内定位精度 < 5mm，1m 直线度偏差 < 1cm",
           ],
         },
-        "alo-le449": {
-          name: "具身机器人操作规划综合实训平台",
-          model: "ALO-LE449",
+        "alo-le4": {
+          name: "具身机器人操作规划综合实训平台 ALO-LE4",
+          model: "ALO-LE4",
           image: "/images/video/video.jpg",
           overview: "双机械臂主从跟随与可调光源环境，支持ACT架构与模仿学习/端到端控制研究。",
           highlights: [
@@ -698,119 +609,10 @@ export const dictionary = {
       passwordPlaceholder: "请输入密码",
       passwordLabel: "您的密码",
     },
-    auth: {
-      signin: {
-        title: "登录到你的账户",
-        subtitle: "登录后即可更快完成购买与管理操作。",
-        google: "使用 Google 登录",
-        github: "使用 GitHub 登录",
-        emailLabel: "邮箱",
-        passwordLabel: "密码",
-        remember: "保持登录状态",
-        forgot: "忘记密码？",
-        submit: "登录",
-        noAccount: "还没有账户？",
-        signupLink: "立即注册",
-      },
-      signup: {
-        title: "创建你的免费账户",
-        subtitle: "无需信用卡，14 天免费试用立即开始。",
-        google: "使用 Google 注册",
-        github: "使用 GitHub 注册",
-        nameLabel: "姓名",
-        namePlaceholder: "请输入姓名",
-        emailLabel: "邮箱",
-        passwordLabel: "密码",
-        remember: "我已阅读并同意服务条款",
-        submit: "创建账户",
-        haveAccount: "已经有账户了？",
-        signinLink: "去登录",
-      },
-    },
     error: {
       title: "页面走丢了",
       description: "你访问的页面可能已被删除或名称更新，试试返回首页。",
       button: "返回首页",
-    },
-    blogDetailPage: {
-      article: {
-        title: "免费下载高质量图库与数字素材的 10 个绝佳网站",
-        meta: {
-          author: "Musharof Chy",
-          published: "2024 年 1 月 12 日",
-          comments: "50",
-          views: "35",
-          tag: "设计",
-        },
-        intro:
-          "我们整理了 10 个持续更新、授权友好的免费素材站点，让设计团队能迅速找到配图与图标，不再为资源来源发愁。",
-        coverAlt: "设计团队正在讨论品牌素材",
-        highlightParagraph: {
-          before:
-            "挑选网站时，我们重点关注下载速度、商业授权与文件质量，",
-          highlight: "因此推荐的站点大多支持免费商用",
-          after:
-            "，并提供高分辨率文件，帮助你避免版权纠纷。",
-        },
-        emphasisParagraph: {
-          before: "为了更高效地组织素材，建议及时收藏并分类，",
-          highlight: "将灵感整理成可复用的设计资源",
-          after:
-            "，团队成员便能在需求到来时快速调用，保持视觉一致性。",
-        },
-        sectionHeading: "为 UI/UX 设计师打造的数字素材市场",
-        sectionParagraph:
-          "这些平台提供结构化的合集，可按格式、主题与颜色筛选，帮助你在紧迫的迭代周期中保持设计产出品质。",
-        bulletPoints: [
-          "覆盖品牌宣传、产品演示与营销活动等常用场景。",
-          "附带可编辑的 Figma、Sketch 或 PSD 源文件。",
-          "支持按许可、作者与格式快速过滤内容。",
-          "收藏夹与团队工作区方便同步最新素材。",
-        ],
-        quote:
-          "持续维护素材库与版权清单，能显著提升设计交付效率，也让后续的渠道推广更具一致性。",
-        conclusion:
-          "定期整理收藏夹并关注站点更新，就能保持品牌素材库的新鲜度，让官网和营销页面时刻保持活力。",
-        tagsTitle: "热门标签：",
-        shareTitle: "分享这篇文章：",
-        tags: ["设计", "开发", "资讯"],
-      },
-    },
-    blogSidebarPage: {
-      sidebar: {
-        searchPlaceholder: "搜索文章...",
-        relatedPostsTitle: "相关文章",
-        relatedPosts: [
-          {
-            title: "提升在线销售的最佳策略",
-            date: "2025 年 2 月 12 日",
-            image: "/images/blog/post-01.jpg",
-            slug: "#",
-          },
-          {
-            title: "50 个实用的网站设计技巧",
-            date: "2024 年 2 月 15 日",
-            image: "/images/blog/post-02.jpg",
-            slug: "#",
-          },
-          {
-            title: "8 款优秀落地页搭建工具评测",
-            date: "2024 年 6 月 5 日",
-            image: "/images/blog/post-03.jpg",
-            slug: "#",
-          },
-        ],
-        categoriesTitle: "热门分类",
-        categories: [
-          "Tailwind 模板",
-          "落地页",
-          "初创企业",
-          "商业",
-          "多用途",
-        ],
-        tagsTitle: "热门标签",
-        tags: ["主题", "UI 套件", "Tailwind", "初创企业", "商业"],
-      },
     },
 };
 

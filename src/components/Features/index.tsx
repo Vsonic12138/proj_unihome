@@ -19,7 +19,8 @@ type Highlight = {
 const Features = ({ locale, copy, productsCatalog }: FeaturesProps) => {
   const highlights = (copy.highlights ?? []) as Highlight[];
   const slugs = copy.featuredProducts?.slugs ?? [];
-  const products = (productsCatalog.items ?? []) as ProductSummary[];
+  const products = ((productsCatalog.series ?? []) as Array<{ items: ProductSummary[] }>)
+    .flatMap((series) => series.items) as ProductSummary[];
   const featuredProducts = slugs
     .map((slug) => products.find((item) => item.slug === slug))
     .filter((item): item is ProductSummary => Boolean(item));

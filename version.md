@@ -34,6 +34,73 @@
 
 ---
 
+V1.8.0 refactor(products): 重构产品目录结构并移除博客与认证功能
+
+类型: refactor, remove, ui
+
+范围: products, i18n, components, pages
+
+说明:
+
+本次更新旨在精简网站功能，将核心聚焦于产品展示。为此，我们对产品目录的数据结构进行了重构，并彻底移除了博客（Blog）和用户认证（Sign In/Sign Up）两大模块。这使得网站的导航更清晰，内容结构更合理，同时也降低了后续的维护成本。
+
+实现细节:
+
+1. 产品目录结构重构
+   - `src/i18n/locales/*.ts`: 核心数据结构变更。将原有的扁平化产品列表 (`products.catalog.items`) 调整为按系列分组的结构 (`products.catalog.series`)，例如 “M 系列” 和 “P 系列”，使产品分类更加清晰。
+   - `src/components/Products/index.tsx`: 更新了产品列表页的渲染逻辑，现在会先遍历产品系列，再展示系列下的具体产品卡片。
+   - `src/app/[locale]/products/[slug]/page.tsx`: 修改了动态路由的静态参数生成逻辑 (`generateStaticParams`)，以适配新的嵌套式产品数据结构。
+   - 内容更新: 全面更新了所有产品信息，包括型号（如 `ubot-mr205` -> `ubot-mr20`）、名称、描述、FAQ 和规格详情，并将核心产品数量从 8 款调整为 7 款。
+
+2. 博客与认证功能移除
+   - 文件删除:
+     - 移除了所有与博客相关的页面 (`/blog`, `/blog-details`, `/blog-sidebar`) 和组件 (`src/components/Blog/*`)。
+     - 移除了所有与用户认证相关的页面 (`/signin`, `/signup`) 和内容组件 (`src/app/signin/*`, `src/app/signup/*`)。
+   - UI 简化:
+     - `src/components/Header/index.tsx`: 移除了页眉中的“登录”和“注册”按钮，简化了顶部导航栏。
+     - `src/app/[locale]/layout.tsx`: 从布局组件中删除了传递给页眉的 `auth` 属性。
+   - 国际化文案清理:
+     - 从 `en.ts`, `ja.ts`, `zh.ts` 文件中彻底删除了已不再使用的 `auth`, `blog`, `blogDetailPage` 等国际化文案对象，保持了配置的整洁。
+
+文件变更:
+
+删除文件:
+- src/app/[locale]/blog/page.tsx
+- src/app/[locale]/blog-details/page.tsx
+- src/app/[locale]/blog-sidebar/page.tsx
+- src/app/[locale]/signin/page.tsx
+- src/app/[locale]/signup/page.tsx
+- src/app/blog/BlogContent.tsx
+- src/app/blog-details/BlogDetailsContent.tsx
+- src/app/blog-sidebar/BlogSidebarContent.tsx
+- src/app/signin/SigninContent.tsx
+- src/app/signup/SignupContent.tsx
+- src/components/Blog/* (整个目录)
+
+修改文件:
+- src/i18n/locales/en.ts (重构产品数据，移除废弃文案)
+- src/i18n/locales/ja.ts (重构产品数据，移除废弃文案)
+- src/i18n/locales/zh.ts (重构产品数据，移除废弃文案)
+- src/components/Products/index.tsx (适配新的产品系列结构)
+- src/app/[locale]/products/[slug]/page.tsx (更新静态路由生成逻辑)
+- src/components/Header/index.tsx (移除认证链接)
+- src/app/[locale]/layout.tsx (移除认证属性传递)
+- src/components/Features/index.tsx (更新首页精选方案展示逻辑)
+- src/components/Products/ProductCard.tsx (样式微调)
+
+改进效果:
+
+- 聚焦核心业务: 网站内容完全围绕产品展开，为访客提供了更专注、更清晰的浏览体验。
+- 提升可维护性: 通过移除非核心功能模块，简化了代码库，降低了复杂度和未来的维护成本。
+- 优化信息架构: 产品按系列分类，结构更清晰，有助于用户根据需求快速找到合适的产品。
+
+影响范围:
+- 网站不再提供博客内容和用户注册/登录功能。
+- 产品列表页的展示方式已更新为按系列分组。
+- 网站的整体导航和信息结构更加精简。
+
+---
+
 V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组件
 
 类型: refactor, ui

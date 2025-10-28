@@ -15,10 +15,6 @@ export const dictionary = {
           caseCoResearch: "共同研究",
         },
       },
-      auth: {
-        signIn: "ログイン",
-        signUp: "新規登録",
-      },
       languageSwitcher: {
         label: "言語",
         options: [
@@ -87,7 +83,7 @@ export const dictionary = {
           "導入準備・高度授業・研究開発の3段階をカバーする代表的なソリューションを厳選し、具現化知能プログラムの立ち上げを加速させます。",
         ctaDescription: "教育・研究計画に最適な全ラインアップを確認しますか？",
         viewAllLabel: "全ての製品を見る",
-        slugs: ["ubot-mr205", "gx-mat-09s23", "rai-p433"],
+        slugs: ["ubot-mr20", "gx-mat-09s", "rai-p4"],
       },
       highlights: [
         {
@@ -124,63 +120,6 @@ export const dictionary = {
           },
         ],
       },
-    },
-    blog: {
-      title: "最新のインサイト",
-      paragraph:
-        "デザイン、開発、成長に関する経験を共有し、チームがインスピレーションを維持し実施ペースを保つお手伝いをします。",
-      pagination: {
-        prev: "前へ",
-        next: "次へ",
-      },
-      labels: {
-        by: "著者",
-        date: "公開日",
-      },
-      posts: [
-        {
-          id: 1,
-          title: "モダンサイトでよく使われるUIコンポーネントの紹介",
-          paragraph:
-            "ナビゲーションからCTAまで、美しさと使いやすさのバランスが取れたコンポーネントをまとめました。",
-          tags: ["クリエイティブ"],
-          publishDate: "2025",
-          image: "/images/blog/blog-01.jpg",
-          author: {
-            name: "Samuyl Joshi",
-            designation: "グラフィックデザイナー",
-            image: "/images/blog/author-03.png",
-          },
-        },
-        {
-          id: 2,
-          title: "デザインスキルを高める9つの簡単な方法",
-          paragraph:
-            "インスピレーションを実行可能なソリューションに変える、入力・分析・フィードバックの全プロセスに関するご提案。",
-          tags: ["コンピューター"],
-          publishDate: "2025",
-          image: "/images/blog/blog-02.jpg",
-          author: {
-            name: "Musharof Chy",
-            designation: "コンテンツプランナー",
-            image: "/images/blog/author-02.png",
-          },
-        },
-        {
-          id: 3,
-          title: "コードの速度を倍にする小技",
-          paragraph:
-            "スキャフォールディングからデバッグツールまで、より効率的なフロントエンド開発ワークフローの構築方法。",
-          tags: ["デザイン"],
-          publishDate: "2025",
-          image: "/images/blog/blog-03.jpg",
-          author: {
-            name: "Lethium Deo",
-            designation: "グラフィックデザイナー",
-            image: "/images/blog/author-03.png",
-          },
-        },
-      ],
     },
     contact: {
       formTitle: "お困りですか？サポートチケットを送信してください",
@@ -266,7 +205,7 @@ export const dictionary = {
       products: {
         title: "製品紹介",
         description:
-          "教育・研究分野に向けたプロフェッショナルな具現化ロボットソリューションを提供します。入門から上級までをカバーする8つのコア製品で構成された豊富な製品マトリクスは、機械・電子・人工知能の技術を深く融合し、柔軟な機能拡張性と充実したサポート体制を備えています。K12段階のロボット入門教育、中高等専門学校の実践的スキルトレーニング、さらには大学・研究機関での最先端研究まで、ニーズに的確にマッチ。利用者が具現化知能ロボットの無限の可能性を探求し、教育・研究の最良のパートナーを見つけられるよう支援します。",
+          "教育・研究分野に向けたプロフェッショナルな具現化ロボットソリューションを提供します。入門から上級までをカバーする7つのコア製品で構成された豊富な製品マトリクスは、機械・電子・人工知能の技術を深く融合し、柔軟な機能拡張性と充実したサポート体制を備えています。K12段階のロボット入門教育、中高等専門学校の実践的スキルトレーニング、さらには大学・研究機関での最先端研究まで、ニーズに的確にマッチ。利用者が具現化知能ロボットの無限の可能性を探求し、教育・研究の最良のパートナーを見つけられるよう支援します。",
       },
       developerServices: {
         title: "開発者サービス",
@@ -308,82 +247,85 @@ export const dictionary = {
         description:
           "知能ロボットやAIなどの分野で当社技術を活用した共同研究の成果をご覧ください。",
       },
-      blog: {
-        title: "ブログ一覧",
-        description:
-          "最新の記事を閲覧し、製品設計、フロントエンド開発、成長実践に関するインスピレーションを入手してください。",
-      },
     },
     products: {
       catalog: {
-        coreTitle: "8つのコア製品",
+        coreTitle: "7つのコア製品",
         coreDescription:
           "入門から上級まで、K12から大学・研究までをカバー。",
         viewDetailsCta: "詳細を見る",
-        items: [
+        series: [
           {
-            slug: "ubot-mr205",
-            name: "具現化ロボット革新デザインキット Ubot MR205",
-            model: "Ubot MR205",
-            image: "/images/video/video.jpg",
-            brief:
-              "150+部品、5種シャーシ + 3種アーム、20種複合形態、多言語プログラミング。対象: K12/専門・短大1年/学部1年。",
+            key: "m-series",
+            title: "Mシリーズ · カリキュラム設計プラットフォーム",
+            description:
+              "入門啓発から研究強化まで、モジュール構成とカリキュラム設計に特化した学習キット。",
+            items: [
+              {
+                slug: "ubot-mr20",
+                name: "具現化ロボット革新デザインキット Ubot MR20",
+                model: "Ubot MR20",
+                image: "/images/video/video.jpg",
+                brief:
+                  "150+部品、5種シャーシ + 3種アーム、20種複合形態、多言語プログラミング。対象: K12/専門・短大1年/学部1年。",
+              },
+              {
+                slug: "gx-mat-09s",
+                name: "具現化ロボット革新デザインプラットフォーム（強化版）GX-MAT-09S",
+                model: "GX-MAT-09S",
+                image: "/images/video/video.jpg",
+                brief:
+                  "11種シャーシ + 7種アーム、88種複合形態、LiDAR + RDK X5 追加。上級授業・研究向け。",
+              },
+            ],
           },
           {
-            slug: "gx-mat-0916",
-            name: "具現化複合ロボット革新デザインセット（上級）",
-            model: "GX-MAT-0916",
-            image: "/images/video/video.jpg",
-            brief:
-              "8種シャーシ + 6種アーム、48種複合形態、STM32 + Arduino デュアル制御。大学実践・競技向け。",
-          },
-          {
-            slug: "gx-mat-09s23",
-            name: "具現化複合ロボット革新デザインセット（強化版）",
-            model: "GX-MAT-09S23",
-            image: "/images/video/video.jpg",
-            brief:
-              "11種シャーシ + 7種アーム、88種複合形態、LiDAR + RDK X5 追加。上級授業・研究向け。",
-          },
-          {
-            slug: "rai-p433",
-            name: "具現化ロボットタスク計画 総合実習プラットフォーム",
-            model: "RAI-P433",
-            image: "/images/video/video.jpg",
-            brief:
-              "AI音声/視覚、4自由度アーム、ROS2 対応。大規模言語モデル応用・コンピュータビジョン・ROS授業向け。",
-          },
-          {
-            slug: "rai-m438",
-            name: "具現化複合ロボット システム設計実習プラットフォーム",
-            model: "RAI-M438",
-            image: "/images/video/video.jpg",
-            brief:
-              "メカナム全方向シャーシ + 4軸アーム、DeepSeek/通義千問に接続。移動ロボット航法・LLM導入向け。",
-          },
-          {
-            slug: "rai-q242",
-            name: "具現化ビジョン認識・意思決定 実習プラットフォーム",
-            model: "RAI-Q242",
-            image: "/images/video/video.jpg",
-            brief:
-              "深度カメラ + 高精度回転台/昇降ガイド、OpenCV/YOLO/VLM 対応。ビジョン・ML授業向け。",
-          },
-          {
-            slug: "uni-wr245",
-            name: "携帯型 ROS ナビゲーション 学習プラットフォーム",
-            model: "UNI-WR245",
-            image: "/images/video/video.jpg",
-            brief:
-              "<13cm のコンパクト、デスクトップ展開（60×60cm）、3種のナビ方式。ROS・移動ロボット授業向け。",
-          },
-          {
-            slug: "alo-le449",
-            name: "具現化ロボット 操作計画 総合実習プラットフォーム",
-            model: "ALO-LE449",
-            image: "/images/video/video.jpg",
-            brief:
-              "二つの5自由度アーム（主従追従）、ACT アーキテクチャ、調光可能な照明。模倣学習・E2E制御研究向け。",
+            key: "p-series",
+            title: "Pシリーズ · タスク実習プラットフォーム",
+            description:
+              "視覚・航法・計画・LLM 連携など、具現化知能タスクの実装に特化した実習システム。",
+            items: [
+              {
+                slug: "rai-p4",
+                name: "具現化ロボットタスク計画 総合実習プラットフォーム RAI-P4",
+                model: "RAI-P4",
+                image: "/images/video/video.jpg",
+                brief:
+                  "AI音声/視覚、4自由度アーム、ROS2 対応。大規模言語モデル応用・コンピュータビジョン・ROS授業向け。",
+              },
+              {
+                slug: "uni-wr2",
+                name: "携帯型 ROS ナビゲーション 学習プラットフォーム UNI-WR2",
+                model: "UNI-WR2",
+                image: "/images/video/video.jpg",
+                brief:
+                  "<13cm のコンパクト、デスクトップ展開（60×60cm）、3種のナビ方式。ROS・移動ロボット授業向け。",
+              },
+              {
+                slug: "rai-q2",
+                name: "具現化ビジョン認識・意思決定 実習プラットフォーム RAI-Q2",
+                model: "RAI-Q2",
+                image: "/images/video/video.jpg",
+                brief:
+                  "深度カメラ + 高精度回転台/昇降ガイド、OpenCV/YOLO/VLM 対応。ビジョン・ML授業向け。",
+              },
+              {
+                slug: "rai-m4",
+                name: "具現化複合ロボット システム設計実習プラットフォーム RAI-M4",
+                model: "RAI-M4",
+                image: "/images/video/video.jpg",
+                brief:
+                  "メカナム全方向シャーシ + 4軸アーム、DeepSeek/通義千問に接続。移動ロボット航法・LLM導入向け。",
+              },
+              {
+                slug: "alo-le4",
+                name: "具現化ロボット 操作計画 総合実習プラットフォーム ALO-LE4",
+                model: "ALO-LE4",
+                image: "/images/video/video.jpg",
+                brief:
+                  "二つの5自由度アーム（主従追従）、ACT アーキテクチャ、調光可能な照明。模倣学習・E2E制御研究向け。",
+              },
+            ],
           },
         ],
       },
@@ -568,121 +510,12 @@ export const dictionary = {
       passwordPlaceholder: "パスワードを入力してください",
       passwordLabel: "パスワード",
     },
-    auth: {
-      signin: {
-        title: "アカウントにログイン",
-        subtitle: "ログインすると、購入や管理の操作をよりスムーズに進められます。",
-        google: "Googleでログイン",
-        github: "GitHubでログイン",
-        emailLabel: "メールアドレス",
-        passwordLabel: "パスワード",
-        remember: "ログイン状態を保持",
-        forgot: "パスワードをお忘れですか？",
-        submit: "ログイン",
-        noAccount: "アカウントをお持ちでない場合",
-        signupLink: "今すぐ登録",
-      },
-      signup: {
-        title: "無料アカウントを作成",
-        subtitle: "クレジットカード不要、14日間の無料トライアルを今すぐ開始。",
-        google: "Googleで登録",
-        github: "GitHubで登録",
-        nameLabel: "氏名",
-        namePlaceholder: "氏名を入力してください",
-        emailLabel: "メールアドレス",
-        passwordLabel: "パスワード",
-        remember: "利用規約を読み同意します",
-        submit: "アカウントを作成",
-        haveAccount: "すでにアカウントをお持ちですか？",
-        signinLink: "ログイン",
-      },
-    },
     error: {
       title: "ページを見つけられません",
       description:
         "アクセスしようとしたページは削除されたか、名前が変更された可能性があります。ホームに戻ってお探しください。",
       button: "ホームに戻る",
     },
-    blogDetailPage: {
-      article: {
-        title: "高品質な写真とデジタルアセットを無料で入手できる優良サイト10選",
-        meta: {
-          author: "Musharof Chy",
-          published: "2024年1月12日",
-          comments: "50",
-          views: "35",
-          tag: "デザイン",
-        },
-        intro:
-          "継続的に更新され、ライセンス面でも安心できる無料素材サイト10選をまとめました。デザインチームが著作権を気にせず、画像やアイコンをすばやく見つけられます。",
-        coverAlt: "デザインチームがブランド素材について検討中",
-        highlightParagraph: {
-          before:
-            "サイトを選ぶ際はダウンロード速度、商用ライセンス、ファイル品質を重視しており、",
-          highlight: "そのため、紹介しているサイトの多くが無料で商用利用に対応しています",
-          after:
-            "。高解像度の素材がそろっているため、著作権トラブルを避けられます。",
-        },
-        emphasisParagraph: {
-          before: "素材を効率よく管理するため、気づいたときにブックマークして分類し、",
-          highlight: "ひらめきを再利用できるデザインリソースとして整理しましょう",
-          after:
-            "。必要なときにチームメンバーがすぐ呼び出せて、ビジュアルの一貫性を保てます。",
-        },
-        sectionHeading: "UI/UXデザイナーのためのデジタルアセットマーケット",
-        sectionParagraph:
-          "これらのプラットフォームは形式・テーマ・色で絞り込める構造化されたコレクションを提供し、短いイテレーションでもデザイン品質を保てます。",
-        bulletPoints: [
-          "ブランドプロモーション、製品デモ、マーケティング施策など定番シーンをカバー。",
-          "編集可能なFigma・Sketch・PSDのソースファイル付き。",
-          "ライセンス、作者、フォーマットで素早く絞り込み可能。",
-          "お気に入りとチーム用ワークスペースで最新素材を共有。",
-        ],
-        quote:
-          "素材ライブラリと著作権リストを継続的に管理すれば、デザイン納品の効率が大幅に向上し、その後のチャネル展開も一貫性を保てます。",
-        conclusion:
-          "お気に入りを定期的に整理し、プラットフォームの更新をチェックすることで、ブランド素材ライブラリの鮮度を保ち、公式サイトとマーケティングページを常に活性化できます。",
-        tagsTitle: "人気タグ：",
-        shareTitle: "この記事を共有：",
-        tags: ["デザイン", "開発", "情報"],
-      },
-    },
-    blogSidebarPage: {
-      sidebar: {
-        searchPlaceholder: "記事を検索...",
-        relatedPostsTitle: "関連記事",
-        relatedPosts: [
-          {
-            title: "オンライン販売を伸ばす最適な戦略",
-            date: "2025年2月12日",
-            image: "/images/blog/post-01.jpg",
-            slug: "#",
-          },
-          {
-            title: "ウェブデザインに役立つ50の実践的なコツ",
-            date: "2024年2月15日",
-            image: "/images/blog/post-02.jpg",
-            slug: "#",
-          },
-          {
-            title: "優秀なランディングページビルダー8選レビュー",
-            date: "2024年6月5日",
-            image: "/images/blog/post-03.jpg",
-            slug: "#",
-          },
-        ],
-        categoriesTitle: "人気カテゴリ",
-        categories: [
-          "Tailwindテンプレート",
-          "ランディングページ",
-          "スタートアップ",
-          "ビジネス",
-          "多目的",
-        ],
-        tagsTitle: "人気タグ",
-        tags: ["テーマ", "UIキット", "Tailwind", "スタートアップ", "ビジネス"],
-      },
-    },
 };
-  
+
   export type JapaneseDictionary = typeof dictionary;

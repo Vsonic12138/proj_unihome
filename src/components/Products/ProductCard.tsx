@@ -22,7 +22,7 @@ const ProductCard = ({ locale, item, ctaLabel }: ProductCardProps) => {
   const href = withLocalePath(locale, `/products/${item.slug}`);
 
   return (
-    <div className="group overflow-hidden rounded-lg border border-stroke bg-white shadow-one transition hover:shadow-two dark:border-stroke-dark dark:bg-dark">
+    <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-stroke bg-white shadow-one transition hover:shadow-two dark:border-stroke-dark dark:bg-dark">
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
         <Image
           src={item.image}
@@ -34,34 +34,38 @@ const ProductCard = ({ locale, item, ctaLabel }: ProductCardProps) => {
           unoptimized
         />
       </div>
-      <div className="p-5">
-        <h3 className="mb-1 text-lg font-semibold text-black dark:text-white">
-          {item.name}
-        </h3>
-        {item.model && (
-          <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">
-            {item.model}
-          </div>
-        )}
-        {item.brief && (
-          <p className="mb-4 line-clamp-3 text-sm text-body-color dark:text-body-color-dark">
-            {item.brief}
-          </p>
-        )}
-        <Link
-          href={href}
-          className="inline-flex items-center rounded bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
-        >
-          {ctaLabel}
-          <svg
-            className="ml-1 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex-1">
+          <h3 className="mb-1 text-lg font-semibold text-black dark:text-white">
+            {item.name}
+          </h3>
+          {item.model && (
+            <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">
+              {item.model}
+            </div>
+          )}
+          {item.brief && (
+            <p className="mb-4 line-clamp-3 text-sm text-body-color dark:text-body-color-dark">
+              {item.brief}
+            </p>
+          )}
+        </div>
+        <div>
+          <Link
+            href={href}
+            className="inline-flex items-center rounded bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
+            {ctaLabel}
+            <svg
+              className="ml-1 h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
       </div>
     </div>
   );

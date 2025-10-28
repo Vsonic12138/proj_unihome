@@ -13,7 +13,6 @@ import buildMenu from "./menuData";
 type HeaderProps = {
   locale: Locale;
   menu: Dictionary["header"]["menu"];
-  auth: Dictionary["header"]["auth"];
   languageSwitcher: Dictionary["header"]["languageSwitcher"];
   aria: Dictionary["common"]["aria"];
   themeToggleLabel: string;
@@ -22,7 +21,6 @@ type HeaderProps = {
 const Header = ({
   locale,
   menu,
-  auth,
   languageSwitcher,
   aria,
   themeToggleLabel,
@@ -44,8 +42,6 @@ const Header = ({
 
   const pathname = usePathname();
   const menuData = useMemo(() => buildMenu(locale, menu), [locale, menu]);
-  const signinHref = withLocalePath(locale, "/signin");
-  const signupHref = withLocalePath(locale, "/signup");
 
   return (
     <header
@@ -179,19 +175,7 @@ const Header = ({
               </nav>
             </div>
             <div className="flex items-center justify-end pr-16 lg:pr-0">
-              <Link
-                href={signinHref}
-                className="text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 md:block dark:text-white"
-              >
-                {auth.signIn}
-              </Link>
-              <Link
-                href={signupHref}
-                className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
-              >
-                {auth.signUp}
-              </Link>
-              <div className="ml-4 flex items-center gap-3 md:gap-4">
+              <div className="flex items-center gap-3 md:gap-4">
                 <Suspense
                   fallback={
                     <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-2 opacity-70 dark:bg-dark-bg md:h-14 md:w-14">
