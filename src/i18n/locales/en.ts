@@ -268,9 +268,8 @@ export const dictionary = {
                 slug: "ubot-mr20",
                 name: "Embodied Robotics Innovation Kit Ubot MR20",
                 model: "Ubot MR20",
-                image: "/images/video/video.jpg",
-                brief:
-                  "150+ parts; 5 chassis + 3 robotic arms; 20 composite forms; multi-language programming. Suitable for K12, vocational Year 1, freshman.",
+                image: "/images/products/ubot-mr20-main.jpg",
+                brief: "Embodied intelligence robot innovation design kit (20-in-1). Combined with AI general education practice kit, build 20+ intelligent robots from scratch, supports block-based/C++/Python multi-language programming.",
               },
               {
                 slug: "gx-mat-09s",
@@ -368,6 +367,15 @@ export const dictionary = {
       detailLabels: {
         highlights: "Highlights",
         applicable: "Applicable Audience/Scenarios",
+        features: "Product Features",
+        sampleCases: "Sample Configurations",
+        modules: "Robot Modules",
+        chassis: "Robot Chassis",
+        arms: "Robotic Arm Configurations",
+        compositeRobots: "Composite Robots",
+        sensorConfig: "Sensor Configuration",
+        controllerConfig: "Controller Configuration",
+        softwareConfig: "Software Configuration",
         experiments: "Experiments",
         configuration: "Configuration",
         specs: "Technical Specs",
@@ -375,18 +383,216 @@ export const dictionary = {
       },
       details: {
         "ubot-mr20": {
-          name: "Embodied Robotics Innovation Kit Ubot MR20",
+          name: "Ubot MR20",
+          subtitle: "Embodied Intelligence Robot Innovation Design Kit (20-in-1)",
           model: "Ubot MR20",
-          image: "/images/video/video.jpg",
-          overview:
-            "An entry-to-foundation embodied robotics kit supporting multiple languages and many composable forms, suitable for K12 and lower undergraduate levels.",
-          highlights: [
-            "150+ parts",
-            "5 chassis + 3 arms",
-            "20 composite forms",
-            "Multi-language programming",
+          image: "/images/products/ubot-mr20-main.jpg",
+          overview: "Ubot MR20 is an AI general education practice kit combined with robotics. Learners can build over 20 different intelligent robots from scratch, incorporating voice recognition to understand AI applications in robotics. Learners can also develop intelligent features such as obstacle avoidance, line tracking, and posture detection through block-based programming, C++, or Python programming.",
+          applicable: "K12, vocational/college year 1, undergraduate freshmen",
+          features: [
+            {
+              title: "Programming Methods",
+              content: "Using MR20 requires no prior programming experience. We use block-based programming where students simply drag and drop to complete robot programming. For learners with programming background who want more complex and professional coding, we also support C++ and Python code programming."
+            },
+            {
+              title: "Assembly Method",
+              content: "We've refined assembly difficulty down to every hole design, including spacing, size, and whether it's a threaded hole. While ensuring structural strength, we minimize unnecessary nuts to reduce assembly difficulty, making it easier for learners to get started and focus their learning energy on overall design."
+            }
           ],
-          applicable: "K12, vocational year 1, freshman",
+          sampleCases: {
+            description: "The sample adopts modular design. Robot chassis configurations are designed based on differential wheel modules, caster wheel modules, universal wheel modules, steering wheel modules, omnidirectional mecanum wheel modules, gripper modules, and swing modules to create: three-wheel dual-drive differential chassis, three-wheel dual-drive front-wheel steering chassis, four-wheel dual-drive differential chassis, four-wheel four-drive differential chassis, and four-wheel four-drive mecanum omnidirectional chassis. Robot arm configurations are designed based on swing modules, turntable modules, and gripper modules to create: gimbal, 3-DOF robotic arm, and 4-DOF robotic arm configurations.",
+            modules: [
+              { name: "Differential Wheel Module", image: "/images/products/ubot-mr20/modules/differential-wheel.png" },
+              { name: "Universal Wheel Module", image: "/images/products/ubot-mr20/modules/universal-wheel.png" },
+              { name: "Steering Wheel Module", image: "/images/products/ubot-mr20/modules/steering-wheel.png" },
+              { name: "Omnidirectional Mecanum Wheel Module", image: "/images/products/ubot-mr20/modules/omni-wheel.png" },
+              { name: "Gripper Module", image: "/images/products/ubot-mr20/modules/gripper.png" },
+              { name: "Swing Module", image: "/images/products/ubot-mr20/modules/swing.png" }
+            ],
+            chassis: [
+              { name: "Three-Wheel Dual-Drive Universal Differential Mobile Robot", image: "/images/products/ubot-mr20/chassis/three-wheel-omni-differential.png" },
+              { name: "Three-Wheel Dual-Drive Front-Wheel Steering Mobile Robot", image: "/images/products/ubot-mr20/chassis/three-wheel-front-steering.png" },
+              { name: "Four-Wheel Dual-Drive Differential Mobile Robot", image: "/images/products/ubot-mr20/chassis/four-wheel-two-drive-differential.png" },
+              { name: "Four-Wheel Four-Drive Differential Mobile Robot", image: "/images/products/ubot-mr20/chassis/four-wheel-four-drive-differential.png" },
+              { name: "Four-Wheel Four-Drive Mecanum Omnidirectional Mobile Robot", image: "/images/products/ubot-mr20/chassis/four-wheel-mecanum-omni.png" }
+            ],
+            arms: [
+              { name: "2-DOF Gimbal", image: "/images/products/ubot-mr20/arms/two-dof-gimbal.png" },
+              { name: "3-DOF Robotic Arm", image: "/images/products/ubot-mr20/arms/three-dof-arm.png" },
+              { name: "4-DOF Robotic Arm", image: "/images/products/ubot-mr20/arms/four-dof-arm.png" }
+            ],
+            compositeRobots: [
+              { name: "Three-Wheel Dual-Drive Universal Gripper Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-gripper.png" },
+              { name: "Three-Wheel Dual-Drive Universal 2-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-2dof-transport.png" },
+              { name: "Three-Wheel Dual-Drive Universal 3-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-3dof-transport.png" },
+              { name: "Three-Wheel Dual-Drive Universal 4-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-4dof-transport.png" },
+              { name: "Three-Wheel Dual-Drive Front-Wheel Steering Gripper Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-gripper.png" },
+              { name: "Three-Wheel Dual-Drive Front-Wheel Steering 2-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-2dof-transport.png" },
+              { name: "Three-Wheel Dual-Drive Front-Wheel Steering 3-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-3dof-transport.png" },
+              { name: "Three-Wheel Dual-Drive Front-Wheel Steering 4-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-4dof-transport.png" },
+              { name: "Four-Wheel Dual-Drive Differential Gripper Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-gripper.png" },
+              { name: "Four-Wheel Dual-Drive Differential 2-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-2dof-transport.png" },
+              { name: "Four-Wheel Dual-Drive Differential 3-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-3dof-transport.png" },
+              { name: "Four-Wheel Dual-Drive Differential 4-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-4dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Differential Gripper Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-gripper.png" },
+              { name: "Four-Wheel Four-Drive Differential 2-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-2dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Differential 3-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-3dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Differential 4-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-4dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Mecanum Omnidirectional Gripper Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-gripper.png" },
+              { name: "Four-Wheel Four-Drive Mecanum Omnidirectional 2-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-2dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Mecanum Omnidirectional 3-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-3dof-transport.png" },
+              { name: "Four-Wheel Four-Drive Mecanum Omnidirectional 4-DOF Transport Robot", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-4dof-transport.png" }
+            ]
+          },
+          sensorConfig: {
+            description: "Integrates posture detection sensor, 4-channel line-tracking sensor, 2× ultrasonic sensors, voice recognition sensor, speaker module, and PS controller for remote control. Enables automatic obstacle avoidance, maze navigation, autonomous reverse parking, autonomous line following, voice dialogue and voice command control, and controller-based remote control. Students can also use MR20 for interesting project development, such as assisting scientists on the moon!",
+            list: [
+              "6-axis gyroscope sensor",
+              "4-line path tracking sensor",
+              "Ultrasonic sensor",
+              "Voice recognition sensor",
+              "Speaker module",
+              "Remote controller"
+            ]
+          },
+          controllerConfig: {
+            description: "The controller supports common programming language inputs, including block-based, C++, Python, and other programming languages. It provides rich interfaces, including 6 DC motor ports, 8 servo ports, 4 ultrasonic ports, 4 line-tracking sensor ports, 4 expansion I/O sensor ports, USB serial port, etc. The controller adopts stackable design with reserved expansion dock connectors, making it easy for users to connect other electronic hardware to the controller."
+          },
+          softwareConfig: {
+            description: "The software integrates OpenBlock programming environment, supporting both block-based programming and C++/Python code programming. It can be used for software programming as well as hardware device programming, supporting hardware code generation and compilation download functions, and also supporting real-time operation mode through real-time communication with hardware devices.",
+            ecosystem: "OpenBlock has a complete hardware ecosystem, supporting popular maker hardware platforms on the market, including Arduino, MicroPython, and ESP32, allowing users to expand freely."
+          },
+          experiments: {
+            summary: "This experimental system revolves around modular robot 'Basic Recognition - Module Control - Structure Building - Perception Application - Comprehensive Design - Extension Innovation', divided into 6 core modules, covering 32 basic experiments and 20 extension projects, forming a complete learning path from entry to advanced.",
+            preparation: {
+              title: "Experimental Preparation Phase",
+              description: "Focuses on foundational hardware/software basics and design methodology learning before hands-on practice",
+              items: [
+                "Hardware/Software Environment Configuration Basics: programming environment installation, parts list usage, learning material reference, modular robot design methodology",
+                "Robot Module Basic Recognition: understanding core modules (motors, servos, wheel assemblies, etc.) functions and application logic"
+              ]
+            },
+            moduleBasics: {
+              title: "Robot Module Basic Experiments",
+              range: "Experiment 1-9",
+              description: "Targeting robot core functional modules (motors, wheel assemblies, servos, actuators), achieving closed-loop 'principle understanding - assembly - control', 9 experiments total",
+              items: [
+                { no: "Exp 1", name: "Controlling DC Motor Rotation", desc: "Master DC motor forward/reverse rotation and stop control logic and programming implementation" },
+                { no: "Exp 2", name: "Controlling DC Motor Speed", desc: "Implement DC motor speed regulation (e.g., PWM speed control), understand speed control principles" },
+                { no: "Exp 3", name: "Differential Wheel Module Assembly and Motion Control", desc: "Understand differential wheel composition/application, complete assembly and implement forward/reverse rotation, speed control, and stop" },
+                { no: "Exp 4", name: "Omnidirectional Wheel Module Assembly and Motion Control", desc: "Understand omnidirectional wheel composition/application (e.g., mecanum wheels, omni wheels), complete assembly and implement basic motion control" },
+                { no: "Exp 6", name: "Controlling Servo Rotation Angle", desc: "Understand servo working principle (angle positioning characteristic), implement precise angle control" },
+                { no: "Exp 7", name: "Swing Module Assembly and Motion Control", desc: "Understand swing module composition/application, complete assembly and implement angle control (e.g., robotic arm joints, gimbal swing)" },
+                { no: "Exp 8", name: "Steering Wheel Module Assembly and Motion Control", desc: "Understand steering wheel composition/application (e.g., vehicle steering structure), complete assembly and implement direction control" },
+                { no: "Exp 9", name: "Gripper Module Motion Control", desc: "Understand gripper module composition/application (e.g., object grasping), complete assembly and implement opening/closing range control" }
+              ]
+            },
+            structureDesign: {
+              title: "Robot Structure Design Experiments",
+              range: "Experiment 10-19",
+              description: "Based on basic modules, complete robot overall structure assembly, covering 'frame - chassis - gimbal - robotic arm', 10 experiments total",
+              items: [
+                { no: "Exp 10", name: "T-Frame Assembly", desc: "Master part assembly rules, complete T-frame (robot structural support) assembly" },
+                { no: "Exp 11", name: "Rectangular Suspension Frame Assembly", desc: "Understand suspension frame composition/application (cushioning, stability), complete rectangular suspension frame assembly" },
+                { no: "Exp 12", name: "Three-Wheel Dual-Drive Universal Differential Mobile Robot Assembly and Motion Control", desc: "Understand dual-drive universal chassis composition/application, complete structural assembly, implement basic movement control" },
+                { no: "Exp 13", name: "Three-Wheel Dual-Drive Front-Wheel Steering Mobile Robot Assembly and Motion Control", desc: "Understand dual-drive front-wheel steering chassis composition/application, complete structural assembly, implement steering and movement control" },
+                { no: "Exp 14", name: "Four-Wheel Dual-Drive Differential Mobile Robot Assembly and Motion Control", desc: "Understand four-wheel dual-drive differential chassis composition/application, complete structural assembly, implement differential steering and movement control" },
+                { no: "Exp 15", name: "Four-Wheel Four-Drive Differential Mobile Robot Assembly and Motion Control", desc: "Understand four-wheel four-drive differential chassis composition/application (stronger power), complete structural assembly and movement control" },
+                { no: "Exp 16", name: "Four-Wheel Four-Drive Mecanum Omnidirectional Mobile Robot Assembly and Motion Control", desc: "Understand four-wheel four-drive omnidirectional chassis composition/application (omnidirectional movement characteristic), complete structural assembly and movement control" },
+                { no: "Exp 17", name: "2-DOF Gimbal Assembly and Motion Control", desc: "Understand gimbal composition/application (e.g., camera orientation), complete 2-DOF (horizontal + vertical) gimbal assembly and control" },
+                { no: "Exp 18", name: "3-DOF Robotic Arm Assembly and Motion Control", desc: "Understand 3-DOF robotic arm composition/application, complete assembly and implement multi-joint coordinated motion control" },
+                { no: "Exp 19", name: "4-DOF Robotic Arm Assembly and Motion Control", desc: "Understand 4-DOF robotic arm composition/application (more flexible grasping), complete assembly and implement coordinated motion control" }
+              ]
+            },
+            perception: {
+              title: "Robot Perception Basic Experiments",
+              range: "Experiment 20-24",
+              description: "Learn robot core sensors for 'perceiving the external environment', implement data acquisition and basic interaction, 5 experiments total",
+              items: [
+                { no: "Exp 20", name: "Ultrasonic Sensor Data Acquisition", desc: "Understand ultrasonic sensor principle/application (distance measurement, obstacle avoidance), implement sensor data reading" },
+                { no: "Exp 21", name: "Line-Tracking Sensor Data Acquisition", desc: "Understand line-tracking sensor principle/application (following trajectory), implement sensor data reading" },
+                { no: "Exp 22", name: "Posture Detection Sensor Data Acquisition", desc: "Understand gyroscope sensor principle/application (detecting robot posture: tilt, rotation angle), implement data reading" },
+                { no: "Exp 23", name: "Voice Recognition Dialogue", desc: "Understand voice recognition sensor principle/application, configure recognition vocabulary and implement voice dialogue interaction" },
+                { no: "Exp 24", name: "Remote Controller Data Acquisition", desc: "Understand remote controller principle/application (wireless control), implement controller button data reading and command reception" }
+              ]
+            },
+            comprehensiveProjects: {
+              title: "Robot Comprehensive Project Design",
+              range: "Experiment 25-32",
+              description: "Combining 'module control + structure + perception', simulating real scenarios to implement complex tasks, 8 experiments total",
+              items: [
+                { no: "Exp 25", name: "Robot Wall Following", desc: "Simulate walking along wall scenario (e.g., corridor patrol), implement wall-following through sensors (e.g., ultrasonic) + programming" },
+                { no: "Exp 26", name: "Robot Maze Navigation", desc: "Simulate maze exploration scenario, detect obstacles through ultrasonic sensors, program to implement maze path planning and navigation" },
+                { no: "Exp 27", name: "Robot Following", desc: "Simulate following scenario (e.g., companion robot), detect target distance through ultrasonic sensors, implement following human walking" },
+                { no: "Exp 28", name: "Robot Line Tracking", desc: "Simulate restaurant delivery scenario, move along ground trajectory through line-tracking sensors, complete item transport tasks at designated points" },
+                { no: "Exp 29", name: "Voice-Controlled Robot Movement", desc: "Simulate voice interaction robot scenario, receive commands through voice recognition, control robot to complete corresponding actions (e.g., forward, turn)" },
+                { no: "Exp 30", name: "Gesture-Controlled Gimbal", desc: "Simulate 'Real Steel' interaction scenario, detect hand posture through posture sensors (e.g., wristband, phone), control gimbal to complete actions" },
+                { no: "Exp 31", name: "Robotic Arm Detection and Transport", desc: "Simulate industrial/coffee robot scenario, build multi-DOF robotic arm workstation, program to implement 'automatic task detection - robotic arm transport control' closed loop" },
+                { no: "Exp 32", name: "Remote-Controlled Transport AGV Robot", desc: "Simulate logistics/tour guide scenario, build 'mobile + transport' composite robot, complete item transfer tasks through remote controller control" }
+              ]
+            },
+            extensionProjects: {
+              title: "Robot Extension Projects",
+              range: "Project 1-20",
+              description: "Based on 'chassis types + actuators' combination innovation, focusing on 'mobility + grasping/transport' functions, 20 projects total",
+              groups: [
+                {
+                  chassis: "Three-Wheel Dual-Drive Universal Chassis",
+                  projects: [
+                    "Three-Wheel Dual-Drive Universal Gripper Robot",
+                    "Three-Wheel Dual-Drive Universal 2-DOF Transport Robot",
+                    "Three-Wheel Dual-Drive Universal 3-DOF Transport Robot",
+                    "Three-Wheel Dual-Drive Universal 4-DOF Transport Robot"
+                  ]
+                },
+                {
+                  chassis: "Three-Wheel Dual-Drive Front-Wheel Steering Chassis",
+                  projects: [
+                    "Three-Wheel Dual-Drive Front-Wheel Steering Gripper Robot",
+                    "Three-Wheel Dual-Drive Front-Wheel Steering 2-DOF Transport Robot",
+                    "Three-Wheel Dual-Drive Front-Wheel Steering 3-DOF Transport Robot",
+                    "Three-Wheel Dual-Drive Front-Wheel Steering 4-DOF Transport Robot"
+                  ]
+                },
+                {
+                  chassis: "Four-Wheel Dual-Drive Differential Chassis",
+                  projects: [
+                    "Four-Wheel Dual-Drive Differential Gripper Robot",
+                    "Four-Wheel Dual-Drive Differential 2-DOF Transport Robot",
+                    "Four-Wheel Dual-Drive Differential 3-DOF Transport Robot",
+                    "Four-Wheel Dual-Drive Differential 4-DOF Transport Robot"
+                  ]
+                },
+                {
+                  chassis: "Four-Wheel Four-Drive Differential Chassis",
+                  projects: [
+                    "Four-Wheel Four-Drive Differential Gripper Robot",
+                    "Four-Wheel Four-Drive Differential 2-DOF Transport Robot",
+                    "Four-Wheel Four-Drive Differential 3-DOF Transport Robot",
+                    "Four-Wheel Four-Drive Differential 4-DOF Transport Robot"
+                  ]
+                },
+                {
+                  chassis: "Four-Wheel Four-Drive Mecanum Omnidirectional Chassis",
+                  projects: [
+                    "Four-Wheel Four-Drive Mecanum Omnidirectional Gripper Robot",
+                    "Four-Wheel Four-Drive Mecanum Omnidirectional 2-DOF Transport Robot",
+                    "Four-Wheel Four-Drive Mecanum Omnidirectional 3-DOF Transport Robot",
+                    "Four-Wheel Four-Drive Mecanum Omnidirectional 4-DOF Transport Robot"
+                  ]
+                }
+              ]
+            }
+          },
+          specs: [
+            "Robot Modules: 7 types (differential wheel, universal wheel, steering wheel, omnidirectional mecanum wheel, gripper, swing, turntable)",
+            "Robot Chassis: 5 types (three-wheel dual-drive universal differential, three-wheel dual-drive front-wheel steering, four-wheel dual-drive differential, four-wheel four-drive differential, four-wheel four-drive mecanum omnidirectional)",
+            "Robotic Arm Configurations: 3 types (2-DOF gimbal, 3-DOF robotic arm, 4-DOF robotic arm)",
+            "Composite Robots: 20 types (various combinations of chassis + robotic arms)",
+            "Experimental Projects: 32 basic experiments + 20 extension projects",
+            "DC Motor: Reduction ratio 48",
+            "Servo: Torque 30kgf.cm"
+          ]
         },
         "gx-mat-09s": {
           name: "Embodied Robotics Innovation Platform (Enhanced) GX-MAT-09S",

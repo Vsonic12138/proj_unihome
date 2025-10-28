@@ -265,9 +265,8 @@ export const dictionary = {
                 slug: "ubot-mr20",
                 name: "具現化ロボット革新デザインキット Ubot MR20",
                 model: "Ubot MR20",
-                image: "/images/video/video.jpg",
-                brief:
-                  "150+部品、5種シャーシ + 3種アーム、20種複合形態、多言語プログラミング。対象: K12/専門・短大1年/学部1年。",
+                image: "/images/products/ubot-mr20-main.jpg",
+                brief: "具現化知能ロボット革新デザインキット（二十合一）。AI通識教育実践キットと組み合わせ、ゼロから20種類以上の知能ロボットを構築でき、ブロック型/C++/Pythonマルチ言語プログラミングをサポート。",
               },
               {
                 slug: "gx-mat-09s",
@@ -365,20 +364,232 @@ export const dictionary = {
       detailLabels: {
         highlights: "主な特長",
         applicable: "対象/シナリオ",
+        features: "製品特徴",
+        sampleCases: "サンプル構成",
+        modules: "ロボットモジュール",
+        chassis: "ロボットシャーシ",
+        arms: "ロボットアーム構成",
+        compositeRobots: "複合ロボット",
+        sensorConfig: "センサ構成",
+        controllerConfig: "コントローラ構成",
+        softwareConfig: "ソフトウェア構成",
         experiments: "実験項目",
         configuration: "構成",
         specs: "技術仕様",
         comingSoon: "近日公開",
       },
       details: {
-        "ubot-mr205": {
-          name: "具現化ロボット革新デザインキット Ubot MR205",
-          model: "Ubot MR205",
-          image: "/images/video/video.jpg",
-          overview:
-            "入門〜基礎学習向けの具現化ロボットキット。多言語プログラミングと多様な形態の組み合わせに対応。",
-          highlights: ["150+ 部品", "5種シャーシ + 3種アーム", "20種複合形態", "多言語プログラミング"],
-          applicable: "K12、専門/短大1年、学部1年",
+        "ubot-mr20": {
+          name: "Ubot MR20",
+          subtitle: "具現化知能ロボット革新デザインキット(二十合一)",
+          model: "Ubot MR20",
+          image: "/images/products/ubot-mr20-main.jpg",
+          overview: "Ubot MR20はロボットと人工知能の通識教育実践キットを組み合わせたもので、学習者は20種類以上の知能ロボットをゼロから構築でき、音声認識を組み合わせることで、学習者にロボットにおける人工知能技術の応用を理解させることができます。学習者はブロックプログラミング/C++プログラミングを通じて、ロボットの障害物回避、ライントレース、姿勢検出などの知能機能を開発することもできます。",
+          applicable: "K12、専門・高専1年、学部1年生",
+          features: [
+            {
+              title: "プログラミング方式",
+              content: "MR20の使用には、学習者にプログラミングの基礎知識は一切必要ありません。ブロック型プログラミングを採用しており、子供たちはドラッグ＆ドロップするだけでロボットのプログラミングを完成できます。もし学習者にプログラミングの基礎があり、より複雑で専門的なコードプログラミングを行いたい場合は、C++およびPythonのコードプログラミング方式もサポートしています。"
+            },
+            {
+              title: "組立方式",
+              content: "組立難易度を一つ一つの穴の設計まで細かく考慮し、間隔、サイズ、ねじ穴かどうかなどを含め、強度を確保しながら、不要なナットをできるだけ減らして組立難易度を下げ、学習者が入門しやすく、学習のエネルギーを全体設計に集中できるようにしています。"
+            }
+          ],
+          sampleCases: {
+            description: "サンプル機はモジュール設計を採用し、ロボットシャーシ構成は差動輪モジュール、方向輪モジュール、全方向輪モジュール、操舵輪モジュール、全方向メカナムホイールモジュール、グリッパーモジュール、スイングモジュールを組み合わせて、三輪二駆差動シャーシ、三輪二駆前輪操舵シャーシ、四輪二駆差動シャーシ、四輪四駆差動シャーシ、四輪四駆メカナム全方向シャーシを設計しています。ロボットアーム構成はスイングモジュール、ターンテーブルモジュール、グリッパーモジュールを組み合わせて、雲台、3自由度ロボットアーム、4自由度ロボットアーム構成を設計しています。",
+            modules: [
+              { name: "差動輪モジュール", image: "/images/products/ubot-mr20/modules/differential-wheel.png" },
+              { name: "全方向輪モジュール", image: "/images/products/ubot-mr20/modules/universal-wheel.png" },
+              { name: "操舵輪モジュール", image: "/images/products/ubot-mr20/modules/steering-wheel.png" },
+              { name: "全方向メカナムホイールモジュール", image: "/images/products/ubot-mr20/modules/omni-wheel.png" },
+              { name: "グリッパーモジュール", image: "/images/products/ubot-mr20/modules/gripper.png" },
+              { name: "スイングモジュール", image: "/images/products/ubot-mr20/modules/swing.png" }
+            ],
+            chassis: [
+              { name: "三輪二駆全方向差動移動ロボット", image: "/images/products/ubot-mr20/chassis/three-wheel-omni-differential.png" },
+              { name: "三輪二駆前輪操舵移動ロボット", image: "/images/products/ubot-mr20/chassis/three-wheel-front-steering.png" },
+              { name: "四輪二駆差動移動ロボット", image: "/images/products/ubot-mr20/chassis/four-wheel-two-drive-differential.png" },
+              { name: "四輪四駆差動移動ロボット", image: "/images/products/ubot-mr20/chassis/four-wheel-four-drive-differential.png" },
+              { name: "四輪四駆メカナム全方向移動ロボット", image: "/images/products/ubot-mr20/chassis/four-wheel-mecanum-omni.png" }
+            ],
+            arms: [
+              { name: "二自由度雲台", image: "/images/products/ubot-mr20/arms/two-dof-gimbal.png" },
+              { name: "3自由度ロボットアーム", image: "/images/products/ubot-mr20/arms/three-dof-arm.png" },
+              { name: "4自由度ロボットアーム", image: "/images/products/ubot-mr20/arms/four-dof-arm.png" }
+            ],
+            compositeRobots: [
+              { name: "三輪二駆全方向グリッパーロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-gripper.png" },
+              { name: "三輪二駆全方向二自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-2dof-transport.png" },
+              { name: "三輪二駆全方向三自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-3dof-transport.png" },
+              { name: "三輪二駆全方向四自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-omni-4dof-transport.png" },
+              { name: "三輪二駆前輪操舵グリッパーロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-gripper.png" },
+              { name: "三輪二駆前輪操舵二自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-2dof-transport.png" },
+              { name: "三輪二駆前輪操舵三自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-3dof-transport.png" },
+              { name: "三輪二駆前輪操舵四自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/three-wheel-front-steering-4dof-transport.png" },
+              { name: "四輪二駆差動グリッパーロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-gripper.png" },
+              { name: "四輪二駆差動二自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-2dof-transport.png" },
+              { name: "四輪二駆差動三自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-3dof-transport.png" },
+              { name: "四輪二駆差動四自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-two-drive-differential-4dof-transport.png" },
+              { name: "四輪四駆差動グリッパーロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-gripper.png" },
+              { name: "四輪四駆差動二自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-2dof-transport.png" },
+              { name: "四輪四駆差動三自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-3dof-transport.png" },
+              { name: "四輪四駆差動四自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-four-drive-differential-4dof-transport.png" },
+              { name: "四輪四駆メカナム全方向グリッパーロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-gripper.png" },
+              { name: "四輪四駆メカナム全方向二自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-2dof-transport.png" },
+              { name: "四輪四駆メカナム全方向三自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-3dof-transport.png" },
+              { name: "四輪四駆メカナム全方向四自由度搬送ロボット", image: "/images/products/ubot-mr20/composite-robots/four-wheel-mecanum-omni-4dof-transport.png" }
+            ]
+          },
+          sensorConfig: {
+            description: "姿勢検出センサ、4チャンネルライントレースセンサ、超音波センサ×2、音声認識センサ、スピーカーモジュール、PSコントローラリモコンを統合し、ロボットの自動障害物回避、迷路走行、自律バック駐車、自律ライントレース、音声対話および音声指令制御、コントローラリモート制御などの機能を実現できます。学生はMR20を使って面白いプロジェクト開発を行うこともできます。例えば、月面に上陸して科学者の調査を支援するなど！",
+            list: [
+              "六軸ジャイロセンサ",
+              "四線ライントレースセンサ",
+              "超音波センサ",
+              "音声認識センサ",
+              "スピーカーモジュール",
+              "リモートコントローラ"
+            ]
+          },
+          controllerConfig: {
+            description: "コントローラは一般的なプログラミング言語プログラムの入力をサポートし、ブロック型、C++、Pythonなどのプログラミング言語でプログラムを作成できます。豊富なインターフェースが含まれており、6チャンネルDCモータインターフェース、8チャンネルサーボインターフェース、4チャンネル超音波インターフェース、4チャンネルライントレースセンサインターフェース、4チャンネル拡張IOセンサインターフェース、USBシリアルポートなどがあります。コントローラはスタッカブルデザインを採用し、拡張ドックとの接続用スペースを予約しており、ユーザーが他の電子ハードウェアとコントローラを接続して使用するのに便利です。"
+          },
+          softwareConfig: {
+            description: "ソフトウェアはOpenBlockプログラミングソフトウェアを統合し、ブロック型プログラミングとC++、Pythonコードプログラミングをサポートし、ソフトウェアプログラミングにもハードウェアデバイスプログラミングにも使用でき、ハードウェアコード生成およびコンパイルダウンロード機能をサポートし、ハードウェアデバイスとの間のリアルタイム通信を通じて実現されるリアルタイム実行モードもサポートしています。",
+            ecosystem: "Openblockのハードウェアエコシステムは完全で、市場で一般的なメーカーハードウェアプラットフォーム、Arduino、MicroPython、ESP32をサポートし、ユーザーは自由に拡張できます。"
+          },
+          experiments: {
+            summary: "本実験体系は、モジュール型ロボットの「基礎認知 - モジュール制御 - 構造構築 - 認識応用 - 総合設計 - 拡張革新」を中心に展開し、6つのコアモジュールに分かれ、32の基礎実験と20の拡張プロジェクトをカバーし、入門から上級までの完全な学習パスを形成しています。",
+            preparation: {
+              title: "実験準備段階",
+              description: "実験前のハードウェア・ソフトウェアの基礎と設計方法論の学習に焦点を当て、その後の実習のための基礎を築く",
+              items: [
+                "ハードウェア・ソフトウェア環境設定の基礎：プログラミング環境のインストール、部品リストの使用、学習資料の参照、モジュール型ロボット設計方法論",
+                "ロボットモジュールの基礎認知：コアモジュール（モータ、サーボ、ホイールアセンブリなど）の機能と応用ロジックを明確にする"
+              ]
+            },
+            moduleBasics: {
+              title: "ロボットモジュール基礎実験",
+              range: "実験1〜実験9",
+              description: "ロボットのコア機能モジュール（モータ、ホイールアセンブリ、サーボ、アクチュエータ）に対して、「原理認知 - 構築 - 制御」のクローズドループを実現し、全9実験",
+              items: [
+                { no: "実験1", name: "DCモータの回転制御", desc: "DCモータの正逆転、停止の制御ロジックとプログラミング実装を習得" },
+                { no: "実験2", name: "DCモータの速度制御", desc: "DCモータの速度調整（例：PWM速度制御）を実現し、速度制御原理を理解" },
+                { no: "実験3", name: "差動輪モジュールの構築と運動制御", desc: "差動輪の構成/応用を理解し、構築を完成し、正逆転、速度制御、停止を実現" },
+                { no: "実験4", name: "全方向輪モジュールの構築と運動制御", desc: "全方向輪の構成/応用（メカナムホイール、オムニホイールなど）を理解し、構築を完成し、基本的な運動制御を実現" },
+                { no: "実験6", name: "サーボモータの回転角度制御", desc: "サーボモータの動作原理（角度位置決め特性）を理解し、指定角度の精密制御を実現" },
+                { no: "実験7", name: "スイングモジュールの構築と運動制御", desc: "スイングモジュールの構成/応用を理解し、構築を完成し、角度制御（ロボットアーム関節、雲台スイングなど）を実現" },
+                { no: "実験8", name: "操舵輪モジュールの構築と運動制御", desc: "操舵輪の構成/応用（自動車操舵構造など）を理解し、構築を完成し、方向制御を実現" },
+                { no: "実験9", name: "グリッパーモジュールの運動制御", desc: "グリッパーモジュールの構成/応用（物体把持など）を理解し、構築を完成し、開閉範囲制御を実現" }
+              ]
+            },
+            structureDesign: {
+              title: "ロボット構造設計実験",
+              range: "実験10〜実験19",
+              description: "基本モジュールに基づいて、ロボット全体構造の構築を完成し、「フレーム - シャーシ - 雲台 - ロボットアーム」をカバーし、全10実験",
+              items: [
+                { no: "実験10", name: "T型フレームの構築", desc: "部品の組立ルールを習得し、T型フレーム（ロボット構造支持部品）の組立を完成" },
+                { no: "実験11", name: "矩形サスペンションフレームの構築", desc: "サスペンションフレームの構成/応用（緩衝、安定）を理解し、矩形サスペンションフレームの組立を完成" },
+                { no: "実験12", name: "三輪二駆全方向差動移動ロボットの構築と運動制御", desc: "二駆全方向シャーシの構成/応用を理解し、構造組立を完成し、基本的な移動制御を実現" },
+                { no: "実験13", name: "三輪二駆前輪操舵移動ロボットの構築と運動制御", desc: "二駆前輪操舵シャーシの構成/応用を理解し、構造組立を完成し、操舵と移動制御を実現" },
+                { no: "実験14", name: "四輪二駆差動移動ロボットの構築と運動制御", desc: "四輪二駆差動シャーシの構成/応用を理解し、構造組立を完成し、差動操舵と移動制御を実現" },
+                { no: "実験15", name: "四輪四駆差動移動ロボットの構築と運動制御", desc: "四輪四駆差動シャーシの構成/応用（より強力な動力）を理解し、構造組立と移動制御を完成" },
+                { no: "実験16", name: "四輪四駆メカナム全方向移動ロボットの構築と運動制御", desc: "四輪四駆全方向シャーシの構成/応用（全方向移動特性）を理解し、構造組立と移動制御を完成" },
+                { no: "実験17", name: "二自由度雲台の構築と運動制御", desc: "雲台の構成/応用（カメラ旋回など）を理解し、二自由度（水平+垂直）雲台の組立と制御を完成" },
+                { no: "実験18", name: "三自由度ロボットアームの構築と運動制御", desc: "三自由度ロボットアームの構成/応用を理解し、組立を完成し、多関節協調運動制御を実現" },
+                { no: "実験19", name: "四自由度ロボットアームの構築と運動制御", desc: "四自由度ロボットアームの構成/応用（より柔軟な把持）を理解し、組立を完成し、協調運動制御を実現" }
+              ]
+            },
+            perception: {
+              title: "ロボット認識基礎実験",
+              range: "実験20〜実験24",
+              description: "ロボットが「外界を認識する」コアセンサを学習し、データ取得と基本的なインタラクションを実現し、全5実験",
+              items: [
+                { no: "実験20", name: "超音波センサデータ取得", desc: "超音波センサの原理/応用（距離測定、障害物回避）を理解し、センサデータの読み取りを実現" },
+                { no: "実験21", name: "ライントレースセンサデータ取得", desc: "ライントレースセンサの原理/応用（軌跡に沿って歩く）を理解し、センサデータの読み取りを実現" },
+                { no: "実験22", name: "姿勢検出センサデータ取得", desc: "ジャイロセンサの原理/応用（ロボットの姿勢検出：傾斜、回転角度）を理解し、データの読み取りを実現" },
+                { no: "実験23", name: "音声認識対話", desc: "音声認識センサの原理/応用を理解し、認識語彙を設定し、音声対話インタラクションを実現" },
+                { no: "実験24", name: "リモコンデータ取得", desc: "リモコンの原理/応用（無線制御）を理解し、リモコン各ボタンのデータ読み取りとコマンド受信を実現" }
+              ]
+            },
+            comprehensiveProjects: {
+              title: "ロボット総合プロジェクト設計",
+              range: "実験25〜実験32",
+              description: "「モジュール制御 + 構造 + 認識」を組み合わせ、実際のシナリオをシミュレートして複雑なタスクを実現し、全8実験",
+              items: [
+                { no: "実験25", name: "ロボット壁沿い走行", desc: "壁沿い歩行シナリオ（廊下パトロールなど）をシミュレートし、センサ（超音波など）+ プログラミングを通じて壁沿い歩行を実現" },
+                { no: "実験26", name: "ロボット迷路走行", desc: "迷路探索シナリオをシミュレートし、超音波センサで障害物を検出し、プログラミングで迷路経路計画と歩行を実現" },
+                { no: "実験27", name: "ロボット追従", desc: "追従シナリオ（付き添いロボットなど）をシミュレートし、超音波センサで目標距離を検出し、人の歩行に追従することを実現" },
+                { no: "実験28", name: "ロボットライントレース", desc: "レストラン配達シナリオをシミュレートし、ライントレースセンサで地面の軌跡に沿って移動し、指定地点で物品搬送タスクを完了" },
+                { no: "実験29", name: "音声制御ロボット運動", desc: "音声インタラクションロボットシナリオをシミュレートし、音声認識でコマンドを受信し、ロボットに対応する動作（前進、旋回など）を制御して完成させる" },
+                { no: "実験30", name: "ジェスチャー制御雲台", desc: "「リアルスティール」インタラクションシナリオをシミュレートし、姿勢センサ（リストバンド、携帯電話など）で手の姿勢を検出し、雲台を制御して動作を完成" },
+                { no: "実験31", name: "ロボットアーム検出搬送", desc: "産業/コーヒーロボットシナリオをシミュレートし、多自由度ロボットアームワークステーションを構築し、プログラミングで「自動タスク検出 - ロボットアーム搬送制御」クローズドループを実現" },
+                { no: "実験32", name: "リモート制御搬送AGVロボット", desc: "物流/ガイドシナリオをシミュレートし、「移動 + 搬送」複合ロボットを構築し、リモコン制御で物品転送タスクを完了" }
+              ]
+            },
+            extensionProjects: {
+              title: "ロボット拡張プロジェクト",
+              range: "プロジェクト1〜プロジェクト20",
+              description: "前述の「シャーシタイプ + アクチュエータ」を組み合わせて革新し、「移動 + 把持/搬送」機能に焦点を当て、全20プロジェクト",
+              groups: [
+                {
+                  chassis: "三輪二駆全方向シャーシ",
+                  projects: [
+                    "三輪二駆全方向グリッパーロボット",
+                    "三輪二駆全方向二自由度搬送ロボット",
+                    "三輪二駆全方向三自由度搬送ロボット",
+                    "三輪二駆全方向四自由度搬送ロボット"
+                  ]
+                },
+                {
+                  chassis: "三輪二駆前輪操舵シャーシ",
+                  projects: [
+                    "三輪二駆前輪操舵グリッパーロボット",
+                    "三輪二駆前輪操舵二自由度搬送ロボット",
+                    "三輪二駆前輪操舵三自由度搬送ロボット",
+                    "三輪二駆前輪操舵四自由度搬送ロボット"
+                  ]
+                },
+                {
+                  chassis: "四輪二駆差動シャーシ",
+                  projects: [
+                    "四輪二駆差動グリッパーロボット",
+                    "四輪二駆差動二自由度搬送ロボット",
+                    "四輪二駆差動三自由度搬送ロボット",
+                    "四輪二駆差動四自由度搬送ロボット"
+                  ]
+                },
+                {
+                  chassis: "四輪四駆差動シャーシ",
+                  projects: [
+                    "四輪四駆差動グリッパーロボット",
+                    "四輪四駆差動二自由度搬送ロボット",
+                    "四輪四駆差動三自由度搬送ロボット",
+                    "四輪四駆差動四自由度搬送ロボット"
+                  ]
+                },
+                {
+                  chassis: "四輪四駆メカナム全方向シャーシ",
+                  projects: [
+                    "四輪四駆メカナム全方向グリッパーロボット",
+                    "四輪四駆メカナム全方向二自由度搬送ロボット",
+                    "四輪四駆メカナム全方向三自由度搬送ロボット",
+                    "四輪四駆メカナム全方向四自由度搬送ロボット"
+                  ]
+                }
+              ]
+            }
+          },
+          specs: [
+            "ロボットモジュール：7種（差動輪、全方向輪、操舵輪、全方向メカナムホイール、グリッパー、スイング、ターンテーブル）",
+            "ロボットシャーシ：5種（三輪二駆全方向差動、三輪二駆前輪操舵、四輪二駆差動、四輪四駆差動、四輪四駆メカナム全方向）",
+            "ロボットアーム構成：3種（二自由度雲台、3自由度ロボットアーム、4自由度ロボットアーム）",
+            "複合ロボット：20種（シャーシ + ロボットアームの各種組み合わせ形態）",
+            "実験プロジェクト：32の基礎実験 + 20の拡張プロジェクト",
+            "DCモータ：減速比48",
+            "サーボモータ：トルク30kgf.cm"
+          ]
         },
         "gx-mat-0916": {
           name: "具現化複合ロボット革新デザインセット（上級）",
