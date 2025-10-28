@@ -203,28 +203,50 @@ export const dictionary = {
         "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd.\n- Located at Shougang Park Winter Olympic Plaza, Shijingshan District, Beijing\n- Focused on embodied intelligent robotics teaching, research, and applications\n- Address: Unit 101-2, 3F, Building 10, Yard 6, Liaocang Road, Shijingshan District, Beijing",
       columns: {
         usefulLinks: {
-          title: "Useful Links",
+          title: "Products",
           items: [
-            { label: "Blog", path: "/blog" },
-            { label: "Pricing", path: "/" },
-            { label: "About Us", path: "/about" },
+            { label: "Product Overview", path: "/products" },
+            { label: "Solution Matrix", path: "/#features" },
+            { label: "Case Studies", path: "/case-studies" },
           ],
         },
         terms: {
-          title: "Policies",
+          title: "Developer Services",
           items: [
-            { label: "Terms of Service", path: "/" },
-            { label: "Privacy Policy", path: "/" },
-            { label: "Refund Policy", path: "/" },
+            { label: "Developer Hub", path: "/developers" },
+            { label: "Knowledge Base", path: "/developers/knowledge-base" },
+            { label: "Open Source Projects", path: "/developers/open-source" },
           ],
         },
         support: {
-          title: "Support & Help",
+          title: "Custom Partnerships",
           items: [
-            { label: "Open Support Ticket", path: "/contact" },
-            { label: "Terms of Use", path: "/" },
-            { label: "About Us", path: "/about" },
+            { label: "Custom Solutions", path: "/custom-solutions" },
+            { label: "Co-Research Programs", path: "/case-studies/co-research" },
+            { label: "Contact Our Team", path: "/contact" },
           ],
+        },
+      },
+      contact: {
+        phoneLabel: "Phone",
+        phoneNumber: "+86 176 1035 7571",
+        phoneTip: "Mon–Fri, 09:30–18:00 (GMT+8)",
+        taobaoLabel: "Taobao Store",
+        taobaoHref:
+          "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+        bilibiliLabel: "Bilibili Official Channel",
+        bilibiliHref:
+          "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+        modalClose: "Close",
+        qq: {
+          title: "Join the QQ Community",
+          description:
+            "Scan to join group 811348489 for course resources and upcoming events.",
+        },
+        wechat: {
+          title: "Follow on WeChat",
+          description:
+            "Scan to follow the official account and receive teaching resources.",
         },
       },
     },
@@ -534,6 +556,13 @@ export const dictionary = {
         label: "Taobao Store",
         tooltip: "Visit Taobao store",
         linkText: "Visit",
+        href: "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      },
+      bilibili: {
+        label: "Bilibili Channel",
+        tooltip: "Visit our Bilibili channel",
+        linkText: "Go",
+        href: "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
       },
       wechat: {
         label: "WeChat Official",

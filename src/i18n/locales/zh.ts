@@ -200,28 +200,48 @@ export const dictionary = {
         "有你同创智能机器人科技（北京）有限公司\n- 坐落于北京市石景山首钢园冬奥广场内\n- 专注于具身智能机器人技术的教学研究与应用落地\n- 地址：北京市石景山区料仓路6号院10号楼3层101-2",
       columns: {
         usefulLinks: {
-          title: "常用链接",
+          title: "产品",
           items: [
-            { label: "博客", path: "/blog" },
-            { label: "价格方案", path: "/" },
-            { label: "关于我们", path: "/about" },
+            { label: "产品平台概览", path: "/products" },
+            { label: "精选方案矩阵", path: "/#features" },
+            { label: "服务案例", path: "/case-studies" },
           ],
         },
         terms: {
-          title: "条款政策",
+          title: "开发者服务",
           items: [
-            { label: "服务条款", path: "/" },
-            { label: "隐私政策", path: "/" },
-            { label: "退款政策", path: "/" },
+            { label: "开发者中心", path: "/developers" },
+            { label: "技术文档", path: "/developers/knowledge-base" },
+            { label: "开源项目", path: "/developers/open-source" },
           ],
         },
         support: {
-          title: "支持与帮助",
+          title: "定制合作",
           items: [
-            { label: "提交支持工单", path: "/contact" },
-            { label: "使用条款", path: "/" },
-            { label: "关于我们", path: "/about" },
+            { label: "定制方案", path: "/custom-solutions" },
+            { label: "联合研发", path: "/case-studies/co-research" },
+            { label: "联系团队", path: "/contact" },
           ],
+        },
+      },
+      contact: {
+        phoneLabel: "联系电话",
+        phoneNumber: "+86 176 1035 7571",
+        phoneTip: "工作日 09:30-18:00",
+        taobaoLabel: "淘宝店铺",
+        taobaoHref:
+          "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+        bilibiliLabel: "B站官方账号",
+        bilibiliHref:
+          "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+        modalClose: "关闭",
+        qq: {
+          title: "加入官方 QQ 群",
+          description: "扫码加入 811348489 群，获取课程案例、最新活动。",
+        },
+        wechat: {
+          title: "关注微信公众号",
+          description: "扫码关注公众号，领取教学资料、活动通知。",
         },
       },
     },
@@ -658,6 +678,13 @@ export const dictionary = {
         label: "淘宝店铺",
         tooltip: "访问淘宝店铺",
         linkText: "访问",
+        href: "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      },
+      bilibili: {
+        label: "B站官方账号",
+        tooltip: "访问B站空间",
+        linkText: "前往",
+        href: "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
       },
       wechat: {
         label: "微信公众号",

@@ -34,6 +34,68 @@
 
 ---
 
+V1.7.0 feat(footer): 重构页脚，增加社交媒体弹窗并更新链接结构
+
+类型: feat, ui
+
+范围: footer, components, i18n
+
+说明:
+
+本次更新对网站页脚（Footer）进行了全面重构，引入了交互式弹窗（Modal）来展示QQ和微信的二维码，并更新了页脚的链接结构，使其内容更符合网站的导航需求。此外，还对悬浮联系组件、“关于我们”板块的UI以及项目类型配置进行了优化。
+
+实现细节:
+
+1. 页脚功能重构与UI升级
+   - `src/components/Footer/index.tsx`: 完全重构了页脚组件。
+     - 使用 `useState` 管理弹窗状态，实现了点击社交图标（QQ、微信）弹出二维码模态窗口的功能。
+     - 社交链接和页脚导航栏目现在通过读取i18n配置文件动态生成，增强了可维护性和国际化支持。
+     - 新增了Bilibili图标链接。
+
+2. 国际化内容更新
+   - `src/i18n/locales/*.ts`: 在 `en`, `ja`, `zh` 语言文件中：
+     - 更新了 `footer.columns` 的内容，将原有的“常用链接”、“条款政策”等替换为“产品”、“开发者服务”、“定制合作”，使其更具业务导向性。
+     - 新增了 `footer.contact` 对象，用于存放联系方式、社交链接以及弹窗所需的文案。
+     - 在 `floatingContact` 中增加了Bilibili的链接和文案。
+
+3. 组件UI优化与功能增强
+   - `src/components/Common/FloatingContact.tsx`:
+     - 新增了Bilibili的快捷链接。
+     - 淘宝链接改为从i18n配置中动态获取，而非硬编码。
+   - `src/components/About/AboutSectionTwo.tsx`:
+     - 为“关于我们”的第二部分内容区域增加了一个卡片式UI（圆角、阴影、背景），提升了视觉效果。
+
+4. 项目配置优化
+   - `tsconfig.json`: 将 `jsx` 选项从 `"preserve"` 更新为 `"react-jsx"`，并调整了 `include` 路径以优化类型检查。
+   - `next-env.d.ts`: 更新了Next.js路由类型的引用方式，以适应新的项目配置。
+
+文件变更:
+
+修改文件:
+- src/components/Footer/index.tsx (组件完全重构)
+- src/i18n/locales/en.ts (页脚及联系方式内容更新)
+- src/i18n/locales/ja.ts (页脚及联系方式内容更新)
+- src/i18n/locales/zh.ts (页脚及联系方式内容更新)
+- src/components/Common/FloatingContact.tsx (新增Bilibili链接)
+- src/components/About/AboutSectionTwo.tsx (UI样式更新)
+- tsconfig.json (JSX配置与类型路径更新)
+- next-env.d.ts (类型引用方式更新)
+- version.md (为新版本记录做准备)
+
+改进效果:
+
+- 交互体验提升: 用户现在可以通过点击页脚的图标直接查看QQ群和微信公众号的二维码，无需跳转页面。
+- 信息架构优化: 页脚的导航链接经过重新组织，更能反映网站的核心内容板块，提高了导航效率。
+- 代码可维护性增强: 将文案和链接集中到i18n文件中进行管理，使得组件更加数据驱动，便于未来修改。
+- 视觉效果改善: “关于我们”板块的卡片式设计使页面布局更清晰、更具现代感。
+
+影响范围:
+- 网站的页脚部分在外观和功能上发生了显著变化。
+- 用户与社交媒体渠道的交互方式得到简化。
+- 网站的整体导航结构在页脚部分得到了更清晰的体现。
+
+---
+
 V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向产品的功能
 
 类型: feat, ui

@@ -200,28 +200,50 @@ export const dictionary = {
         "有你同创知能ロボット科技（北京）有限公司\n- 北京市石景山区首鋼園ウィンターオリンピック広場内に所在\n- 具現化知能ロボット技術の教育・研究・応用に注力\n- 住所：北京市石景山区料仓路6号院10号楼3階101-2",
       columns: {
         usefulLinks: {
-          title: "よく使うリンク",
+          title: "製品",
           items: [
-            { label: "ブログ", path: "/blog" },
-            { label: "価格プラン", path: "/" },
-            { label: "会社概要", path: "/about" },
+            { label: "製品プラットフォーム概要", path: "/products" },
+            { label: "ソリューションマトリクス", path: "/#features" },
+            { label: "導入事例", path: "/case-studies" },
           ],
         },
         terms: {
-          title: "ポリシー",
+          title: "開発者サービス",
           items: [
-            { label: "サービス利用規約", path: "/" },
-            { label: "プライバシーポリシー", path: "/" },
-            { label: "返金ポリシー", path: "/" },
+            { label: "開発者センター", path: "/developers" },
+            { label: "技術ドキュメント", path: "/developers/knowledge-base" },
+            { label: "オープンソース", path: "/developers/open-source" },
           ],
         },
         support: {
-          title: "サポートとヘルプ",
+          title: "カスタム協業",
           items: [
-            { label: "サポートチケットを送信", path: "/contact" },
-            { label: "利用条件", path: "/" },
-            { label: "会社概要", path: "/about" },
+            { label: "カスタムソリューション", path: "/custom-solutions" },
+            { label: "共同研究プログラム", path: "/case-studies/co-research" },
+            { label: "お問い合わせ", path: "/contact" },
           ],
+        },
+      },
+      contact: {
+        phoneLabel: "電話",
+        phoneNumber: "+86 176 1035 7571",
+        phoneTip: "平日 09:30〜18:00（GMT+8）",
+        taobaoLabel: "淘宝（タオバオ）店舗",
+        taobaoHref:
+          "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+        bilibiliLabel: "Bilibili公式チャンネル",
+        bilibiliHref:
+          "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+        modalClose: "閉じる",
+        qq: {
+          title: "公式QQグループに参加",
+          description:
+            "811348489グループに参加して、教材や最新情報を受け取りましょう。",
+        },
+        wechat: {
+          title: "公式WeChatをフォロー",
+          description:
+            "公式アカウントをフォローして、授業資料とイベント情報を受け取れます。",
         },
       },
     },
@@ -526,6 +548,13 @@ export const dictionary = {
         label: "Taobaoストア",
         tooltip: "Taobaoストアを訪問",
         linkText: "訪問",
+        href: "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      },
+      bilibili: {
+        label: "Bilibiliチャンネル",
+        tooltip: "Bilibiliチャンネルを開く",
+        linkText: "移動",
+        href: "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
       },
       wechat: {
         label: "WeChat公式アカウント",

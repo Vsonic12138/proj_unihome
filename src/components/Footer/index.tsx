@@ -1,25 +1,14 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Dictionary, Locale } from "@/i18n/config";
 import { withLocalePath } from "@/i18n/utils";
 
-const socialLinks = [
-  {
-    href: "https://www.bilibili.com/",
-    label: "哔哩哔哩",
-    icon: "/images/icons/bilibili.svg",
-  },
-  {
-    href: "https://qm.qq.com/",
-    label: "QQ群",
-    icon: "/images/icons/qq.svg",
-  },
-  {
-    href: "https://mp.weixin.qq.com/",
-    label: "微信公众号",
-    icon: "/images/icons/wechat.svg",
-  },
-];
+const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
+const WECHAT_OFFICIAL_QR_SRC =
+  "/images/contact/weChat-official-account.jpg" as const;
 
 type FooterProps = {
   copy: Dictionary["footer"];
@@ -28,12 +17,85 @@ type FooterProps = {
   locale: Locale;
 };
 
+type ContactModalKey = "qq" | "wechat";
+
 const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
+  const [activeModal, setActiveModal] = useState<ContactModalKey | null>(null);
+
+  const contactIcons: Array<
+    | {
+        type: "link";
+        key: "bilibili" | "taobao";
+        icon: string;
+        label: string;
+        tooltip: string;
+        href: string;
+      }
+    | {
+        type: "modal";
+        key: ContactModalKey;
+        icon: string;
+        label: string;
+        tooltip: string;
+      }
+  > = [
+    {
+      type: "link",
+      key: "bilibili",
+      icon: "/images/icons/bilibili.svg",
+      label: copy.contact.bilibiliLabel,
+      tooltip: copy.contact.bilibiliLabel,
+      href: copy.contact.bilibiliHref,
+    },
+    {
+      type: "link",
+      key: "taobao",
+      icon: "/images/icons/taobao.svg",
+      label: copy.contact.taobaoLabel,
+      tooltip: copy.contact.taobaoLabel,
+      href: copy.contact.taobaoHref,
+    },
+    {
+      type: "modal",
+      key: "qq",
+      icon: "/images/icons/qq.svg",
+      label: copy.contact.qq.title,
+      tooltip: copy.contact.qq.description,
+    },
+    {
+      type: "modal",
+      key: "wechat",
+      icon: "/images/icons/wechat.svg",
+      label: copy.contact.wechat.title,
+      tooltip: copy.contact.wechat.description,
+    },
+  ];
+
   const columns = [
     copy.columns.usefulLinks,
     copy.columns.terms,
     copy.columns.support,
   ];
+
+  const telHref = `tel:${copy.contact.phoneNumber.replace(/\s+/g, "")}`;
+  const modalHeadingId =
+    activeModal === "qq"
+      ? "footer-contact-qq"
+      : activeModal === "wechat"
+        ? "footer-contact-wechat"
+        : "footer-contact-modal";
+  const modalCopy =
+    activeModal === null
+      ? null
+      : activeModal === "qq"
+        ? copy.contact.qq
+        : copy.contact.wechat;
+  const modalImage =
+    activeModal === null
+      ? null
+      : activeModal === "qq"
+        ? QQ_GROUP_QR_SRC
+        : WECHAT_OFFICIAL_QR_SRC;
 
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -73,31 +135,69 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                   </p>
                 ))}
               </div>
-              <div className="flex items-center">
-                {socialLinks.map((link, index) => {
-                  const href = withLocalePath(locale, link.href);
-                  const aria = `${socialLabel}：${link.label}`;
+              <div className="mb-8 space-y-3 text-sm text-body-color dark:text-body-color-dark">
+                <div>
+                  <span className="block text-base font-semibold text-black dark:text-white">
+                    {copy.contact.phoneLabel}
+                  </span>
+                  <a
+                    href={telHref}
+                    className="text-base font-medium text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                  >
+                    {copy.contact.phoneNumber}
+                  </a>
+                  <div className="text-xs text-body-color/80 dark:text-body-color-dark/70">
+                    {copy.contact.phoneTip}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-6">
+                {contactIcons.map((item) => {
+                  const aria = `${socialLabel}：${item.label}`;
+                  if (item.type === "link") {
+                    const href = withLocalePath(locale, item.href);
+                    return (
+                      <a
+                        key={item.key}
+                        href={href}
+                        aria-label={aria}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                        title={item.tooltip}
+                      >
+                        <span className="inline-flex h-6 w-6 items-center justify-center">
+                          <Image
+                            src={item.icon}
+                            alt={item.label}
+                            width={24}
+                            height={24}
+                            className="h-6 w-6 transition dark:invert dark:brightness-0"
+                          />
+                        </span>
+                      </a>
+                    );
+                  }
+
                   return (
-                    <a
-                      key={link.label}
-                      href={href}
+                    <button
+                      key={item.key}
+                      type="button"
+                      onClick={() => setActiveModal(item.key)}
                       aria-label={aria}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary ${
-                        index !== socialLinks.length - 1 ? "mr-6" : ""
-                      }`}
+                      className="text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                      title={item.tooltip}
                     >
                       <span className="inline-flex h-6 w-6 items-center justify-center">
                         <Image
-                          src={link.icon}
-                          alt={link.label}
+                          src={item.icon}
+                          alt={item.label}
                           width={24}
                           height={24}
                           className="h-6 w-6 transition dark:invert dark:brightness-0"
                         />
                       </span>
-                    </a>
+                    </button>
                   );
                 })}
               </div>
@@ -130,8 +230,63 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
             </div>
           </div>
         </div>
-
       </div>
+      {activeModal && modalCopy && modalImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+          role="presentation"
+          onClick={() => setActiveModal(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={modalHeadingId}
+            className="relative w-full max-w-sm rounded-2xl bg-white p-6 text-center shadow-2xl dark:bg-gray-900"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setActiveModal(null)}
+              aria-label={copy.contact.modalClose}
+              className="absolute right-3 top-3 rounded-full p-1 text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
+            <h3
+              id={modalHeadingId}
+              className="mb-2 text-lg font-semibold text-black dark:text-white"
+            >
+              {modalCopy.title}
+            </h3>
+            <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">
+              {modalCopy.description}
+            </p>
+            <div className="mx-auto max-w-[220px] overflow-hidden rounded-2xl border border-body-color/15 bg-white p-3 dark:border-white/15 dark:bg-gray-950">
+              <Image
+                src={modalImage}
+                alt={modalCopy.title}
+                width={220}
+                height={220}
+                className="h-auto w-full rounded-xl"
+                priority={false}
+                unoptimized
+              />
+            </div>
+          </div>
+        </div>
+      )}
       <div className="border-t border-body-color/15 py-6 text-center text-sm text-body-color dark:border-white/10 dark:text-body-color-dark">
         版权所有 有你同创智能机器人科技（北京）科技有限公司 京ICP备xxxxxxxx号-x 公安备案号：xxxxxxxxxxxxxx
       </div>

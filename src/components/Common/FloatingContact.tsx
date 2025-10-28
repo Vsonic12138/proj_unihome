@@ -12,8 +12,6 @@ type FloatingContactProps = {
 const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
 const WECHAT_OFFICIAL_QR_SRC =
   "/images/contact/weChat-official-account.jpg" as const;
-const TAOBAO_LINK =
-  "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1";
 const VISITED_STORAGE_KEY = "floatingContactVisited";
 
 const clearTimeoutRef = (
@@ -249,16 +247,35 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                 </button>
               </div>
             </div>
-            {/* Taobao */}
+            {/* Bilibili */}
             <a
-              href={TAOBAO_LINK}
+              href={copy.bilibili.href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
+              aria-label={copy.bilibili.tooltip}
+              title={copy.bilibili.tooltip}
+            >
+              <Image
+                src="/images/icons/bilibili.svg"
+                alt={copy.bilibili.label}
+                width={24}
+                height={24}
+                className="dark:invert"
+              />
+            </a>
+            {/* Taobao */}
+            <a
+              href={copy.taobao.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
+              aria-label={copy.taobao.tooltip}
+              title={copy.taobao.tooltip}
             >
               <Image
                 src="/images/icons/taobao.svg"
-                alt="Taobao"
+                alt={copy.taobao.label}
                 width={24}
                 height={24}
                 className="dark:invert"
@@ -461,13 +478,42 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                   </button>
                 </div>
 
+                {/* Bilibili */}
+                <div className="border-b border-stroke pb-6 dark:border-stroke-dark">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                      <Image
+                        src="/images/icons/bilibili.svg"
+                        alt={copy.bilibili.label}
+                        width={28}
+                        height={28}
+                        className="dark:brightness-0 dark:invert"
+                      />
+                    </div>
+                    <div>
+                      <div className="mb-1 text-base font-semibold text-black dark:text-white">
+                        {copy.bilibili.label}
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href={copy.bilibili.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                    title={copy.bilibili.tooltip}
+                  >
+                    {copy.bilibili.linkText}
+                  </a>
+                </div>
+
                 {/* Taobao */}
                 <div>
                   <div className="mb-4 flex items-center gap-3">
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                       <Image
                         src="/images/icons/taobao.svg"
-                        alt="Taobao"
+                        alt={copy.taobao.label}
                         width={28}
                         height={28}
                         className="dark:brightness-0 dark:invert"
@@ -480,7 +526,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                     </div>
                   </div>
                   <a
-                    href={TAOBAO_LINK}
+                    href={copy.taobao.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"

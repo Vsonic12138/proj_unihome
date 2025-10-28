@@ -23,20 +23,19 @@ const AboutSectionTwo = ({ items }: AboutSectionTwoProps) => {
             </div>
           </div>
           <div className="w-full px-4 lg:w-1/2">
-            <div className="max-w-[470px]">
-              {items.map((item, index) => (
-                <div
-                  key={item.title}
-                  className={index === items.length - 1 ? "mb-1" : "mb-9"}
-                >
-                  <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                    {item.title}
-                  </h3>
-                  <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
-                    {item.paragraph}
-                  </p>
-                </div>
-              ))}
+            <div className="max-w-[470px] rounded-3xl bg-white p-8 shadow-lg ring-1 ring-black/5 dark:bg-white">
+              <div className="space-y-8">
+                {items.map((item) => (
+                  <div key={item.title}>
+                    <h3 className="mb-3 text-xl font-semibold text-gray-900 sm:text-2xl lg:text-xl xl:text-2xl">
+                      {item.title}
+                    </h3>
+                    <p className="text-base font-medium leading-relaxed text-gray-600 sm:text-lg sm:leading-relaxed">
+                      {item.paragraph}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
