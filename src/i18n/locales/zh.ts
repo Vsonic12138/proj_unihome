@@ -290,7 +290,7 @@ export const dictionary = {
                 name: "便携式ROS导航机器人学习平台 UNI-WR2",
                 model: "UNI-WR2",
                 image: "/images/video/video.jpg",
-                brief: "<13cm 便携尺寸，桌面部署（60×60cm），3种导航方式；适配ROS与移动机器人课程。",
+                brief: "<13cm 便携机身，桌面级 SLAM 实验（≤60cm×60cm），五步 ROS 工程化部署配套 Catographer/Hector/Gmapping。",
               },
               {
                 slug: "rai-q2",
@@ -1140,29 +1140,168 @@ export const dictionary = {
         },
         "uni-wr2": {
           name: "便携式ROS导航机器人学习平台 UNI-WR2",
+          subtitle: "桌面级 ROS / SLAM 导航综合实训平台",
           model: "UNI-WR2",
-          image: "/images/video/video.jpg",
-          overview: "便携小巧的桌面级导航机器人平台，快速搭建ROS导航实验环境。",
+          image: "/images/products/uni-wr2/uni-wr2-hero.png",
+          overview:
+            "UNI-WR2 是针对 ROS 与 SLAM 导航教学设计的便携式桌面级机器人平台，支持《机器人操作系统（ROS）》《移动机器人导航与定位》《自动控制原理（PID）》等课程开展工程化实践。相比传统仅依赖仿真或需要大空间场地的教学方式，UNI-WR2 通过便携硬件、桌面部署和完整的 ROS 工程化流程拆解，让学习者在真实机器人系统上随时随地进行导航算法调试与功能包部署。",
+          applicable:
+            "面向高校与培训机构的机器人、自动化、计算机、机电等专业课程，适用于 ROS 入门、SLAM 导航、PID 控制与移动机器人工程化实践。",
           highlights: [
-            "极致便携（13cm×97mm×98mm，<550g）",
-            "桌面部署（60cm×60cm）",
-            "工程化 ROS 学习（5 步拆解）",
+            "极致便携：机身长度不足 13cm、自重 <550g，Type-C 快速充电，续航约 4 小时",
+            "敏捷桌面部署：60cm×60cm 桌面即可完成 SLAM 导航，随手调试不受场地限制",
+            "工程化教学路径：ROS 功能包部署拆解为 5 个步骤，覆盖 Catographer、Hector、Gmapping 三种导航方式"
           ],
-          applicable: "ROS操作系统、移动机器人导航",
-          configuration: [
-            "全金属机身",
-            "树莓派控制器（预装 ROS）",
-            "激光雷达（测距 0.1-12m）",
-            "7 位编码电机",
+          features: [
+            {
+              title: "便携随行的学习形态",
+              content:
+                "全金属紧凑机身，体积比成人手掌更小，自带 Type-C 充电口，搭配充电宝即可补能，满足课堂、实验室与差旅场景的即兴调试需求。",
+              mediaGridClassName: "grid-cols-1 sm:grid-cols-2 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "便携随行示意", image: "/images/products/uni-wr2/uni-wr2-feature-portable.png" },
+                { name: "Type-C 充电设计", image: "/images/products/uni-wr2/uni-wr2-feature-charging.png" },
+                { name: "敏捷部署示例 1", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-1.png" },
+                { name: "敏捷部署示例 2", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-2.png" },
+              ]
+            },
+            {
+              title: "桌面级 SLAM 实验环境",
+              content:
+                "在 60cm×60cm 桌面内即可搭建 SLAM 场地，操作范围不超过手臂距离，结合模块化拼接板可扩展至 1.2m×1.2m，快速构建多种导航赛道。",
+              mediaGridClassName: "grid-cols-1 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "桌面部署俯视图", image: "/images/products/uni-wr2/uni-wr2-desktop-layout.png" },
+              ]
+            },
+            {
+              title: "ROS 工程化部署拆解",
+              content:
+                "从原理框架、功能演示、框架解构、功能包配置到全参调试的 5 步教学路径，配合 Catographer、Hector、Gmapping 三大导航算法，帮助学生真正掌握工程部署方法论。"
+            }
           ],
-          experiments: [
-            "24 课时：ROS 基础（功能包移植）",
-            "SLAM 部署（3 种导航方式全参调试）",
-            "运动学控制（PID 速度控制）",
-          ],
+          sensorConfig: {
+            description:
+              "集成 SLAM 导航常用传感器，支持里程反馈、姿态估计与环境建图数据采集，满足导航算法对真实物理世界的输入需求。",
+            list: [
+              "激光雷达（SLAM 建图，支持 Catographer/Hector/Gmapping）",
+              "双轮里程计编码器（PID 调速与里程反馈）",
+              "IMU / 陀螺仪传感器（姿态估计）",
+              "扩展接口：支持额外传感器与标志物接入"
+            ]
+          },
+          sampleCases: {
+            description:
+              "配套提供外观结构、外形尺寸与 BOM 组件示意，帮助教师快速理解平台硬件组成、尺寸规划与装配细节，为课程部署提供参考。",
+            sections: [
+              {
+                title: "外观与结构总览",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                items: [
+                  { name: "外观总览", image: "/images/products/uni-wr2/uni-wr2-exterior-overview.png" },
+                  { name: "外形尺寸", image: "/images/products/uni-wr2/uni-wr2-dimensions.png" },
+                  { name: "BOM 组件示意", image: "/images/products/uni-wr2/uni-wr2-bom.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "采用树莓派为核心的控制系统，内置 PID 电机驱动与集成电源管理，支持一键开关与快速恢复，方便课堂演示与批量教学部署。",
+            images: [
+              {
+                src: "/images/products/uni-wr2/uni-wr2-controller.png",
+                alt: "UNI-WR2 树莓派控制核心"
+              }
+            ]
+          },
+          softwareConfig: {
+            description:
+              "预装 Ubuntu + ROS 系统环境，内置导航相关功能包示例与教学脚本，开机即进入 ROS 实验流程。",
+            ecosystem:
+              "课程资源包含 Catographer、Hector、Gmapping 导航功能包参考实现，以及 ROS 工程化部署文档，可在真实硬件上完整跑通导航流程。",
+            showCaptions: false,
+            imageGridClassName: "grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center",
+            imageWrapperClassName: "relative aspect-square w-full",
+            figureClassName:
+              "w-full max-w-[220px] overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            images: [
+              {
+                src: "/images/products/uni-wr2/uni-wr2-software-ubuntu.png",
+                alt: "Ubuntu 系统图标"
+              },
+              {
+                src: "/images/products/uni-wr2/uni-wr2-software-ros.png",
+                alt: "ROS 平台图标"
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "课程体系围绕 ROS 基础、SLAM 工程化部署与移动机器人运动学控制三个主题开展，可按课时灵活组合，实现循序渐进的导航工程教学。",
+            sections: [
+              {
+                title: "ROS 基础",
+                description: "掌握 ROS 文件结构、通信机制与功能包移植流程。",
+                items: [
+                  {
+                    name: "体验 ROS 的运行实验",
+                    desc: "2 课时｜熟悉 ROS 文件结构；通过话题/服务/参数控制仿真小乌龟与 UNI-WR2 机器人运动。"
+                  },
+                  {
+                    name: "构建与移植 ROS 功能包",
+                    desc: "2 课时｜创建功能包、配置环境并编译；实现键盘控制 UNI-WR2 运动的功能包。"
+                  }
+                ]
+              },
+              {
+                title: "SLAM 工程化部署",
+                description: "对比三大 SLAM 算法的流程与适用场景，掌握完整的功能包配置与全参调试。",
+                items: [
+                  {
+                    name: "快速操作移动机器人导航",
+                    desc: "2 课时｜按步骤部署 Catographer、Hector、Gmapping 导航，比较三种导航方式特点。"
+                  },
+                  {
+                    name: "Catographer 构建地图导航",
+                    desc: "4 课时｜原理讲解、功能包拆解、参数配置与全参调试，完成高精度建图。"
+                  },
+                  {
+                    name: "Hector 构建地图导航",
+                    desc: "4 课时｜拆解 Hector 架构并完成功能包配置，解决高频率激光数据场景。"
+                  },
+                  {
+                    name: "Gmapping 构建地图导航",
+                    desc: "4 课时｜深入了解粒子滤波 SLAM，掌握参数调优与场景适配要点。"
+                  }
+                ]
+              },
+              {
+                title: "移动机器人运动学控制",
+                description: "掌握差速底盘的里程学建模、速度控制与 PID 调参方法。",
+                items: [
+                  {
+                    name: "轮的 PID 控制与调试",
+                    desc: "2 课时｜读取编码器数据，理解 PID 算法，实现电机速度闭环控制。"
+                  },
+                  {
+                    name: "移动机器人运动学控制",
+                    desc: "4 课时｜推导差速底盘运动学模型，实现里程反馈与线/角速度控制。"
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "速度 0.16m/s",
-            "1m 内定位精度 < 5mm，1m 直线度偏差 < 1cm",
+            "尺寸：130mm × 97mm × 98mm",
+            "重量：约 580g",
+            "速度：0.16m/s",
+            "定位精度：1m 内定位误差 < 5mm",
+            "直线度：1m 直线度偏差 < 1cm（约 1.5°）",
+            "导航方式：Catographer / Hector / Gmapping 激光 SLAM"
           ],
         },
         "alo-le4": {

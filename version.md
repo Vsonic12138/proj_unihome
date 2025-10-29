@@ -34,6 +34,68 @@
 
 ---
 
+V1.13.0 feat(products): 全面重构UNI-WR2产品详情，构建桌面级ROS工程化教学体系
+
+类型: feat, docs, ui, refactor
+
+范围: products, i18n, public
+
+说明:
+
+本次更新的核心是为“便携式ROS导航机器人学习平台 UNI-WR2”创建了全面、高度结构化的产品详情页内容。我们对其数据体系进行了彻底重构，新增了从产品概述、特性、硬件配置到结构化实验体系的全方位信息，并为其补充了完整的产品图片资源。为支持这些深度内容，我们还对产品详情页的渲染逻辑进行了重构，使其能够展示更丰富、更灵活的数据结构。
+
+实现细节:
+
+1.  **新增 UNI-WR2 产品体系**
+    *   `src/i18n/locales/zh.ts`: 在国际化文件中，为 `uni-wr2` 添加了完整且详尽的数据结构。
+        *   **内容深度扩充**: 新增了 `overview` (概述), `applicable` (适用场景), `highlights` (核心亮点), `features` (产品特点), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+        *   **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“ROS 基础”到“移动机器人运动学控制”的3大主题，共计8个具体实验项目。
+        *   **自定义内容区块**: 在 `sampleCases` 中引入了 `sections` 结构，用于自定义展示外观、尺寸、BOM 等内容，取代了原有的固定分类。
+        *   **图文并茂的特性**: `features` 字段现在支持内嵌 `media` 数组，允许每个产品特性都配有多张图片进行说明。
+
+2.  **产品详情页 UI 渲染重构**
+    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
+        *   **特性媒体渲染**: 组件现在能够动态渲染每个 `feature` 卡片中包含的图片网格，使特性介绍更直观。
+        *   **自定义区块渲染**: 页面新增了对 `sampleCases.sections` 的渲染逻辑，使其可以根据数据动态生成标题和图片网格，提高了内容展示的灵活性。
+        *   **向后兼容**: 渲染逻辑会优先检查并使用新的 `sampleCustomSections`，如果不存在，则回退到旧的 `modules`, `chassis` 等分类，确保了对旧数据的兼容性。
+        *   **样式优化**: 调整了控制器配置图片的布局和样式，使其在页面上展示效果更佳。
+
+3.  **新增产品图片资源**
+    *   `public/images/products/uni-wr2/`: 为 UNI-WR2 新增了12张高质量产品图片，包括主图 (`hero`)、各角度外观图、功能示意图、硬件细节图（控制器、BOM）以及软件图标，并已在产品数据中正确引用。
+
+文件变更:
+
+新增文件:
+- [`public/images/products/uni-wr2/uni-wr2-bom.png`](public/images/products/uni-wr2/uni-wr2-bom.png)
+- [`public/images/products/uni-wr2/uni-wr2-controller.png`](public/images/products/uni-wr2/uni-wr2-controller.png)
+- [`public/images/products/uni-wr2/uni-wr2-desktop-layout.png`](public/images/products/uni-wr2/uni-wr2-desktop-layout.png)
+- [`public/images/products/uni-wr2/uni-wr2-dimensions.png`](public/images/products/uni-wr2/uni-wr2-dimensions.png)
+- [`public/images/products/uni-wr2/uni-wr2-exterior-overview.png`](public/images/products/uni-wr2/uni-wr2-exterior-overview.png)
+- [`public/images/products/uni-wr2/uni-wr2-feature-charging.png`](public/images/products/uni-wr2/uni-wr2-feature-charging.png)
+- [`public/images/products/uni-wr2/uni-wr2-feature-deploy-1.png`](public/images/products/uni-wr2/uni-wr2-feature-deploy-1.png)
+- [`public/images/products/uni-wr2/uni-wr2-feature-deploy-2.png`](public/images/products/uni-wr2/uni-wr2-feature-deploy-2.png)
+- [`public/images/products/uni-wr2/uni-wr2-feature-portable.png`](public/images/products/uni-wr2/uni-wr2-feature-portable.png)
+- [`public/images/products/uni-wr2/uni-wr2-hero.png`](public/images/products/uni-wr2/uni-wr2-hero.png)
+- [`public/images/products/uni-wr2/uni-wr2-software-ros.png`](public/images/products/uni-wr2/uni-wr2-software-ros.png)
+- [`public/images/products/uni-wr2/uni-wr2-software-ubuntu.png`](public/images/products/uni-wr2/uni-wr2-software-ubuntu.png)
+
+修改文件:
+- [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以支持更丰富的数据结构)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (全面重构UNI-WR2产品数据)
+
+改进效果:
+
+- **产品信息极大丰富**: UNI-WR2 的产品信息变得极为详尽和专业，其深度内容为目标用户（高校师生、研究人员）提供了极高的参考价值。
+- **页面灵活性提升**: 产品详情页模板现在能够适应更多样化的内容结构和布局需求，为未来添加更多不同形态的产品打下了坚实基础。
+- **教学价值凸显**: 全新的结构化实验体系清晰地展示了该产品的教学路径和应用场景，显著提升了其在教育市场的吸引力。
+
+影响范围:
+
+- 网站 “UNI-WR2” 产品的详情页内容已全面更新。
+- 访问该页面的用户将能获取到关于此产品的全面、深入的信息。
+
+---
+
 V1.12.0 feat(products): 全面重构RAI-P4产品详情，构建具身智能任务规划体系
 
 类型: feat, docs, refactor, ui
