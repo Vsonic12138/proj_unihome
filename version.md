@@ -34,6 +34,59 @@
 
 ---
 
+V1.18.0 feat(developers): 新增“开源项目”页面，集中展示硬件与软件成果
+
+类型: feat, ui, docs
+
+范围: open-source, i18n, components
+
+说明:
+
+本次更新在“开发者”板块下新增了一个“开源项目”页面。该页面旨在集中展示公司在硬件（PCB）和软件（代码）领域的开源贡献，为开发者、学生和技术爱好者提供丰富的学习资源和参考案例，从而增强技术社区互动与品牌影响力。
+
+实现细节:
+
+1.  **新增开源项目内容**
+    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `openSource` 页面新增了完整的内容结构。
+        *   **内容扩充**: 添加了页面的标题、描述，并将开源项目划分为“硬件开源 (PCB)”和“软件开源 (代码)”两大类别。
+        *   **项目详情**: 为每个类别填充了多个具体的开源项目，包含项目名称、详细描述、技术标签和外部链接。
+
+2.  **创建开源项目UI组件**
+    *   `src/app/OpenSource/OpenSourceContent.tsx`: 新建了一个独立的React组件，用于动态渲染“开源项目”页面的所有内容。该组件通过卡片式布局清晰地展示了各个项目，并优化了交互体验。
+
+3.  **集成新页面**
+    *   `src/app/[locale]/developers/open-source/page.tsx`: 创建了新的页面路由，并在其中引入并渲染了新建的 `OpenSourceContent` 组件，使新页面得以展示。
+
+4.  **项目配置优化**
+    *   `tsconfig.json`: 将 `jsx` 编译选项从 `"preserve"` 更新为 `"react-jsx"`，以适配较新版本的React JSX转换机制。
+    *   `next-env.d.ts`: 将Next.js类型声明的引用方式从 `/// <reference path=... />` 更新为 `import` 语句，以改善模块解析。
+
+文件变更:
+
+新增文件:
+- [`src/app/OpenSource/OpenSourceContent.tsx`](src/app/OpenSource/OpenSourceContent.tsx:1) (新建“开源项目”UI组件)
+
+修改文件:
+- [`src/app/[locale]/developers/open-source/page.tsx`](src/app/[locale]/developers/open-source/page.tsx:1) (集成并渲染新组件)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (Added content for the new open source page)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (Added content for the new open source page)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (为新的“开源项目”页面添加文案)
+- [`next-env.d.ts`](next-env.d.ts:1) (更新类型引用方式)
+- [`tsconfig.json`](tsconfig.json:1) (更新JSX编译选项)
+
+改进效果:
+
+- **资源集中化**: 为社区提供了一个统一的入口，方便查找和使用公司的开源软硬件资源。
+- **提升品牌价值**: 通过展示技术成果，增强了公司在开发者社区中的专业形象和影响力。
+- **代码结构优化**: 新建的 `OpenSourceContent` 组件实现了内容与视图的分离，提高了代码的可维护性。
+
+影响范围:
+
+- 网站“开发者”导航菜单下将出现一个新的“开源项目”页面。
+- 访问该页面的用户将能浏览和访问公司提供的所有开源项目资源。
+
+---
+
 V1.17.0 feat(solutions): 新增“定制化解决方案”页面合作模式模块
 
 类型: feat, ui, docs

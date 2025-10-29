@@ -241,6 +241,126 @@ export const dictionary = {
         title: "Open Source Projects",
         description:
           "Explore our open repositories, community contributions, and collaborative projects built around robotics and AI.",
+        categories: [
+          {
+            id: "pcb",
+            title: "Hardware Open Source (PCB)",
+            description: "Open-source hardware design solutions for rapid prototyping",
+            projects: [
+              {
+                id: 9,
+                name: "Arduino MEGA 2560 Expansion Board",
+                description:
+                  "Compatible with Arduino Mega 2560 and Arduino DUE, this expansion board can drive DC encoder motors, servos, and stepper motors. It features multiple communication interfaces and sensor ports, supporting 8.4V-12V wide voltage input.",
+                link: "https://x.jlc.com/platform/detail/278a899ed5834980b6136bf73e044076?type=1&share=jlc1742868845686",
+                tags: ["Arduino", "Expansion Board", "Multi-function"],
+              },
+              {
+                id: 10,
+                name: "Universal 3S Battery Box with Overcharge/Discharge Protection",
+                description:
+                  "This battery box includes battery protection and fast charging functionality, integrated with 5V/5A, 6V/5A, and 7.4V/5A power outputs. Easily applicable to robot power systems, meeting various voltage requirements.",
+                link: "https://x.jlc.com/platform/detail/d5159e0024954a4488a0e972ce1a30bc?type=1",
+                tags: ["Power Management", "Battery Protection", "Fast Charging"],
+              },
+              {
+                id: 11,
+                name: "ESP32 Controller Board + Driver Expansion Board",
+                description:
+                  "Using ESP32 as the main controller, includes DC motors, PWM servos, ultrasonic sensors, and line-following sensor interfaces. Features 2S lithium battery charging circuit and IIC, SPI, UART communication interfaces. Supports Openblock graphical programming.",
+                link: "https://x.jlc.com/platform/detail/89503d0ca5d04ca1906eb1bc43d2d255?type=1",
+                tags: ["ESP32", "Graphical Programming", "Multi-sensor"],
+              },
+              {
+                id: 12,
+                name: "Raspberry Pi Expansion for Encoder Motors + LiDAR + UART",
+                description:
+                  "Dual DC encoder motor driver board for Raspberry Pi 2W, supports 2S lithium battery (18650) power supply with 15W charging function. Can connect two N20 encoder motors, suitable for two-wheel robots.",
+                link: "https://x.jlc.com/platform/detail/9784dfa329c8458abe5ac60397b2178d?type=1",
+                tags: ["Raspberry Pi", "Motor Driver", "LiDAR"],
+              },
+              {
+                id: 13,
+                name: "STM32-based Compound Robot Development Board",
+                description:
+                  "Using STM32F407IGT6 as the main chip, supports DC encoder motors, PWM servos, stepper motors, and multiple communication devices (IIC, SPI, UART). Includes ultrasonic and four-way line-following sensor interfaces. Supports 8.4V-12V wide voltage input. Ideal for ROS robot underlying driver applications.",
+                link: "https://x.jlc.com/platform/detail/ac14aed55fe9438391c3f26cce0b2377",
+                tags: ["STM32", "ROS", "Compound Robot"],
+              },
+            ],
+          },
+          {
+            id: "code",
+            title: "Software Open Source (Code)",
+            description: "Open-source code libraries and sample projects to accelerate learning and development",
+            projects: [
+              {
+                id: 14,
+                name: "Arduino Mega2560 Compound Robot Development Library",
+                description:
+                  "Provides hardware driver libraries and application source code, covering DC motor PWM to PID control, servo control, stepper motor control, 7 chassis structure designs, 2-6 DOF robotic arms, sensor applications (ultrasonic, line-following, voice, AI vision, PS2 controller, gyroscope), and comprehensive robot applications (obstacle avoidance, line tracking, voice control, vision recognition, remote control, attitude control).",
+                link: "https://gitee.com/little-wooden-man/mega2560_-library",
+                tags: ["Arduino", "Driver Library", "Comprehensive"],
+              },
+              {
+                id: 15,
+                name: "ESP32 + Openblock Graphical Robot Source Code",
+                description:
+                  "Includes ESP32 development board schematics, electrical interface diagrams, and block programming applications: motor drive experiments (PWM control for motors, servos, grippers), chassis motion control (forward, backward, left/right translation, rotation), and robot perception control experiments (obstacle avoidance, line tracking).",
+                link: "https://gitee.com/little-wooden-man/mr20",
+                tags: ["ESP32", "Graphical Programming", "Educational"],
+              },
+              {
+                id: 16,
+                name: "STM32 + STM32CubeMX Robot Development Source Code",
+                description:
+                  "Includes STM32 development board schematics, electrical interface diagrams, and complete project source code covering chassis, robotic arms, and integrated projects. Supports DC motor PWM to PID control, servo and gripper control, stepper motor control, 7 chassis structures, 2-4 DOF robotic arms, sensor applications, and comprehensive robot applications.",
+                link: "https://gitee.com/little-wooden-man/uni_-stm32/tree/master/",
+                tags: ["STM32", "CubeMX", "Engineering"],
+              },
+              {
+                id: 17,
+                name: "LLM API + Vision + VLM + Robotic Arm Source Code",
+                description:
+                  "RAI-P4 Embodied Robot Task Planning Comprehensive Training Platform integrates AI technologies including ASR (Automatic Speech Recognition), LLM (Large Language Model), TTS (Text-to-Speech), and computer vision (YOLO face/geometric shape detection). Provides a complete robot control system learning environment with architecture design documents, deployment documentation, implementation source code, and robotic arm control experiments.",
+                link: "https://gitee.com/BigYellow12138/RAI-P4",
+                tags: ["LLM", "Embodied AI", "AI Integration"],
+              },
+              {
+                id: 18,
+                name: "Competition Project: Logistics Transport Vehicle",
+                description:
+                  "Modular decomposition with complete source code, including chassis structure design and driver, collection device control (gripper), robot point-to-point transport, remote control (gamepad), ultrasonic obstacle avoidance, multi-color ball recognition, object tracking, positioning transport, and serial communication for multi-color target data transmission.",
+                link: "https://gitee.com/little-wooden-man/Logistics_car",
+                tags: ["Competition", "Logistics", "Vision Recognition"],
+              },
+              {
+                id: 19,
+                name: "Competition Project: Smart Rescue Vehicle",
+                description:
+                  "Modular decomposition with complete source code, including chassis/linear module/robotic arm structure design and driver, LCD display usage, QR code recognition and data acquisition, workpiece color recognition, AI model vision recognition workflow (dataset capture, model training, YOLO recognition implementation), lower computer data communication, and overall control and debugging.",
+                link: "https://gitee.com/little-wooden-man/unismart-rescue-vehicle",
+                tags: ["Competition", "Smart Rescue", "AI Vision"],
+              },
+              {
+                id: 20,
+                name: "Balancing Car Source Code",
+                description:
+                  "Four-wheel Mecanum wheel car and two-wheel self-balancing car PID control modular decomposition, providing complete control algorithm implementation.",
+                link: "https://gitee.com/little-wooden-man/balancing_-car",
+                tags: ["Balancing Car", "PID Control", "Algorithm"],
+              },
+              {
+                id: 21,
+                name: "Arduino + Openblock Graphical Robot Development",
+                description:
+                  "Based on Arduino Mega2560 and new Mega2560 expansion board, using Openblock+Arduino mode for motor driver modules, chassis motion control, and robot perception control experiments. Provides demo examples, engineering deployment, source code, and operation documentation.",
+                link: "https://gitee.com/xs24/openblockProject2506",
+                tags: ["Arduino", "Openblock", "Teaching Resources"],
+              },
+            ],
+          },
+        ],
       },
       customSolutions: {
         title: "Custom Collaboration",

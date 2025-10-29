@@ -1,4 +1,5 @@
 import PageIntro from "@/components/Common/PageIntro";
+import OpenSourceContent from "@/app/OpenSource/OpenSourceContent";
 import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
@@ -25,10 +26,13 @@ const OpenSourcePage = async ({ params }: PageParams) => {
   const pageCopy = dictionary.pages.openSource;
 
   return (
-    <PageIntro
-      title={pageCopy.title}
-      description={pageCopy.description}
-    />
+    <>
+      <PageIntro
+        title={pageCopy.title}
+        description={pageCopy.description}
+      />
+      <OpenSourceContent copy={pageCopy} />
+    </>
   );
 };
 

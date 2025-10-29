@@ -238,6 +238,126 @@ export const dictionary = {
         title: "オープンソース",
         description:
           "ロボットやAIに関連するオープンリポジトリ、コミュニティの取り組み、共同プロジェクトをご覧ください。",
+        categories: [
+          {
+            id: "pcb",
+            title: "ハードウェアオープンソース（PCB）",
+            description: "ラピッドプロトタイピングのためのオープンソースハードウェア設計",
+            projects: [
+              {
+                id: 9,
+                name: "Arduino MEGA 2560拡張ボード",
+                description:
+                  "Arduino Mega 2560およびArduino DUEに対応した拡張ボード。DCエンコーダーモーター、サーボ、ステッピングモーターを駆動可能。多様な通信インターフェースとセンサーポートを搭載し、8.4V-12Vの広範囲電圧入力に対応。",
+                link: "https://x.jlc.com/platform/detail/278a899ed5834980b6136bf73e044076?type=1&share=jlc1742868845686",
+                tags: ["Arduino", "拡張ボード", "多機能"],
+              },
+              {
+                id: 10,
+                name: "汎用3Sバッテリーボックス（過充電・過放電保護、バランス回路付）",
+                description:
+                  "バッテリー保護と急速充電機能を備え、5V/5A、6V/5A、7.4V/5Aの電源出力を統合。ロボット電源システムに簡単に適用でき、各電圧レベルの要求を満たします。",
+                link: "https://x.jlc.com/platform/detail/d5159e0024954a4488a0e972ce1a30bc?type=1",
+                tags: ["電源管理", "バッテリー保護", "急速充電"],
+              },
+              {
+                id: 11,
+                name: "ESP32コントロールボード+ドライバ拡張ボード",
+                description:
+                  "ESP32をメインコントローラーとし、DCモーター、PWMサーボ、超音波センサー、ライントレースセンサーなど多様なハードウェアドライバーインターフェースを搭載。2Sリチウム電池充電回路およびIIC、SPI、UART通信インターフェースを装備。Openblockグラフィカルプログラミングに対応。",
+                link: "https://x.jlc.com/platform/detail/89503d0ca5d04ca1906eb1bc43d2d255?type=1",
+                tags: ["ESP32", "グラフィカルプログラミング", "マルチセンサー"],
+              },
+              {
+                id: 12,
+                name: "Raspberry Pi拡張ボード（エンコーダモーター+LiDAR+UART）",
+                description:
+                  "Raspberry Pi 2W用のデュアルDCエンコーダモータードライバーボード。2Sリチウム電池（18650）による電源供給と15W充電機能を搭載。N20エンコーダモーターを2つ接続可能で、二輪ロボットの駆動に適しています。",
+                link: "https://x.jlc.com/platform/detail/9784dfa329c8458abe5ac60397b2178d?type=1",
+                tags: ["Raspberry Pi", "モータードライバ", "LiDAR"],
+              },
+              {
+                id: 13,
+                name: "STM32ベース複合ロボット開発ボード",
+                description:
+                  "STM32F407IGT6をメインチップとし、DCエンコーダモーター、PWMサーボ、ステッピングモーター、および複数の通信デバイス（IIC、SPI、UART）に対応。超音波センサーと4路ライントレースセンサーインターフェースを搭載。8.4V-12V広範囲電圧入力に対応。ROSロボットの下層ドライバに最適。",
+                link: "https://x.jlc.com/platform/detail/ac14aed55fe9438391c3f26cce0b2377",
+                tags: ["STM32", "ROS", "複合ロボット"],
+              },
+            ],
+          },
+          {
+            id: "code",
+            title: "ソフトウェアオープンソース（コード）",
+            description: "学習と開発を加速するオープンソースコードライブラリとサンプルプロジェクト",
+            projects: [
+              {
+                id: 14,
+                name: "Arduino Mega2560複合ロボット開発ライブラリ",
+                description:
+                  "ハードウェアドライバライブラリとアプリケーションソースコードを提供。DCモーターのPWMからPID制御、サーボ制御、ステッピングモーター制御、7種類のシャーシ構造設計、2-6自由度ロボットアーム、センサー応用（超音波、ライントレース、音声、AIビジョン、PS2コントローラ、ジャイロスコープ）、ロボット総合応用（障害物回避、ライントラッキング、音声制御、ビジョン認識、遠隔制御、姿勢制御）をカバー。",
+                link: "https://gitee.com/little-wooden-man/mega2560_-library",
+                tags: ["Arduino", "ドライバライブラリ", "総合応用"],
+              },
+              {
+                id: 15,
+                name: "ESP32 + Openblockグラフィカルロボットソースコード",
+                description:
+                  "ESP32開発ボードの回路図、電気インターフェース図、およびブロックプログラミングアプリケーションを含む：モータードライブ実験（モーター、サーボ、グリッパーのPWM制御）、シャーシモーション制御（前進、後退、左右平行移動、回転）、ロボット知覚制御実験（障害物回避、ライントレース）。",
+                link: "https://gitee.com/little-wooden-man/mr20",
+                tags: ["ESP32", "グラフィカルプログラミング", "教育向け"],
+              },
+              {
+                id: 16,
+                name: "STM32 + STM32CubeMXロボット開発ソースコード",
+                description:
+                  "STM32開発ボードの回路図、電気インターフェース図、およびシャーシ、ロボットアーム、統合プロジェクトをカバーする完全なプロジェクトソースコードを含む。DCモーターのPWMからPID制御、サーボとグリッパー制御、ステッピングモーター制御、7種類のシャーシ構造、2-4自由度ロボットアーム、センサー応用、ロボット総合応用に対応。",
+                link: "https://gitee.com/little-wooden-man/uni_-stm32/tree/master/",
+                tags: ["STM32", "CubeMX", "エンジニアリング"],
+              },
+              {
+                id: 17,
+                name: "LLM API + ビジョン + VLM + ロボットアームソースコード",
+                description:
+                  "RAI-P4身体性ロボットタスクプランニング総合実習プラットフォーム。ASR（自動音声認識）、LLM（大規模言語モデル）、TTS（テキスト音声変換）、コンピュータービジョン（YOLO顔/幾何形状検出）などのAI技術を統合。アーキテクチャ設計文書、デプロイメント文書、実装ソースコード、ロボットアーム制御実験を含む完全なロボット制御システム学習環境を提供。",
+                link: "https://gitee.com/BigYellow12138/RAI-P4",
+                tags: ["LLM", "身体性AI", "AI統合"],
+              },
+              {
+                id: 18,
+                name: "競技プロジェクト：物流搬送車両",
+                description:
+                  "モジュール分解による完全なソースコード。シャーシ構造設計とドライバ、収集装置制御（グリッパー）、ロボットポイントツーポイント搬送、リモートコントロール（ゲームパッド）、超音波障害物回避、多色ボール認識、オブジェクト追跡、位置決め搬送、多色ターゲットデータのシリアル通信送信を含む。",
+                link: "https://gitee.com/little-wooden-man/Logistics_car",
+                tags: ["競技", "物流", "ビジョン認識"],
+              },
+              {
+                id: 19,
+                name: "競技プロジェクト：スマートレスキュー車両",
+                description:
+                  "モジュール分解による完全なソースコード。シャーシ/リニアモジュール/ロボットアーム構造設計とドライバ、LCDディスプレイ使用、QRコード認識とデータ取得、ワークピース色認識、AIモデルビジョン認識ワークフロー（データセット撮影、モデルトレーニング、YOLO認識実装）、下位コンピューターデータ通信、全体制御とデバッグを含む。",
+                link: "https://gitee.com/little-wooden-man/unismart-rescue-vehicle",
+                tags: ["競技", "スマートレスキュー", "AIビジョン"],
+              },
+              {
+                id: 20,
+                name: "バランスカーソースコード",
+                description:
+                  "4輪メカナムホイールカーと2輪自己バランスカーのPID制御モジュール分解。完全な制御アルゴリズム実装を提供。",
+                link: "https://gitee.com/little-wooden-man/balancing_-car",
+                tags: ["バランスカー", "PID制御", "アルゴリズム"],
+              },
+              {
+                id: 21,
+                name: "Arduino + Openblockグラフィカルロボット開発",
+                description:
+                  "Arduino Mega2560および新Mega2560拡張ボードをベースに、Openblock+Arduinoモードでモータードライバモジュール、シャーシモーション制御、ロボット知覚制御実験を実施。デモ例、エンジニアリングデプロイメント、ソースコード、操作文書を提供。",
+                link: "https://gitee.com/xs24/openblockProject2506",
+                tags: ["Arduino", "Openblock", "教育リソース"],
+              },
+            ],
+          },
+        ],
       },
       customSolutions: {
         title: "カスタム協業",

@@ -236,6 +236,126 @@ export const dictionary = {
         title: "开源项目",
         description:
           "探索我们围绕机器人与人工智能推出的开源仓库，与社区一起共建共创。",
+        categories: [
+          {
+            id: "pcb",
+            title: "硬件开源（PCB）",
+            description: "开源硬件设计方案，助力快速原型开发",
+            projects: [
+              {
+                id: 9,
+                name: "Arduino MEGA 2560的拓展板",
+                description:
+                  "适配于Arduino mega 2560和Arduino DUE的拓展板，可驱动直流编码电机、舵机、步进电机，外接多种通信接口，且包含多种传感器接口，支持8.4V-12V宽压输入",
+                link: "https://x.jlc.com/platform/detail/278a899ed5834980b6136bf73e044076?type=1&share=jlc1742868845686",
+                tags: ["Arduino", "拓展板", "多功能"],
+              },
+              {
+                id: 10,
+                name: "通用3S电池盒，含过充过放保护，含均衡电路",
+                description:
+                  "该电池盒不仅含有电池保护及快充功能，且集成了5V/5A、6V/5A、7.4V/5A的电源输出，可轻松的应用于机器人供电系统中，满足机器人系统中的各级电压需求。",
+                link: "https://x.jlc.com/platform/detail/d5159e0024954a4488a0e972ce1a30bc?type=1",
+                tags: ["电源管理", "电池保护", "快充"],
+              },
+              {
+                id: 11,
+                name: "基于ESP32控制板+驱动扩展板",
+                description:
+                  "采用ESP32作为主控，包含直流电机、PWM舵机、超声波、巡线传感器多种硬件驱动接口。包含2S锂电充电电路。且包含IIC、SPI、UART通信接口，可外接PS2手柄、陀螺仪等外设通信模块。支持openblock图形化编程，大大降低开发难度。",
+                link: "https://x.jlc.com/platform/detail/89503d0ca5d04ca1906eb1bc43d2d255?type=1",
+                tags: ["ESP32", "图形化编程", "多传感器"],
+              },
+              {
+                id: 12,
+                name: "拓展树莓派引脚驱动编码电机+激光雷达+串口",
+                description:
+                  "基于树莓派2W的双路直流编码电机驱动板，可安装2S锂电池（18650）进行供电，并含有15W充电功能，可外接两路N20编码电机。如可以驱动双轮小车。",
+                link: "https://x.jlc.com/platform/detail/9784dfa329c8458abe5ac60397b2178d?type=1",
+                tags: ["树莓派", "电机驱动", "激光雷达"],
+              },
+              {
+                id: 13,
+                name: "基于STM32的复合机器人开发板",
+                description:
+                  "该项目以STM32F407IGT6为主控芯片，外部可接直流编码电机、PWM舵机、步进电机，且可外接多种通信设备，包括IIC、SPI、UART通信。且支持多种传感器模块接口，包括超声波传感器、四路巡线传感器。支持8.4V-12V宽电压输入。应用场景：适用于ROS机器人中的底层驱动部分，利用此板卡可轻松驱动多种4驱、6驱底盘以及多种自由度的舵机机械臂。",
+                link: "https://x.jlc.com/platform/detail/ac14aed55fe9438391c3f26cce0b2377",
+                tags: ["STM32", "ROS", "复合机器人"],
+              },
+            ],
+          },
+          {
+            id: "code",
+            title: "软件开源（代码）",
+            description: "开源代码库与示例项目，加速学习与开发",
+            projects: [
+              {
+                id: 14,
+                name: "基于Arduino Mega2560的复合机器人开发库源码",
+                description:
+                  "提供硬件驱动底层库及应用项目源码，涵盖直流电机PWM到PID控制、舵机控制、步进电机控制、7种底盘结构设计、2-6自由度机械臂设计、传感器应用（超声波、巡线、语音、AI视觉、PS2手柄、陀螺仪）、机器人综合应用（避障、循迹、语音控制、视觉识别、远程遥控、姿态控制）等。",
+                link: "https://gitee.com/little-wooden-man/mega2560_-library",
+                tags: ["Arduino", "底层驱动", "综合应用"],
+              },
+              {
+                id: 15,
+                name: "基于ESP32开发板+Openblock的图形化机器人源码",
+                description:
+                  "包含Esp32开发板原理图、电气接口图及基于图块编程的项目应用：电机驱动实验（PWM控制电机、舵机、夹爪）、底盘运动控制（前进、后退、左右平移、旋转）、机器人感知控制实验（避障、循迹等）。",
+                link: "https://gitee.com/little-wooden-man/mr20",
+                tags: ["ESP32", "图形化编程", "教学友好"],
+              },
+              {
+                id: 16,
+                name: "基于stm32开发板+stm32cubemx开发机器人源码",
+                description:
+                  "包含STM32开发板原理图、电气接口图及完整项目源码，涵盖底盘、机械臂、综合项目。支持直流电机PWM到PID控制、舵机与夹爪控制、步进电机控制、7种底盘结构、2-4自由度机械臂、传感器应用、机器人综合应用等。",
+                link: "https://gitee.com/little-wooden-man/uni_-stm32/tree/master/",
+                tags: ["STM32", "CubeMX", "工程化开发"],
+              },
+              {
+                id: 17,
+                name: "大模型接口调用+视觉+VLM+机械臂源码",
+                description:
+                  "RAI-P4具身机器人任务规划综合实训平台，集成语音识别(ASR)、大语言模型(LLM)、语音合成(TTS)、计算机视觉(YOLO人脸/几何形状检测)等AI技术，提供完整的机器人控制系统学习环境。包含架构设计文档、部署文档、实现源码及机械臂控制实验。",
+                link: "https://gitee.com/BigYellow12138/RAI-P4",
+                tags: ["大模型", "具身智能", "AI集成"],
+              },
+              {
+                id: 18,
+                name: "竞赛项目开源-物料搬运小车",
+                description:
+                  "模块化拆解提供完整源码，包含底盘结构设计与驱动、搜集装置控制（夹爪）、机器人定点搬运、遥控搬运（手柄）、超声避障、多颜色小球识别、物体追踪、定位搬运、串口通信发送多颜色目标数据等。",
+                link: "https://gitee.com/little-wooden-man/Logistics_car",
+                tags: ["竞赛", "物流搬运", "视觉识别"],
+              },
+              {
+                id: 19,
+                name: "竞赛项目开源-智能救援小车",
+                description:
+                  "模块化拆解提供完整源码，包含底盘/直线模块/机械臂结构设计与驱动、LCD显示屏使用、二维码识别与数据获取、工件颜色识别、AI模型视觉识别流程（数据集拍摄、模型训练、YOLO识别实现）、下位机数据通信、整体控制与调试等。",
+                link: "https://gitee.com/little-wooden-man/unismart-rescue-vehicle",
+                tags: ["竞赛", "智能救援", "AI视觉"],
+              },
+              {
+                id: 20,
+                name: "平衡车源码",
+                description:
+                  "四轮麦克纳姆轮小车、双轮自平衡小车PID控制模块化拆解，提供完整的控制算法实现。",
+                link: "https://gitee.com/little-wooden-man/balancing_-car",
+                tags: ["平衡车", "PID控制", "算法实现"],
+              },
+              {
+                id: 21,
+                name: "Arduino+Openblock图形化开发机器人源码",
+                description:
+                  "基于Arduino mega2560及新mega2560扩展版，采用Openblock+Arduino模式开发，包含电机驱动模块、底盘运动控制、机器人感知控制实验。提供示例Demo、工程部署、源码、操作文档等完整资料。",
+                link: "https://gitee.com/xs24/openblockProject2506",
+                tags: ["Arduino", "Openblock", "教学资源"],
+              },
+            ],
+          },
+        ],
       },
       customSolutions: {
         title: "定制合作",
