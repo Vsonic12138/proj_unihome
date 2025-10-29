@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 type GalleryItem = {
   name: string;
-  image: string;
+  image?: string;
 };
 
 type ImageGridWithLightboxProps = {
@@ -23,6 +23,8 @@ const overlayButtonClasses =
 
 const navButtonClasses =
   "hidden sm:flex absolute top-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 p-3 text-white transition hover:bg-black/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+
+const fallbackImage = "/images/products/placeholder.svg";
 
 const ImageGridWithLightbox = ({
   items,
@@ -75,27 +77,30 @@ const ImageGridWithLightbox = ({
   return (
     <>
       <div className={`grid gap-4 ${gridClassName}`}>
-        {safeItems.map((item, index) => (
-          <button
-            key={item.name + index}
-            type="button"
-            className={baseCardClasses}
-            onClick={() => setActiveIndex(index)}
-            aria-label={`${item.name} — View larger image`}
-          >
-            <div className={`relative w-full overflow-hidden rounded bg-gray-50 dark:bg-gray-800 ${imageAspectClass}`}>
-              <Image
-                src={item.image}
-                alt={item.name}
-                fill
-                className="object-contain p-2"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                unoptimized={unoptimized}
-              />
-            </div>
-            <p className="mt-2 text-center text-xs font-medium text-body-color dark:text-body-color-dark">{item.name}</p>
-          </button>
-        ))}
+        {safeItems.map((item, index) => {
+          const imageSrc = item.image && item.image.trim().length > 0 ? item.image : fallbackImage;
+          return (
+            <button
+              key={item.name + index}
+              type="button"
+              className={baseCardClasses}
+              onClick={() => setActiveIndex(index)}
+              aria-label={`${item.name} — View larger image`}
+            >
+              <div className={`relative w-full overflow-hidden rounded bg-gray-50 dark:bg-gray-800 ${imageAspectClass}`}>
+                <Image
+                  src={imageSrc}
+                  alt={item.name}
+                  fill
+                  className="object-contain p-2"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  unoptimized={unoptimized}
+                />
+              </div>
+              <p className="mt-2 text-center text-xs font-medium text-body-color dark:text-body-color-dark">{item.name}</p>
+            </button>
+          );
+        })}
       </div>
 
       {activeIndex !== null && (
@@ -167,7 +172,11 @@ const ImageGridWithLightbox = ({
             <div className="relative w-full overflow-hidden rounded-lg border border-white/10 bg-black/40 shadow-inner">
               <div className="relative mx-auto h-[60vh] w-full max-w-3xl">
                 <Image
-                  src={safeItems[activeIndex].image}
+                  src={
+                    safeItems[activeIndex].image && safeItems[activeIndex].image?.trim().length
+                      ? safeItems[activeIndex].image!
+                      : fallbackImage
+                  }
                   alt={safeItems[activeIndex].name}
                   fill
                   className="object-contain"

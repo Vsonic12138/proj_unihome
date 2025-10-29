@@ -275,7 +275,7 @@ export const dictionary = {
                 slug: "gx-mat-09s",
                 name: "Embodied Robotics Innovation Platform (Enhanced) GX-MAT-09S",
                 model: "GX-MAT-09S",
-                image: "/images/video/video.jpg",
+                image: "/images/products/gx-mat-09s/hero.png",
                 brief:
                   "11 chassis + 7 robotic arms; 88 composite forms; adds LiDAR + RDK X5 board. For advanced courses and research.",
               },
@@ -618,20 +618,324 @@ export const dictionary = {
         },
         "gx-mat-09s": {
           name: "Embodied Robotics Innovation Platform (Enhanced) GX-MAT-09S",
+          subtitle: "Enhanced Embodied Hybrid Robotics Design Suite",
           model: "GX-MAT-09S",
-          image: "/images/video/video.jpg",
+          image: "/images/products/gx-mat-09s/hero.png",
           overview:
-            "Enhanced sensing and compute with LiDAR and RDK X5, offering 11 chassis and 7 robotic arm combinations for advanced courses and research.",
-          highlights: ["11 chassis", "7 arms", "88 composite forms", "LiDAR + RDK X5"],
-          applicable: "Undergraduate advanced labs, competitions, research",
-          experiments: [
-            "Embedded development: Ubuntu operations and GPIO control",
-            "ROS applications: package porting and URDF simulation",
-            "Advanced computer vision: YOLO deployment and face recognition",
+            "Embodied robotics blends intelligent decision-making, rich perception, and powerful actuation so robots can perform in unstructured service and household environments. The first wave of deployable embodiments is converging on mobile hybrid robots.\n\nGX-MAT-09S dissects representative mobile embodied robots with a modular architecture that exposes mechanical structure, drive systems, sensing pipelines, and intelligent control. Learners can design, assemble, and tune 11 mobile chassis, 7 manipulator variants, and 88 composite robots using the included part library.\n\nThe platform incorporates all essential perception units—AI vision, monocular imaging, AI speech, posture IMU, obstacle avoidance, line tracking, and lidar navigation—delivering end-to-end situational awareness.\n\nA three-tier controller stack (Arduino, STM32, and Horizon RDK X5 with Ubuntu + ROS and 10 TOPS compute) supports classroom instruction, research, prototyping, and competition preparation.",
+          highlights: [
+            "11 modular chassis + 7 manipulators → 88 hybrid robot builds",
+            "Full-stack sensing: AI vision, speech, IMU, line tracking, lidar",
+            "Arduino + STM32 + Horizon RDK X5 (10 TOPS) controller stack",
           ],
+          applicable: "University robotics labs, research programs, and competition teams",
+          features: [
+            {
+              title: "Embodied System Deconstruction",
+              content:
+                "Breaks down mobile hybrid robots into structure, drive, sensing, and control layers, revealing how embodied robots achieve perception–decision–action loops."
+            },
+            {
+              title: "Modular Learning Path",
+              content:
+                "Provides 11 chassis, 7 manipulators, and 88 composite forms so learners can practice design, assembly, calibration, and control across complete projects."
+            },
+            {
+              title: "Full-Stack Perception",
+              content:
+                "Integrates AI vision, monocular imaging, voice interaction, posture IMU, obstacle avoidance, line tracking, and navigation lidar to cover embodied sensing scenarios."
+            },
+            {
+              title: "Multi-Layer Controller Stack",
+              content:
+                "Arduino enables graphical/C++ entry, STM32 addresses professional MCU development, and Horizon RDK X5 (Ubuntu + ROS, 10 TOPS) powers advanced embodied applications."
+            },
+            {
+              title: "Curriculum & Competition Coverage",
+              content:
+                "Supports courses such as Mechanics, Sensors, MCU, Robotics, ROS, and Mobile Navigation, and aligns with national collegiate robotics innovation and engineering practice contests."
+            }
+          ],
+          sampleCases: {
+            description:
+              "The suite ships with canonical embodied chassis and manipulators so learners can rapidly assemble 88 hybrid robots spanning differential, holonomic, steering, and dual-arm systems.",
+            chassis: [
+              { name: "Tri-wheel dual-drive differential chassis", image: "" },
+              { name: "Tri-wheel front-steering dual-drive chassis", image: "" },
+              { name: "Tri-wheel tri-drive holonomic chassis (Option A)", image: "" },
+              { name: "Tri-wheel tri-drive holonomic chassis (Option B)", image: "" },
+              { name: "Four-wheel dual-drive differential chassis", image: "" },
+              { name: "Four-wheel four-drive differential chassis", image: "" },
+              { name: "Four-wheel four-drive Foley-wheel holonomic chassis", image: "" },
+              { name: "Four-wheel four-drive mecanum chassis", image: "" },
+              { name: "Four-wheel eight-drive steering chassis", image: "" },
+              { name: "Six-wheel dual-drive differential chassis", image: "" },
+              { name: "Six-wheel six-drive differential chassis", image: "" }
+            ],
+            arms: [
+              { name: "2-DOF gimbal", image: "" },
+              { name: "3-DOF serial manipulator", image: "" },
+              { name: "4-DOF serial manipulator", image: "" },
+              { name: "4-DOF SCARA manipulator", image: "" },
+              { name: "5-DOF serial manipulator", image: "" },
+              { name: "6-DOF serial manipulator (Option A)", image: "" },
+              { name: "6-DOF serial manipulator (Option B)", image: "" },
+              { name: "8-DOF dual-arm manipulator", image: "" }
+            ],
+            compositeGroups: [
+              {
+                title: "Based on the dual-drive tri-wheel differential chassis",
+                robots: [
+                  "Tri-wheel differential + gimbal composite robot",
+                  "Tri-wheel differential + SCARA composite robot",
+                  "Tri-wheel differential + six-axis composite robot"
+                ]
+              },
+              {
+                title: "Based on the dual-drive four-wheel differential chassis",
+                robots: [
+                  "Four-wheel differential + gimbal composite robot",
+                  "Four-wheel differential + 4-axis composite robot",
+                  "Four-wheel differential + 5-axis composite robot",
+                  "Four-wheel differential + 6-axis composite robot",
+                  "Four-wheel differential + SCARA composite robot",
+                  "Four-wheel differential + dual-arm composite robot",
+                  "Four-wheel differential + dual-arm lift composite robot"
+                ]
+              },
+              {
+                title: "Based on the dual-drive six-wheel differential chassis",
+                robots: [
+                  "Six-wheel differential + gimbal composite robot",
+                  "Six-wheel differential + 4-axis composite robot",
+                  "Six-wheel differential + 5-axis composite robot",
+                  "Six-wheel differential + 6-axis composite robot",
+                  "Six-wheel differential + SCARA composite robot",
+                  "Six-wheel differential + dual-arm composite robot",
+                  "Six-wheel differential + dual-arm lift composite robot"
+                ]
+              },
+              {
+                title: "Based on the tri-wheel holonomic chassis",
+                robots: [
+                  "Tri-wheel holonomic + gimbal composite robot",
+                  "Tri-wheel holonomic + 4-axis composite robot",
+                  "Tri-wheel holonomic + 5-axis composite robot",
+                  "Tri-wheel holonomic + 6-axis composite robot",
+                  "Tri-wheel holonomic + SCARA composite robot",
+                  "Tri-wheel holonomic + dual-arm composite robot",
+                  "Tri-wheel holonomic + dual-arm lift composite robot"
+                ]
+              },
+              {
+                title: "Based on the four-drive differential chassis",
+                robots: [
+                  "Four-drive differential + gimbal composite robot",
+                  "Four-drive differential + 4-axis composite robot",
+                  "Four-drive differential + 5-axis composite robot",
+                  "Four-drive differential + 6-axis composite robot",
+                  "Four-drive differential + SCARA composite robot",
+                  "Four-drive differential + dual-arm composite robot",
+                  "Four-drive differential + dual-arm lift composite robot"
+                ]
+              },
+              {
+                title: "Based on the four-wheel holonomic chassis",
+                robots: [
+                  "Four-wheel holonomic + gimbal composite robot",
+                  "Four-wheel holonomic + 4-axis composite robot",
+                  "Four-wheel holonomic + 5-axis composite robot",
+                  "Four-wheel holonomic + 6-axis composite robot",
+                  "Four-wheel holonomic + SCARA composite robot",
+                  "Four-wheel holonomic + dual-arm composite robot",
+                  "Four-wheel holonomic + dual-arm lift composite robot"
+                ]
+              },
+              {
+                title: "Based on the four-wheel steering chassis",
+                robots: [
+                  "Four-wheel steering + gimbal composite robot",
+                  "Four-wheel steering + 4-axis composite robot",
+                  "Four-wheel steering + SCARA composite robot"
+                ]
+              }
+            ]
+          },
+          sensorConfig: {
+            description:
+              "Delivers the sensing stack required by embodied robots, enabling perception, interaction, navigation, and line tracking within a single platform.",
+            list: [
+              "AI vision camera",
+              "Monocular imaging module",
+              "AI speech recognition module",
+              "Posture IMU sensor",
+              "Obstacle avoidance / line tracking array",
+              "Navigation-grade lidar"
+            ]
+          },
+          controllerConfig: {
+            description:
+              "The control stack combines Arduino for graphical/C++ entry, STM32 for professional MCU development, and Horizon RDK X5 (Ubuntu + ROS, 10 TOPS) for advanced embodied intelligence workloads.",
+            images: [
+              {
+                src: "/images/products/gx-mat-09s/controller/arduino-mega2560.png",
+                alt: "Arduino Mega 2560 controller board",
+                caption: "Arduino Mega 2560: rapid entry via graphical and C++ programming",
+              },
+              {
+                src: "/images/products/gx-mat-09s/controller/stm32f407.jpg",
+                alt: "STM32F407 development board",
+                caption: "STM32F407: professional MCU development and embedded control",
+              },
+              {
+                src: "/images/products/gx-mat-09s/controller/rdk-x5.png",
+                alt: "Horizon RDK X5 compute module",
+                caption: "Horizon RDK X5: Ubuntu + ROS platform with 10 TOPS AI compute",
+              },
+            ],
+          },
+          softwareConfig: {
+            description:
+              "Supplies Arduino IDE, STM32 toolchains, and Ubuntu/ROS environments with sample projects, supporting development from hardware drivers to AI/ROS applications.",
+            ecosystem:
+              "Compatible with Arduino libraries, HAL/FreeRTOS, ROS/MoveIt, OpenCV, YOLO, speech SDKs, and other open ecosystems so coursework and research assets integrate quickly."
+          },
+          experiments: {
+            summary:
+              "The lab program spans microcontrollers, sensors, embedded Linux, computer vision, mobile chassis, manipulators, hybrid robots, ROS, and navigation, forming a complete learning path from entry to advanced projects.",
+            sections: [
+              {
+                title: "Microcontroller Integration",
+                description: "Covers Arduino and STM32 from board familiarization to EEPROM access and library management.",
+                items: [
+                  { name: "Arduino board familiarization", desc: "Understand chip specs, interfaces, memory, and circuit layout; configure the development environment." },
+                  { name: "STM32 board familiarization", desc: "Review MCU performance, pins, circuitry, and toolchain setup." },
+                  { name: "LED blinking", desc: "Use digitalWrite() and delay() to practice digital output control." },
+                  { name: "Analog input monitoring", desc: "Read and visualize analog signals with analogRead()/analogWrite()/Serial APIs." },
+                  { name: "Serial communication", desc: "Configure Serial.begin() and implement data transmission and logging." },
+                  { name: "EEPROM read", desc: "Call EEPROM.read() to retrieve persistent data." },
+                  { name: "EEPROM clear", desc: "Use EEPROM.write() to erase stored data safely." },
+                  { name: "EEPROM write", desc: "Implement EEPROM.write() to persist configuration data." },
+                  { name: "Library installation", desc: "Install MsTimer2 and use timers to rebuild the Blink example." }
+                ]
+              },
+              {
+                title: "Motor Integration",
+                description: "Focuses on DC motors and servos, including encoder feedback and PID speed control.",
+                items: [
+                  { name: "Controlling DC motors", desc: "Master digital drive methods for brushed DC motors." },
+                  { name: "Controlling encoded DC motors", desc: "Capture encoder data, understand PID theory, and implement closed-loop speed control." },
+                  { name: "Servo control", desc: "Operate servos with myservo.attach()/write() for precise positioning." }
+                ]
+              },
+              {
+                title: "Sensor Projects",
+                description: "Covers TTL, line tracking, ultrasonic, IMU, speech, and AI vision sensors.",
+                items: [
+                  { name: "TTL sensor integration", desc: "Read sensor parameters and apply them in code." },
+                  { name: "Four-channel line tracking", desc: "Implement autonomous line following." },
+                  { name: "Ultrasonic ranging", desc: "Understand measurement formulas and adapt algorithms to real environments." },
+                  { name: "Gyroscope sensing", desc: "Use MPU6050.cpp to obtain posture data." },
+                  { name: "Speech recognition sensor", desc: "Trigger commands via HBR640.h speech recognition APIs." },
+                  { name: "AI vision sensor", desc: "Display live video and run AI inference with the camera module." }
+                ]
+              },
+              {
+                title: "Embedded Linux Projects",
+                description: "Uses Ubuntu + Python to practice GPIO, data processing, multithreading, and web communication.",
+                items: [
+                  { name: "System onboarding", desc: "Install Ubuntu, manage SSH access, and practice file-system commands." },
+                  { name: "GPIO control", desc: "Use Python to drive LEDs and buttons with standard GPIO libraries." },
+                  { name: "Sensor data acquisition", desc: "Collect, filter, and visualize data from multiple sensors via GUI." },
+                  { name: "Networking & web services", desc: "Build socket communications and publish data with a simple web server." },
+                  { name: "Multithreading", desc: "Apply Python threading for concurrent acquisition and processing with proper synchronization." }
+                ]
+              },
+              {
+                title: "Computer Vision Projects",
+                description: "Leveraging RDK X5 and camera modules for color, shape, QR, tracking, detection, and dataset workflows.",
+                items: [
+                  { name: "Color recognition", desc: "Use OpenCV to convert color spaces and perform sorting/tracking." },
+                  { name: "Shape recognition", desc: "Apply edge detection and contour extraction for shape classification." },
+                  { name: "QR code recognition", desc: "Decode QR codes with OpenCV or zbar and handle metadata." },
+                  { name: "Gimbal tracking of geometric shapes", desc: "Capture images and drive the gimbal to track selected shapes." },
+                  { name: "Robot tracking of colored targets", desc: "Detect colored objects and command the robot to follow autonomously." },
+                  { name: "Face recognition", desc: "Detect and recognize faces with OpenCV/dlib for access control scenarios." },
+                  { name: "Vision-based line following", desc: "Detect black lines in camera frames and guide the robot along the path." },
+                  { name: "YOLO deployment", desc: "Deploy YOLO for real-time multi-object detection and classification." },
+                  { name: "Dataset annotation", desc: "Create custom datasets with LabelImg/RectLabel to support training." },
+                  { name: "Fruit recognition", desc: "Train a deep-learning model and deploy it on RDK X5 for real-time fruit detection." },
+                  { name: "Manipulator pick-and-place", desc: "Combine vision and manipulator control to grasp and relocate objects." }
+                ]
+              },
+              {
+                title: "Mobile Chassis Projects",
+                description: "Covers assembly, drive control, and odometry for differential, holonomic, Foley, mecanum, and steering chassis.",
+                items: [
+                  { name: "Tri-wheel differential chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-wheel rear differential chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Six-wheel differential chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Tri-wheel Foley-wheel chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-drive differential chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-wheel Foley-wheel chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-wheel mecanum chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-drive Foley+mecanum chassis", desc: "Assembly, drive control, and odometry tuning." },
+                  { name: "Four-drive independent steering chassis", desc: "Assembly, steering control, and odometry tuning." }
+                ]
+              },
+              {
+                title: "Manipulator Projects",
+                description: "From serial arms to SCARA and dual-arm systems, covering assembly and kinematics.",
+                items: [
+                  { name: "4-DOF serial manipulator", desc: "Assembly, drive control, and kinematic planning." },
+                  { name: "5-DOF serial manipulator", desc: "Assembly, drive control, and kinematic planning." },
+                  { name: "6-axis serial manipulator", desc: "Assembly, drive control, and kinematic planning." },
+                  { name: "SCARA manipulator", desc: "Assembly, drive control, and kinematic planning." },
+                  { name: "Dual-arm robot", desc: "Assembly, coordinated drive control, and kinematic planning." },
+                  { name: "Elevating dual-arm robot", desc: "Assembly, lift control, and coordinated kinematics." }
+                ]
+              },
+              {
+                title: "Hybrid Robot Projects",
+                description: "Combine chassis and manipulators to build application-ready embodied robots.",
+                items: [
+                  { name: "Tri-wheel differential hybrids", desc: "Gimbal, SCARA, and six-axis composite robots." },
+                  { name: "Four-wheel differential hybrids", desc: "Gimbal, 4/5/6-axis, SCARA, dual-arm, and dual-arm lift variants." },
+                  { name: "Six-wheel differential hybrids", desc: "Gimbal, 4/5/6-axis, SCARA, dual-arm, and dual-arm lift variants." },
+                  { name: "Tri-wheel holonomic hybrids", desc: "Gimbal, 4/5/6-axis, SCARA, dual-arm, and dual-arm lift variants." },
+                  { name: "Four-drive differential hybrids", desc: "Gimbal, 4/5/6-axis, SCARA, dual-arm, and dual-arm lift variants." },
+                  { name: "Four-wheel holonomic hybrids", desc: "Gimbal, 4/5/6-axis, SCARA, dual-arm, and dual-arm lift variants." },
+                  { name: "Four-wheel steering hybrids", desc: "Gimbal, 4-axis, and SCARA composite robots." }
+                ]
+              },
+              {
+                title: "Robot Operating System (ROS)",
+                description: "Guides learners through ROS onboarding, package development, and MoveIt motion control.",
+                items: [
+                  { name: "ROS quickstart", desc: "Explore file structure and control turtlesim and mobile robots via topics, services, and parameters." },
+                  { name: "Building and porting ROS packages", desc: "Create packages, configure environments, and implement keyboard teleoperation." },
+                  { name: "URDF models & MoveIt control", desc: "Build URDF models, visualize them in Rviz, and command manipulators with MoveIt." }
+                ]
+              },
+              {
+                title: "Mobile Navigation & Localization",
+                description: "Covers Cartographer, Hector, and Gmapping pipelines from theory to full-parameter tuning.",
+                items: [
+                  { name: "Rapid navigation practice", desc: "Operate Cartographer, Hector, and Gmapping workflows and compare their use cases." },
+                  { name: "Cartographer mapping", desc: "Explain the theory, unpack the package, configure parameters, and tune the full workflow." },
+                  { name: "Hector mapping", desc: "Break down the package structure, configure parameters, and complete full tuning." },
+                  { name: "Gmapping mapping", desc: "Review theory, configure the package, and generate maps with full-parameter tuning." }
+                ]
+              }
+            ]
+          },
           specs: [
-            "Six encoder-equipped DC motors (expanded configuration)",
-            "LiDAR included (0.12–8 m detection range)",
+            "Chassis library: 11 mobile platforms covering differential, holonomic, Foley, mecanum, and steering forms",
+            "Manipulator library: 7 standard arms with expansion to an 8-DOF dual-arm system",
+            "Composite robots: 63+ embodied application configurations spanning service, research, and competition scenarios",
+            "Sensing stack: AI vision, speech recognition, IMU, line tracking/obstacle avoidance, and navigation lidar",
+            "Control architecture: Arduino + STM32 + Horizon RDK X5 (10 TOPS) collaborative stack",
+            "Teaching & competitions: Supports Robotics, ROS, Mobile Navigation courses and major collegiate robotics challenges"
           ],
         },
         "rai-p4": {

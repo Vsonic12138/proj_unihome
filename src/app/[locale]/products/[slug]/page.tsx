@@ -100,7 +100,8 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {details.sampleCases.modules?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                  {(dict.products.detailLabels as any).modules || "机器人模块"}（6种）
+                  {(dict.products.detailLabels as any).modules || "机器人模块"}
+                  {details.sampleCases.modules.length ? `（${details.sampleCases.modules.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
                   items={details.sampleCases.modules}
@@ -114,7 +115,8 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {details.sampleCases.chassis?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                  {(dict.products.detailLabels as any).chassis || "机器人底盘"}（5种）
+                  {(dict.products.detailLabels as any).chassis || "机器人底盘"}
+                  {details.sampleCases.chassis.length ? `（${details.sampleCases.chassis.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
                   items={details.sampleCases.chassis}
@@ -128,7 +130,8 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {details.sampleCases.arms?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                  {(dict.products.detailLabels as any).arms || "机械臂构型"}（3种）
+                  {(dict.products.detailLabels as any).arms || "机械臂构型"}
+                  {details.sampleCases.arms.length ? `（${details.sampleCases.arms.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
                   items={details.sampleCases.arms}
@@ -142,13 +145,39 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {details.sampleCases.compositeRobots?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                  {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}（20种）
+                  {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
+                  {details.sampleCases.compositeRobots.length ? `（${details.sampleCases.compositeRobots.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
                   items={details.sampleCases.compositeRobots}
                   gridClassName="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
                   imageAspectClass="aspect-square"
                 />
+              </div>
+            ) : null}
+
+            {details.sampleCases.compositeGroups?.length ? (
+              <div className="mb-8">
+                <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
+                  {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
+                </h3>
+                <div className="space-y-4">
+                  {details.sampleCases.compositeGroups.map((group: any, i: number) => (
+                    <div key={i} className="rounded-lg border border-stroke bg-white p-5 dark:border-stroke-dark dark:bg-dark">
+                      <h4 className="mb-2 text-base font-semibold text-black dark:text-white">{group.title}</h4>
+                      {group.robots?.length ? (
+                        <ul className="space-y-1.5 text-sm text-body-color dark:text-body-color-dark">
+                          {group.robots.map((robot: string, idx: number) => (
+                            <li key={idx} className="flex items-start">
+                              <span className="mr-2 text-primary">•</span>
+                              <span>{robot}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : null}
           </div>
@@ -251,149 +280,167 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
           <div className="mt-12">
             <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{dict.products.detailLabels.experiments}</h2>
 
-            {/* Summary */}
             {details.experiments.summary && (
               <div className="mb-8 rounded-lg border border-primary/20 bg-primary/5 p-6 dark:border-primary/30 dark:bg-primary/10">
                 <p className="text-base leading-relaxed text-body-color dark:text-body-color-dark">{details.experiments.summary}</p>
               </div>
             )}
 
-            {/* Preparation */}
-            {details.experiments.preparation && (
-              <div className="mb-8">
-                <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">{details.experiments.preparation.title}</h3>
-                {details.experiments.preparation.description && (
-                  <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{details.experiments.preparation.description}</p>
-                )}
-                <ul className="list-disc pl-5 text-sm text-body-color dark:text-body-color-dark">
-                  {details.experiments.preparation.items.map((item: string, i: number) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {/* Module Basics */}
-              {details.experiments.moduleBasics && (
-                <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                  <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.moduleBasics.title}</h3>
-                  {details.experiments.moduleBasics.range && (
-                    <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.moduleBasics.range}</div>
-                  )}
-                  {details.experiments.moduleBasics.description && (
-                    <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.moduleBasics.description}</p>
-                  )}
-                  <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
-                    {details.experiments.moduleBasics.items.map((item: any, i: number) => (
-                      <li key={i}>
-                        {item.no && <strong className="text-primary">{item.no}｜</strong>}
-                        <strong>{item.name}：</strong>
-                        {item.desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Structure Design */}
-              {details.experiments.structureDesign && (
-                <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                  <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.structureDesign.title}</h3>
-                  {details.experiments.structureDesign.range && (
-                    <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.structureDesign.range}</div>
-                  )}
-                  {details.experiments.structureDesign.description && (
-                    <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.structureDesign.description}</p>
-                  )}
-                  <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
-                    {details.experiments.structureDesign.items.map((item: any, i: number) => (
-                      <li key={i}>
-                        {item.no && <strong className="text-primary">{item.no}｜</strong>}
-                        <strong>{item.name}：</strong>
-                        {item.desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Perception */}
-              {details.experiments.perception && (
-                <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                  <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.perception.title}</h3>
-                  {details.experiments.perception.range && (
-                    <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.perception.range}</div>
-                  )}
-                  {details.experiments.perception.description && (
-                    <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.perception.description}</p>
-                  )}
-                  <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
-                    {details.experiments.perception.items.map((item: any, i: number) => (
-                      <li key={i}>
-                        {item.no && <strong className="text-primary">{item.no}｜</strong>}
-                        <strong>{item.name}：</strong>
-                        {item.desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Comprehensive Projects */}
-              {details.experiments.comprehensiveProjects && (
-                <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                  <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.comprehensiveProjects.title}</h3>
-                  {details.experiments.comprehensiveProjects.range && (
-                    <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.comprehensiveProjects.range}</div>
-                  )}
-                  {details.experiments.comprehensiveProjects.description && (
-                    <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.comprehensiveProjects.description}</p>
-                  )}
-                  <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
-                    {details.experiments.comprehensiveProjects.items.map((item: any, i: number) => (
-                      <li key={i}>
-                        {item.no && <strong className="text-primary">{item.no}｜</strong>}
-                        <strong>{item.name}：</strong>
-                        {item.desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/* Extension Projects */}
-            {details.experiments.extensionProjects && (
-              <div className="mt-6">
-                <div className="mb-4 rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                  <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.extensionProjects.title}</h3>
-                  {details.experiments.extensionProjects.range && (
-                    <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.extensionProjects.range}</div>
-                  )}
-                  {details.experiments.extensionProjects.description && (
-                    <p className="text-sm text-body-color dark:text-body-color-dark">{details.experiments.extensionProjects.description}</p>
-                  )}
-                </div>
-
-                {details.experiments.extensionProjects.groups?.length ? (
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {details.experiments.extensionProjects.groups.map((group: any, i: number) => (
-                      <div key={i} className="rounded-lg border border-stroke bg-white p-5 dark:border-stroke-dark dark:bg-dark">
-                        <h4 className="mb-3 text-base font-semibold text-black dark:text-white">{group.chassis}</h4>
-                        <ul className="space-y-1.5 text-sm text-body-color dark:text-body-color-dark">
-                          {group.projects.map((project: string, j: number) => (
-                            <li key={j} className="flex items-start">
-                              <span className="mr-2 text-primary">•</span>
-                              <span>{project}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+            {Array.isArray((details.experiments as any).sections) ? (
+              <div className="space-y-6">
+                {(details.experiments as any).sections.map((section: any, i: number) => (
+                  <div key={i} className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                    <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{section.title}</h3>
+                    {section.description && (
+                      <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{section.description}</p>
+                    )}
+                    {section.items?.length ? (
+                      <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
+                        {section.items.map((item: any, idx: number) => (
+                          <li key={idx}>
+                            <strong>{item.name}</strong>
+                            {item.desc ? <>：{item.desc}</> : null}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                   </div>
-                ) : null}
+                ))}
               </div>
+            ) : (
+              <>
+                {details.experiments.preparation && (
+                  <div className="mb-8">
+                    <h3 className="mb-3 text-xl font-semibold text-black dark:text-white">{details.experiments.preparation.title}</h3>
+                    {details.experiments.preparation.description && (
+                      <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{details.experiments.preparation.description}</p>
+                    )}
+                    <ul className="list-disc pl-5 text-sm text-body-color dark:text-body-color-dark">
+                      {details.experiments.preparation.items.map((item: string, i: number) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  {details.experiments.moduleBasics && (
+                    <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.moduleBasics.title}</h3>
+                      {details.experiments.moduleBasics.range && (
+                        <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.moduleBasics.range}</div>
+                      )}
+                      {details.experiments.moduleBasics.description && (
+                        <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.moduleBasics.description}</p>
+                      )}
+                      <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
+                        {details.experiments.moduleBasics.items.map((item: any, i: number) => (
+                          <li key={i}>
+                            {item.no && <strong className="text-primary">{item.no}｜</strong>}
+                            <strong>{item.name}：</strong>
+                            {item.desc}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {details.experiments.structureDesign && (
+                    <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.structureDesign.title}</h3>
+                      {details.experiments.structureDesign.range && (
+                        <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.structureDesign.range}</div>
+                      )}
+                      {details.experiments.structureDesign.description && (
+                        <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.structureDesign.description}</p>
+                      )}
+                      <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
+                        {details.experiments.structureDesign.items.map((item: any, i: number) => (
+                          <li key={i}>
+                            {item.no && <strong className="text-primary">{item.no}｜</strong>}
+                            <strong>{item.name}：</strong>
+                            {item.desc}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {details.experiments.perception && (
+                    <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.perception.title}</h3>
+                      {details.experiments.perception.range && (
+                        <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.perception.range}</div>
+                      )}
+                      {details.experiments.perception.description && (
+                        <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.perception.description}</p>
+                      )}
+                      <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
+                        {details.experiments.perception.items.map((item: any, i: number) => (
+                          <li key={i}>
+                            {item.no && <strong className="text-primary">{item.no}｜</strong>}
+                            <strong>{item.name}：</strong>
+                            {item.desc}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {details.experiments.comprehensiveProjects && (
+                    <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.comprehensiveProjects.title}</h3>
+                      {details.experiments.comprehensiveProjects.range && (
+                        <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.comprehensiveProjects.range}</div>
+                      )}
+                      {details.experiments.comprehensiveProjects.description && (
+                        <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.experiments.comprehensiveProjects.description}</p>
+                      )}
+                      <ul className="space-y-2 text-sm text-body-color dark:text-body-color-dark">
+                        {details.experiments.comprehensiveProjects.items.map((item: any, i: number) => (
+                          <li key={i}>
+                            {item.no && <strong className="text-primary">{item.no}｜</strong>}
+                            <strong>{item.name}：</strong>
+                            {item.desc}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                {details.experiments.extensionProjects && (
+                  <div className="mt-6">
+                    <div className="mb-4 rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
+                      <h3 className="mb-2 text-lg font-semibold text-black dark:text-white">{details.experiments.extensionProjects.title}</h3>
+                      {details.experiments.extensionProjects.range && (
+                        <div className="mb-2 text-xs text-body-color dark:text-body-color-dark">{details.experiments.extensionProjects.range}</div>
+                      )}
+                      {details.experiments.extensionProjects.description && (
+                        <p className="text-sm text-body-color dark:text-body-color-dark">{details.experiments.extensionProjects.description}</p>
+                      )}
+                    </div>
+
+                    {details.experiments.extensionProjects.groups?.length ? (
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {details.experiments.extensionProjects.groups.map((group: any, i: number) => (
+                          <div key={i} className="rounded-lg border border-stroke bg-white p-5 dark:border-stroke-dark dark:bg-dark">
+                            <h4 className="mb-3 text-base font-semibold text-black dark:text-white">{group.chassis}</h4>
+                            <ul className="space-y-1.5 text-sm text-body-color dark:text-body-color-dark">
+                              {group.projects.map((project: string, j: number) => (
+                                <li key={j} className="flex items-start">
+                                  <span className="mr-2 text-primary">•</span>
+                                  <span>{project}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                )}
+              </>
             )}
           </div>
         )}

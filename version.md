@@ -34,6 +34,64 @@
 
 ---
 
+V1.11.0 feat(products): 新增GX-MAT-09S产品详情，重构实验体系与UI
+
+类型: feat, docs, ui, refactor
+
+范围: products, i18n, components, public
+
+说明:
+
+本次更新的核心是为产品线新增了一款旗舰级产品——“具身机器人创新设计平台（增强版）GX-MAT-09S”。我们为其创建了全面、高度结构化的产品详情页内容，涵盖了从产品概述、特性、样机案例到传感器、控制器、软件配置的全方位信息。特别地，我们为其设计了一套包含超过70个实验项目的全新实验体系，并对产品详情页的UI渲染逻辑进行了重构，以更好地展示这些深度内容。
+
+实现细节:
+
+1.  **新增 GX-MAT-09S 产品体系**
+    *   `src/i18n/locales/*.ts`: 在三种语言（中、英、日）的国际化文件中，为 `gx-mat-09s` 添加了完整且详尽的数据结构。
+        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+        *   **结构化实验体系**: 全面重构了 `experiments` 字段，将其设计为按 `sections` (章节) 组织的结构化大纲，涵盖了从“单片机”到“移动导航”的9大主题，共计78个具体实验项目，逻辑清晰，内容详实。
+        *   **样机案例分组**: 在 `sampleCases` 中引入了 `compositeGroups` 字段，用于分类展示基于不同底盘的复合机器人组合，使信息结构更有条理。
+
+2.  **产品详情页 UI 渲染升级**
+    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了多项重构，以适配新的数据结构。
+        *   **动态计数**: 样机案例部分的标题（如“机器人模块”、“机器人底盘”）现在会动态计算并显示其包含的种类数量。
+        *   **实验体系渲染**: 页面现在能够渲染新的、按章节划分的实验体系，将每个实验章节以独立的卡片形式展示，提升了可读性。
+        *   **分组列表展示**: 新增了对 `compositeGroups` 的渲染逻辑，以分组形式清晰地展示各类复合机器人。
+
+3.  **新增产品图片资源**
+    *   `public/images/products/gx-mat-09s/`: 为 GX-MAT-09S 新增了产品主图 (`hero.png`) 以及多张控制器图片（Arduino, RDK X5, STM32），并已在 `controllerConfig` 中正确引用。
+
+4.  **组件样式微调**
+    *   `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格中的图片添加了 `rounded-lg` 样式，使其视觉效果与网站整体风格更统一。
+
+文件变更:
+
+新增文件:
+- [`public/images/products/gx-mat-09s/hero.png`](public/images/products/gx-mat-09s/hero.png)
+- [`public/images/products/gx-mat-09s/controller/arduino-mega2560.png`](public/images/products/gx-mat-09s/controller/arduino-mega2560.png)
+- [`public/images/products/gx-mat-09s/controller/rdk-x5.png`](public/images/products/gx-mat-09s/controller/rdk-x5.png)
+- [`public/images/products/gx-mat-09s/controller/stm32f407.jpg`](public/images/products/gx-mat-09s/controller/stm32f407.jpg)
+
+修改文件:
+- [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以适配新数据)
+- [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx) (样式微调)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (新增GX-MAT-09S产品数据)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (新增GX-MAT-09S产品数据)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (新增GX-MAT-09S产品数据)
+
+改进效果:
+
+- **产品信息极大丰富**: GX-MAT-09S 成为网站上内容最详尽的产品，其专业性和深度为目标用户（高校师生、研究人员）提供了极高的参考价值。
+- **内容结构优化**: 新的实验体系和分组展示方式，使得复杂的产品信息更易于理解和消化。
+- **用户体验提升**: 动态计数和更具结构感的UI布局，提升了产品详情页的整体浏览体验。
+
+影响范围:
+
+- 网站新增 “GX-MAT-09S” 产品详情页。
+- 访问该页面的用户将能获取到关于此产品的全面、深入的信息。
+
+---
+
 V1.10.0 feat(products): 引入图片灯箱并全面更新产品体系
 
 类型: feat, ui, docs, refactor
