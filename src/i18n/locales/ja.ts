@@ -1860,6 +1860,12 @@ export const dictionary = {
         comingSoon: "QRコードをスキャンしてWeChat公式アカウントをフォローしてください",
       },
     },
+    cookieConsent: {
+      message: "当サイトでは、閲覧体験の向上とウェブサイト機能の改善のためにCookieを使用しています。",
+      learnMore: "詳細",
+      acceptAll: "すべて許可",
+      rejectNonEssential: "必要なもののみ",
+    },
     buttons: {
       readMore: "続きを読む",
       keepReading: "続きを読む",

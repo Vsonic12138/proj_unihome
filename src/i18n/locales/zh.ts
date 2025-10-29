@@ -1845,6 +1845,12 @@ export const dictionary = {
         comingSoon: "使用微信扫描二维码关注公众号",
       },
     },
+    cookieConsent: {
+      message: "我们使用 Cookie 来提升您的浏览体验和网站功能。",
+      learnMore: "了解更多",
+      acceptAll: "接受全部",
+      rejectNonEssential: "仅必要 Cookie",
+    },
     buttons: {
       readMore: "阅读更多",
       keepReading: "继续阅读",

@@ -11,7 +11,7 @@ export type DictionaryModule = Awaited<ReturnType<(typeof dictionaryLoaders)[Loc
 export type Dictionary = DictionaryModule["dictionary"];
 
 export const LOCALE_COOKIE = "startup-nextjs-language";
-export const DEFAULT_LOCALE: Locale = "en";
+export const DEFAULT_LOCALE: Locale = "zh";
 export const SUPPORTED_LOCALES = Object.keys(dictionaryLoaders) as Locale[];
 
 export const isValidLocale = (value: unknown): value is Locale => {

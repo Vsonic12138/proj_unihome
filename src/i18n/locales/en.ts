@@ -1880,6 +1880,12 @@ export const dictionary = {
         comingSoon: "Scan to follow our WeChat Official Account",
       },
     },
+    cookieConsent: {
+      message: "We use cookies to enhance your browsing experience and improve website functionality.",
+      learnMore: "Learn more",
+      acceptAll: "Accept All",
+      rejectNonEssential: "Essential Only",
+    },
     buttons: {
       readMore: "Read More",
       keepReading: "Keep Reading",

@@ -34,6 +34,59 @@
 
 ---
 
+V1.19.0 feat(privacy): 新增 Cookie 同意管理横幅，优化默认设置
+
+类型: feat, ui, chore
+
+范围: privacy, components, i18n, theme
+
+说明:
+
+本次更新引入了一个核心功能：一个符合隐私法规（如 GDPR）的 Cookie 同意管理横幅。此外，还对网站的初始默认设置进行了调整，将默认主题更改为“亮色”，默认语言更改为“中文”，以更好地服务于主要用户群体。
+
+实现细节:
+
+1.  **Cookie 同意管理功能**
+    *   `src/lib/cookieConsent.ts`: 新增了处理 Cookie 同意逻辑的核心模块。它提供了获取、设置和重置用户同意状态的功能，并将用户的选择存储在 Cookie 和 localStorage 中。
+    *   `src/components/Common/CookieConsent.tsx`: 创建了一个新的 React 组件，用于展示 Cookie 同意横幅。该组件具有响应式设计，并包含优雅的滑入/滑出动画效果。
+    *   `src/app/[locale]/layout.tsx`: 将 `CookieConsent` 组件集成到全局布局中，确保所有访问者都能看到。
+    *   `src/i18n/locales/(en|ja|zh).ts`: 为 Cookie 横幅的所有文本内容添加了对应的国际化翻译。
+
+2.  **UI 与动画增强**
+    *   `src/styles/index.css`: 新增了 `@keyframes slideUp` 和 `slideDownOut` 动画规则，用于控制横幅的出现和消失，提升了用户交互的流畅度。
+
+3.  **默认设置优化**
+    *   `src/app/providers.tsx`: 将 `ThemeProvider` 的 `defaultTheme` 从 `dark` 修改为 `light`，使网站首次加载时以亮色主题呈现。
+    *   `src/i18n/config.ts`: 将 `DEFAULT_LOCALE` 从 `en` 修改为 `zh`，使中文成为网站的默认语言。
+
+文件变更:
+
+新增文件:
+- [`src/components/Common/CookieConsent.tsx`](src/components/Common/CookieConsent.tsx:1) (新建 Cookie 同意横幅 UI 组件)
+- [`src/lib/cookieConsent.ts`](src/lib/cookieConsent.ts:1) (新增 Cookie 同意状态管理逻辑)
+
+修改文件:
+- [`src/app/[locale]/layout.tsx`](src/app/[locale]/layout.tsx:1) (在主布局中集成 Cookie 横幅)
+- [`src/app/providers.tsx`](src/app/providers.tsx:1) (将默认主题修改为亮色)
+- [`src/i18n/config.ts`](src/i18n/config.ts:1) (将默认语言修改为中文)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (添加 Cookie 横幅的英文文案)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (添加 Cookie 横幅的日文文案)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (添加 Cookie 横幅的中文文案)
+- [`src/styles/index.css`](src/styles/index.css:1) (为 Cookie 横幅添加滑入/滑出动画)
+
+改进效果:
+
+- **隐私合规性**: 引入了明确的用户同意机制，增强了网站的隐私保护和数据合规性。
+- **用户体验优化**: 调整了默认主题和语言，更符合目标用户的偏好，减少了用户初次访问时的操作成本。
+- **交互更友好**: 流畅的动画效果使 Cookie 横幅的出现和消失过程更加自然，不会对用户浏览造成干扰。
+
+影响范围:
+
+- 首次访问网站的用户将看到一个 Cookie 同意管理横幅。
+- 网站的默认外观将是亮色主题，默认语言将是中文。
+
+---
+
 V1.18.3 ui(header): 优化头部组件交互动画与语言顺序
 
 类型: ui
