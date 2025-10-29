@@ -104,6 +104,23 @@ export const dictionary = {
       ],
     },
     about: {
+      sectionOne: {
+        title: "About UNI Robotics",
+        description:
+          "UNI Robotics Technology (Beijing) Co., Ltd. is located in the Winter Olympics Plaza at Shougang Park, Shijingshan District, Beijing, partnering with Shougang Group to build a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics technology to teaching and research, continuously exploring practical application scenarios, and providing integrated hardware, software, and curriculum robotics products for universities, vocational colleges, and K12 institutions.",
+        highlights: [
+          "Embodied Intelligent Robotics",
+          "Industry-Academia-Research Integration",
+          "Progressive Learning System",
+          "Affordable Intelligent Products",
+          "Open-Source Community",
+          "Complete Education Solutions",
+        ],
+        image: {
+          src: "/images/about/company-mascot.png",
+          alt: "UNI Robotics Products",
+        },
+      },
       sectionTwo: {
         items: [
           {
@@ -198,7 +215,7 @@ export const dictionary = {
       about: {
         title: "About Us",
         description:
-          "Introduce the team's vision and capabilities so visitors can quickly understand our background and values.",
+          "Enabling everyone to joyfully connect with the intelligent future!",
       },
       contact: {
         title: "Contact Us",

@@ -34,6 +34,55 @@
 
 ---
 
+V1.16.0 feat(about): 新增“关于我们”页面内容模块，丰富公司介绍
+
+类型: feat, ui, docs
+
+范围: about, i18n, components
+
+说明:
+
+本次更新为“关于我们”页面增加了一个全新的内容区块，旨在更全面地介绍公司背景、核心优势与品牌形象。我们为此创建了新的UI组件，并补充了相应的中、英、日三语国际化文案与图片资源，提升了页面的信息承载能力和视觉表现力。
+
+实现细节:
+
+1.  **新增“关于我们”第一节内容**
+    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `about` 页面新增了 `sectionOne` 字段。
+        *   **内容扩充**: 填充了关于公司定位、业务重点的详细描述，并提炼了“具身智能机器人”、“产学研一体化”等六大核心亮点 (`highlights`)。
+        *   **品牌形象**: 引入了新的公司吉祥物图片资源，增强了品牌辨识度。
+    *   `src/app/about/AboutContent.tsx`: 更新了页面结构，将新内容节 `sectionOne` 动态渲染到页面中。
+
+2.  **创建可复用组件**
+    *   `src/components/About/AboutSectionOne.tsx`: 新建了一个独立的React组件，用于展示图文结合的内容区块。该组件负责渲染标题、描述、亮点标签和配图，具有良好的可复用性。
+
+3.  **更新页面引言**
+    *   `src/i18n/locales/*.ts`: 更新了“关于我们”页面的引言描述 (`pageIntro.about.description`)，使其更贴合品牌愿景——“让每个人都能快乐地链接未来智能！”。
+
+文件变更:
+
+新增文件:
+- [`public/images/about/company-mascot.png`](public/images/about/company-mascot.png) (新增公司吉祥物图片)
+- [`src/components/About/AboutSectionOne.tsx`](src/components/About/AboutSectionOne.tsx) (新建“关于”页面第一节内容的UI组件)
+
+修改文件:
+- [`src/app/about/AboutContent.tsx`](src/app/about/AboutContent.tsx) (集成并渲染新的内容节)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (Added content for the new about section and updated page description)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (Added content for the new about section and updated page description)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (为新的“关于”内容节添加文案并更新页面描述)
+
+改进效果:
+
+- **信息更丰富**: “关于我们”页面现在能更全面地展示公司的核心价值与业务特色。
+- **品牌形象更突出**: 新增的吉祥物图片和优化的文案有助于塑造更鲜明的品牌形象。
+- **代码结构优化**: 通过创建可复用组件，提升了代码的可维护性和扩展性。
+
+影响范围:
+
+- 网站的“关于我们”页面将展示新增的图文内容区块。
+- 访问该页面的用户将能获取到更详尽、更具吸引力的公司信息。
+
+---
+
 V1.15.0 refactor(products): 重构RAI-P4产品案例展示结构，提升内容清晰度
 
 类型: refactor, docs

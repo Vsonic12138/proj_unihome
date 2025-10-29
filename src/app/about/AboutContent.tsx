@@ -1,3 +1,4 @@
+import AboutSectionOne from "@/components/About/AboutSectionOne";
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import type { Dictionary } from "@/i18n/config";
@@ -17,6 +18,7 @@ const AboutContent = ({
         pageName={pageCopy.title}
         description={pageCopy.description}
       />
+      <AboutSectionOne sectionOne={aboutCopy.sectionOne} />
       <AboutSectionTwo items={aboutCopy.sectionTwo.items} />
     </>
   );

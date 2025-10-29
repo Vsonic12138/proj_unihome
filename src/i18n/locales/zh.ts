@@ -101,6 +101,23 @@ export const dictionary = {
       ],
     },
     about: {
+      sectionOne: {
+        title: "关于有你同创",
+        description:
+          "有你同创智能机器人科技（北京）有限公司坐落于北京市石景山首钢园冬奥广场内，携手首钢集团共同打造全球领先的具身智能创新平台。我们专注于将具身智能机器人技术应用于教学研究，持续探索落地应用场景，为高校、职校、K12提供集硬件、软件、课程的教育机器人产品。",
+        highlights: [
+          "具身智能机器人",
+          "产学研一体化",
+          "递进式学习体系",
+          "低成本智能产品",
+          "开源共享社区",
+          "完整教育解决方案",
+        ],
+        image: {
+          src: "/images/about/company-mascot.png",
+          alt: "有你同创智能机器人产品",
+        },
+      },
       sectionTwo: {
         items: [
           {
@@ -193,7 +210,7 @@ export const dictionary = {
       about: {
         title: "关于我们",
         description:
-          "介绍团队愿景与能力，帮助访客快速了解我们的背景与价值观。",
+          "让每个人都能快乐地链接未来智能！",
       },
       contact: {
         title: "联系我们",
