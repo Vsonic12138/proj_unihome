@@ -268,7 +268,7 @@ export const dictionary = {
                 slug: "ubot-mr20",
                 name: "Embodied Robotics Innovation Kit Ubot MR20",
                 model: "Ubot MR20",
-                image: "/images/products/ubot-mr20-main.jpg",
+                image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
                 brief: "Embodied intelligence robot innovation design kit (20-in-1). Combined with AI general education practice kit, build 20+ intelligent robots from scratch, supports block-based/C++/Python multi-language programming.",
               },
               {
@@ -291,23 +291,23 @@ export const dictionary = {
                 slug: "rai-p4",
                 name: "Embodied Robot Task Planning Training Platform RAI-P4",
                 model: "RAI-P4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-p4/rai-p4-hero.png",
                 brief:
-                  "Built-in AI voice/vision; 4-DOF arm; ROS2 support. For LLM apps, computer vision, and ROS courses.",
+                  "Desktop embodied-intelligence lab integrating AI voice/vision, a 4-DOF arm, and ROS2 for plan–sense–act experiments.",
               },
               {
                 slug: "uni-wr2",
                 name: "Portable ROS Navigation Learning Platform UNI-WR2",
                 model: "UNI-WR2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/uni-wr2/uni-wr2-hero.png",
                 brief:
-                  "Compact (<13cm); desktop deployment (60×60cm); 3 navigation modes. For ROS and mobile robotics.",
+                  "Sub-13 cm portable ROS robot for 60×60 cm desktop SLAM; five-step engineering workflow with Catographer/Hector/Gmapping.",
               },
               {
                 slug: "rai-q2",
                 name: "Embodied Vision Perception & Decision Training Platform RAI-Q2",
                 model: "RAI-Q2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-q2/hero.png",
                 brief:
                   "Depth camera + precision rotary/lift stages; supports OpenCV/YOLO/VLM. For vision and ML courses.",
               },
@@ -315,7 +315,7 @@ export const dictionary = {
                 slug: "rai-m4",
                 name: "Embodied Composite Robot System Design Training Platform RAI-M4",
                 model: "RAI-M4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-m4/front-view.png",
                 brief:
                   "Mecanum omni chassis + 4-axis arm; connects DeepSeek/Qwen. For mobile navigation and LLM deployment.",
               },
@@ -323,7 +323,7 @@ export const dictionary = {
                 slug: "alo-le4",
                 name: "Embodied Robot Manipulation Planning Training Platform ALO-LE4",
                 model: "ALO-LE4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/alo-le4/front-view.png",
                 brief:
                   "Two 5-DOF arms (master-follower), ACT architecture, adjustable lighting. For imitation learning and end-to-end control.",
               },
@@ -386,7 +386,7 @@ export const dictionary = {
           name: "Ubot MR20",
           subtitle: "Embodied Intelligence Robot Innovation Design Kit (20-in-1)",
           model: "Ubot MR20",
-          image: "/images/products/ubot-mr20-main.jpg",
+          image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
           overview: "Ubot MR20 is an AI general education practice kit combined with robotics. Learners can build over 20 different intelligent robots from scratch, incorporating voice recognition to understand AI applications in robotics. Learners can also develop intelligent features such as obstacle avoidance, line tracking, and posture detection through block-based programming, C++, or Python programming.",
           applicable: "K12, vocational/college year 1, undergraduate freshmen",
           features: [
@@ -940,123 +940,726 @@ export const dictionary = {
         },
         "rai-p4": {
           name: "Embodied Robot Task Planning Training Platform RAI-P4",
+          subtitle: "Embodied Robotics Task Planning Comprehensive Training Platform",
           model: "RAI-P4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-p4/rai-p4-hero.png",
           overview:
-            "Integrated AI voice/vision with a 4-DOF arm and ROS2 support, ideal for planning and perception teaching.",
-          highlights: ["AI voice/vision", "4-DOF arm", "ROS2 support"],
-          applicable: "LLM apps, computer vision, ROS",
-          configuration: [
-            "4-DOF robotic arm (reach ≥ 260 mm, payload ≥ 300 g)",
-            "2-DOF gimbal with 720p camera",
-            "RDK X5 board (10 TOPS)",
+            "RAI-P4 is an embodied intelligence training platform that tightly couples AI technologies with robotics. It integrates AI speech, AI vision, a representative 4-DOF manipulator, sensors commonly used in embodied robots, and an AI edge controller so learners can deploy and debug intelligent algorithms on real hardware—bridging theoretical coursework with comprehensive practice.\n\nThe curriculum follows a plan–perceive–act workflow, covering voice dialogue, task semantic understanding, vision-based pan-tilt tracking, vision-guided arm handling, manipulator trajectory control, AI vision fruit detection, and more.",
+          applicable:
+            "Ideal for university programs in artificial intelligence, robotics, automation, and computer science that span LLM applications, computer vision, machine learning, deep learning, embedded development, sensing and control, ROS, robotics, simulation, and intelligent system integration.",
+          highlights: [
+            "Unified platform for AI speech, AI vision, and manipulator control",
+            "Desktop-friendly footprint (60 cm × 60 cm) for rapid deployment",
+            "Progressive path supporting 4-DOF through 6-DOF manipulators"
           ],
-          experiments: [
-            "48 class hours: robotic arm control (kinematics / interpolation)",
-            "AI vision (YOLO / face tracking)",
-            "LLM applications (ASR / LLM / TTS)",
-            "ROS2 development",
+          features: [
+            {
+              title: "Integrated AI and robotics stack",
+              content:
+                "Built around the requirements of an intelligent manipulator, the platform combines AI speech interaction, AI vision recognition, an AI edge board, and sensors such as color recognition and IMU modules—supporting the full chain from perception to decision and execution."
+            },
+            {
+              title: "Ready-to-run teaching deployment",
+              content:
+                "Hardware and software are pre-aligned at the factory. No extra PCs or tooling are needed; a 60 cm × 60 cm desktop is enough to launch experiments in labs, innovation studios, or mobile workshops."
+            },
+            {
+              title: "Progressive manipulator training",
+              content:
+                "Starts with a 4-DOF serial manipulator and scales to typical 6-DOF configurations. Complementary exercises cover kinematics, motion control, simulation, and ROS so students can advance step by step."
+            }
           ],
+          sampleCases: {
+            description:
+              "Sample scenarios follow the plan–perceive–act pipeline: the planning workflow diagram links software logic with hardware execution, while the manipulator scenario demonstrates coordinated vision handling and kinematic control.",
+            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            modulesImageAspectClass: "aspect-[21/10]",
+            modulesCardClassName: "w-full p-6",
+            modules: [
+              { name: "Task planning workflow overview", image: "/images/products/rai-p4/rai-p4-task-planning.png" }
+            ],
+            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            compositeRobotsImageAspectClass: "aspect-[21/10]",
+            compositeRobotsCardClassName: "w-full p-6",
+            compositeRobots: [
+              {
+                name: "Vision handling & kinematics practice",
+                image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+              }
+            ]
+          },
+          sensorConfig: {
+            description:
+              "Provides multimodal inputs required for embodied task planning, covering speech, vision, and motion feedback.",
+            list: [
+              "AI speech interaction microphone array",
+              "Vision pan-tilt camera module",
+              "Color recognition sensor",
+              "Posture sensing IMU",
+              "Expandable ports for object recognition / distance sensing"
+            ]
+          },
+          controllerConfig: {
+            description:
+              "An AI edge board with open I/O delivers both LLM/vision inference and manipulator/peripheral control, ensuring tight hardware–software integration."
+          },
+          softwareConfig: {
+            description:
+              "Ships with Ubuntu and ROS2 (roscore, RViz, MoveIt), plus Jupyter, VS Code, and Python 3.9 so classes can start deploying algorithms immediately.",
+            ecosystem:
+              "Compatible with mainstream AI/robotics ecosystems such as OpenCV, YOLO, LLM SDKs, and MoveIt, supporting both teaching and research.",
+            imageGridClassName: "grid grid-cols-1 gap-4 place-items-center max-w-4xl mx-auto",
+            imageWrapperClassName: "relative aspect-[28/9] w-full",
+            figureClassName:
+              "w-full overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            showCaptions: false,
+            images: [
+              {
+                src: "/images/products/rai-p4/rai-p4-software-suite.png",
+                alt: "Ubuntu / ROS / RViz / VS Code / Python software suite"
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "More than 40 sub-projects span manipulator control, sensing, computer vision, LLM voice dialogue, system integration, ROS, and embedded development, enabling cross-disciplinary skill building.",
+            sections: [
+              {
+                title: "Manipulator control fundamentals",
+                items: [
+                  { name: "Kinematics control", desc: "4 class hours | Build forward/inverse kinematics and joint trajectory planning for the 4-DOF arm." },
+                  { name: "Linear interpolation control", desc: "2 class hours | Execute end-effector linear trajectories and manage velocity/acceleration profiles." },
+                  { name: "Circular interpolation control", desc: "2 class hours | Generate spatial arc trajectories while maintaining attitude control." },
+                  { name: "Pick-and-place planning", desc: "4 class hours | Combine coordinate calibration and grasp strategies to plan multi-point handling." },
+                  { name: "Drawing geometric patterns", desc: "4 class hours | Produce planar geometric figures through custom trajectory generation." }
+                ]
+              },
+              {
+                title: "Sensor acquisition & control",
+                items: [
+                  { name: "IMU data acquisition", desc: "2 class hours | Read posture sensor data, complete orientation estimation, and apply filtering." },
+                  { name: "Gesture-controlled manipulator", desc: "2 class hours | Drive the manipulator via posture sensor input for embodied interaction." }
+                ]
+              },
+              {
+                title: "Computer vision basics (OpenCV)",
+                items: [
+                  { name: "Color recognition", desc: "2 class hours | Convert color spaces and segment targets with OpenCV." },
+                  { name: "Shape recognition", desc: "2 class hours | Extract contours and match geometric features to classify shapes." }
+                ]
+              },
+              {
+                title: "AI vision (YOLO)",
+                items: [
+                  { name: "YOLO deployment", desc: "2 class hours | Deploy YOLO on the embedded board for real-time inference." },
+                  { name: "Face detection", desc: "2 class hours | Load pretrained weights to detect faces and output bounding boxes." },
+                  { name: "Face tracking", desc: "2 class hours | Combine the pan-tilt unit and vision feedback for dynamic face tracking." },
+                  { name: "Dataset annotation", desc: "2 class hours | Annotate detection datasets and handle format conversions." },
+                  { name: "Model training & deployment", desc: "2 class hours | Fine-tune, quantize, and deploy YOLO models." },
+                  { name: "Workpiece inspection", desc: "2 class hours | Build application-specific detection to classify and localize workpieces." }
+                ]
+              },
+              {
+                title: "AI vision (Tongyi Qianwen multimodal)",
+                items: [
+                  { name: "Multimodal API deployment", desc: "2 class hours | Call the Tongyi Qianwen API for image understanding and text generation." },
+                  { name: "Fruit detection & labeling", desc: "2 class hours | Use Tongyi Qianwen to recognize fruit targets and generate semantic labels." }
+                ]
+              },
+              {
+                title: "LLM applications (AI voice dialogue)",
+                items: [
+                  { name: "ASR deployment", desc: "2 class hours | Configure the Tongyi Qianwen ASR service to parse voice input." },
+                  { name: "LLM semantic planner", desc: "2 class hours | Deploy DeepSeek to handle intent understanding and task planning." },
+                  { name: "TTS deployment", desc: "2 class hours | Integrate Volcano Engine TTS for natural voice responses." },
+                  { name: "End-to-end voice dialogue", desc: "2 class hours | Chain ASR, LLM, and TTS to build a full conversational loop." },
+                  { name: "Function-call voice calculator", desc: "2 class hours | Implement voice-driven calculations via LLM function calls." },
+                  { name: "Function-call music playback", desc: "2 class hours | Control music retrieval and playback through voice commands." },
+                  { name: "Function-call pan-tilt task planner", desc: "4 class hours | Use voice instructions to drive pan-tilt tracking and target search." },
+                  { name: "Function-call manipulator task planner", desc: "4 class hours | Trigger vision-based positioning and grasping through voice commands." }
+                ]
+              },
+              {
+                title: "Robotic system integration",
+                items: [
+                  { name: "Socket communication", desc: "2 class hours | Build a socket channel and exchange commands between subsystems." },
+                  { name: "Vision-driven manipulator tracking", desc: "4 class hours | Map vision data to the manipulator coordinate frame for dynamic tracking." },
+                  { name: "Vision–manipulator hand–eye calibration", desc: "2 class hours | Complete hand–eye calibration to map pixels to poses." },
+                  { name: "Vision-based sorting", desc: "4 class hours | Combine perception, planning, and execution to complete sorting tasks." }
+                ]
+              },
+              {
+                title: "ROS (Robot Operating System)",
+                items: [
+                  { name: "Run a ROS2 project quickly", desc: "2 class hours | Create, build, and run ROS2 workspaces." },
+                  { name: "Build and port ROS2 packages", desc: "2 class hours | Create packages, manage dependencies, and port functionality." },
+                  { name: "MoveIt configuration", desc: "2 class hours | Configure MoveIt scenes, import collision models, and validate planning." },
+                  { name: "4-DOF MoveIt/RViz simulation", desc: "2 class hours | Control the 4-DOF arm in RViz and verify trajectories." }
+                ]
+              },
+              {
+                title: "Embedded system development",
+                items: [
+                  { name: "Ubuntu filesystem essentials", desc: "1 class hour | Learn common directory structures and file commands." },
+                  { name: "Editor familiarization (vi / nano)", desc: "1 class hour | Practice terminal editor basics and configuration." },
+                  { name: "Remote access setup (SSH / PuTTY)", desc: "2 class hours | Configure remote connections for collaborative development." },
+                  { name: "Linux file I/O programming", desc: "2 class hours | Implement file read/write with proper exception handling." },
+                  { name: "Serial communication", desc: "2 class hours | Exchange serial data and design simple protocols." },
+                  { name: "Process / thread management", desc: "2 class hours | Understand Linux processes and threads and write sample programs." },
+                  { name: "Interface design", desc: "2 class hours | Quickly build human–machine interfaces with Python/Qt." }
+                ]
+              }
+            ]
+          },
           specs: [
-            "AI compute board delivering ≥ 9 TOPS performance",
-            "Controller supports 8-channel servo drive",
-          ],
+            "Footprint: deployment on a 60 cm × 60 cm desktop",
+            "Manipulator platform: 4-DOF standard, expandable to 6-DOF",
+            "Computing platform: integrated AI edge controller supporting LLM and vision workloads"
+          ]
         },
         "rai-m4": {
           name: "Embodied Composite Robot System Design Training Platform RAI-M4",
           model: "RAI-M4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-m4/front-view.png",
           overview:
-            "Mecanum omni-directional chassis with a 4-axis arm and LLM connectivity for system design and navigation.",
-          highlights: ["Mecanum omni chassis", "4-axis arm", "LLM connectivity"],
-          applicable: "Mobile navigation, LLM deployment",
-          configuration: [
-            "Four-wheel mecanum chassis (0.5 m/s speed, 10 kg payload)",
-            "4-axis robotic arm (reach > 220 mm, payload ≥ 200 g)",
-            "LiDAR (0.12–8 m detection range)",
-            "2 MP camera",
+            "Embodied intelligence can be decomposed into task planning, perception & decision-making, and manipulation. Each stage benefits from AI to improve interaction, reasoning, and execution. RAI-M4 integrates DeepSeek and Qwen to interpret free-form conversations at the planning layer, translating natural language into executable robotic workflows; on the perception side, Qwen’s multimodal capabilities enable broad object understanding without bespoke pre-training.\n\nHardware-wise, RAI-M4 combines a mecanum omni-directional chassis for agile motion with a serial 4-DOF manipulator (300 g payload, 240 mm reach, equipped with a gripper). The sensing suite includes an HD camera (optional depth camera), LiDAR, IMU/gyroscope, and breathing light indicators for interaction feedback.\n\nA dual-controller architecture powers the system: an upper controller handles planning, perception, navigation, and kinematic algorithms for both chassis and arm, while the lower controller executes motor PID loops, drives interactive modules, and relays communications. The platform supports hands-on curricula in mobile robotics and large-model deployment, fitting programmes in robotics, mechatronics, intelligent manufacturing, automation, and electronic information.",
+          highlights: [
+            "Hybrid platform: mecanum chassis plus 4-DOF manipulator",
+            "DeepSeek + Qwen large-model integration for planning and perception",
+            "Course-ready framework for mobile robotics and LLM deployment",
           ],
-          experiments: [
-            "Machine vision (OpenCV / YOLO / multimodal detection)",
-            "LLM deployment (voice dialogue / task planning)",
-            "ROS navigation (mapping / obstacle avoidance)",
+          applicable:
+            "Ideal for courses on mobile robot control, LLM deployment, robotics, computer vision, ROS, and mobile navigation/localization",
+          features: [
+            {
+              title: "Deep large-model integration",
+              content:
+                "Qwen-powered ASR and DeepSeek-based LLM understanding equip the robot with natural-language task planning, while Qwen’s multimodal vision removes the need for customised datasets."
+            },
+            {
+              title: "Mobile-and-manipulation composite platform",
+              content:
+                "The mecanum chassis and serial arm operate together in confined workspaces, enabling general-purpose tasks when combined with task planning and perception pipelines.",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "Module composition overview", image: "/images/products/rai-m4/module-overview.png" }
+              ]
+            },
+            {
+              title: "Structured experiment roadmap",
+              content:
+                "Curricula are modularised around machine vision, large-model deployment, robotics, ROS, and navigation so instructors can mix and match modules that fit their teaching needs."
+            }
           ],
+          sensorConfig: {
+            description:
+              "A comprehensive sensing suite supports navigation, perception, and interactive feedback.",
+            list: [
+              "HD camera (optional upgrade to depth camera for 3D perception)",
+              "360° LiDAR (0.12–8 m range)",
+              "IMU / gyroscope for pose estimation and odometry refinement",
+              "Breathing light and status indicators",
+              "Expansion ports for touch displays or additional sensors"
+            ]
+          },
+          sampleCases: {
+            description:
+              "Multi-angle imagery showcases RAI-M4’s chassis, manipulator, and sensor modules to simplify lab setup and scenario design.",
+            sections: [
+              {
+                title: "Multi-angle gallery",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "Front view", image: "/images/products/rai-m4/front-view.png" },
+                  { name: "Left view", image: "/images/products/rai-m4/left-view.png" },
+                  { name: "Right view", image: "/images/products/rai-m4/right-view.png" },
+                  { name: "Top view", image: "/images/products/rai-m4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "Dual-controller design: the upper controller manages planning, perception, navigation, and kinematics, while the lower controller delivers motor PID control, manipulator actuation, and interactive I/O, acting as the bridge to the upper layer.",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "Ships with Ubuntu + ROS2, MoveIt, YOLO inference, and Qwen / DeepSeek API examples so labs can immediately begin combined mobile robotics and LLM experiments.",
+            ecosystem:
+              "Supports Python / C++, ROS2, MoveIt, OpenCV, YOLO, Qwen SDK, DeepSeek API, and other mainstream frameworks for coursework and research extensions."
+          },
+          experiments: {
+            summary:
+              "Experiment tracks span machine vision, large-model deployment, robot body control, ROS operations, and mobile navigation, allowing flexible lesson planning.",
+            sections: [
+              {
+                title: "Machine vision module",
+                description: "Build a full pipeline from classical image processing to deep/multimodal perception.",
+                items: [
+                  {
+                    name: "OpenCV vision",
+                    desc: "HSV colour recognition; shape recognition; QR code recognition; barcode recognition; colour-ring detection (integration + filtering)"
+                  },
+                  {
+                    name: "AI vision – YOLO",
+                    desc: "YOLO deployment; dataset annotation; model training and deployment; workpiece data collection and inspection; face detection; face tracking"
+                  },
+                  { name: "AI vision – Qwen multimodal", desc: "Qwen multimodal API deployment; object detection and tagging" }
+                ]
+              },
+              {
+                title: "Large-model deployment & applications",
+                description: "Focus on voice dialogue, multimodal perception, and embodied execution.",
+                items: [
+                  {
+                    name: "Voice dialogue interaction",
+                    desc:
+                      "ASR deployment with Qwen; LLM semantic understanding with DeepSeek; TTS deployment with Volcano Engine; end-to-end voice dialogue; voice-enabled calculator; voice-triggered music playback"
+                  },
+                  { name: "Multimodal vision detection", desc: "Qwen multimodal API deployment; object detection and annotation" },
+                  { name: "Robot-integrated scenarios", desc: "MCP-based grasping task planning; MCP-based navigation task planning" }
+                ]
+              },
+              {
+                title: "Robot body control module",
+                description: "Practise kinematics and control for both chassis and manipulator.",
+                items: [
+                  { name: "Chassis control", desc: "Encoder-based motor PID; mecanum kinematics; mecanum odometry with gyroscope fusion" },
+                  { name: "Manipulator control", desc: "Servo position control; manipulator kinematics; motion interpolation control" }
+                ]
+              },
+              {
+                title: "ROS operations module",
+                description: "Develop ROS topic/service/parameter skills plus MoveIt planning.",
+                items: [
+                  {
+                    name: "ROS fundamentals",
+                    desc:
+                      "Control turtlesim via topics/services/parameters; spawn additional turtles; port and run packages to drive turtlesim with the keyboard"
+                  },
+                  { name: "MoveIt arm planning", desc: "Configure arm URDF; set up MoveIt kinematics; use RViz for motion planning" }
+                ]
+              },
+              {
+                title: "Mobile navigation & localization module",
+                description: "Cover interfaces, mapping, and navigation with multi-goal support.",
+                items: [
+                  { name: "Interface configuration", desc: "Keyboard teleop for chassis; keyboard teleop for manipulator; acquire LiDAR data" },
+                  { name: "Mapping workflow", desc: "Configure mapping project files; craft launch files; build new maps" },
+                  {
+                    name: "Navigation workflow",
+                    desc: "Configure Navigation project; define collision boundaries; point-to-point navigation; autonomous obstacle avoidance; multi-goal navigation"
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "Edge controller RDK X5 (10 TOPS compute)",
-            "YOLOv8 face detection at 100 fps (reference metric)",
+            "Mecanum omni chassis (approx. 0.5 m/s max speed, 10 kg payload)",
+            "4-DOF serial manipulator (240 mm reach, 300 g payload, gripper included)",
+            "Dual-controller architecture (upper for planning, lower for PID and I/O)",
+            "Preinstalled LLM interfaces plus ROS2 / MoveIt experiment stack"
           ],
         },
         "rai-q2": {
           name: "Embodied Vision Perception & Decision Training Platform RAI-Q2",
           model: "RAI-Q2",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-q2/hero.png",
           overview:
-            "Depth camera and precision motion stages supporting OpenCV/YOLO/VLM for vision and ML instruction.",
-          highlights: ["Depth camera", "Precision stages", "OpenCV/YOLO/VLM"],
-          applicable: "Computer vision, machine learning",
-          configuration: [
-            "Depth camera (0.6–8 m range, 1280×720@90 fps)",
-            "High-precision turntable (switchable speed/position modes)",
-            "22-inch display",
+            "Vision inspection is the most common perception-and-decision stage in embodied intelligence. RAI-Q2 fuses signature vision algorithms with real teaching scenarios, covering tiered curricula built on OpenCV, YOLO, and Qwen-VL so instructors can land vision-focused courses quickly.\n\nThe platform ships with a depth camera module, edge computing controller, precision turntable with adjustable speed and angle profiles, a millimeter-level lift stage that switches between manual and motor drive, a dimmable ring light, display, and Bluetooth keyboard/mouse. The all-in-one configuration dramatically lowers deployment overhead for computer vision, machine learning, and multimodal/LLM application classes.",
+          highlights: [
+            "Three-tier vision pipeline covering OpenCV, YOLO, and Qwen-VL",
+            "0.3°-backlash turntable plus mm-level lift stage with dimmable ring light",
+            "Modular components support high-speed camera swaps and gimbal builds",
           ],
-          experiments: [
-            "OpenCV vision (color / shape recognition)",
-            "YOLO deployment (face detection / tracking)",
-            "Depth sensing (3D modeling)",
-            "LLM multimodal interface deployment",
+          applicable: "Courses in computer vision, machine learning, and multimodal / LLM deployments",
+          features: [
+            {
+              title: "Comprehensive vision pipelines",
+              content:
+                "Learners experience three complementary curricula: classic image processing with OpenCV, model-driven detection with YOLO, and multimodal reasoning with Qwen-VL, building proficiency from fundamentals through large-model inference."
+            },
+            {
+              title: "High-precision all-parameter testbench",
+              content:
+                "The integrated joint-driven turntable offers 0.3° minimum backlash with speed/angle dual modes. A dual-layer magnetic deck keeps fasteners out of the camera view, while the lift stage provides mm-level adjustment via manual crank or servo drive. A dimmable ring light adapts to diverse lighting environments.",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "Vision pipeline overview", image: "/images/products/rai-q2/feature-overview.png" }
+              ]
+            },
+            {
+              title: "Modular hardware architecture",
+              content:
+                "Core modules can be replaced or repositioned: swap the depth camera for a high-speed unit, relocate the lift stage onto the turntable to build a gimbal, and customise the rig for specific coursework or research goals."
+            }
           ],
+          sensorConfig: {
+            description: "A full sensor suite tailored for vision perception and depth-sensing experiments with multimodal inputs.",
+            list: [
+              "Depth camera module supporting RGB, depth, and infrared feeds",
+              "Dimmable ring light with multiple brightness levels for contrast control",
+              "Expansion interface for high-speed cameras or auxiliary lighting",
+              "Turntable angle encoder feedback and lift travel sensing"
+            ]
+          },
+          sampleCases: {
+            description:
+              "Multi-angle imagery presents the overall structure of RAI-Q2, making it easy to understand the layout of the turntable, lift stage, and camera modules when preparing teaching scenarios.",
+            sections: [
+              {
+                title: "Multi-angle appearance showcase",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "Front view", image: "/images/products/rai-q2/front-view.png" },
+                  { name: "Side view", image: "/images/products/rai-q2/side-view.png" },
+                  { name: "Top view", image: "/images/products/rai-q2/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "An onboard edge controller handles algorithm inference and motion orchestration, tightly integrating the turntable and lift drives for precise attitude control.",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "Preloaded environments for OpenCV, YOLO deployment, and Qwen-VL APIs allow classes to jump straight into vision experiments.",
+            ecosystem:
+              "Supports Python and C++ development with compatibility for PyTorch, TensorRT, and Qwen SDKs, enabling rapid extension into model training or advanced deployments."
+          },
+          experiments: {
+            summary:
+              "Layered experiment sets guide students through OpenCV processing, YOLO engineering workflows, Qwen-VL multimodal inference, and depth sensing—each with recommended durations for straightforward lesson planning.",
+            sections: [
+              {
+                title: "OpenCV vision",
+                description: "Build the foundation by mastering essential image processing and recognition routines.",
+                items: [
+                  { name: "HSV color recognition", desc: "Recommended duration: 2 hours" },
+                  { name: "Shape recognition", desc: "Recommended duration: 2 hours" },
+                  { name: "QR code recognition", desc: "Recommended duration: 2 hours" },
+                  { name: "Barcode recognition", desc: "Recommended duration: 2 hours" },
+                  { name: "Color ring detection (integration + filtering)", desc: "Recommended duration: 4 hours" }
+                ]
+              },
+              {
+                title: "AI vision – YOLO",
+                description: "Walk through the end-to-end engineering pipeline from data collection to deployment.",
+                items: [
+                  { name: "YOLO deployment", desc: "Recommended duration: 2 hours" },
+                  { name: "Dataset annotation", desc: "Recommended duration: 2 hours" },
+                  { name: "Model training & deployment", desc: "Recommended duration: 2 hours (requires an additional GPU ≥ RTX 4050)" },
+                  { name: "Workpiece data capture & inspection", desc: "Recommended duration: 2 hours" },
+                  { name: "Face detection", desc: "Recommended duration: 2 hours" },
+                  { name: "Face tracking", desc: "Recommended duration: 4 hours" }
+                ]
+              },
+              {
+                title: "AI vision – Qwen large model",
+                description: "Experience multimodal large-model capabilities within vision assignments.",
+                items: [
+                  { name: "Qwen multimodal API deployment", desc: "Recommended duration: 2 hours" },
+                  { name: "Fruit detection & annotation", desc: "Recommended duration: 2 hours" }
+                ]
+              },
+              {
+                title: "Depth sensing",
+                description: "Leverage the depth camera for accurate range sensing and 3D reconstruction.",
+                items: [
+                  { name: "Depth data acquisition", desc: "Recommended duration: 2 hours" },
+                  { name: "3D modeling", desc: "Recommended duration: 4 hours" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "Edge controller RDK X5 (10 TOPS compute)",
-            "Turntable maximum speed 40 rpm",
+            "Turntable with 0.3° minimum backlash and dual speed/angle modes",
+            "Lift stage with millimeter-level resolution, supporting manual and motor drive",
+            "Dimmable ring light to match varied illumination scenarios",
+            "Integrated edge controller and display for turnkey deployment"
           ],
         },
         "uni-wr2": {
           name: "Portable ROS Navigation Learning Platform UNI-WR2",
+          subtitle: "Desktop ROS / SLAM Integrated Training Platform",
           model: "UNI-WR2",
-          image: "/images/video/video.jpg",
+          image: "/images/products/uni-wr2/uni-wr2-hero.png",
           overview:
-            "A compact desktop ROS navigation platform enabling quick setup for lab exercises.",
-          highlights: ["<13cm compact", "60×60cm desktop", "3 navigation modes"],
-          applicable: "ROS, mobile robotics",
-          configuration: [
-            "Full-metal chassis",
-            "Raspberry Pi controller (preloaded with ROS)",
-            "LiDAR (0.1–12 m detection range)",
-            "7-bit encoder motors",
+            "UNI-WR2 is a portable desktop robot designed specifically for ROS and SLAM navigation instruction. It supports courses such as “Robot Operating System (ROS)”, “Mobile Robot Navigation and Localization”, and “Automatic Control Theory (PID)”. Compared with approaches that rely solely on simulation or require large dedicated spaces, UNI-WR2 delivers portable hardware, desktop deployment, and a five-step ROS engineering workflow so learners can debug navigation algorithms and deploy ROS packages on a real robot anytime, anywhere.",
+          applicable:
+            "Created for university and training programs in robotics, automation, computer science, and mechatronics that cover ROS foundations, SLAM navigation, PID control, and mobile robotics engineering practice.",
+          highlights: [
+            "Ultra-portable: under 13 cm long, <550 g, Type-C charging with ~4-hour runtime",
+            "Agile desktop deployment: complete SLAM navigation within a 60 cm × 60 cm workspace",
+            "Engineering workflow: five-step ROS deployment with Catographer, Hector, and Gmapping"
           ],
-          experiments: [
-            "24 class hours: ROS fundamentals (package porting)",
-            "SLAM deployment (full-parameter tuning across three navigation modes)",
-            "Kinematic control (PID speed control)",
+          features: [
+            {
+              title: "Portable learning form factor",
+              content:
+                "An all-metal, palm-sized chassis with built-in Type-C charging—simply plug into a power bank to continue experiments, perfect for classrooms, labs, and travel scenarios.",
+              mediaGridClassName: "grid-cols-1 sm:grid-cols-2 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "Portable design", image: "/images/products/uni-wr2/uni-wr2-feature-portable.png" },
+                { name: "Type-C charging", image: "/images/products/uni-wr2/uni-wr2-feature-charging.png" },
+                { name: "Agile deployment (1)", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-1.png" },
+                { name: "Agile deployment (2)", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-2.png" }
+              ]
+            },
+            {
+              title: "Desktop SLAM environment",
+              content:
+                "A 60 cm × 60 cm tabletop is enough to build SLAM scenarios. Learners can adjust the robot without leaving their seat, and modular floor tiles expand to 1.2 m × 1.2 m or beyond when needed.",
+              mediaGridClassName: "grid-cols-1 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "Desktop layout overview", image: "/images/products/uni-wr2/uni-wr2-desktop-layout.png" }
+              ]
+            },
+            {
+              title: "ROS engineering workflow",
+              content:
+                "Breaks the ROS deployment flow into five steps—principle review, quick demonstration, framework breakdown, package configuration, and full-parameter tuning—paired with Catographer, Hector, and Gmapping navigation projects so students can generalize the method to other robots."
+            }
           ],
+          sensorConfig: {
+            description:
+              "Bundled SLAM sensors support odometry feedback, posture estimation, and environmental mapping with real-world physics.",
+            list: [
+              "LiDAR for SLAM mapping (Catographer/Hector/Gmapping)",
+              "Dual-wheel odometry encoders for PID speed control",
+              "IMU / gyroscope for attitude estimation",
+              "Expansion ports for additional sensors or fiducial markers"
+            ]
+          },
+          sampleCases: {
+            description:
+              "Exterior, dimension, and BOM visuals help instructors quickly understand the hardware composition, size planning, and assembly details of the platform.",
+            sections: [
+              {
+                title: "Exterior & structural overview",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                items: [
+                  { name: "Exterior overview", image: "/images/products/uni-wr2/uni-wr2-exterior-overview.png" },
+                  { name: "Dimension reference", image: "/images/products/uni-wr2/uni-wr2-dimensions.png" },
+                  { name: "BOM breakdown", image: "/images/products/uni-wr2/uni-wr2-bom.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "Powered by a Raspberry Pi-based control stack with integrated PID motor drivers and power management. A single switch handles boot and recovery, simplifying classroom operation.",
+            images: [
+              {
+                src: "/images/products/uni-wr2/uni-wr2-controller.png",
+                alt: "UNI-WR2 Raspberry Pi control core"
+              }
+            ]
+          },
+          softwareConfig: {
+            description:
+              "Comes preloaded with Ubuntu and ROS, along with navigation package examples and teaching scripts—power on and start running ROS labs immediately.",
+            ecosystem:
+              "Course resources include Catographer, Hector, and Gmapping package references plus ROS engineering documentation, enabling full navigation workflows on real hardware.",
+            showCaptions: false,
+            imageGridClassName: "grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center",
+            imageWrapperClassName: "relative aspect-square w-full",
+            figureClassName:
+              "w-full max-w-[220px] overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            images: [
+              { src: "/images/products/uni-wr2/uni-wr2-software-ubuntu.png", alt: "Ubuntu logo" },
+              { src: "/images/products/uni-wr2/uni-wr2-software-ros.png", alt: "ROS logo" }
+            ]
+          },
+          experiments: {
+            summary:
+              "The curriculum is organized into three themes—ROS foundations, SLAM engineering deployment, and mobile robot kinematics control. Each theme can be delivered independently or combined based on class hours.",
+            sections: [
+              {
+                title: "ROS foundations",
+                description:
+                  "Understand ROS file structure and communication mechanisms, then learn how to create and port ROS packages.",
+                items: [
+                  {
+                    name: "ROS runtime experience",
+                    desc: "2 class hours | Review the ROS filesystem; control turtlesim and UNI-WR2 via topics, services, and parameters."
+                  },
+                  {
+                    name: "Build & port ROS packages",
+                    desc: "2 class hours | Create packages, configure environment variables, compile, and implement keyboard teleoperation for UNI-WR2."
+                  }
+                ]
+              },
+              {
+                title: "SLAM engineering deployment",
+                description:
+                  "Walk through complete navigation workflows, comparing three SLAM algorithms and tuning them for different scenarios.",
+                items: [
+                  {
+                    name: "Rapid navigation execution",
+                    desc: "2 class hours | Follow guided steps to run Catographer, Hector, and Gmapping and compare their characteristics."
+                  },
+                  {
+                    name: "Catographer mapping & navigation",
+                    desc: "4 class hours | Explain principles, dissect the package, configure parameters, and complete full-parameter tuning."
+                  },
+                  {
+                    name: "Hector mapping & navigation",
+                    desc: "4 class hours | Break down the Hector architecture, configure the package, and handle high-frequency LiDAR data."
+                  },
+                  {
+                    name: "Gmapping mapping & navigation",
+                    desc: "4 class hours | Study particle-filter SLAM, perform parameter tuning, and generate reliable maps."
+                  }
+                ]
+              },
+              {
+                title: "Mobile robot kinematics control",
+                description:
+                  "Master differential drive kinematics, precise odometry, and PID velocity control for mobile robots.",
+                items: [
+                  {
+                    name: "Wheel PID tuning",
+                    desc: "2 class hours | Acquire encoder data, implement PID algorithms, and achieve closed-loop speed control."
+                  },
+                  {
+                    name: "Mobile robot kinematics",
+                    desc: "4 class hours | Derive differential drive models, implement odometry feedback, and control linear/angular velocity."
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "Top speed 0.16 m/s",
-            "Positioning accuracy < 5 mm within 1 m; straight-line deviation < 1 cm over 1 m",
-          ],
+            "Dimensions: 130 mm × 97 mm × 98 mm",
+            "Weight: approx. 580 g",
+            "Speed: 0.16 m/s",
+            "Localization accuracy: <5 mm error within 1 m",
+            "Straight-line deviation: <1 cm over 1 m (≈1.5°)",
+            "Navigation modes: Catographer / Hector / Gmapping laser SLAM"
+          ]
         },
         "alo-le4": {
           name: "Embodied Robot Manipulation Planning Training Platform ALO-LE4",
           model: "ALO-LE4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/alo-le4/front-view.png",
           overview:
-            "Dual 5-DOF arms in master-follower mode with adjustable lighting, supporting ACT and imitation learning/end-to-end control research.",
-          highlights: ["Two 5-DOF arms", "ACT architecture", "Adjustable lighting"],
-          applicable: "Imitation learning, end-to-end control",
-          configuration: [
-            "Two 5-DOF robotic arms (master-follower)",
-            "Two cameras (top + side)",
-            "Adjustable environment lighting",
-            "13-inch display",
+            "In embodied intelligence, the execution stage often relies on either reinforcement learning—common for bionic or humanoid forms—or end-to-end approaches used in wheeled composite robots and robotic arms. ALO-LE4 adopts the latter, centring on a robotic-arm configuration built on the ACT architecture to deliver an end-to-end embodied manipulation training platform. It functions both as a data collection rig and as a research platform for imitation learning and end-to-end intelligent control.\n\nALO-LE4 integrates two 5-DOF arms: the master arm is manipulated directly to capture motion data, while the slave arm reproduces tasks autonomously using an ACT model trained on joint-angle and sensor data. Top- and side-mounted cameras detect object colour and position while feeding visual data into ACT training. An adjustable lighting system simulates diverse environments for robustness testing.\n\nThe platform provides a stable, controllable environment for embodied intelligence, imitation learning, and data-collection studies, enabling complete “perception–decision–execution” loops. In education, it supports hands-on modules in robotics and computer vision, helping learners grasp key embodied-intelligence concepts and strengthen engineering and research skills. Universities and research institutes can deploy ALO-LE4 for efficient teaching and experimentation, accelerating embodied-intelligence development.",
+          highlights: [
+            "Two-in-one platform: data collection plus intelligent training and validation",
+            "Rapid, integrated deployment with independent reset for each subsystem",
+            "Progressive teaching workflow from environment setup to model training",
           ],
-          experiments: [
-            "End-to-end deployment (environment setup, Lerobot framework installation, model training / deployment)",
-            "AI vision (YOLO / robotic arm visual handling)",
-            "Robotic arm control (kinematics / interpolation)",
+          applicable:
+            "Suitable for embodied intelligence, imitation learning, end-to-end control, robotics, and computer vision courses and projects",
+          features: [
+            {
+              title: "Unified data collection and training",
+              content:
+                "Built on the ACT framework, the platform supports motion capture, model training, and validation. Adjustable lighting accommodates varied scenes, while the desktop setup ensures stable, repeatable experiments.",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "Platform module overview", image: "/images/products/alo-le4/module-overview.png" }
+              ]
+            },
+            {
+              title: "Fast deployment and recovery",
+              content:
+                "Independent reset buttons on the master arm, slave arm, and OS allow quick restarts without building extra scenes or lighting setups, greatly simplifying debugging."
+            },
+            {
+              title: "Progressive teaching design",
+              content:
+                "Covering software environment configuration, hardware setup, and training workflows, the curriculum serves both classroom teaching and research requirements, guiding learners step-by-step."
+            }
           ],
+          sensorConfig: {
+            description: "Core sensing modules supply the data streams needed for imitation learning and vision-enabled manipulation.",
+            list: [
+              "Dual HD cameras (top + side) for colour/position detection and dataset capture",
+              "Adjustable environmental lighting to emulate diverse illumination",
+              "Joint-angle sensing for the master/slave arms",
+              "Expansion interfaces for additional vision or force modules"
+            ]
+          },
+          sampleCases: {
+            description:
+              "Multi-angle shots reveal the arrangement of the dual-arm system and sensor modules, aiding classroom and lab planning.",
+            sections: [
+              {
+                title: "Platform gallery",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "Front view", image: "/images/products/alo-le4/front-view.png" },
+                  { name: "Top view", image: "/images/products/alo-le4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "Experiment tracks progress from end-to-end deployment to vision and manipulator control, building a complete understanding of embodied manipulation.",
+            sections: [
+              {
+                title: "End-to-end deployment & training",
+                description: "Follow ACT-based workflows from environment setup through data collection and deployment.",
+                items: [
+                  { name: "Environment setup", desc: "Configure CONDA, FFMPEG, Python dependencies (2 hours)" },
+                  { name: "Install Lerobot framework", desc: "Set up the Lerobot environment (2 hours)" },
+                  { name: "Configure servo motors", desc: "Tune manipulator servo parameters (1 hour)" },
+                  { name: "Camera configuration", desc: "Calibrate and connect imaging devices (1 hour)" },
+                  { name: "Master/slave calibration", desc: "Verify master-arm capture and slave-arm following (2 hours)" },
+                  { name: "Teleoperation data capture", desc: "Record video, joint angles, and system settings (2 hours)" },
+                  { name: "Model training", desc: "Recommend NVIDIA 4060-class GPU or better (2 hours)" },
+                  { name: "Model deployment", desc: "Deploy and validate autonomous task execution (4 hours)" }
+                ]
+              },
+              {
+                title: "Extended module · AI vision",
+                description: "Train learners to integrate visual perception with robotic manipulation.",
+                items: [
+                  { name: "YOLO deployment", desc: "Deploy YOLO detection models (2 hours)" },
+                  { name: "Dataset annotation", desc: "Label training data for vision tasks (2 hours)" },
+                  { name: "Model training & deployment", desc: "Train and deploy vision models (2 hours)" },
+                  { name: "Workpiece inspection", desc: "Implement workpiece recognition and positioning (2 hours)" },
+                  { name: "Visual pick-and-place", desc: "Map vision outputs to manipulator actions (4 hours)" }
+                ]
+              },
+              {
+                title: "Extended module · Robotic manipulator control",
+                description: "Focus on kinematics and interpolation control for manipulators.",
+                items: [
+                  { name: "Manipulator kinematics control", desc: "Develop forward/inverse kinematics control (4 hours)" },
+                  { name: "Linear interpolation control", desc: "Execute linear interpolation trajectories (2 hours)" },
+                  { name: "Circular interpolation control", desc: "Execute circular interpolation trajectories (2 hours)" },
+                  { name: "Stacking and handling tasks", desc: "Conduct stacking and handling exercises (4 hours)" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "Arms support motion data capture",
-            "Cameras enable object color / position detection",
-            "Lighting simulates diverse illumination conditions",
+            "Dual 5-DOF arms for master–slave demonstration and motion capture",
+            "Top + side cameras deliver colour/position inputs for ACT training",
+            "Integrated adjustable lighting simulates varied illumination",
+            "Independent reset buttons simplify rapid recovery and debugging"
           ],
         },
       },

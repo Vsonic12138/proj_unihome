@@ -34,6 +34,75 @@
 
 ---
 
+V1.14.0 feat(products): 新增五款具身智能产品详情，丰富产品矩阵
+
+类型: feat, docs, ui
+
+范围: products, i18n, public, components
+
+说明:
+
+本次更新大规模扩充了网站的产品内容，为五款全新的具身智能产品创建了全面、高度结构化的产品详情页。我们为 RAI-Q2、RAI-M4、ALO-LE4、RAI-P4 和 UNI-WR2 注入了深度内容，涵盖从产品概述、特性、软硬件配置到结构化实验体系的全方位信息，并为其补充了完整的图片资源。同时，对部分通用UI组件进行了微调，以优化页面布局和渲染逻辑。
+
+实现细节:
+
+1.  **新增五款产品体系**
+    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `rai-q2`, `rai-m4`, `alo-le4`, `rai-p4`, `uni-wr2` 五款产品添加了完整且详尽的数据结构。
+        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+        *   **结构化实验体系**: 为每款产品设计了按 `sections` (章节) 组织的结构化实验大纲，内容详实，逻辑清晰，显著提升了产品的教学价值。
+        *   **图文并茂**: `features` 和 `sampleCases` 字段支持内嵌媒体和自定义区块，使产品介绍更直观、更具吸引力。
+
+2.  **新增大量产品图片资源**
+    *   `public/images/products/`: 为 `alo-le4`, `rai-m4`, `rai-q2` 三款新产品新增了多张高质量图片，包括主图、各角度视图、功能示意图等，并已在产品数据中正确引用。
+
+3.  **产品图片路径更新与规范化**
+    *   `public/images/products/ubot-mr20/`: 将 `ubot-mr20` 的主图重命名为 `ubot-mr20-hero.jpg` 并移入专属文件夹，统一了资源管理规范。
+    *   `src/i18n/locales/*.ts`: 全面更新了各产品数据中的图片路径，将原有的占位符替换为实际的产品图片，确保了产品展示的准确性。
+
+4.  **UI 组件微调**
+    *   `src/components/Common/Breadcrumb.tsx`: 为面包屑导航增加了底部间距，优化了页面顶部布局的呼吸感。
+    *   `src/components/Common/PageIntro.tsx`: 调整了页面引言组件的渲染逻辑，当没有子内容时不再渲染空白区域，提升了页面的健壮性。
+
+文件变更:
+
+新增文件:
+- [`public/images/products/alo-le4/front-view.png`](public/images/products/alo-le4/front-view.png)
+- [`public/images/products/alo-le4/module-overview.png`](public/images/products/alo-le4/module-overview.png)
+- [`public/images/products/alo-le4/top-view.png`](public/images/products/alo-le4/top-view.png)
+- [`public/images/products/rai-m4/front-view.png`](public/images/products/rai-m4/front-view.png)
+- [`public/images/products/rai-m4/left-view.png`](public/images/products/rai-m4/left-view.png)
+- [`public/images/products/rai-m4/module-overview.png`](public/images/products/rai-m4/module-overview.png)
+- [`public/images/products/rai-m4/right-view.png`](public/images/products/rai-m4/right-view.png)
+- [`public/images/products/rai-m4/top-view.png`](public/images/products/rai-m4/top-view.png)
+- [`public/images/products/rai-q2/feature-overview.png`](public/images/products/rai-q2/feature-overview.png)
+- [`public/images/products/rai-q2/front-view.png`](public/images/products/rai-q2/front-view.png)
+- [`public/images/products/rai-q2/hero.png`](public/images/products/rai-q2/hero.png)
+- [`public/images/products/rai-q2/side-view.png`](public/images/products/rai-q2/side-view.png)
+- [`public/images/products/rai-q2/top-view.png`](public/images/products/rai-q2/top-view.png)
+
+重命名文件:
+- `public/images/products/ubot-mr20-main.jpg` -> [`public/images/products/ubot-mr20/ubot-mr20-hero.jpg`](public/images/products/ubot-mr20/ubot-mr20-hero.jpg)
+
+修改文件:
+- [`src/components/Common/Breadcrumb.tsx`](src/components/Common/Breadcrumb.tsx) (UI样式微调)
+- [`src/components/Common/PageIntro.tsx`](src/components/Common/PageIntro.tsx) (优化渲染逻辑)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (新增五款产品数据并更新图片路径)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (新增五款产品数据并更新图片路径)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (新增五款产品数据并更新图片路径)
+
+改进效果:
+
+- **产品矩阵极大丰富**: 网站新增了五款核心产品，形成了覆盖从视觉感知、任务规划到操作执行的完整具身智能产品矩阵。
+- **信息深度与专业性提升**: 每款产品都具备了详尽专业的内容，为目标用户（高校师生、研究人员）提供了极高的参考价值。
+- **用户体验优化**: 统一的资源管理和优化的UI组件，提升了网站的整体质量和浏览体验。
+
+影响范围:
+
+- 网站新增五个产品的深度详情页，用户现在可以浏览和了解这些新产品。
+- 现有产品列表和相关页面的产品图片已更新，展示更准确。
+
+---
+
 V1.13.0 feat(products): 全面重构UNI-WR2产品详情，构建桌面级ROS工程化教学体系
 
 类型: feat, docs, ui, refactor

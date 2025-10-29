@@ -265,7 +265,7 @@ export const dictionary = {
                 slug: "ubot-mr20",
                 name: "具現化ロボット革新デザインキット Ubot MR20",
                 model: "Ubot MR20",
-                image: "/images/products/ubot-mr20-main.jpg",
+                image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
                 brief: "具現化知能ロボット革新デザインキット（二十合一）。AI通識教育実践キットと組み合わせ、ゼロから20種類以上の知能ロボットを構築でき、ブロック型/C++/Pythonマルチ言語プログラミングをサポート。",
               },
               {
@@ -288,23 +288,23 @@ export const dictionary = {
                 slug: "rai-p4",
                 name: "具現化ロボットタスク計画 総合実習プラットフォーム RAI-P4",
                 model: "RAI-P4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-p4/rai-p4-hero.png",
                 brief:
-                  "AI音声/視覚、4自由度アーム、ROS2 対応。大規模言語モデル応用・コンピュータビジョン・ROS授業向け。",
+                  "AI音声・視覚と4自由度アームを一体化したデスクトップ実習環境。計画・知覚・行動を統合したROS2カリキュラム向け。",
               },
               {
                 slug: "uni-wr2",
                 name: "携帯型 ROS ナビゲーション 学習プラットフォーム UNI-WR2",
                 model: "UNI-WR2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/uni-wr2/uni-wr2-hero.png",
                 brief:
-                  "<13cm のコンパクト、デスクトップ展開（60×60cm）、3種のナビ方式。ROS・移動ロボット授業向け。",
+                  "13cm未満の携帯ROSロボット。60×60cmデスクトップSLAMとCatographer/Hector/Gmappingの5ステップ実装を提供。",
               },
               {
                 slug: "rai-q2",
                 name: "具現化ビジョン認識・意思決定 実習プラットフォーム RAI-Q2",
                 model: "RAI-Q2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-q2/hero.png",
                 brief:
                   "深度カメラ + 高精度回転台/昇降ガイド、OpenCV/YOLO/VLM 対応。ビジョン・ML授業向け。",
               },
@@ -312,7 +312,7 @@ export const dictionary = {
                 slug: "rai-m4",
                 name: "具現化複合ロボット システム設計実習プラットフォーム RAI-M4",
                 model: "RAI-M4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-m4/front-view.png",
                 brief:
                   "メカナム全方向シャーシ + 4軸アーム、DeepSeek/通義千問に接続。移動ロボット航法・LLM導入向け。",
               },
@@ -320,7 +320,7 @@ export const dictionary = {
                 slug: "alo-le4",
                 name: "具現化ロボット 操作計画 総合実習プラットフォーム ALO-LE4",
                 model: "ALO-LE4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/alo-le4/front-view.png",
                 brief:
                   "二つの5自由度アーム（主従追従）、ACT アーキテクチャ、調光可能な照明。模倣学習・E2E制御研究向け。",
               },
@@ -383,7 +383,7 @@ export const dictionary = {
           name: "Ubot MR20",
           subtitle: "具現化知能ロボット革新デザインキット(二十合一)",
           model: "Ubot MR20",
-          image: "/images/products/ubot-mr20-main.jpg",
+          image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
           overview: "Ubot MR20はロボットと人工知能の通識教育実践キットを組み合わせたもので、学習者は20種類以上の知能ロボットをゼロから構築でき、音声認識を組み合わせることで、学習者にロボットにおける人工知能技術の応用を理解させることができます。学習者はブロックプログラミング/C++プログラミングを通じて、ロボットの障害物回避、ライントレース、姿勢検出などの知能機能を開発することもできます。",
           applicable: "K12、専門・高専1年、学部1年生",
           features: [
@@ -929,142 +929,714 @@ export const dictionary = {
         },
         "rai-p4": {
           name: "具現化知能タスク計画実習プラットフォーム RAI-P4",
+          subtitle: "具現化ロボットタスク計画総合実習プラットフォーム",
           model: "RAI-P4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-p4/rai-p4-hero.png",
           overview:
-            "AI 音声／視覚モジュールと 4 自由度ロボットアームを統合し、ROS2 とタスク計画カリキュラムをサポートします。",
+            "RAI-P4はAI技術とロボット技術を密接に融合させた具現化知能実習プラットフォームです。AI音声、AIビジョン、代表的な4自由度ロボットアーム、具現化ロボットで頻用されるセンサー群、AIエッジコントローラを統合し、学習者が実機上で知能アルゴリズムをデプロイ／デバッグできるようにすることで、講義の理論と総合実習をシームレスに接続します。\n\nプラットフォームは「計画→知覚→実行」の流れに沿ったシナリオを用意し、音声対話、タスク意味理解、ビジョンパンチルト追跡、ビジョン支援のアーム搬送、運動学軌跡制御、AIビジョンによる果物検出などを体系的に学べます。",
+          applicable:
+            "人工知能、ロボティクス、自動化、計算機科学などの大学・高専向けカリキュラムに適しており、大規模言語モデル応用、コンピュータビジョン、機械学習、ディープラーニング、組込み開発、センサ計測と制御、ROS、ロボティクス、シミュレーション、知能システム統合といった実習を網羅します。",
           highlights: [
-            "AI とロボット技術のシステム結合",
-            "ワンストップ導入（60cm×60cm デスクトップ）",
-            "4／6 自由度ロボットアーム拡張に対応",
+            "AI音声・AIビジョン・マニピュレータ制御を一体化したオールインワンプラットフォーム",
+            "60cm×60cmデスクトップで完結する省スペース導入",
+            "4自由度から6自由度まで段階的に学べるマニピュレータ実習"
           ],
-          applicable: "大規模言語モデル応用、コンピュータビジョン、ロボット操作システム",
-          configuration: [
-            "4 自由度ロボットアーム（リーチ ≥ 260mm、可搬質量 ≥ 300g）",
-            "2 自由度ジンバル + 720P カメラ",
-            "RDK X5 ボード（10TOPS）",
+          features: [
+            {
+              title: "AIとロボティクスのシステム融合",
+              content:
+                "インテリジェントマニピュレータに必要なAI音声対話、AIビジョン認識、AIエッジボード、カラー認識や姿勢推定などのセンサーを組み合わせ、知覚・意思決定・実行の全レイヤーを一体で学習できます。"
+            },
+            {
+              title: "ワンストップの授業導入",
+              content:
+                "工場出荷時にハード・ソフトを連携済み。追加のPCや治具を用意することなく、60cm×60cmのデスクトップがあればすぐに実験を開始でき、研究室・創作工房・出張授業にも対応します。"
+            },
+            {
+              title: "代表的マニピュレータによる段階的トレーニング",
+              content:
+                "4自由度直列アームを基礎に、典型的な6自由度構成へ拡張可能。運動学、モーションコントロール、シミュレーション、ROS実習を組み合わせ、学習者のレベルに合わせて段階的にスキルを構築できます。"
+            }
           ],
-          experiments: [
-            "48 コマ：ロボットアーム制御（運動学／補間）",
-            "AI ビジョン（YOLO／顔追跡）",
-            "大規模言語モデル応用（ASR／LLM／TTS）",
-            "ROS2 開発",
-          ],
+          sampleCases: {
+            description:
+              "計画・知覚・実行の3ステップに沿ったサンプルを通じて、ソフトウェアロジックとハードウェア動作の連携を俯瞰し、ビジョン支援による搬送・運動制御フローを実地で理解できます。",
+            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            modulesImageAspectClass: "aspect-[21/10]",
+            modulesCardClassName: "w-full p-6",
+            modules: [
+              { name: "タスク計画フロー概要", image: "/images/products/rai-p4/rai-p4-task-planning.png" }
+            ],
+            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            compositeRobotsImageAspectClass: "aspect-[21/10]",
+            compositeRobotsCardClassName: "w-full p-6",
+            compositeRobots: [
+              { name: "ビジョン搬送と運動制御実習", image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png" }
+            ]
+          },
+          sensorConfig: {
+            description:
+              "音声・視覚・運動フィードバックなど、具現化タスク計画に必要なマルチモーダル入力を網羅しています。",
+            list: [
+              "AI音声インタラクション用マイクアレイ",
+              "ビジョンパンチルトカメラモジュール",
+              "カラー認識センサー",
+              "姿勢推定IMUセンサー",
+              "物体認識／距離検知用の拡張インターフェース"
+            ]
+          },
+          controllerConfig: {
+            description:
+              "AIエッジボードとオープンI/Oを備え、LLM・ビジョン推論とマニピュレータ／周辺機器制御を同時に実現し、ソフト・ハードの連携を高めます。"
+          },
+          softwareConfig: {
+            description:
+              "UbuntuとROS2（roscore、RViz、MoveIt）に加え、Jupyter、VS Code、Python 3.9 をプリインストール。起動直後からアルゴリズム実演や授業が行えます。",
+            ecosystem:
+              "OpenCV、YOLO、LLM SDK、MoveIt など主要なAI／ロボットエコシステムと互換性があり、授業と研究の両方を後押しします。",
+            imageGridClassName: "grid grid-cols-1 gap-4 place-items-center max-w-4xl mx-auto",
+            imageWrapperClassName: "relative aspect-[28/9] w-full",
+            figureClassName:
+              "w-full overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            showCaptions: false,
+            images: [
+              {
+                src: "/images/products/rai-p4/rai-p4-software-suite.png",
+                alt: "Ubuntu / ROS / RViz / VS Code / Python ソフトウェアスイート"
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "ロボット本体制御、センサ計測、コンピュータビジョン、大規模言語モデル音声対話、システム統合、ROS、組込み開発など40以上のサブプロジェクトを用意し、学際的な能力を育成します。",
+            sections: [
+              {
+                title: "ロボットアーム制御基礎",
+                items: [
+                  { name: "運動学制御", desc: "推奨4コマ｜4自由度アームの順・逆運動学と関節軌道計画を構築。" },
+                  { name: "直線補間制御", desc: "推奨2コマ｜エンドエフェクタの直線軌道を生成し、速度・加速度プロファイルを調整。" },
+                  { name: "円弧補間制御", desc: "推奨2コマ｜空間円弧を生成し、姿勢制御を維持したまま軌跡を実行。" },
+                  { name: "ピッキング計画", desc: "推奨4コマ｜座標系キャリブレーションと把持戦略を組み合わせ、多点搬送を計画。" },
+                  { name: "幾何図形の描画", desc: "推奨4コマ｜軌道生成を応用し、平面図形を描画。" }
+                ]
+              },
+              {
+                title: "センサ計測と制御",
+                items: [
+                  { name: "IMUデータ取得", desc: "推奨2コマ｜姿勢センサーのデータを取得し、姿勢推定とフィルタリングを実施。" },
+                  { name: "ジェスチャ制御アーム", desc: "推奨2コマ｜IMU入力を用いてマニピュレータを体感操作。" }
+                ]
+              },
+              {
+                title: "コンピュータビジョン基礎（OpenCV）",
+                items: [
+                  { name: "カラー認識", desc: "推奨2コマ｜色空間変換と領域分割で対象物を識別。" },
+                  { name: "形状認識", desc: "推奨2コマ｜輪郭抽出と幾何特徴マッチングで形状を分類。" }
+                ]
+              },
+              {
+                title: "AIビジョン（YOLO）",
+                items: [
+                  { name: "YOLOデプロイ", desc: "推奨2コマ｜組込みボード上でYOLOをリアルタイム推論。" },
+                  { name: "顔検出", desc: "推奨2コマ｜事前学習モデルで顔を検出し、バウンディングボックスを出力。" },
+                  { name: "顔追跡", desc: "推奨2コマ｜パンチルト連携で対象を追跡。" },
+                  { name: "データセットアノテーション", desc: "推奨2コマ｜検出データセットのラベリングとフォーマット変換を習得。" },
+                  { name: "モデル学習とデプロイ", desc: "推奨2コマ｜再学習・量子化・デプロイの手順を実践。" },
+                  { name: "ワークピース検査", desc: "推奨2コマ｜対象用途に合わせた検出フローを構築し、分類・位置決めを実現。" }
+                ]
+              },
+              {
+                title: "AIビジョン（通義千問マルチモーダル）",
+                items: [
+                  { name: "マルチモーダルAPIデプロイ", desc: "推奨2コマ｜通義千問APIを呼び出し、画像理解とテキスト生成を実装。" },
+                  { name: "果物検出とラベリング", desc: "推奨2コマ｜通義千問を用いて果物を認識し、意味ラベルを生成。" }
+                ]
+              },
+              {
+                title: "大規模言語モデル応用（音声対話）",
+                items: [
+                  { name: "ASRデプロイ", desc: "推奨2コマ｜通義千問ASRを構築し、音声入力を解析。" },
+                  { name: "LLM意味理解デプロイ", desc: "推奨2コマ｜DeepSeekを用いて意図理解とタスク計画ロジックを実装。" },
+                  { name: "TTSデプロイ", desc: "推奨2コマ｜火山引擎TTSを統合し自然な音声応答を生成。" },
+                  { name: "エンドツーエンド音声対話", desc: "推奨2コマ｜ASR/LLM/TTSを連携させた音声対話ループを構築。" },
+                  { name: "Function-Call 音声計算", desc: "推奨2コマ｜LLMのFunction-Callで音声電卓を実装。" },
+                  { name: "Function-Call 音声音楽再生", desc: "推奨2コマ｜音声コマンドで楽曲検索と再生を制御。" },
+                  { name: "Function-Call パンチルト計画", desc: "推奨4コマ｜音声指示でパンチルト追跡を実行し、対象探索を完結。" },
+                  { name: "Function-Call マニピュレータ計画", desc: "推奨4コマ｜音声指示でマニピュレータの視覚位置決めと搬送を行う。" }
+                ]
+              },
+              {
+                title: "ロボットシステム統合",
+                items: [
+                  { name: "Socket通信", desc: "推奨2コマ｜ロボットシステム間のSocket通信チャネルを構築し、指令を交換。" },
+                  { name: "ビジョン追従制御", desc: "推奨4コマ｜ビジョンデータをロボット座標系にマッピングし、動的追従を達成。" },
+                  { name: "ビジョンとマニピュレータの座標変換", desc: "推奨2コマ｜ハンドアイキャリブレーションを完成し、ピクセルを姿勢に変換。" },
+                  { name: "ビジョン仕分け搬送", desc: "推奨4コマ｜認識・計画・実行を組み合わせ、仕分け搬送を完了。" }
+                ]
+              },
+              {
+                title: "ROS（Robot Operating System）",
+                items: [
+                  { name: "ROS2プロジェクトの迅速起動", desc: "推奨2コマ｜ROS2ワークスペースの作成・ビルド・実行手順を習得。" },
+                  { name: "ROS2パッケージ構築と移植", desc: "推奨2コマ｜パッケージ作成、依存管理、移植デプロイを実施。" },
+                  { name: "MoveIt設定", desc: "推奨2コマ｜MoveItシーン構成、衝突モデル導入、動作検証を実践。" },
+                  { name: "4自由度アームのMoveIt/RVizシミュレーション", desc: "推奨2コマ｜RViz上で4自由度アームを制御し、軌跡を検証。" }
+                ]
+              },
+              {
+                title: "組込みシステム開発",
+                items: [
+                  { name: "Ubuntuファイルシステム入門", desc: "推奨1コマ｜主要ディレクトリ構造とファイル操作コマンドを学習。" },
+                  { name: "エディタ習熟（vi / nano）", desc: "推奨1コマ｜ターミナルエディタの基本操作と設定を習得。" },
+                  { name: "リモート接続環境構築（SSH / PuTTY）", desc: "推奨2コマ｜リモート開発環境を整備し、多拠点協働を支援。" },
+                  { name: "LinuxファイルIOプログラミング", desc: "推奨2コマ｜ファイル読み書きと例外処理を実装し、デバイス連携の基礎を学ぶ。" },
+                  { name: "シリアル通信", desc: "推奨2コマ｜シリアル通信の送受信とプロトコル設計を実践。" },
+                  { name: "プロセス／スレッド管理", desc: "推奨2コマ｜Linuxのプロセス・スレッドモデルを理解し、サンプルを作成。" },
+                  { name: "UI設計", desc: "推奨2コマ｜Python/Qtなどを用いて簡易HMIを構築。" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "AI コンピューティングボード ≥ 9TOPS の演算能力",
-            "コントローラは 8 チャンネルのサーボ駆動に対応",
-          ],
+            "設置面積：60cm×60cmのデスクトップで展開可能",
+            "マニピュレータ：標準4自由度、6自由度への拡張に対応",
+            "計算プラットフォーム：AIエッジコントローラ内蔵（LLM推論・ビジョン処理対応）"
+          ]
         },
         "rai-m4": {
           name: "具現化複合ロボットシステム設計実習プラットフォーム RAI-M4",
           model: "RAI-M4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-m4/front-view.png",
           overview:
-            "メカナム全方向シャーシと 4 軸ロボットアームを組み合わせ、DeepSeek や通義千問などの大規模言語モデルと連携し、システム設計とナビゲーション教育に適しています。",
+            "具現化知能はタスク計画・感知判断・操作実行の 3 フェーズに分解でき、それぞれに AI を組み込むことで対話や意思決定、操作の汎化能力を高められます。RAI-M4 はタスク計画段階で DeepSeek と通義千問を活用し、自由度の高い対話からロボットが理解できるタスクフローへ変換します。感知判断では通義千問のマルチモーダル能力を用い、専用学習なしで幅広い対象を認識できます。\n\nハードウェアは麦克納姆ホイール全方向シャーシに四軸直列型アーム（最大負荷 300g、到達距離 240mm、グリッパ付属）を組み合わせ、HD カメラ（オプションで深度カメラ）、LiDAR、IMU／ジャイロ、呼吸ライトなどのセンシング・インタラクションモジュールを搭載します。\n\n制御構成は上位・下位デュアルコントローラ方式で、上位機がタスク計画・ビジョン認識・ナビゲーション計画・底盤／アームの運動学を担当、下位機がモータ PID 制御やインタラクション表示、上位機との通信リレーを担います。移動ロボット技術と大規模モデル応用の実習を支援し、ロボット系・メカトロ系・スマート製造・制御・電子情報などの専攻でカリキュラム実習や発展型実習に活用できます。",
           highlights: [
-            "全方向移動（メカナムシャーシ）＋操作（4 軸ロボットアーム）",
-            "大規模言語モデルの深い連携（通義千問 + DeepSeek）",
+            "全方向移動シャーシ + 四軸アームによる複合ロボット形態",
+            "通義千問 + DeepSeek など大規模モデルの深度連携",
+            "移動ロボットと大モデル活用を両立する体系的カリキュラム",
           ],
-          applicable: "移動ロボットナビゲーション、大規模言語モデル導入",
-          configuration: [
-            "四駆メカナムシャーシ（速度 0.5m/s、可搬 10kg）",
-            "4 軸ロボットアーム（リーチ > 220mm、可搬 ≥ 200g）",
-            "LiDAR（測距 0.12–8m）",
-            "200 万画素カメラ",
+          applicable:
+            "移動ロボット運動制御、大規模モデルデプロイ、ロボット工学、機械ビジョン、ROS、移動ロボットのナビゲーションと定位などの科目実習",
+          features: [
+            {
+              title: "AI 大規模モデルの深度連携",
+              content:
+                "ASR に通義千問、LLM に DeepSeek を組み合わせて自然言語タスク計画を実現。ビジョン検知では通義千問のマルチモーダル能力で追加学習なしに幅広い対象を識別できます。"
+            },
+            {
+              title: "移動＋操作の複合プラットフォーム",
+              content:
+                "麦克納姆全方向シャーシと直列四軸アームを組み合わせ、狭い空間でも移動と操作を同時に実行可能。タスク計画と感知判断を連携させ、汎用的な作業タスクを実現します。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "モジュール構成概要", image: "/images/products/rai-m4/module-overview.png" }
+              ]
+            },
+            {
+              title: "体系化された実験モジュール設計",
+              content:
+                "機械ビジョン、大規模モデル活用、ロボット工学、移動ロボットナビゲーションなどのモジュールを授業要件に応じて選択し、段階的な専門学習をサポートします。"
+            }
           ],
-          experiments: [
-            "コンピュータビジョン（OpenCV／YOLO／マルチモーダル検出）",
-            "大規模言語モデルデプロイ（音声対話／タスク計画）",
-            "ROS ナビゲーション（マッピング／障害物回避）",
-          ],
+          sensorConfig: {
+            description:
+              "移動とインタラクションに必要なセンサー群を標準搭載し、定位・ナビゲーション・可視化を一体的に実現します。",
+            list: [
+              "高解像度カメラ（オプションで深度カメラを追加可能）",
+              "360° LiDAR（測距 0.12〜8m）",
+              "IMU／ジャイロセンサー（姿勢推定・オドメトリ補正）",
+              "呼吸ライトなどインタラクション用インジケータ",
+              "拡張ポート：タッチディスプレイや追加センサーに対応"
+            ]
+          },
+          sampleCases: {
+            description:
+              "多視点の画像で RAI-M4 のシャーシ、アーム、センシングモジュール配置を把握し、授業でのセットアップやシナリオ設計を容易にします。",
+            sections: [
+              {
+                title: "多角度ギャラリー",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "正面図", image: "/images/products/rai-m4/front-view.png" },
+                  { name: "左側面図", image: "/images/products/rai-m4/left-view.png" },
+                  { name: "右側面図", image: "/images/products/rai-m4/right-view.png" },
+                  { name: "俯瞰図", image: "/images/products/rai-m4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "上位・下位のデュアルコントローラ構成。上位機が計画・認識・ナビゲーション・運動学を担当し、下位機がモータ PID、アーム駆動、インタラクション I/O、および上位機との通信を受け持ちます。",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "Ubuntu + ROS2、MoveIt、YOLO 推論環境、通義千問／DeepSeek API サンプルをプリインストールし、移動ロボット × 大規模モデルの実験をすぐに開始できます。",
+            ecosystem:
+              "Python／C++、ROS2、MoveIt、OpenCV、YOLO、通義千問 SDK、DeepSeek API など主要フレームワークに対応し、教育・研究の双方を拡張しやすい環境です。"
+          },
+          experiments: {
+            summary:
+              "機械ビジョンから大規模モデル応用、ロボット本体制御、ROS 操作、移動ナビゲーションまで幅広いテーマをカバーし、授業計画に合わせて柔軟に組み合わせ可能です。",
+            sections: [
+              {
+                title: "機械ビジョンモジュール",
+                description: "クラシックな画像処理から深層学習、マルチモーダル認識まで体系的に学びます。",
+                items: [
+                  { name: "OpenCV ビジョン", desc: "HSV 色認識／形状認識／QR コード認識／バーコード認識／カラーリング検出（統合＋フィルタ）" },
+                  { name: "AI ビジョン ― YOLO", desc: "YOLO デプロイ；データセットアノテーション；モデル学習とデプロイ；ワークピースデータ収集と検査；顔検出；顔追跡" },
+                  { name: "AI ビジョン ― 通義千問マルチモーダル", desc: "通義千問マルチモーダル API デプロイ；対象検出とマーキング" }
+                ]
+              },
+              {
+                title: "大規模モデル活用モジュール",
+                description: "音声対話・マルチモーダル認識・ロボットタスクを大モデルで一貫体験します。",
+                items: [
+                  {
+                    name: "音声対話インタラクション",
+                    desc:
+                      "通義千問による ASR デプロイ；DeepSeek による LLM 意味理解；火山引擎による TTS デプロイ；フル音声対話；音声対話計算機；音声対話音楽再生"
+                  },
+                  { name: "マルチモーダルビジョン検出", desc: "通義千問マルチモーダル API デプロイ；対象検出とマーキング" },
+                  { name: "ロボット応用連携", desc: "MCP を用いた把持タスク計画；MCP を用いたナビゲーションタスク計画" }
+                ]
+              },
+              {
+                title: "ロボット本体制御モジュール",
+                description: "底盤とアームの運動学および制御アルゴリズムを実践します。",
+                items: [
+                  { name: "底盤制御", desc: "エンコーダモータ PID；メカナム運動学制御；ジャイロ補正付きオドメトリ制御" },
+                  { name: "アーム制御", desc: "サーボ位置制御；アーム運動学制御；補間軌跡制御" }
+                ]
+              },
+              {
+                title: "ROS 操作モジュール",
+                description: "ROS のトピック／サービス／パラメータ、MoveIt を用いた経路計画を学びます。",
+                items: [
+                  {
+                    name: "ROS 基礎操作",
+                    desc:
+                      "トピック／サービス／パラメータで turtlesim を制御；turtlesim を追加生成；パッケージを移植しキーボード操作を実装"
+                  },
+                  { name: "MoveIt アーム計画", desc: "アーム URDF 設定；MoveIt で運動学モデルを構築；Rviz でアームのモーションプランニング" }
+                ]
+              },
+              {
+                title: "移動ロボット ナビゲーション＆定位モジュール",
+                description: "インターフェース設定から建図・ナビゲーションまで一連のプロセスを習得します。",
+                items: [
+                  { name: "システムインターフェース構成", desc: "キーボードで底盤を制御；キーボードでアームを制御；LiDAR データ取得" },
+                  { name: "マッピングフロー", desc: "建図プロジェクト構成；launch ファイル作成；新規地図の構築" },
+                  {
+                    name: "ナビゲーションフロー",
+                    desc: "Navigation プロジェクト設定；ロボットの衝突境界パラメータ設定；ポイントナビゲーション；自律障害物回避；マルチゴールナビゲーション"
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "エッジコンピューティングコントローラ RDK X5（10TOPS 演算能力）",
-            "YOLOv8 人顔検出 100fps（参考値）",
+            "麦克納姆全方向シャーシ（最大速度約 0.5m/s、耐荷重 10kg）",
+            "四軸直列アーム（到達距離 240mm、末端負荷 300g、グリッパ標準装備）",
+            "上位・下位デュアルコントローラ（上位：計画／認識、下位：PID／I/O）",
+            "大規模モデル API と ROS2／MoveIt 実験環境をプリインストール",
           ],
         },
         "rai-q2": {
           name: "具現化ビジョン認識・意思決定実習プラットフォーム RAI-Q2",
           model: "RAI-Q2",
-          image: "/images/video/video.jpg",
+          image: "/images/products/rai-q2/hero.png",
           overview:
-            "深度カメラと高精度モーション機構を備え、OpenCV／YOLO／VLM などのアルゴリズム授業と実験に対応します。",
+            "ビジョン検査は、具現化知能における感知・意思決定プロセスの中で最も一般的なステップです。RAI-Q2 は典型的なビジョンアルゴリズムと代表的な応用シナリオを教材化し、OpenCV・YOLO・通義千問 VLM に基づく段階的カリキュラムを提供して、ビジョン中心の授業を素早く立ち上げられるよう支援します。\n\n深度カメラモジュール、エッジコンピューティングコントローラ、速度と角度を調整できる高精度ターンテーブル、手動／電動を切り替えられる mm 級昇降ステージ、調光可能なリングライト、ディスプレイ、Bluetooth キーボード＆マウスをワンパッケージ化。コンピュータビジョン、機械学習、マルチモーダル／大規模言語モデル応用の授業で、そのまま導入できる構成です。",
           highlights: [
-            "3 種のビジョンソリューション（OpenCV／YOLO／VLM）",
-            "高精度チューニング（ターンテーブル背隙 0.3°、昇降台 mm 級調整）",
-            "モジュール化交換",
+            "OpenCV／YOLO／通義千問 VLM を網羅した三層ビジョンカリキュラム",
+            "背隙 0.3° のターンテーブルと mm 級昇降ステージ＋調光リングライト",
+            "モジュール交換で高速カメラや雲台構成へ柔軟に拡張",
           ],
-          applicable: "コンピュータビジョン、機械学習コース",
-          configuration: [
-            "深度カメラ（測距 0.6–8m、1280×720@90fps）",
-            "高精度ターンテーブル（速度／位置モード切替）",
-            "22 インチディスプレイ",
+          applicable: "コンピュータビジョン／機械学習／マルチモーダル・LLM 活用科目",
+          features: [
+            {
+              title: "三層ビジョンパイプラインを網羅",
+              content:
+                "OpenCV によるクラシックな画像処理、YOLO によるモデル駆動の物体検出、通義千問 VLM によるマルチモーダル推論の 3 コースを組み合わせ、アルゴリズム基礎から大規模モデル推論まで段階的に習得できます。"
+            },
+            {
+              title: "高精度フルパラメータ調整テストベンチ",
+              content:
+                "一体型ジョイント駆動ターンテーブルは最小背隙 0.3° を実現し、速度／角度のデュアルモードに対応。二層磁気プレートがビジョン画面へのネジ干渉を抑え、昇降ステージは手回しとサーボ駆動を切替可能な mm 級調整を提供します。調光リングライトでさまざまな照明条件にも対応できます。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "ビジョンパイプライン概要", image: "/images/products/rai-q2/feature-overview.png" }
+              ]
+            },
+            {
+              title: "モジュール式ハードウェアアーキテクチャ",
+              content:
+                "深度カメラを高速カメラに交換したり、昇降モジュールをターンテーブルへ移設して雲台構成にするなど、授業テーマや研究ニーズに合わせて柔軟にカスタマイズできます。"
+            }
           ],
-          experiments: [
-            "OpenCV ビジョン（色／形状認識）",
-            "YOLO デプロイ（顔検出／追跡）",
-            "深度検出（3D モデリング）",
-            "大規模言語モデルマルチモーダル API デプロイ",
-          ],
+          sensorConfig: {
+            description: "ビジョン認識と深度センシングに特化したマルチモーダル入力を備え、実験データを幅広く取得できます。",
+            list: [
+              "RGB／深度／赤外を取得できる深度カメラモジュール",
+              "複数段階の明るさ調整に対応したリングライト",
+              "高速カメラや補助照明を追加できる拡張インターフェース",
+              "ターンテーブル角度エンコーダと昇降ストロークのフィードバック"
+            ]
+          },
+          sampleCases: {
+            description:
+              "多視点の画像で RAI-Q2 の構造全体を把握しやすくし、ターンテーブル・昇降ステージ・カメラ配置を授業準備段階で素早く理解できます。",
+            sections: [
+              {
+                title: "多角度外観ギャラリー",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "主視図", image: "/images/products/rai-q2/front-view.png" },
+                  { name: "側面図", image: "/images/products/rai-q2/side-view.png" },
+                  { name: "俯瞰図", image: "/images/products/rai-q2/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "内蔵エッジコントローラがアルゴリズム推論とモーション制御を担い、ターンテーブルと昇降駆動を一体的に制御して高精度な姿勢調整を実現します。",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "OpenCV、YOLO デプロイ環境、通義千問 VLM API サンプルをプリインストールし、授業開始と同時にビジョン実験へ入れます。",
+            ecosystem:
+              "Python／C++ に対応し、PyTorch、TensorRT、通義千問 SDK など主流フレームワークと連携して、モデル学習や高度なデプロイへ拡張できます。"
+          },
+          experiments: {
+            summary:
+              "OpenCV 処理、YOLO 実装、通義千問 VLM マルチモーダル推論、深度センシングを段階的に学べる実験メニューを展開し、授業設計に役立つ推奨授業時間を付記しています。",
+            sections: [
+              {
+                title: "OpenCV ビジョン",
+                description: "基礎的な画像処理と認識フローを習得し、上位のアルゴリズムへ発展させる土台を築きます。",
+                items: [
+                  { name: "HSV 色認識", desc: "推奨授業時間：2 時間" },
+                  { name: "形状認識", desc: "推奨授業時間：2 時間" },
+                  { name: "QR コード認識", desc: "推奨授業時間：2 時間" },
+                  { name: "バーコード認識", desc: "推奨授業時間：2 時間" },
+                  { name: "カラーリング検出（統合＋フィルタ）", desc: "推奨授業時間：4 時間" }
+                ]
+              },
+              {
+                title: "AI ビジョン ― YOLO",
+                description: "データ整備からデプロイまでのエンジニアリングフローを一気通貫で体験します。",
+                items: [
+                  { name: "YOLO デプロイ", desc: "推奨授業時間：2 時間" },
+                  { name: "データセットアノテーション", desc: "推奨授業時間：2 時間" },
+                  { name: "モデル学習とデプロイ", desc: "推奨授業時間：2 時間（RTX 4050 以上の GPU が別途必要）" },
+                  { name: "ワークピースデータ収集と検査", desc: "推奨授業時間：2 時間" },
+                  { name: "顔検出", desc: "推奨授業時間：2 時間" },
+                  { name: "顔追跡", desc: "推奨授業時間：4 時間" }
+                ]
+              },
+              {
+                title: "AI ビジョン ― 通義千問大規模モデル",
+                description: "マルチモーダル大規模モデルをビジョンタスクに適用し、その柔軟な応答を体験します。",
+                items: [
+                  { name: "通義千問マルチモーダル API デプロイ", desc: "推奨授業時間：2 時間" },
+                  { name: "果物検出とマーキング", desc: "推奨授業時間：2 時間" }
+                ]
+              },
+              {
+                title: "深度センシング",
+                description: "深度カメラによる距離センシングと 3D リコンストラクションを実践します。",
+                items: [
+                  { name: "深度データ取得", desc: "推奨授業時間：2 時間" },
+                  { name: "3D モデリング", desc: "推奨授業時間：4 時間" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "エッジコンピューティングコントローラ RDK X5（10TOPS 演算能力）",
-            "ターンテーブル最高速度 40rpm",
+            "最小背隙 0.3° のターンテーブル（速度／角度デュアルモード）",
+            "手動／電動を切替可能な mm 級昇降ステージ",
+            "調光リングライトで多様な照度条件に対応",
+            "エッジコントローラとディスプレイを内蔵した即応用パッケージ"
           ],
         },
         "uni-wr2": {
           name: "携帯型 ROS ナビゲーション学習プラットフォーム UNI-WR2",
+          subtitle: "デスクトップ ROS / SLAM 統合実習プラットフォーム",
           model: "UNI-WR2",
-          image: "/images/video/video.jpg",
+          image: "/images/products/uni-wr2/uni-wr2-hero.png",
           overview:
-            "コンパクトな卓上型ナビゲーションロボットプラットフォームで、ROS ナビゲーション実験環境を素早く構築できます。",
+            "UNI-WR2は、ROSとSLAMナビゲーション教育のために設計された携帯型デスクトップロボットです。『ロボットオペレーティングシステム（ROS）』『移動ロボットのナビゲーションと位置決め』『自動制御原理（PID）』といった授業での工学的実践を支援します。従来のシミュレーション偏重や広い実験スペースを要する方式と異なり、携帯ハードウェア、卓上展開、ROSエンジニアリング5ステップを備え、実機でのナビゲーションアルゴリズム調整とROS機能パッケージのデプロイをいつでも行えます。",
+          applicable:
+            "ロボティクス、自動化、計算機科学、メカトロニクスなどの大学・専門課程に適しており、ROS基礎、SLAMナビゲーション、PID制御、移動ロボットの工学実践を包括的にサポートします。",
           highlights: [
-            "超小型（13cm×97mm×98mm、<550g）",
-            "デスクトップ配置（60cm×60cm）",
-            "エンジニアリング ROS 学習（5 ステップ分解）",
+            "超携帯設計：全長13cm未満・質量550g以下、Type-C充電で約4時間動作",
+            "敏捷な卓上展開：60cm×60cmのデスクトップでSLAMナビゲーションを完結",
+            "エンジニアリングワークフロー：Catographer／Hector／Gmapping を含むROS五段階デプロイ"
           ],
-          applicable: "ROS オペレーティングシステム、移動ロボットナビゲーション",
-          configuration: [
-            "オールメタルボディ",
-            "Raspberry Pi コントローラ（ROS プリインストール）",
-            "LiDAR（測距 0.1–12m）",
-            "7 ビットエンコーダ付きモータ",
+          features: [
+            {
+              title: "ポータブルな学習フォーム",
+              content:
+                "オールメタルの手のひらサイズシャーシにType-C充電を搭載。モバイルバッテリーにつなぐだけで実験を継続でき、教室・研究室・出張授業など幅広いシーンで活用できます。",
+              mediaGridClassName: "grid-cols-1 sm:grid-cols-2 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "携帯イメージ", image: "/images/products/uni-wr2/uni-wr2-feature-portable.png" },
+                { name: "Type-C充電", image: "/images/products/uni-wr2/uni-wr2-feature-charging.png" },
+                { name: "敏捷配置（1）", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-1.png" },
+                { name: "敏捷配置（2）", image: "/images/products/uni-wr2/uni-wr2-feature-deploy-2.png" }
+              ]
+            },
+            {
+              title: "卓上SLAM環境",
+              content:
+                "60cm×60cmの卓上スペースでSLAMシナリオを構築可能。着席したままロボットを微調整でき、モジュール式ピースを組み合わせれば1.2m×1.2mまで拡張できます。",
+              mediaGridClassName: "grid-cols-1 gap-4",
+              mediaImageAspectClass: "aspect-[5/4]",
+              media: [
+                { name: "卓上レイアウト俯瞰", image: "/images/products/uni-wr2/uni-wr2-desktop-layout.png" }
+              ]
+            },
+            {
+              title: "ROSエンジニアリングワークフロー",
+              content:
+                "原理解説→デモ→フレームワーク分解→パッケージ構成→全パラメータチューニングの5ステップでROS実装を整理。Catographer・Hector・Gmappingのナビゲーションプロジェクトと組み合わせ、異なるロボットへの横展開力を養います。"
+            }
           ],
-          experiments: [
-            "24 コマ：ROS 基礎（パッケージ移植）",
-            "SLAM デプロイ（3 種のナビゲーション方式の全パラ調整）",
-            "運動学制御（PID 速度制御）",
-          ],
+          sensorConfig: {
+            description:
+              "SLAMに必要なセンサー群を搭載し、里程計フィードバック、姿勢推定、環境マッピングを実機条件（摩擦や通信周期など）で実践できます。",
+            list: [
+              "LiDAR（Catographer／Hector／Gmapping対応のSLAMマッピング）",
+              "デュアルホイールエンコーダ（PID速度制御と里程計フィードバック）",
+              "IMU／ジャイロセンサー（姿勢推定）",
+              "追加センサーやマーカーに対応する拡張インターフェース"
+            ]
+          },
+          sampleCases: {
+            description:
+              "外観構造、外形寸法、BOM構成を可視化した資料で、ハードウェアの構成やスペース設計、組立てポイントを短時間で把握できます。",
+            sections: [
+              {
+                title: "外観・構造ダイジェスト",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                items: [
+                  { name: "外観概要", image: "/images/products/uni-wr2/uni-wr2-exterior-overview.png" },
+                  { name: "外形寸法", image: "/images/products/uni-wr2/uni-wr2-dimensions.png" },
+                  { name: "BOM構成図", image: "/images/products/uni-wr2/uni-wr2-bom.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "Raspberry Piを中心とした制御系にPIDモータドライバと電源管理を統合。ワンタッチで起動／復帰でき、授業での複数台運用にも最適です。",
+            images: [
+              {
+                src: "/images/products/uni-wr2/uni-wr2-controller.png",
+                alt: "UNI-WR2 Raspberry Pi制御コア"
+              }
+            ]
+          },
+          softwareConfig: {
+            description:
+              "UbuntuとROSをプリインストールし、ナビゲーション関連パッケージのサンプルと授業用スクリプトを同梱。電源投入後すぐにROS実験を開始できます。",
+            ecosystem:
+              "Catographer／Hector／Gmappingの参照実装とROSエンジニアリングドキュメントを提供し、実機上で完全なナビゲーションワークフローを再現できます。",
+            showCaptions: false,
+            imageGridClassName: "grid grid-cols-1 sm:grid-cols-2 gap-4 place-items-center",
+            imageWrapperClassName: "relative aspect-square w-full",
+            figureClassName:
+              "w-full max-w-[220px] overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            images: [
+              { src: "/images/products/uni-wr2/uni-wr2-software-ubuntu.png", alt: "Ubuntu ロゴ" },
+              { src: "/images/products/uni-wr2/uni-wr2-software-ros.png", alt: "ROS ロゴ" }
+            ]
+          },
+          experiments: {
+            summary:
+              "ROS基礎、SLAMエンジニアリング導入、移動ロボット運動学制御の3テーマで構成され、授業時間に応じて独立・組合せで展開できます。",
+            sections: [
+              {
+                title: "ROS基礎",
+                description: "ROSのファイル構造と通信メカニズムを理解し、ROSパッケージの作成と移植を習得します。",
+                items: [
+                  {
+                    name: "ROSランタイム体験",
+                    desc: "推奨2コマ｜ROSファイル構造を確認し、トピック・サービス・パラメータでturtlesimとUNI-WR2を制御。"
+                  },
+                  {
+                    name: "ROSパッケージ構築・移植",
+                    desc: "推奨2コマ｜パッケージ作成、環境変数設定、ビルドを行い、キーボード操作のUNI-WR2制御パッケージを実装。"
+                  }
+                ]
+              },
+              {
+                title: "SLAMエンジニアリング導入",
+                description: "3種類のSLAMアルゴリズムを比較しながら、完全なナビゲーションワークフローと調整手順を学びます。",
+                items: [
+                  {
+                    name: "ナビゲーション迅速操作",
+                    desc: "推奨2コマ｜手順に沿ってCatographer・Hector・Gmappingを実行し、特徴と適用環境を比較。"
+                  },
+                  {
+                    name: "Catographerマッピング",
+                    desc: "推奨4コマ｜原理解説、パッケージ分解、パラメータ構成、全パラメータチューニングを実施。"
+                  },
+                  {
+                    name: "Hectorマッピング",
+                    desc: "推奨4コマ｜Hectorのアーキテクチャを分解し、高周波LiDARデータに対応した設定・調整を行う。"
+                  },
+                  {
+                    name: "Gmappingマッピング",
+                    desc: "推奨4コマ｜粒子フィルタSLAMの考え方を理解し、パラメータ調整とマップ生成を完成。"
+                  }
+                ]
+              },
+              {
+                title: "移動ロボット運動学制御",
+                description: "差動二輪の運動学、精密な里程計、PID速度制御を実機で習得します。",
+                items: [
+                  {
+                    name: "ホイールPID調整",
+                    desc: "推奨2コマ｜エンコーダデータを取得し、PIDアルゴリズムで速度閉ループ制御を構築。"
+                  },
+                  {
+                    name: "移動ロボット運動学",
+                    desc: "推奨4コマ｜差動駆動モデルを導出し、里程計フィードバックと線速度／角速度制御を実装。"
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "速度 0.16m/s",
-            "1m 以内の位置決め精度 < 5mm、1m 直進偏差 < 1cm",
-          ],
+            "寸法：130mm × 97mm × 98mm",
+            "質量：約580g",
+            "速度：0.16m/s",
+            "位置決め精度：1m以内で誤差5mm未満",
+            "直進偏差：1m走行で1cm未満（約1.5°）",
+            "ナビゲーション方式：Catographer／Hector／Gmapping（レーザーSLAM）"
+          ]
         },
         "alo-le4": {
           name: "具現化ロボット操作計画総合実習プラットフォーム ALO-LE4",
           model: "ALO-LE4",
-          image: "/images/video/video.jpg",
+          image: "/images/products/alo-le4/front-view.png",
           overview:
-            "デュアルロボットアームの主従追従と可変照明環境を備え、ACT アーキテクチャと模倣学習／エンドツーエンド制御研究を支援します。",
+            "具現化知能の操作実行フェーズには強化学習とエンドツーエンド方式があり、前者は生体模倣や人型構成、後者は移動型複合ロボットやロボットアームに多く用いられます。ALO-LE4 はロボットアーム構成に基づき、ACT アーキテクチャでエンドツーエンド実装を行う操作実習プラットフォームです。データ収集装置としても、模倣学習・エンドツーエンド制御研究基盤としても活用できます。\n\n2 台の 5 自由度アームを搭載し、1 台は操作者が操作する主アーム、もう 1 台は追従動作を行う従アームです。主アームで取得した関節角データなどを用い ACT モデルを訓練し、従アームが自律的にタスクを実行します。トップとサイドに配置したカメラは物体の色・位置を検知し、同時に ACT 学習用の視覚データとして活用。可変環境照明により多様な光条件を再現できます。\n\nALO-LE4 は具現化知能・模倣学習・データ収集研究に安定した実験環境を提供し、「認知―意思決定―実行」のループ構築を支援します。教育現場ではロボット工学・コンピュータビジョンなどの実習をカバーし、具現化知能の概念と実装を直感的に理解させることで、学習者の工学・研究能力を高めます。大学・研究機関において関連授業や研究を効率的に推進でき、具現化知能の方法論を探求・実装する一助となります。",
           highlights: [
-            "マルチユース（データ収集＋知能トレーニング）",
-            "ワンストップ導入（開梱してすぐ使用）",
-            "ステップアップ型カリキュラム（環境構築からモデルデプロイまで）",
+            "データ収集と知能トレーニングを兼ね備えた一体型プラットフォーム",
+            "高集約・ワンストップ設計で迅速導入、各システムに独立リセットキーを搭載",
+            "環境構築からモデル訓練までをカバーする段階的カリキュラム",
           ],
-          applicable: "模倣学習、エンドツーエンド知能制御研究",
-          configuration: [
-            "5 自由度ロボットアーム × 2（主従追従）",
-            "カメラ 2 台（トップ + サイド）",
-            "可変環境照明",
-            "13 インチディスプレイ",
+          applicable:
+            "具現化知能、模倣学習、エンドツーエンド制御、ロボット工学、コンピュータビジョンなどの授業・研究に適用",
+          features: [
+            {
+              title: "データ収集と訓練の統合",
+              content:
+                "ACT フレームワーク上で動作データ取得・モデル学習・効果検証を一貫して実施。可変照明で多様な環境条件を再現し、卓上環境で安定かつ再現性の高い実験を実施します。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "プラットフォーム構成概要", image: "/images/products/alo-le4/module-overview.png" }
+              ]
+            },
+            {
+              title: "迅速な展開とリカバリ",
+              content:
+                "主アーム・従アーム・OS に独立したリセットボタンを備え、追加のシーン構築なしで素早く実験を開始。異常発生時も即座に再起動できます。"
+            },
+            {
+              title: "段階的な学習設計",
+              content:
+                "ソフトウェア環境構築からハードウェア調整、訓練ワークフローまで網羅し、授業・研究双方のニーズに対応。受講者が段階的に操作スキルを習得できます。"
+            }
           ],
-          experiments: [
-            "エンドツーエンドソリューション導入（環境構築、Lerobot フレームワーク導入、モデル訓練／デプロイ）",
-            "AI ビジョン（YOLO／ロボットアーム視覚搬送）",
-            "ロボットアーム制御（運動学／補間）",
-          ],
+          sensorConfig: {
+            description: "模倣学習と視覚認識に必要なセンサー群を標準搭載し、外部モジュール追加にも対応します。",
+            list: [
+              "トップ＋サイドのデュアル HD カメラ：色・位置検出およびデータセット収集に対応",
+              "可変環境照明：多様な光条件を再現",
+              "主従アームの関節角センサー：精密なモーションデータを取得",
+              "拡張インターフェース：追加視覚／触覚モジュールに対応"
+            ]
+          },
+          sampleCases: {
+            description:
+              "プラットフォームのアーム構成とセンサーモジュールを複数視点で確認でき、授業・実験シーンの設計を容易にします。",
+            sections: [
+              {
+                title: "プラットフォーム多角度ギャラリー",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "正面図", image: "/images/products/alo-le4/front-view.png" },
+                  { name: "俯瞰図", image: "/images/products/alo-le4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "端到端デプロイからビジョン連携、ロボットアーム制御まで幅広い実験で、具現化操作の理解を深化させます。",
+            sections: [
+              {
+                title: "エンドツーエンド導入と訓練",
+                description: "ACT に基づく環境構築、データ収集、モデル学習・デプロイを順を追って実施します。",
+                items: [
+                  { name: "環境構築", desc: "CONDA／FFMPEG／Python などの依存環境を整備（推奨2コマ）" },
+                  { name: "Lerobot フレームワーク導入", desc: "Lerobot のセットアップ（推奨2コマ）" },
+                  { name: "ロボットアームサーボ設定", desc: "サーボパラメータ調整（推奨1コマ）" },
+                  { name: "カメラ設定", desc: "カメラキャリブレーションと映像接続（推奨1コマ）" },
+                  { name: "主従アーム校正", desc: "主アーム収集・従アーム追従の検証（推奨2コマ）" },
+                  { name: "遠隔操作データ収集", desc: "映像・関節角・システムログの記録（推奨2コマ）" },
+                  { name: "モデル訓練", desc: "NVIDIA 4060 以上の GPU 使用推奨（推奨2コマ）" },
+                  { name: "モデルデプロイ", desc: "自律動作の検証と評価（推奨4コマ）" }
+                ]
+              },
+              {
+                title: "拡張授業・AI ビジョン",
+                description: "視覚認識をロボットアーム作業に接続し、ビジョン統合の方法を学びます。",
+                items: [
+                  { name: "YOLO ビジョンデプロイ", desc: "YOLO モデルの導入（推奨2コマ）" },
+                  { name: "データセットアノテーション", desc: "視覚データのラベリング（推奨2コマ）" },
+                  { name: "モデル学習とデプロイ", desc: "視覚モデルの学習と導入（推奨2コマ）" },
+                  { name: "ワークピース検出", desc: "対象検出と位置特定（推奨2コマ）" },
+                  { name: "ロボットアーム視覚搬送", desc: "視覚結果を動作タスクへマッピング（推奨4コマ）" }
+                ]
+              },
+              {
+                title: "拡張授業・ロボット本体制御",
+                description: "アームの運動学と補間制御を中心に実践し、応用タスクへ展開します。",
+                items: [
+                  { name: "ロボットアーム運動学制御", desc: "順逆運動学の構築と制御（推奨4コマ）" },
+                  { name: "ロボットアーム直線補間制御", desc: "直線補間軌道の実装（推奨2コマ）" },
+                  { name: "ロボットアーム円弧補間制御", desc: "円弧補間軌道の実装（推奨2コマ）" },
+                  { name: "ロボットアームの積み下ろし搬送", desc: "積み下ろし・搬送タスクの総合演習（推奨4コマ）" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "ロボットアームは動作データ取得に対応",
-            "カメラは物体の色／位置検出に対応",
-            "照明は多様な光環境を再現可能",
+            "主従連携する 5 自由度ロボットアーム×2 により動作収集と追従制御を実現",
+            "トップ＋サイドカメラで ACT 学習用の色・位置情報を取得",
+            "内蔵可変照明で多様な光環境を再現",
+            "独立リセットボタンにより迅速な復旧とデバッグが可能",
           ],
         },
       },

@@ -5,7 +5,7 @@ type BreadcrumbProps = {
 
 const Breadcrumb = ({ pageName, description }: BreadcrumbProps) => {
   return (
-    <section className="relative z-10 overflow-hidden pt-28 lg:pt-[150px]">
+    <section className="relative z-10 overflow-hidden pt-28 pb-14 md:pt-[150px] md:pb-20">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">

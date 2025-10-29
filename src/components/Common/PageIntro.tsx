@@ -18,13 +18,15 @@ const PageIntro = ({
         pageName={title}
         description={description}
       />
-      <section className="py-14 md:py-20">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-base leading-relaxed text-body-color dark:text-white/70">
-            {children ?? <p>{description}</p>}
+      {children ? (
+        <section className="py-14 md:py-20">
+          <div className="container">
+            <div className="mx-auto max-w-3xl text-base leading-relaxed text-body-color dark:text-white/70">
+              {children}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
     </>
   );
 };

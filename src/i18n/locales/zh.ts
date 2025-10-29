@@ -261,7 +261,7 @@ export const dictionary = {
                 slug: "ubot-mr20",
                 name: "具身机器人创新设计套装 Ubot MR20",
                 model: "Ubot MR20",
-                image: "/images/products/ubot-mr20-main.jpg",
+                image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
                 brief: "具身智能机器人创新设计套件（二十合一）。结合人工智能通识课程实践套装，从零搭建20余种智能机器人，支持图形化/C++/Python多语言编程。",
               },
               {
@@ -289,28 +289,28 @@ export const dictionary = {
                 slug: "uni-wr2",
                 name: "便携式ROS导航机器人学习平台 UNI-WR2",
                 model: "UNI-WR2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/uni-wr2/uni-wr2-hero.png",
                 brief: "<13cm 便携机身，桌面级 SLAM 实验（≤60cm×60cm），五步 ROS 工程化部署配套 Catographer/Hector/Gmapping。",
               },
               {
                 slug: "rai-q2",
                 name: "具身视觉感知决策实训平台 RAI-Q2",
                 model: "RAI-Q2",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-q2/hero.png",
                 brief: "深度相机 + 高精度转台/升降导轨，支持OpenCV/YOLO/VLM；适配机器视觉、机器学习课程。",
               },
               {
                 slug: "rai-m4",
                 name: "具身复合机器人系统设计实训平台 RAI-M4",
                 model: "RAI-M4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-m4/front-view.png",
                 brief: "麦轮全向底盘 + 4轴机械臂，接入DeepSeek/通义千问；适配移动机器人导航与大模型部署。",
               },
               {
                 slug: "alo-le4",
                 name: "具身机器人操作规划综合实训平台 ALO-LE4",
                 model: "ALO-LE4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/alo-le4/front-view.png",
                 brief: "双5自由度机械臂（主从跟随），ACT架构，可调光源；适配模仿学习与端到端控制研究。",
               },
             ],
@@ -372,7 +372,7 @@ export const dictionary = {
           name: "Ubot MR20",
           subtitle: "具身智能机器人创新设计套件（二十合一）",
           model: "Ubot MR20",
-          image: "/images/products/ubot-mr20-main.jpg",
+          image: "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
           overview: "Ubot MR20是结合机器人的人工智能通识课程实践套装，学习者可以从零搭建20余种智能机器人，结合语音识别让学习者了解人工智能技术在机器人中的应用，学习者还可以通过图形化编程/C++编程进行机器人避让、机器人循迹、机器人姿态检测等智能功能的开发。",
           applicable: "K12、中职/高职一年级、大一学生",
           features: [
@@ -1088,54 +1088,272 @@ export const dictionary = {
         "rai-m4": {
           name: "具身复合机器人系统设计实训平台 RAI-M4",
           model: "RAI-M4",
-          image: "/images/video/video.jpg",
-          overview: "麦轮全向底盘配合4轴机械臂，支持接入DeepSeek、通义千问等大模型，面向系统设计与导航教学。",
+          image: "/images/products/rai-m4/front-view.png",
+          overview:
+            "具身智能可以拆解为任务规划、感知决策、操作执行三个环节，每个环节都可引入 AI 提升交互、决策与操作的泛化能力。RAI-M4 在任务规划阶段引入 DeepSeek 与通义千问，实现随机对话语义理解与自然语言指令到任务流程的转换；在感知决策端结合通义千问的多模态识别能力，无需预训练即可探索更丰富的感知场景。\n\n硬件层面，RAI-M4 采用麦克纳姆轮全向底盘，实现全向移动；串联四轴机械臂末端负载可达 300g、抓取范围 240mm，并配套夹爪。感知单元包含高清摄像头（可选深度相机）、激光雷达、陀螺仪、呼吸灯等模块，覆盖常见交互与定位所需的传感器。\n\n主控架构为上下位机双主控：上位机负责任务规划、视觉感知决策、导航规划、底盘与机械臂运动学等复杂算法；下位机负责电机 PID 控制、交互模块驱动，并承载与上位机的通信中继。平台支持移动机器人技术与大模型部署应用的综合教学实践，可服务机器人、机电、智能制造、自动化、电子信息等专业课程与拓展实训。",
           highlights: [
-            "全向移动（麦轮底盘）+ 操作（4 轴机械臂）",
-            "大模型深度接入（通义千问 + Deepseek）",
+            "全向移动底盘 + 四轴机械臂的复合机器人形态",
+            "通义千问 + DeepSeek 等大模型深度接入",
+            "覆盖移动机器人与大模型部署的体系化课程",
           ],
-          applicable: "移动机器人导航、大模型部署",
-          configuration: [
-            "四驱麦轮底盘（速度 0.5m/s，负载 10kg）",
-            "4 轴机械臂（臂展 > 220mm，负载≥200g）",
-            "激光雷达（测距 0.12-8m）",
-            "200W 像素相机",
+          applicable:
+            "移动机器人运动控制、大模型部署与应用、机器人学、机器视觉、机器人操作系统、移动机器人导航与定位等课程实训",
+          features: [
+            {
+              title: "AI 大模型深度接入",
+              content:
+                "在 ASR 环节集成通义千问，在 LLM 环节引入 DeepSeek，让机器人具备自然语言任务规划能力；在视觉环节依托通义千问多模态，降低场景识别门槛。"
+            },
+            {
+              title: "移动 + 操作复合平台",
+              content:
+                "麦克纳姆轮全向底盘与串联机械臂协同工作，可在狭小空间完成移动与操作任务，结合任务规划与感知决策形成泛化作业流程。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "模块组成示意", image: "/images/products/rai-m4/module-overview.png" }
+              ]
+            },
+            {
+              title: "体系化实验项目设计",
+              content:
+                "结合专业课程递进式设计实训模块，可按需选择机器视觉、大模型部署、机器人学、移动机器人导航定位等模块，灵活适配教学计划。"
+            }
           ],
-          experiments: [
-            "机器视觉（OpenCV / YOLO / 多模态检测）",
-            "大模型部署（语音对话 / 任务规划）",
-            "ROS 导航（建图 / 避障）",
-          ],
+          sensorConfig: {
+            description:
+              "面向移动作业与感知交互配置完整传感器组合，满足定位、导航与交互需求。",
+            list: [
+              "高清摄像头（可选配深度相机，实现三维感知）",
+              "360° 激光雷达（测距 0.12-8m）",
+              "IMU / 陀螺仪传感器（姿态估计与里程修正）",
+              "呼吸灯与交互指示模块",
+              "扩展接口：支持触摸屏、额外传感器接入"
+            ]
+          },
+          sampleCases: {
+            description:
+              "从多角度展示 RAI-M4 的整机布局、模块分布与感知单元，便于课程部署与场景规划。",
+            sections: [
+              {
+                title: "多角度外观展示",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "正视图", image: "/images/products/rai-m4/front-view.png" },
+                  { name: "左视图", image: "/images/products/rai-m4/left-view.png" },
+                  { name: "右视图", image: "/images/products/rai-m4/right-view.png" },
+                  { name: "俯视图", image: "/images/products/rai-m4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "采用上下位机双主控架构：上位机承担任务规划、视觉感知与导航算法，下位机负责电机 PID、机械臂伺服与互动模块控制，并作为与上位机通信的中继节点。",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "预装 Ubuntu + ROS2、MoveIt、YOLO 推理环境及通义千问 / DeepSeek API 示例，可快速进入移动机器人与大模型联合实验。",
+            ecosystem:
+              "支持 Python / C++、ROS2、MoveIt、OpenCV、YOLO、通义千问 SDK、DeepSeek API 等主流框架，便于扩展课程与科研项目。"
+          },
+          experiments: {
+            summary:
+              "实验体系覆盖机器视觉、大模型部署与应用、机器人本体控制、ROS 操作与移动机器人导航等模块，支持按课程需求灵活组合。",
+            sections: [
+              {
+                title: "机器视觉模块",
+                description: "构建从基础图像处理到深度学习、多模态识别的完整实践路径。",
+                items: [
+                  { name: "OpenCV 视觉", desc: "HSV 颜色识别；视觉形状识别；二维码识别；条码识别；色环检测（综合+滤波）" },
+                  {
+                    name: "AI 视觉 - YOLO",
+                    desc: "YOLO 视觉部署；数据集标注；模型训练与部署；工件数据收集与检测；人脸检测；人脸追踪"
+                  },
+                  { name: "AI 视觉 - 通义千问多模态", desc: "通义千问多模态接口部署；物体检测与标记" }
+                ]
+              },
+              {
+                title: "大模型部署与应用模块",
+                description: "聚焦语音交互、多模态识别与机器人执行的全链路大模型实践。",
+                items: [
+                  {
+                    name: "语音对话交互",
+                    desc:
+                      "语音转文字 ASR 部署（通义千问）；语义理解 LLM 部署（DeepSeek）；文字转语音 TTS 部署（火山引擎）；完整语音对话；语音对话计算器；语音对话音乐播放"
+                  },
+                  { name: "多模态视觉检测", desc: "通义千问多模态接口部署；物体检测与标记" },
+                  { name: "结合机器人应用", desc: "基于 MCP 的识别抓取任务规划；基于 MCP 的导航任务规划" }
+                ]
+              },
+              {
+                title: "机器人本体控制模块",
+                description: "面向底盘与机械臂的运动学与控制策略实践。",
+                items: [
+                  { name: "底盘本体控制", desc: "编码电机 PID 控制；全向底盘运动学控制；全向底盘里程控制（含陀螺仪校准）" },
+                  { name: "机械臂本体控制", desc: "舵机位置控制；机械臂运动学控制；机械臂插补运动控制" }
+                ]
+              },
+              {
+                title: "机器人操作系统模块",
+                description: "培养 ROS 话题、服务、参数以及 MoveIt 规划等核心技能。",
+                items: [
+                  {
+                    name: "ROS 基本操作",
+                    desc:
+                      "通过话题 / 服务 / 参数控制仿真小乌龟运动；新增小乌龟实例；功能包移植与运行（键盘控制小乌龟）"
+                  },
+                  { name: "MoveIt 机械臂规划", desc: "配置机械臂 URDF；MoveIt 配置机械臂运动学模型；Rviz 实现机械臂运动规划" }
+                ]
+              },
+              {
+                title: "移动机器人导航与定位模块",
+                description: "涵盖系统接口、建图与导航的完整流程，支持多坐标导航实践。",
+                items: [
+                  { name: "系统接口配置", desc: "键盘控制底盘运动；键盘控制机械臂运动；获取激光雷达数据" },
+                  { name: "地图构建", desc: "配置建图工程文件；制作 launch 文件；构建新地图" },
+                  {
+                    name: "地图导航",
+                    desc: "配置 Navigation 工程文件；设置机器人碰撞边界；指定点导航；自主避障导航；多坐标导航"
+                  }
+                ]
+              }
+            ]
+          },
           specs: [
-            "边缘计算控制器 RDK X5（10TOPS 算力）",
-            "YOLOv8 人脸检测 100fps（参考指标）",
+            "麦克纳姆轮全向底盘（最大速度约 0.5m/s，负载 10kg）",
+            "四轴串联机械臂（臂展 240mm，末端负载 300g，配套夹爪）",
+            "上下位机双主控架构（上位机负责规划，下位机负责 PID 与交互控制）",
+            "预装大模型接口与 ROS2 / MoveIt 实验环境",
           ],
         },
         "rai-q2": {
           name: "具身视觉感知决策实训平台 RAI-Q2",
           model: "RAI-Q2",
-          image: "/images/video/video.jpg",
-          overview: "集成深度相机与高精度运动机构，支持OpenCV/YOLO/VLM等算法教学与实验。",
+          image: "/images/products/rai-q2/hero.png",
+          overview:
+            "视觉检测是具身智能最常见的感知决策环节。RAI-Q2 将典型视觉算法与典型应用场景结合，覆盖基于 OpenCV、YOLO 与通义千问 VLM 的多层次教学方案，帮助课程快速落地视觉处理教学。\n\n平台集成深度相机模块、边缘计算控制器、高精度可调转速与角度的转台、手摇/电动双模式的毫米级升降导轨、可调亮度的环形光圈、显示器与蓝牙键鼠，一站式配置显著降低实验部署门槛，适用于机器视觉、机器学习及大模型应用等课程。",
           highlights: [
-            "三种视觉方案（OpenCV / YOLO / VLM）",
-            "高精度调试（转台 0.3° 背隙，升降台 mm 级调节）",
-            "模块化替换",
+            "三套视觉方案：OpenCV、YOLO、通义千问 VLM 全覆盖",
+            "0.3° 背隙转台 + 毫米级升降导轨，配合亮度可调环形光源",
+            "模块化部件可替换，可扩展高速相机或云台组合",
           ],
-          applicable: "机器视觉、机器学习课程",
-          configuration: [
-            "深度相机（深度范围 0.6-8m，1280×720@90fps）",
-            "高精度转台（速度 / 位置模式切换）",
-            "22 英寸显示屏",
+          applicable: "机器视觉、机器学习、大模型部署与应用课程",
+          features: [
+            {
+              title: "三类视觉识别方案全覆盖",
+              content:
+                "提供基于 OpenCV 的经典图像处理、基于 YOLO 的目标检测与基于通义千问 VLM 的多模态视觉解析三套教学路径，让学生循序掌握从算法原理、模型训练到大模型推理的核心能力。"
+            },
+            {
+              title: "高精度全参调试检测台",
+              content:
+                "转台采用一体化关节驱动，最小背隙 0.3°，支持速度/角度模式切换；双层磁吸台面减少螺丝孔干扰视觉画面；升降台具备毫米级调节精度并支持手摇、伺服电机双模式，配套可调亮度环形光圈满足不同光照场景。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "视觉方案一览", image: "/images/products/rai-q2/feature-overview.png" }
+              ]
+            },
+            {
+              title: "模块化自由组合",
+              content:
+                "核心部件均可替换升级，深度相机模块可替换为高速相机，升降模块也可移至转台形成云台组合，方便根据课程目标快速搭建定制实验装置。"
+            }
           ],
-          experiments: [
-            "OpenCV 视觉（颜色 / 形状识别）",
-            "YOLO 部署（人脸检测 / 追踪）",
-            "深度检测（3D 建模）",
-            "大模型多模态接口部署",
-          ],
+          sensorConfig: {
+            description:
+              "面向视觉识别与深度检测应用配置全套传感器，支持多模态数据采集。",
+            list: [
+              "深度相机模块（支持距离、RGB、红外等数据输出）",
+              "可调亮度环形光圈（多档亮度，保障图像对比度）",
+              "可扩展高速相机/补光模组接口",
+              "转台角度编码反馈与升降行程反馈"
+            ]
+          },
+          sampleCases: {
+            description:
+              "多视角展示 RAI-Q2 具身视觉平台的整体结构，帮助教师快速了解转台、升降导轨与相机模块的布局，便于课程部署与场景搭建。",
+            sections: [
+              {
+                title: "多角度外观展示",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "主视图", image: "/images/products/rai-q2/front-view.png" },
+                  { name: "侧视图", image: "/images/products/rai-q2/side-view.png" },
+                  { name: "俯视图", image: "/images/products/rai-q2/top-view.png" }
+                ]
+              }
+            ]
+          },
+          controllerConfig: {
+            description:
+              "内置边缘计算控制器负责算法推理与控制逻辑，配合一体化转台/升降驱动系统，支持精确的姿态调节与多模式控制。",
+            images: []
+          },
+          softwareConfig: {
+            description:
+              "预装 OpenCV、YOLO 推理环境与通义千问 VLM 接口示例，开机即可进入视觉算法实验流程。",
+            ecosystem:
+              "支持 Python、C++ 开发，兼容 Pytorch、TensorRT、通义千问 SDK 等主流视觉与大模型框架，方便拓展算法训练与部署。"
+          },
+          experiments: {
+            summary:
+              "围绕 OpenCV 图像处理、YOLO 模型部署、通义千问 VLM 多模态推理与深度检测等主题构建分层实验，含课程时长建议，便于教学排课与项目式训练。",
+            sections: [
+              {
+                title: "OpenCV 视觉",
+                description: "掌握基础图像处理及识别流程，为后续高级算法奠定基础。",
+                items: [
+                  { name: "HSV-视觉颜色识别", desc: "建议课时 2" },
+                  { name: "视觉形状识别", desc: "建议课时 2" },
+                  { name: "二维码识别", desc: "建议课时 2" },
+                  { name: "条码识别", desc: "建议课时 2" },
+                  { name: "色环检测（综合 + 滤波）", desc: "建议课时 4" }
+                ]
+              },
+              {
+                title: "AI 视觉 - YOLO",
+                description: "完整走通数据标注、模型训练到部署的工程化流程。",
+                items: [
+                  { name: "YOLO 视觉部署", desc: "建议课时 2" },
+                  { name: "数据集标注", desc: "建议课时 2" },
+                  { name: "模型训练与部署", desc: "建议课时 2｜需额外配置 4050 及以上显卡" },
+                  { name: "工件数据收集与检测", desc: "建议课时 2" },
+                  { name: "人脸检测", desc: "建议课时 2" },
+                  { name: "人脸追踪", desc: "建议课时 4" }
+                ]
+              },
+              {
+                title: "AI 视觉 - 通义千问大模型",
+                description: "体验多模态大模型在视觉任务中的应用能力。",
+                items: [
+                  { name: "通义千问多模态接口部署", desc: "建议课时 2" },
+                  { name: "水果检测与标记", desc: "建议课时 2" }
+                ]
+              },
+              {
+                title: "深度检测",
+                description: "利用深度相机完成距离感知与三维建模实验。",
+                items: [
+                  { name: "深度数据获取", desc: "建议课时 2" },
+                  { name: "3D 建模", desc: "建议课时 4" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "边缘计算控制器 RDK X5（10TOPS 算力）",
-            "转台最大速度 40rpm",
+            "转台最小背隙 0.3°，支持速度/角度双模式切换",
+            "升降导轨毫米级调节精度，支持手摇/电动双模式",
+            "可调亮度环形光圈，满足不同场景照度需求",
+            "内置边缘计算控制器与显示终端，一站式部署"
           ],
         },
         "uni-wr2": {
@@ -1307,29 +1525,109 @@ export const dictionary = {
         "alo-le4": {
           name: "具身机器人操作规划综合实训平台 ALO-LE4",
           model: "ALO-LE4",
-          image: "/images/video/video.jpg",
-          overview: "双机械臂主从跟随与可调光源环境，支持ACT架构与模仿学习/端到端控制研究。",
+          image: "/images/products/alo-le4/front-view.png",
+          overview:
+            "具身智能的操作执行环节常见路径包括强化学习与端到端方案：前者常用于仿生、人形构型，后者适用于轮式复合机器人与机械臂。ALO-LE4 以机械臂为核心，基于 ACT 架构打造端到端具身操作实训平台，可同时作为数据采集平台与模仿学习、端到端智能控制研究载体。\n\n平台搭载两台 5 自由度机械臂：主臂供操作者手动演示、采集动作数据，从臂根据训练后的 ACT 模型执行自主操作。顶置与侧置双摄像头负责颜色、位置检测，并为模型提供视觉训练数据；内置可调环境光源，可模拟不同光照条件。\n\nALO-LE4 为具身智能、模仿学习与数据采集研究提供稳定可控的实验环境，便于构建“感知—决策—执行”的闭环。在教学中，可覆盖机器人学、机器视觉等课程实践，帮助学习者直观理解具身智能关键概念并提升工程与科研能力，支持高校与科研机构高效推进相关教学与研究。",
           highlights: [
-            "一机多用（数据采集 + 智能训练）",
-            "一站式部署（开箱即用）",
-            "递进式教学（环境配置到模型部署）",
+            "一机多用：数据采集、智能训练与验证统一平台",
+            "一站式部署：高度集成，开箱即用并支持快速重置",
+            "递进式教学：覆盖环境配置到模型训练的完整教学路径",
           ],
-          applicable: "模仿学习、端到端智能控制研究",
-          configuration: [
-            "2 个 5 自由度机械臂（主从跟随）",
-            "2 个摄像头（顶部 + 侧面）",
-            "可调环境光源",
-            "13 英寸显示屏",
+          applicable:
+            "适用于具身智能、模仿学习、端到端控制、机器人学、机器视觉等课程与科研项目",
+          features: [
+            {
+              title: "数据采集与训练一体化",
+              content:
+                "基于 ACT 架构，支持动作采集、模型训练与验证流程；可调光源满足多场景需求，桌面实验环境确保算法验证的稳定性与可重复性。",
+              mediaGridClassName: "grid-cols-1 gap-6 place-items-center",
+              mediaImageAspectClass: "aspect-[16/10]",
+              mediaCardClassName: "w-full max-w-3xl",
+              media: [
+                { name: "平台模块构成", image: "/images/products/alo-le4/module-overview.png" }
+              ]
+            },
+            {
+              title: "快速部署与恢复",
+              content:
+                "主臂、从臂及操作系统独立配置重启按键，无需额外场景搭建即可开展实验，在出现异常时可迅速重置恢复。"
+            },
+            {
+              title: "递进式教学设计",
+              content:
+                "涵盖软件环境配置、硬件部署、训练流程等完整教学环节，既支持科研探索也适配课堂教学，帮助学员循序掌握操作要领。"
+            }
           ],
-          experiments: [
-            "端到端方案部署（环境配置、Lerobot 框架安装、模型训练 / 部署）",
-            "AI 视觉（YOLO / 机械臂视觉搬运）",
-            "机械臂控制（运动学 / 插补）",
-          ],
+          sensorConfig: {
+            description: "面向模仿学习和视觉识别配置核心传感器，覆盖操作执行所需数据源。",
+            list: [
+              "双路高清摄像头（顶部 + 侧面）用于颜色、位置识别及视觉数据采集",
+              "可调环境光源，模拟不同光照条件",
+              "机械臂关节角度传感器采集运动学数据",
+              "扩展接口：支持额外视觉/力觉模块接入"
+            ]
+          },
+          sampleCases: {
+            description: "多视角展示 ALO-LE4 的机械臂布局与传感模块，便于规划教学和实验场景。",
+            sections: [
+              {
+                title: "平台多角度图集",
+                gridClassName: "grid-cols-1 sm:grid-cols-2 gap-6",
+                imageAspectClass: "aspect-[4/3]",
+                cardClassName: "pt-6 pb-4",
+                items: [
+                  { name: "主视图", image: "/images/products/alo-le4/front-view.png" },
+                  { name: "俯视图", image: "/images/products/alo-le4/top-view.png" }
+                ]
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "实验体系从端到端方案部署扩展到视觉与本体控制，帮助学员建立具身操作的完整认知。",
+            sections: [
+              {
+                title: "端到端方案部署与训练",
+                description: "围绕 ACT 架构完成环境配置、数据采集、模型训练与部署。",
+                items: [
+                  { name: "环境配置", desc: "配置 CONDA、FFMPEG、Python 等依赖（建议课时 2）" },
+                  { name: "安装 Lerobot 框架", desc: "完成 Lerobot 环境搭建（建议课时 2）" },
+                  { name: "配置机械臂舵机", desc: "调试机械臂舵机参数（建议课时 1）" },
+                  { name: "配置相机", desc: "完成摄像头标定与画面接入（建议课时 1）" },
+                  { name: "校准与测试主从臂", desc: "验证主臂采集与从臂跟随（建议课时 2）" },
+                  { name: "遥操作数据采集", desc: "录制视频、关节角度、系统配置等数据（建议课时 2）" },
+                  { name: "模型训练", desc: "建议使用 NVIDIA 4060 及以上显卡（建议课时 2）" },
+                  { name: "模型部署", desc: "部署并验证自主执行效果（建议课时 4）" }
+                ]
+              },
+              {
+                title: "拓展教学 · AI 视觉",
+                description: "引导学员掌握视觉识别与机械臂视觉协同。",
+                items: [
+                  { name: "YOLO 视觉部署", desc: "部署 YOLO 模型（建议课时 2）" },
+                  { name: "数据集标注", desc: "完成视觉数据标注（建议课时 2）" },
+                  { name: "模型训练与部署", desc: "训练并部署视觉模型（建议课时 2）" },
+                  { name: "工件检测", desc: "实现工件识别与定位（建议课时 2）" },
+                  { name: "机械臂视觉搬运", desc: "将视觉识别结果映射到机械臂任务（建议课时 4）" }
+                ]
+              },
+              {
+                title: "拓展教学 · 机器人本体控制",
+                description: "聚焦机械臂运动学与插补控制的实训练习。",
+                items: [
+                  { name: "机械臂运动学控制", desc: "掌握正逆运动学建模与控制（建议课时 4）" },
+                  { name: "机械臂直线插补控制", desc: "实现直线插补轨迹（建议课时 2）" },
+                  { name: "机械臂圆弧插补控制", desc: "实现圆弧插补轨迹（建议课时 2）" },
+                  { name: "机械臂码垛搬运", desc: "综合练习码垛与搬运任务（建议课时 4）" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "机械臂支持动作数据采集",
-            "摄像头用于物体颜色 / 位置检测",
-            "光源可模拟不同光环境",
+            "双 5 自由度机械臂实现主从跟随与动作采集",
+            "顶置 + 侧置摄像头提供颜色与位置识别输入",
+            "内置可调光源，适配不同光照条件",
+            "独立重启按键，支持快速恢复与调试"
           ],
         },
       },
