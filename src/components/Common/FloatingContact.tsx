@@ -160,7 +160,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
     <>
       {/* Desktop Version - Side Panel */}
       <div
-        className="fixed bottom-1/4 right-0 z-[35] hidden translate-y-1/2 md:block"
+        className="fixed bottom-[15%] right-0 z-[35] hidden translate-y-1/2 md:block"
         onMouseEnter={openPanel}
         onMouseLeave={handleMouseLeave}
         onFocusCapture={openPanel}
@@ -311,7 +311,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
           aria-label={copy.fabLabel}
           aria-haspopup="dialog"
           aria-expanded={mobileModalOpen}
-          className={`fixed ${offsetForScrollTop ? "bottom-24" : "bottom-6"} right-6 z-[35] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-two transition-transform hover:scale-110 active:scale-95 ${
+          className={`fixed ${offsetForScrollTop ? "bottom-20" : "bottom-4"} right-6 z-[35] flex h-14 w-14 items-center justify-center rounded-full bg-primary shadow-two transition-transform hover:scale-110 active:scale-95 ${
             showHint ? "animate-pulse" : ""
           }`}
         >

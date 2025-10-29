@@ -34,6 +34,46 @@
 
 ---
 
+V1.19.1 ui(floating-contact): 优化悬浮联系组件位置布局
+
+类型: ui
+
+范围: floating-contact, components
+
+说明:
+
+本次更新对悬浮联系组件的位置进行了微调，以改善在不同屏幕尺寸下的视觉表现和用户体验。通过精确调整桌面版侧边栏和移动版悬浮按钮的定位，使组件能够更好地适应页面布局。
+
+实现细节:
+
+1. **桌面版侧边栏位置优化**
+   * `src/components/Common/FloatingContact.tsx:163`:
+     * 将桌面版右侧面板的定位从 `bottom-1/4` (25%位置) 调整至 `bottom-[15%]` (15%位置)
+     * 使侧边栏在视觉上更加突出，同时避免与页面底部内容产生视觉冲突
+
+2. **移动版悬浮按钮位置调整**
+   * `src/components/Common/FloatingContact.tsx:314`:
+     * 将滚动状态下的按钮位置从 `bottom-24` 优化为 `bottom-20`
+     * 将默认状态下的按钮位置从 `bottom-6` 优化为 `bottom-4`
+     * 提供了更舒适的触控体验和更好的视觉平衡
+
+文件变更:
+
+修改文件:
+- [`src/components/Common/FloatingContact.tsx`](src/components/Common/FloatingContact.tsx:163) (调整桌面版和移动版悬浮组件的位置定位)
+
+改进效果:
+
+- **视觉体验提升**: 优化后的位置使悬浮组件在不同屏幕尺寸下都能保持良好的视觉效果
+- **用户体验改善**: 移动端按钮位置的微调提供了更舒适的交互体验
+- **布局协调性增强**: 组件位置与页面整体布局更加协调统一
+
+影响范围:
+
+- 网站所有页面的悬浮联系组件将展示优化后的位置布局
+  
+---
+
 V1.19.0 feat(privacy): 新增 Cookie 同意管理横幅，优化默认设置
 
 类型: feat, ui, chore
