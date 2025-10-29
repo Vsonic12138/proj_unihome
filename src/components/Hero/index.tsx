@@ -2,8 +2,8 @@
 
 import type { Dictionary } from "@/i18n/config";
 import Image from "next/image";
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 type HeroProps = {
   copy: Dictionary["hero"];
@@ -117,7 +117,7 @@ const Hero = ({ copy }: HeroProps) => {
   if (slide.media?.kind === "video") {
     return (
       <video
-        className="h-full w-full object-contain"
+        className="h-full w-full object-cover"
         src={slide.media.src}
         poster={slide.media.poster}
         controls
@@ -152,11 +152,11 @@ const Hero = ({ copy }: HeroProps) => {
   return (
     <section
       id="home"
-      className="relative w-full overflow-hidden bg-white pb-16 pt-[96px] dark:bg-gray-dark sm:pb-20 lg:pb-24"
+      className="relative w-full overflow-hidden bg-white pt-[96px] dark:bg-gray-dark"
     >
       <div
         className="relative w-full overflow-hidden bg-black"
-        style={{ height: "min(78vh, 720px)", minHeight: "540px" }}
+        style={{ height: "min(100vh, 920px)", minHeight: "920px" }}
       >
         <div
           className="flex h-full w-full transition-transform duration-700 ease-out"
@@ -238,25 +238,6 @@ const Hero = ({ copy }: HeroProps) => {
               </div>
             </div>
           </>
-        ) : null}
-      </div>
-
-      <div className="mx-auto mt-16 flex w-full max-w-5xl flex-col items-center justify-center gap-4 px-4 sm:flex-row sm:px-6">
-        {copy.primaryCta ? (
-          <Link
-            href={copy.primaryCta.href}
-            className="w-full rounded-full bg-primary px-10 py-4 text-center text-base font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-primary/85 sm:w-auto"
-          >
-            {copy.primaryCta.label}
-          </Link>
-        ) : null}
-        {copy.secondaryCta ? (
-          <Link
-            href={copy.secondaryCta.href}
-            className="w-full rounded-full border border-black/10 px-10 py-4 text-center text-base font-semibold text-black transition hover:-translate-y-0.5 hover:border-black/30 dark:border-white/20 dark:text-white dark:hover:border-white/40 sm:w-auto"
-          >
-            {copy.secondaryCta.label}
-          </Link>
         ) : null}
       </div>
     </section>

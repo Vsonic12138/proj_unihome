@@ -63,14 +63,6 @@ export const dictionary = {
           },
         },
       ],
-      primaryCta: {
-        label: "浏览产品平台",
-        href: "#features",
-      },
-      secondaryCta: {
-        label: "联系团队",
-        href: "#contact",
-      },
       autoPlayInterval: 6000,
     },
     features: {

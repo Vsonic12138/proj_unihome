@@ -63,14 +63,6 @@ export const dictionary = {
           },
         },
       ],
-      primaryCta: {
-        label: "製品プラットフォームを見る",
-        href: "#features",
-      },
-      secondaryCta: {
-        label: "お問い合わせ",
-        href: "#contact",
-      },
       autoPlayInterval: 6000,
     },
     features: {

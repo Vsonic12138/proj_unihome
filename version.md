@@ -34,6 +34,46 @@
 
 ---
 
+V1.18.2 ui(hero): 优化首页轮播图视觉表现与布局
+
+类型: ui, fix
+
+范围: hero, components
+
+说明:
+
+本次更新主要针对首页的轮播图（Hero）组件进行了两项关键的视觉优化：确保视频内容能够铺满整个容器，并移除了该模块与下方“产品平台”模块之间的多余空白。这些调整旨在提升页面的视觉连贯性和沉浸式体验。
+
+实现细节:
+
+1.  **轮播视频铺满容器**
+    *   `src/components/Hero/index.tsx`:
+        *   **样式调整**: 将轮播图内视频元素的 `object-fit` 样式从 `object-contain` 更改为 `object-cover`。此举确保了视频内容能够像图片一样完全覆盖其容器，消除了在某些宽高比下可能出现的黑边。
+
+2.  **移除模块间白边**
+    *   `src/components/Hero/index.tsx`:
+        *   **布局修复**: 移除了 `Hero` 组件根 `section` 元素的底部内边距（`pb-8`, `sm:pb-12`, `lg:pb-16`）。这消除了轮播图与其下方“产品平台”模块之间的白色间隙，使页面过渡更加平滑、无缝。
+
+文件变更:
+
+修改文件:
+- [`src/components/Hero/index.tsx`](src/components/Hero/index.tsx:1) (调整视频填充模式并移除组件底部边距)
+- [`next-env.d.ts`](next-env.d.ts:1) (Next.js 类型声明更新)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (国际化文案更新)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (国际化文案更新)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (国际化文案更新)
+
+改进效果:
+
+- **视觉沉浸感提升**: 视频内容现在能够全屏展示，为用户提供了更具吸引力的视觉体验。
+- **页面布局更连贯**: 消除了不必要的模块间距，使得首页从上到下的滚动浏览体验更加流畅自然。
+
+影响范围:
+
+- 网站首页的轮播图模块将以优化的样式展示，特别是包含视频的轮播项和模块底部的布局。
+
+---
+
 V1.18.1 ui(about): 优化“关于我们”页面核心亮点为勾选列表样式
 
 类型: ui, refactor

@@ -63,14 +63,6 @@ export const dictionary = {
           },
         },
       ],
-      primaryCta: {
-        label: "Browse Product Platform",
-        href: "#features",
-      },
-      secondaryCta: {
-        label: "Talk with Us",
-        href: "#contact",
-      },
       autoPlayInterval: 6000,
     },
     features: {
