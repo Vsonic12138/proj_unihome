@@ -119,10 +119,18 @@ const LocaleSwitcher = ({
           <div
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
+            style={{
+              animation: 'fadeIn 0.2s ease-out'
+            }}
           />
 
           {/* Dropdown menu */}
-          <div className="absolute top-full right-0 z-50 mt-2 w-32 overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 dark:bg-dark dark:ring-white/10">
+          <div
+            className="absolute top-full right-0 z-50 mt-2 w-32 origin-top-right overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-black/5 dark:bg-dark dark:ring-white/10"
+            style={{
+              animation: 'slideDown 0.25s ease-out'
+            }}
+          >
             {availableOptions.map((option) => (
               <button
                 key={option.locale}

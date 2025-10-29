@@ -47,6 +47,7 @@ type ThemeTogglerProps = {
 const ThemeToggler = ({ label }: ThemeTogglerProps) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
 
   // Avoid hydration mismatch by only rendering after mount
   useEffect(() => {
@@ -55,6 +56,8 @@ const ThemeToggler = ({ label }: ThemeTogglerProps) => {
 
   const handleToggle = () => {
     setTheme(theme === "dark" ? "light" : "dark");
+    // Increment key to trigger animation
+    setAnimationKey(prev => prev + 1);
   };
 
   const iconClassName = "h-5 w-5 md:h-6 md:w-6";
@@ -78,13 +81,20 @@ const ThemeToggler = ({ label }: ThemeTogglerProps) => {
       type="button"
       aria-label={label}
       onClick={handleToggle}
-      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-gray-2 text-black transition-colors duration-200 dark:bg-dark-bg dark:text-white md:h-14 md:w-14"
+      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-gray-2 text-black transition-colors duration-200 hover:bg-gray-3 dark:bg-dark-bg dark:text-white dark:hover:bg-dark-bg/80 md:h-14 md:w-14"
     >
-      {theme === "dark" ? (
-        <SunIcon className={iconClassName} />
-      ) : (
-        <MoonIcon className={iconClassName} />
-      )}
+      <div
+        key={animationKey}
+        style={{
+          animation: 'iconSpinIn 0.5s ease-out',
+        }}
+      >
+        {theme === "dark" ? (
+          <SunIcon className={iconClassName} />
+        ) : (
+          <MoonIcon className={iconClassName} />
+        )}
+      </div>
     </button>
   );
 };

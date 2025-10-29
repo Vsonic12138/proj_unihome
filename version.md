@@ -34,6 +34,58 @@
 
 ---
 
+V1.18.3 ui(header): 优化头部组件交互动画与语言顺序
+
+类型: ui
+
+范围: header, components, i18n
+
+说明:
+
+本次更新专注于提升网站头部（Header）区域的用户交互体验。我们为“主题切换器”和“语言选择器”添加了平滑的过渡动画，并调整了语言选项的默认顺序，以优化界面的动态反馈和用户友好性。
+
+实现细节:
+
+1.  **主题切换器动画增强**
+    *   `src/components/Header/ThemeToggler.tsx`:
+        *   **交互动画**: 当用户点击切换“亮色/暗色”主题时，图标会以一个优雅的“旋转淡入”动画（`iconSpinIn`）进行替换，提供了即时且生动的视觉反馈。
+        *   **悬停效果**: 为按钮添加了 `hover` 状态下的背景色变化，增强了可交互性。
+    *   `src/styles/index.css`:
+        *   **新增动画**: 添加了 `@keyframes iconSpinIn` 规则，定义了图标切换时的动画效果。
+
+2.  **语言选择器动画优化**
+    *   `src/components/Header/LocaleSwitcher.tsx`:
+        *   **背景遮罩动画**: 下拉菜单展开时的背景遮罩层现在会以“淡入”（`fadeIn`）效果出现。
+        *   **下拉菜单动画**: 下拉菜单本身则以“向下滑入”（`slideDown`）的动画效果展开，使整个过程更加流畅自然。
+    *   `src/styles/index.css`:
+        *   **新增动画**: 添加了 `@keyframes fadeIn` 和 `@keyframes slideDown` 规则，以支持上述动画效果。
+
+3.  **语言顺序调整**
+    *   `src/i18n/locales/(en|ja|zh).ts`:
+        *   **顺序优化**: 将“语言选择器”下拉菜单中的语言顺序调整为“中文”、“English”、“日本語”，将中文置于首位，更符合主要用户群体的习惯。
+
+文件变更:
+
+修改文件:
+- [`src/components/Header/ThemeToggler.tsx`](src/components/Header/ThemeToggler.tsx:1) (为主题切换图标添加动画和悬停效果)
+- [`src/components/Header/LocaleSwitcher.tsx`](src/components/Header/LocaleSwitcher.tsx:1) (为语言选择器下拉菜单添加动画)
+- [`src/styles/index.css`](src/styles/index.css:1) (新增 `fadeIn`, `slideDown`, `iconSpinIn` 的 `@keyframes` 动画)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (调整语言显示顺序)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (调整语言显示顺序)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (调整语言显示顺序)
+
+改进效果:
+
+- **交互体验更佳**: 流畅的动画效果让用户在与页面元素交互时感觉更加愉悦和自然。
+- **视觉反馈更清晰**: 图标的动态变化为用户的操作提供了明确的视觉确认。
+- **用户友好性提升**: 调整后的语言顺序更贴近目标用户的访问习惯。
+
+影响范围:
+
+- 网站全局头部的“主题切换”按钮和“语言选择”下拉菜单将展示新的动画效果和语言排序。
+
+---
+
 V1.18.2 ui(hero): 优化首页轮播图视觉表现与布局
 
 类型: ui, fix

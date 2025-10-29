@@ -18,8 +18,8 @@ export const dictionary = {
       languageSwitcher: {
         label: "语言",
         options: [
-          { locale: "en", label: "英语" },
           { locale: "zh", label: "中文" },
+          { locale: "en", label: "英语" },
           { locale: "ja", label: "日本語" },
         ],
       },
