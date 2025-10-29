@@ -40,6 +40,26 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
 
   if (!details) return notFound();
 
+  const sampleCases = details.sampleCases ?? null;
+  const modulesGridClassName =
+    sampleCases?.modulesGridClassName ?? "grid-cols-2 sm:grid-cols-3 md:grid-cols-6";
+  const modulesImageAspectClass = sampleCases?.modulesImageAspectClass ?? "aspect-square";
+  const modulesCardClassName = sampleCases?.modulesCardClassName ?? "";
+  const compositeRobotsGridClassName =
+    sampleCases?.compositeRobotsGridClassName ?? "grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5";
+  const compositeRobotsImageAspectClass =
+    sampleCases?.compositeRobotsImageAspectClass ?? "aspect-square";
+  const compositeRobotsCardClassName = sampleCases?.compositeRobotsCardClassName ?? "";
+  const softwareConfig = details.softwareConfig ?? null;
+  const softwareImageGridClassName =
+    softwareConfig?.imageGridClassName ?? "grid grid-cols-1 gap-4 sm:grid-cols-2";
+  const softwareFigureClassName =
+    softwareConfig?.figureClassName ??
+    "overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800";
+  const softwareImageWrapperClass =
+    softwareConfig?.imageWrapperClassName ?? "relative aspect-[16/10] w-full";
+  const softwareShowCaptions = softwareConfig?.showCaptions ?? true;
+
   return (
     <section className="pt-28 md:pt-32 lg:pt-[150px] pb-12 md:pb-16 lg:pb-20">
       <div className="container">
@@ -91,35 +111,36 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
         ) : null}
 
         {/* Sample Cases */}
-        {details.sampleCases && (
+        {sampleCases && (
           <div className="mt-12">
             <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).sampleCases || "样机案例"}</h2>
-            <p className="mb-8 text-base text-body-color dark:text-body-color-dark">{details.sampleCases.description}</p>
+            <p className="mb-8 text-base text-body-color dark:text-body-color-dark">{sampleCases.description}</p>
 
             {/* Modules */}
-            {details.sampleCases.modules?.length ? (
+            {sampleCases.modules?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
                   {(dict.products.detailLabels as any).modules || "机器人模块"}
-                  {details.sampleCases.modules.length ? `（${details.sampleCases.modules.length}种）` : null}
+                  {sampleCases.modules.length ? `（${sampleCases.modules.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
-                  items={details.sampleCases.modules}
-                  gridClassName="grid-cols-2 sm:grid-cols-3 md:grid-cols-6"
-                  imageAspectClass="aspect-square"
+                  items={sampleCases.modules}
+                  gridClassName={modulesGridClassName}
+                  imageAspectClass={modulesImageAspectClass}
+                  cardClassName={modulesCardClassName}
                 />
               </div>
             ) : null}
 
             {/* Chassis */}
-            {details.sampleCases.chassis?.length ? (
+            {sampleCases.chassis?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
                   {(dict.products.detailLabels as any).chassis || "机器人底盘"}
-                  {details.sampleCases.chassis.length ? `（${details.sampleCases.chassis.length}种）` : null}
+                  {sampleCases.chassis.length ? `（${sampleCases.chassis.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
-                  items={details.sampleCases.chassis}
+                  items={sampleCases.chassis}
                   gridClassName="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
                   imageAspectClass="aspect-square"
                 />
@@ -127,14 +148,14 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             ) : null}
 
             {/* Arms */}
-            {details.sampleCases.arms?.length ? (
+            {sampleCases.arms?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
                   {(dict.products.detailLabels as any).arms || "机械臂构型"}
-                  {details.sampleCases.arms.length ? `（${details.sampleCases.arms.length}种）` : null}
+                  {sampleCases.arms.length ? `（${sampleCases.arms.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
-                  items={details.sampleCases.arms}
+                  items={sampleCases.arms}
                   gridClassName="grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
                   imageAspectClass="aspect-square"
                 />
@@ -142,27 +163,28 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             ) : null}
 
             {/* Composite Robots */}
-            {details.sampleCases.compositeRobots?.length ? (
+            {sampleCases.compositeRobots?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
                   {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
-                  {details.sampleCases.compositeRobots.length ? `（${details.sampleCases.compositeRobots.length}种）` : null}
+                  {sampleCases.compositeRobots.length ? `（${sampleCases.compositeRobots.length}种）` : null}
                 </h3>
                 <ImageGridWithLightbox
-                  items={details.sampleCases.compositeRobots}
-                  gridClassName="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-                  imageAspectClass="aspect-square"
+                  items={sampleCases.compositeRobots}
+                  gridClassName={compositeRobotsGridClassName}
+                  imageAspectClass={compositeRobotsImageAspectClass}
+                  cardClassName={compositeRobotsCardClassName}
                 />
               </div>
             ) : null}
 
-            {details.sampleCases.compositeGroups?.length ? (
+            {sampleCases.compositeGroups?.length ? (
               <div className="mb-8">
                 <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
                   {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
                 </h3>
                 <div className="space-y-4">
-                  {details.sampleCases.compositeGroups.map((group: any, i: number) => (
+                  {sampleCases.compositeGroups.map((group: any, i: number) => (
                     <div key={i} className="rounded-lg border border-stroke bg-white p-5 dark:border-stroke-dark dark:bg-dark">
                       <h4 className="mb-2 text-base font-semibold text-black dark:text-white">{group.title}</h4>
                       {group.robots?.length ? (
@@ -237,21 +259,21 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             )}
 
             {/* Software Config */}
-            {details.softwareConfig && (
+            {softwareConfig && (
               <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
                 <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).softwareConfig || "软件配置"}</h3>
-                <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{details.softwareConfig.description}</p>
-                {details.softwareConfig.ecosystem && (
-                  <p className="text-sm text-body-color dark:text-body-color-dark">{details.softwareConfig.ecosystem}</p>
+                <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{softwareConfig.description}</p>
+                {softwareConfig.ecosystem && (
+                  <p className="text-sm text-body-color dark:text-body-color-dark">{softwareConfig.ecosystem}</p>
                 )}
-                {details.softwareConfig.images?.length ? (
-                  <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {details.softwareConfig.images.map((img: any, i: number) => (
+                {softwareConfig.images?.length ? (
+                  <div className={`mt-4 ${softwareImageGridClassName}`}>
+                    {softwareConfig.images.map((img: any, i: number) => (
                       <figure
                         key={i}
-                        className="overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800"
+                        className={`${softwareFigureClassName} ${img.figureClassName ?? ""}`.trim()}
                       >
-                        <div className="relative aspect-[16/10] w-full">
+                        <div className={`${softwareImageWrapperClass} ${img.wrapperClassName ?? ""}`.trim()}>
                           <Image
                             src={img.src}
                             alt={img.alt || ""}
@@ -261,11 +283,11 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                             unoptimized
                           />
                         </div>
-                        {img.caption && (
+                        {softwareShowCaptions && img.caption ? (
                           <figcaption className="px-3 py-2 text-center text-xs text-body-color dark:text-body-color-dark">
                             {img.caption}
                           </figcaption>
-                        )}
+                        ) : null}
                       </figure>
                     ))}
                   </div>

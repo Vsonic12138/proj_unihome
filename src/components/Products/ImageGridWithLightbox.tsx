@@ -13,6 +13,7 @@ type ImageGridWithLightboxProps = {
   gridClassName?: string;
   imageAspectClass?: string;
   unoptimized?: boolean;
+  cardClassName?: string;
 };
 
 const baseCardClasses =
@@ -31,6 +32,7 @@ const ImageGridWithLightbox = ({
   gridClassName = "grid-cols-2 sm:grid-cols-3 md:grid-cols-5",
   imageAspectClass = "aspect-square",
   unoptimized = true,
+  cardClassName = "",
 }: ImageGridWithLightboxProps) => {
   const safeItems = useMemo(() => items ?? [], [items]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -83,7 +85,7 @@ const ImageGridWithLightbox = ({
             <button
               key={item.name + index}
               type="button"
-              className={baseCardClasses}
+              className={`${baseCardClasses} ${cardClassName}`.trim()}
               onClick={() => setActiveIndex(index)}
               aria-label={`${item.name} — View larger image`}
             >

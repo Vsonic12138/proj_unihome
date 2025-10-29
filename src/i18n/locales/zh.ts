@@ -282,7 +282,7 @@ export const dictionary = {
                 slug: "rai-p4",
                 name: "具身智能任务规划实训平台 RAI-P4",
                 model: "RAI-P4",
-                image: "/images/video/video.jpg",
+                image: "/images/products/rai-p4/rai-p4-hero.png",
                 brief: "集成AI语音/视觉，4自由度机械臂，支持ROS2；适配大模型应用、机器视觉、ROS课程。",
               },
               {
@@ -911,30 +911,179 @@ export const dictionary = {
         },
         "rai-p4": {
           name: "具身智能任务规划实训平台 RAI-P4",
+          subtitle: "具身机器人任务规划综合实训平台",
           model: "RAI-P4",
-          image: "/images/video/video.jpg",
-          overview: "集成AI语音/视觉模块与4自由度机械臂，支持ROS2与任务规划教学。",
+          image: "/images/products/rai-p4/rai-p4-hero.png",
+          overview:
+            "RAI-P4 是将人工智能技术与机器人技术深度结合的具身智能实训平台，集成 AI 语音、AI 视觉、典型 4 自由度机械臂、智能机器人常用传感器与 AI 嵌入式主板，帮助学生在真实机器人系统中完成智能算法部署与调试，打通理论课程与综合实践环节。\n\n平台围绕“具身任务规划—感知决策—操作执行”三步流程打造多场景实验，覆盖语音对话、任务语义理解、视觉云台追踪、视觉机械臂搬运、运动学轨迹控制、AI 视觉果蔬检测等内容。",
+          applicable:
+            "面向高校人工智能、机器人、自动化、计算机科学等相关专业，支持大模型应用、机器视觉、机器学习、深度学习、嵌入式开发、传感器检测与控制、ROS、机器人学、机器人仿真设计与智能系统集成等课程的综合实践。",
           highlights: [
-            "AI 与机器人技术系统结合",
-            "一站式部署（60cm×60cm 桌面）",
-            "支持 4/6 自由度机械臂扩展",
+            "AI 语音、视觉与机械臂控制一体化平台",
+            "60cm×60cm 桌面即可部署的教学形态",
+            "兼容 4/6 自由度机械臂的递进式教学路径"
           ],
-          applicable: "大模型应用、机器视觉、机器人操作系统",
-          configuration: [
-            "4 自由度机械臂（臂展≥260mm，负载≥300g）",
-            "2 自由度云台 + 720P 相机",
-            "RDK X5 主板（10TOPS）",
+          features: [
+            {
+              title: "人工智能与机器人技术的系统性融合",
+              content:
+                "围绕智能机械臂的核心环节，配置 AI 语音交互、AI 视觉识别、AI 嵌入式主板，并搭配颜色识别传感器、姿态检测传感器等常用部件，支持从知觉到决策再到执行的整链路教学。"
+            },
+            {
+              title: "一站式教学部署",
+              content:
+                "平台出厂完成软硬件联调，无需额外配置电脑等实验设备；占用 60cm×60cm 桌面即可开展课程，适合实验室、创新工场与移动教学场景快速部署。"
+            },
+            {
+              title: "典型机械臂平台与递进式训练",
+              content:
+                "以串联 4 自由度机械臂为基础，兼容扩展至典型 6 自由度机械臂；配套运动学算法、运动控制、仿真与 ROS 实验，帮助不同阶段学生循序渐进掌握机器人系统设计。"
+            }
           ],
-          experiments: [
-            "48 课时：机械臂控制（运动学 / 插补）",
-            "AI 视觉（YOLO / 人脸追踪）",
-            "大模型应用（ASR / LLM / TTS）",
-            "ROS2 开发",
-          ],
+          sampleCases: {
+            description:
+              "结合“规划-感知-执行”流程打造典型示例：学生可通过任务规划流程图快速理解软件到硬件的协同关系，并通过机械臂视觉综合实训掌握运动控制与视觉分拣的协同调度。",
+            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            modulesImageAspectClass: "aspect-[21/10]",
+            modulesCardClassName: "w-full p-6",
+            modules: [
+              {
+                name: "任务规划流程示意",
+                image: "/images/products/rai-p4/rai-p4-task-planning.png"
+              }
+            ],
+            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+            compositeRobotsImageAspectClass: "aspect-[21/10]",
+            compositeRobotsCardClassName: "w-full p-6",
+            compositeRobots: [
+              {
+                name: "视觉搬运与运动学综合实训",
+                image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+              }
+            ]
+          },
+          sensorConfig: {
+            description:
+              "覆盖智能语音、视觉感知与常见机器人动作反馈传感器，满足具身任务规划链路的多模态输入需求。",
+            list: ["AI 语音交互麦克风阵列", "视觉云台摄像模组", "颜色识别传感器", "姿态检测传感器", "物体识别/距离检测扩展接口"]
+          },
+          controllerConfig: {
+            description:
+              "内置 AI 嵌入式主板与开放式 I/O 接口，既可运行大模型推理与视觉算法，也便于接入机械臂驱动与外设控制，实现软硬件一体化协同。"
+          },
+          softwareConfig: {
+            description:
+              "预装 Ubuntu 与 ROS2（含 roscore、RViz、MoveIt）、Jupyter、VS Code、Python 3.9 等开发环境，开箱即可完成算法部署与教学演示。",
+            ecosystem:
+              "兼容主流 AI/机器人开源生态，可快速对接 OpenCV、YOLO、LLM SDK、MoveIt 等框架，支持课堂教学与科研验证。",
+            imageGridClassName: "grid grid-cols-1 gap-4 place-items-center max-w-4xl mx-auto",
+            imageWrapperClassName: "relative aspect-[28/9] w-full",
+            figureClassName:
+              "w-full overflow-hidden rounded-lg border border-dashed border-stroke/60 bg-gray-50 dark:border-stroke-dark/60 dark:bg-gray-800",
+            showCaptions: false,
+            images: [
+              {
+                src: "/images/products/rai-p4/rai-p4-software-suite.png",
+                alt: "Ubuntu / ROS / RViz / VS Code / Python 软件环境图标"
+              }
+            ]
+          },
+          experiments: {
+            summary:
+              "实验体系覆盖机器人本体控制、传感器检测、计算机视觉、大模型语音对话、系统集成、ROS 与嵌入式开发等方向，共设计 40+ 个子项目，支撑跨学科综合能力培养。",
+            sections: [
+              {
+                title: "机器人本体控制",
+                items: [
+                  { name: "机械臂运动学控制", desc: "建议课时 4｜掌握 4 自由度机械臂正逆运动学建模与关节轨迹规划。" },
+                  { name: "机械臂直线插补控制", desc: "建议课时 2｜实现末端线性轨迹插补，理解速度/加速度参数调度。" },
+                  { name: "机械臂圆弧插补控制", desc: "建议课时 2｜完成空间圆弧轨迹规划与姿态保持控制。" },
+                  { name: "机械臂码垛搬运", desc: "建议课时 4｜结合坐标系标定与抓取策略，完成多点搬运任务规划。" },
+                  { name: "机械臂绘制几何图形", desc: "建议课时 4｜通过轨迹生成实现多种平面几何图形绘制。"}
+                ]
+              },
+              {
+                title: "传感器检测与控制",
+                items: [
+                  { name: "姿态传感器数据获取", desc: "建议课时 2｜读取姿态传感器数据并进行姿态解算与滤波。" },
+                  { name: "手势控制机械臂动作", desc: "建议课时 2｜基于姿态传感器输入驱动机械臂，实现体感交互控制。" }
+                ]
+              },
+              {
+                title: "机器视觉基础（OpenCV）",
+                items: [
+                  { name: "视觉颜色识别", desc: "建议课时 2｜利用 OpenCV 实现颜色空间转换与目标区分。" },
+                  { name: "视觉形状识别", desc: "建议课时 2｜完成轮廓提取与几何特征匹配，识别常见形状。" }
+                ]
+              },
+              {
+                title: "AI 视觉（YOLO）",
+                items: [
+                  { name: "YOLO 视觉部署", desc: "建议课时 2｜在嵌入式主板上部署 YOLO，实现实时推理。" },
+                  { name: "人脸检测", desc: "建议课时 2｜加载预训练模型完成人脸识别与边界框输出。" },
+                  { name: "人脸视觉追踪", desc: "建议课时 2｜结合云台联动实现人脸目标的动态追踪。" },
+                  { name: "数据集标注", desc: "建议课时 2｜掌握目标检测数据集标注与格式转换流程。" },
+                  { name: "模型训练与部署", desc: "建议课时 2｜完成模型再训练、量化与部署验证。" },
+                  { name: "工件检测", desc: "建议课时 2｜针对实训对象构建检测方案，实现分类与定位。" }
+                ]
+              },
+              {
+                title: "AI 视觉（通义千问多模态）",
+                items: [
+                  { name: "通义千问多模态接口部署", desc: "建议课时 2｜调用多模态 API，完成图像理解与文本生成。" },
+                  { name: "水果检测与标记", desc: "建议课时 2｜结合通义千问，实现水果目标识别与语义标注。" }
+                ]
+              },
+              {
+                title: "大模型应用（AI 语音对话）",
+                items: [
+                  { name: "语音转文字（ASR）部署", desc: "建议课时 2｜基于通义千问配置 ASR，实现语音输入解析。" },
+                  { name: "语义理解 LLM 部署", desc: "建议课时 2｜使用 DeepSeek 搭建语义理解与任务规划逻辑。" },
+                  { name: "文字转语音（TTS）部署", desc: "建议课时 2｜集成火山引擎 TTS，实现自然语音播报。" },
+                  { name: "基于大模型的完整语音对话", desc: "建议课时 2｜串联 ASR/LLM/TTS，构建端到端语音交互系统。" },
+                  { name: "Function-Call 语音对话计算器", desc: "建议课时 2｜通过函数调用能力实现语音计算服务。" },
+                  { name: "Function-Call 语音音乐播放", desc: "建议课时 2｜扩展音乐检索与播放任务，实现语音操控。" },
+                  { name: "Function-Call 云台视觉任务规划", desc: "建议课时 4｜语音指令驱动云台视觉跟踪，完成目标搜索与反馈。" },
+                  { name: "Function-Call 机械臂视觉任务规划", desc: "建议课时 4｜语音指令触发机械臂视觉定位与抓取执行。" }
+                ]
+              },
+              {
+                title: "机器人智能系统集成",
+                items: [
+                  { name: "Socket 通信", desc: "建议课时 2｜搭建机器人系统 Socket 通道并实现指令交互。" },
+                  { name: "视觉机械臂追踪", desc: "建议课时 4｜将视觉数据映射到机械臂坐标系，实现动态追踪。" },
+                  { name: "视觉-机械臂坐标变换", desc: "建议课时 2｜完成手眼标定，建立像素到姿态的映射关系。" },
+                  { name: "视觉机械臂分拣搬运", desc: "建议课时 4｜整合识别、规划与执行流程，完成分拣搬运任务。" }
+                ]
+              },
+              {
+                title: "机器人操作系统（ROS）",
+                items: [
+                  { name: "快速运行一个 ROS2 项目", desc: "建议课时 2｜熟悉 ROS2 工作区创建、编译与运行流程。" },
+                  { name: "ROS2 功能包构建与移植", desc: "建议课时 2｜掌握功能包创建、依赖管理与移植部署。" },
+                  { name: "机械臂 MoveIt 配置", desc: "建议课时 2｜完成 MoveIt 场景配置、碰撞模型导入与规划测试。" },
+                  { name: "4 自由度机械臂 MoveIt-RViz 仿真运动学控制", desc: "建议课时 2｜在 RViz 中实现仿真控制与轨迹验证。" }
+                ]
+              },
+              {
+                title: "嵌入式系统开发",
+                items: [
+                  { name: "Ubuntu 文件系统认知与基本操作", desc: "建议课时 1｜掌握常用目录结构与文件管理命令。" },
+                  { name: "编程工具认识（vi / nano）", desc: "建议课时 1｜熟悉终端编辑器基本操作与配置方法。" },
+                  { name: "配置开发常用服务（SSH / PuTTY）", desc: "建议课时 2｜搭建远程连接环境，保障多端协同开发。" },
+                  { name: "Linux 文件 IO 编程", desc: "建议课时 2｜实现文件读写与异常处理，理解设备交互基础。" },
+                  { name: "串口通信", desc: "建议课时 2｜完成串口数据收发与协议封装，实现外设控制。" },
+                  { name: "进程 / 线程管理认知", desc: "建议课时 2｜理解 Linux 进程线程模型，并完成示例程序编写。" },
+                  { name: "界面设计", desc: "建议课时 2｜使用 Python/Qt 等工具快速构建人机交互界面。" }
+                ]
+              }
+            ]
+          },
           specs: [
-            "AI 运算板 ≥ 9TOPS 算力",
-            "控制器支持 8 路舵机驱动",
-          ],
+            "占地空间：60cm×60cm 桌面即可完成部署",
+            "机械臂平台：标配 4 自由度，可扩展 6 自由度机械臂",
+            "计算平台：内置 AI 嵌入式主板，支持大模型推理与视觉运算"
+          ]
         },
         "rai-m4": {
           name: "具身复合机器人系统设计实训平台 RAI-M4",

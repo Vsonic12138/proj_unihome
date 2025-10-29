@@ -34,6 +34,61 @@
 
 ---
 
+V1.12.0 feat(products): 全面重构RAI-P4产品详情，构建具身智能任务规划体系
+
+类型: feat, docs, refactor, ui
+
+范围: products, i18n, components, public
+
+说明:
+
+本次更新的核心是为“具身智能任务规划实训平台 RAI-P4”产品创建了全面、高度结构化的产品详情页内容。我们对其数据体系进行了彻底重构，新增了从产品概述、特性、应用案例到软硬件配置的全方位信息，并为其设计了一套包含超过40个实验项目的全新实验体系。为支持这些深度内容，我们还对产品详情页的渲染逻辑进行了重构，使其更具灵活性和可扩展性。
+
+实现细节:
+
+1.  **新增 RAI-P4 产品体系**
+    *   `src/i18n/locales/zh.ts`: 在国际化文件中，为 `rai-p4` 添加了完整且详尽的数据结构。
+        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+        *   **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“机器人本体控制”到“嵌入式开发”的9大主题，共计40余个具体实验项目，逻辑清晰，内容详实。
+        *   **专业化案例与配置**: 为 `sampleCases` 和 `softwareConfig` 增加了更具体的展示内容和图片，并允许通过数据驱动的方式自定义其样式。
+
+2.  **产品详情页 UI 渲染重构**
+    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
+        *   **数据驱动样式**: 组件现在可以从产品数据中读取并应用自定义的 CSS 类名（如 `modulesGridClassName`, `softwareImageGridClassName` 等），使得不同产品的布局可以高度定制化，提高了组件的灵活性和可复用性。
+        *   **健壮性提升**: 代码现在会优雅地处理可选字段（如 `sampleCases`, `softwareConfig`），确保即使某些产品数据不完整，页面也能正常渲染。
+
+3.  **组件功能增强**
+    *   `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格组件新增了 `cardClassName` 属性，允许对单个图片卡片容器进行样式定制，以适应不同尺寸和布局的图片展示需求。
+
+4.  **新增产品图片资源**
+    *   `public/images/products/rai-p4/`: 为 RAI-P4 新增了产品主图 (`hero.png`) 以及多张展示其核心功能的图片（任务规划、工作流、软件套件），并已在产品数据中正确引用。
+
+文件变更:
+
+新增文件:
+- [`public/images/products/rai-p4/rai-p4-hero.png`](public/images/products/rai-p4/rai-p4-hero.png)
+- [`public/images/products/rai-p4/rai-p4-manipulator-workflows.png`](public/images/products/rai-p4/rai-p4-manipulator-workflows.png)
+- [`public/images/products/rai-p4/rai-p4-software-suite.png`](public/images/products/rai-p4/rai-p4-software-suite.png)
+- [`public/images/products/rai-p4/rai-p4-task-planning.png`](public/images/products/rai-p4/rai-p4-task-planning.png)
+
+修改文件:
+- [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以支持数据驱动样式)
+- [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx) (增加样式定制属性)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (全面重构RAI-P4产品数据)
+
+改进效果:
+
+- **产品信息极大丰富**: RAI-P4 的产品信息变得极为详尽和专业，其深度内容为目标用户（高校师生、研究人员）提供了极高的参考价值。
+- **页面灵活性提升**: 产品详情页模板现在能够适应更多样化的内容结构和布局需求，为未来添加更多不同形态的产品打下了坚实基础。
+- **教学价值凸显**: 全新的结构化实验体系清晰地展示了该产品的教学路径和应用场景，显著提升了其在教育市场的吸引力。
+
+影响范围:
+
+- 网站新增 “RAI-P4” 产品的深度详情页。
+- 访问该页面的用户将能获取到关于此产品的全面、深入的信息。
+
+---
+
 V1.11.0 feat(products): 新增GX-MAT-09S产品详情，重构实验体系与UI
 
 类型: feat, docs, ui, refactor
