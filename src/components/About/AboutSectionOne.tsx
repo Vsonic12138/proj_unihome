@@ -18,14 +18,33 @@ const AboutSectionOne = ({ sectionOne }: AboutSectionOneProps) => {
               <p className="mb-8 text-base !leading-relaxed text-body-color dark:text-body-color-dark md:text-lg">
                 {sectionOne.description}
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {sectionOne.highlights.map((highlight, index) => (
-                  <span
+                  <div
                     key={index}
-                    className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary dark:bg-primary/20 dark:text-primary"
+                    className="flex items-start gap-3"
                   >
-                    {highlight}
-                  </span>
+                    {/* Checkmark Icon */}
+                    <div className="flex-shrink-0">
+                      <svg
+                        className="h-6 w-6 text-primary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    </div>
+                    {/* Text */}
+                    <span className="text-base font-semibold text-black dark:text-white">
+                      {highlight}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>

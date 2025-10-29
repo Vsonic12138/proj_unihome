@@ -34,6 +34,39 @@
 
 ---
 
+V1.18.1 ui(about): 优化“关于我们”页面核心亮点为勾选列表样式
+
+类型: ui, refactor
+
+范围: about, components
+
+说明:
+
+本次更新对“关于我们”页面的核心亮点部分进行了视觉优化。原有的标签式（tag-based）布局被重构为更清晰、更具吸引力的勾选列表（check-marked list）样式，从而提升了内容的可读性和专业感。
+
+实现细节:
+
+1.  **UI组件重构**
+    *   `src/components/About/AboutSectionOne.tsx`:
+        *   **布局变更**: 将原先的 `flex flex-wrap` 布局调整为 `grid sm:grid-cols-2`，使列表在不同屏幕尺寸下都能保持对齐和结构化。
+        *   **样式增强**: 为每个亮点项添加了一个勾选（`✓`）SVG图标，并调整了文本样式，使其更加突出和易于阅读。
+
+文件变更:
+
+修改文件:
+- [`src/components/About/AboutSectionOne.tsx`](src/components/About/AboutSectionOne.tsx:1) (重构核心亮点区块的UI布局与样式)
+
+改进效果:
+
+- **可读性增强**: 勾选列表的形式让每个亮点都一目了然，用户可以更快地抓住核心信息。
+- **视觉效果提升**: 新的布局和图标设计使页面看起来更加现代化和精致，提升了整体的用户体验。
+
+影响范围:
+
+- 网站的“关于我们”页面的“核心亮点”展示部分将采用新的勾选列表样式。
+
+---
+
 V1.18.0 feat(developers): 新增“开源项目”页面，集中展示硬件与软件成果
 
 类型: feat, ui, docs
