@@ -34,6 +34,65 @@
 
 ---
 
+V1.10.0 feat(products): 引入图片灯箱并全面更新产品体系
+
+类型: feat, ui, docs, refactor
+
+范围: products, i18n, components, public
+
+说明:
+
+本次更新专注于提升产品页面的用户体验和信息深度。我们为产品详情页引入了带灯箱（Lightbox）功能的图片网格组件，使用户可以点击查看高清大图。同时，对全线产品的数据进行了系统性的重构和扩充，统一了产品型号命名，并为每款核心产品补充了详细的配置、实验案例和技术规格，使产品信息更加专业、完整。
+
+实现细节:
+
+1.  **新增图片灯箱组件 (Image Lightbox)**
+    *   `src/components/Products/ImageGridWithLightbox.tsx`: 创建了一个全新的、可复用的图片网格组件，该组件集成了灯箱功能，允许用户点击图片后进行放大预览。
+    *   `src/app/[locale]/products/[slug]/page.tsx`: 在 Ubot MR20 产品详情页中，使用 `ImageGridWithLightbox` 组件重构了“机器人模块”、“机器人底盘”和“复合机器人”部分的图片展示逻辑，替代了原有的静态图片列表，提升了交互体验和代码的可维护性。
+
+2.  **产品数据体系全面升级**
+    *   `src/i18n/locales/*.ts`: 对三种语言（中、英、日）的国际化文件进行了大规模内容更新。
+        *   **产品型号标准化**: 统一并简化了产品型号，例如 `gx-mat-09s23` 更新为 `gx-mat-09s`，`rai-p433` 更新为 `rai-p4` 等，使其更清晰易记。
+        *   **内容结构化扩充**: 为 `gx-mat-09s`, `rai-p4`, `rai-m4`, `rai-q2`, `uni-wr2`, `alo-le4` 等核心产品系统性地补充了 `configuration` (配置清单), `experiments` (实验项目), `specs` (技术参数) 等详细字段。
+        *   **FAQ 更新**: 根据新的产品体系和定位，全面修订了“常见问题解答”部分的内容，使其信息更准确、更具指导性。
+
+3.  **新增产品详情图片**
+    *   `public/images/products/ubot-mr20/`: 为 Ubot MR20 产品新增了控制器 (`controller`) 和软件界面 (`software`) 的高清图片。
+    *   `src/i18n/locales/*.ts`: 将新增的图片资源整合进 `ubot-mr20` 的 `controllerConfig` 和 `softwareConfig` 数据中，实现了图文并茂的展示效果。
+
+4.  **项目配置调整**
+    *   `tsconfig.json`: 将 `jsx` 编译选项从 `"react-jsx"` 修改为 `"preserve"`，以适应项目构建需求。
+    *   `next-env.d.ts`: 更新了 Next.js 的类型定义引用路径。
+
+文件变更:
+
+新增文件:
+- [`public/images/products/ubot-mr20/controller/controller-overview.png`](public/images/products/ubot-mr20/controller/controller-overview.png)
+- [`public/images/products/ubot-mr20/software/openblock-interface-1.jpg`](public/images/products/ubot-mr20/software/openblock-interface-1.jpg)
+- [`public/images/products/ubot-mr20/software/openblock-interface-2.jpg`](public/images/products/ubot-mr20/software/openblock-interface-2.jpg)
+- [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx)
+
+修改文件:
+- [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构图片展示逻辑)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (全面更新产品数据体系)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (全面更新产品数据体系)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (全面更新产品数据体系)
+- [`tsconfig.json`](tsconfig.json) (更新编译选项)
+- [`next-env.d.ts`](next-env.d.ts) (更新类型引用)
+
+改进效果:
+
+- **用户体验提升**: 新的灯箱组件让用户可以更清晰地查看产品细节图，交互更友好。
+- **信息专业化**: 结构化的产品数据和详尽的技术规格，极大地提升了产品信息的专业性和透明度，有助于用户进行精准选型。
+- **内容一致性**: 标准化的产品命名和同步更新的 FAQ，确保了网站信息的一致性和准确性。
+
+影响范围:
+
+- “Ubot MR20” 产品详情页的图片展示方式已更新。
+- 网站所有产品的数据信息、型号和介绍内容均已全面刷新。
+
+---
+
 V1.9.0 feat(products): 丰富Ubot MR20产品详情页，增加模块化案例与实验体系
 
 类型: feat, ui, docs

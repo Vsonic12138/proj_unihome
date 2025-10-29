@@ -442,11 +442,30 @@ export const dictionary = {
             ]
           },
           controllerConfig: {
-            description: "控制器支持常用的编程语言程序输入，包含图形化、C++、Python等编程语言编写程序。预留了丰富的接口，包含6路直流电机接口、8路舵机接口、4路超声波接口、4路巡线传感器接口、4路扩展IO传感器接口、USB串口等接口。控制器采用堆叠式设计，预留了对接扩展坞，方便用户将其他电子硬件与控制器进行连接使用。"
+            description: "控制器支持常用的编程语言程序输入，包含图形化、C++、Python等编程语言编写程序。预留了丰富的接口，包含6路直流电机接口、8路舵机接口、4路超声波接口、4路巡线传感器接口、4路扩展IO传感器接口、USB串口等接口。控制器采用堆叠式设计，预留了对接扩展坞，方便用户将其他电子硬件与控制器进行连接使用。",
+            images: [
+              {
+                src: "/images/products/ubot-mr20/controller/controller-overview.png",
+                alt: "MR20 控制器堆叠式设计与接口示意",
+                caption: "MR20 控制器：直流电机、舵机与传感器扩展接口一览",
+              },
+            ],
           },
           softwareConfig: {
             description: "软件集成OpenBlock编程软件，支持图形块编程和C++、Python代码编程，可以用于软件程序编程也可以对硬件设备编程，支持硬件代码生成及编译下载功能，同时也支持通过与硬件设备间的实时通讯实现的实时运行模式。",
-            ecosystem: "Openblock硬件生态完整，支持市面上通用的创客硬件平台，包括Arduino、MicroPython和ESP32，用户可以任意扩展。"
+            ecosystem: "Openblock硬件生态完整，支持市面上通用的创客硬件平台，包括Arduino、MicroPython和ESP32，用户可以任意扩展。",
+            images: [
+              {
+                src: "/images/products/ubot-mr20/software/openblock-interface-1.jpg",
+                alt: "OpenBlock 编程工作区界面",
+                caption: "OpenBlock 拖拽式逻辑编辑与模块预览",
+              },
+              {
+                src: "/images/products/ubot-mr20/software/openblock-interface-2.jpg",
+                alt: "OpenBlock 设备连接界面",
+                caption: "OpenBlock 设备管理：支持 C++ / Python 与硬件烧录",
+              },
+            ],
           },
           experiments: {
             summary: "本实验体系围绕模块化机器人的「基础认知-模块控制-结构搭建-感知应用-综合设计-扩展创新」展开，分为6大核心模块，涵盖32个基础实验与20个扩展项目，形成从入门到进阶的完整学习路径。",

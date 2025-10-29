@@ -456,11 +456,33 @@ export const dictionary = {
             ]
           },
           controllerConfig: {
-            description: "The controller supports common programming language inputs, including block-based, C++, Python, and other programming languages. It provides rich interfaces, including 6 DC motor ports, 8 servo ports, 4 ultrasonic ports, 4 line-tracking sensor ports, 4 expansion I/O sensor ports, USB serial port, etc. The controller adopts stackable design with reserved expansion dock connectors, making it easy for users to connect other electronic hardware to the controller."
+            description:
+              "The controller supports common programming language inputs, including block-based, C++, Python, and other programming languages. It provides rich interfaces, including 6 DC motor ports, 8 servo ports, 4 ultrasonic ports, 4 line-tracking sensor ports, 4 expansion I/O sensor ports, USB serial port, etc. The controller adopts stackable design with reserved expansion dock connectors, making it easy for users to connect other electronic hardware to the controller.",
+            images: [
+              {
+                src: "/images/products/ubot-mr20/controller/controller-overview.png",
+                alt: "MR20 controller stack with rich IO ports",
+                caption: "MR20 controller showing DC motor, servo, and sensor expansion ports",
+              },
+            ],
           },
           softwareConfig: {
-            description: "The software integrates OpenBlock programming environment, supporting both block-based programming and C++/Python code programming. It can be used for software programming as well as hardware device programming, supporting hardware code generation and compilation download functions, and also supporting real-time operation mode through real-time communication with hardware devices.",
-            ecosystem: "OpenBlock has a complete hardware ecosystem, supporting popular maker hardware platforms on the market, including Arduino, MicroPython, and ESP32, allowing users to expand freely."
+            description:
+              "The software integrates OpenBlock programming environment, supporting both block-based programming and C++/Python code programming. It can be used for software programming as well as hardware device programming, supporting hardware code generation and compilation download functions, and also supporting real-time operation mode through real-time communication with hardware devices.",
+            ecosystem:
+              "OpenBlock has a complete hardware ecosystem, supporting popular maker hardware platforms on the market, including Arduino, MicroPython, and ESP32, allowing users to expand freely.",
+            images: [
+              {
+                src: "/images/products/ubot-mr20/software/openblock-interface-1.jpg",
+                alt: "OpenBlock programming workspace for MR20",
+                caption: "OpenBlock workspace for drag-and-drop robotics logic",
+              },
+              {
+                src: "/images/products/ubot-mr20/software/openblock-interface-2.jpg",
+                alt: "OpenBlock device connection interface",
+                caption: "Device management panel for C++, Python, and hardware flashing",
+              },
+            ],
           },
           experiments: {
             summary: "This experimental system revolves around modular robot 'Basic Recognition - Module Control - Structure Building - Perception Application - Comprehensive Design - Extension Innovation', divided into 6 core modules, covering 32 basic experiments and 20 extension projects, forming a complete learning path from entry to advanced.",
@@ -602,6 +624,15 @@ export const dictionary = {
             "Enhanced sensing and compute with LiDAR and RDK X5, offering 11 chassis and 7 robotic arm combinations for advanced courses and research.",
           highlights: ["11 chassis", "7 arms", "88 composite forms", "LiDAR + RDK X5"],
           applicable: "Undergraduate advanced labs, competitions, research",
+          experiments: [
+            "Embedded development: Ubuntu operations and GPIO control",
+            "ROS applications: package porting and URDF simulation",
+            "Advanced computer vision: YOLO deployment and face recognition",
+          ],
+          specs: [
+            "Six encoder-equipped DC motors (expanded configuration)",
+            "LiDAR included (0.12–8 m detection range)",
+          ],
         },
         "rai-p4": {
           name: "Embodied Robot Task Planning Training Platform RAI-P4",
@@ -611,6 +642,21 @@ export const dictionary = {
             "Integrated AI voice/vision with a 4-DOF arm and ROS2 support, ideal for planning and perception teaching.",
           highlights: ["AI voice/vision", "4-DOF arm", "ROS2 support"],
           applicable: "LLM apps, computer vision, ROS",
+          configuration: [
+            "4-DOF robotic arm (reach ≥ 260 mm, payload ≥ 300 g)",
+            "2-DOF gimbal with 720p camera",
+            "RDK X5 board (10 TOPS)",
+          ],
+          experiments: [
+            "48 class hours: robotic arm control (kinematics / interpolation)",
+            "AI vision (YOLO / face tracking)",
+            "LLM applications (ASR / LLM / TTS)",
+            "ROS2 development",
+          ],
+          specs: [
+            "AI compute board delivering ≥ 9 TOPS performance",
+            "Controller supports 8-channel servo drive",
+          ],
         },
         "rai-m4": {
           name: "Embodied Composite Robot System Design Training Platform RAI-M4",
@@ -620,6 +666,21 @@ export const dictionary = {
             "Mecanum omni-directional chassis with a 4-axis arm and LLM connectivity for system design and navigation.",
           highlights: ["Mecanum omni chassis", "4-axis arm", "LLM connectivity"],
           applicable: "Mobile navigation, LLM deployment",
+          configuration: [
+            "Four-wheel mecanum chassis (0.5 m/s speed, 10 kg payload)",
+            "4-axis robotic arm (reach > 220 mm, payload ≥ 200 g)",
+            "LiDAR (0.12–8 m detection range)",
+            "2 MP camera",
+          ],
+          experiments: [
+            "Machine vision (OpenCV / YOLO / multimodal detection)",
+            "LLM deployment (voice dialogue / task planning)",
+            "ROS navigation (mapping / obstacle avoidance)",
+          ],
+          specs: [
+            "Edge controller RDK X5 (10 TOPS compute)",
+            "YOLOv8 face detection at 100 fps (reference metric)",
+          ],
         },
         "rai-q2": {
           name: "Embodied Vision Perception & Decision Training Platform RAI-Q2",
@@ -629,6 +690,21 @@ export const dictionary = {
             "Depth camera and precision motion stages supporting OpenCV/YOLO/VLM for vision and ML instruction.",
           highlights: ["Depth camera", "Precision stages", "OpenCV/YOLO/VLM"],
           applicable: "Computer vision, machine learning",
+          configuration: [
+            "Depth camera (0.6–8 m range, 1280×720@90 fps)",
+            "High-precision turntable (switchable speed/position modes)",
+            "22-inch display",
+          ],
+          experiments: [
+            "OpenCV vision (color / shape recognition)",
+            "YOLO deployment (face detection / tracking)",
+            "Depth sensing (3D modeling)",
+            "LLM multimodal interface deployment",
+          ],
+          specs: [
+            "Edge controller RDK X5 (10 TOPS compute)",
+            "Turntable maximum speed 40 rpm",
+          ],
         },
         "uni-wr2": {
           name: "Portable ROS Navigation Learning Platform UNI-WR2",
@@ -638,6 +714,21 @@ export const dictionary = {
             "A compact desktop ROS navigation platform enabling quick setup for lab exercises.",
           highlights: ["<13cm compact", "60×60cm desktop", "3 navigation modes"],
           applicable: "ROS, mobile robotics",
+          configuration: [
+            "Full-metal chassis",
+            "Raspberry Pi controller (preloaded with ROS)",
+            "LiDAR (0.1–12 m detection range)",
+            "7-bit encoder motors",
+          ],
+          experiments: [
+            "24 class hours: ROS fundamentals (package porting)",
+            "SLAM deployment (full-parameter tuning across three navigation modes)",
+            "Kinematic control (PID speed control)",
+          ],
+          specs: [
+            "Top speed 0.16 m/s",
+            "Positioning accuracy < 5 mm within 1 m; straight-line deviation < 1 cm over 1 m",
+          ],
         },
         "alo-le4": {
           name: "Embodied Robot Manipulation Planning Training Platform ALO-LE4",
@@ -647,15 +738,31 @@ export const dictionary = {
             "Dual 5-DOF arms in master-follower mode with adjustable lighting, supporting ACT and imitation learning/end-to-end control research.",
           highlights: ["Two 5-DOF arms", "ACT architecture", "Adjustable lighting"],
           applicable: "Imitation learning, end-to-end control",
+          configuration: [
+            "Two 5-DOF robotic arms (master-follower)",
+            "Two cameras (top + side)",
+            "Adjustable environment lighting",
+            "13-inch display",
+          ],
+          experiments: [
+            "End-to-end deployment (environment setup, Lerobot framework installation, model training / deployment)",
+            "AI vision (YOLO / robotic arm visual handling)",
+            "Robotic arm control (kinematics / interpolation)",
+          ],
+          specs: [
+            "Arms support motion data capture",
+            "Cameras enable object color / position detection",
+            "Lighting simulates diverse illumination conditions",
+          ],
         },
       },
       supportResources: {
         title: "Common Support Resources",
         items: [
-          "Experiment guides: step-by-step procedures, principles, and key points",
-          "Source code: complete program sources and libraries",
-          "3D design drawings: STP format",
-          "Hardware support: modular parts and IDE compatibility (Keil5, Arduino IDE, VS Code, etc.)",
+          "Experiment tutorials: detailed steps, principle breakdowns, and key takeaways",
+          "Source code: complete program files (with Chinese comments) and supporting libraries",
+          "Structural drawings: 3D robot configuration models (STP format)",
+          "Hardware assurance: modular parts with IDE support (Keil5, Arduino IDE, VS Code, etc.)",
         ],
       },
     },
