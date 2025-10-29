@@ -240,7 +240,25 @@ export const dictionary = {
       customSolutions: {
         title: "定制合作",
         description:
-          "面向高校与产业合作伙伴提供硬件定制、课程设计与科研级机器人解决方案。",
+          "面向高校、职校、K12教育机器人行业支持ODM和JDM合作方式！",
+        cooperationModes: [
+          {
+            id: "odm",
+            title: "ODM",
+            subtitle: "Original Design Manufacturing（原始设计制造）",
+            description:
+              "围绕M系列和P系列技术为您定制专属的产品",
+            icon: "design",
+          },
+          {
+            id: "jdm",
+            title: "JDM",
+            subtitle: "Joint Design Manufacturing（联合设计制造）",
+            description:
+              "我们擅长构建稳定的具身机器人硬件平台，可与您共同开发具身机器人产品。",
+            icon: "collaboration",
+          },
+        ],
       },
       caseStudies: {
         title: "服务案例",

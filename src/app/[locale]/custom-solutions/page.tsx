@@ -1,4 +1,5 @@
 import PageIntro from "@/components/Common/PageIntro";
+import CooperationModes from "@/app/CustomSolutions/CooperationModes";
 import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
@@ -25,10 +26,13 @@ const CustomSolutionsPage = async ({ params }: PageParams) => {
   const pageCopy = dictionary.pages.customSolutions;
 
   return (
-    <PageIntro
-      title={pageCopy.title}
-      description={pageCopy.description}
-    />
+    <>
+      <PageIntro
+        title={pageCopy.title}
+        description={pageCopy.description}
+      />
+      <CooperationModes modes={pageCopy.cooperationModes} />
+    </>
   );
 };
 

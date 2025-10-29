@@ -34,6 +34,52 @@
 
 ---
 
+V1.17.0 feat(solutions): 新增“定制化解决方案”页面合作模式模块
+
+类型: feat, ui, docs
+
+范围: custom-solutions, i18n, components
+
+说明:
+
+本次更新为“定制化解决方案”页面增加了一个全新的“合作模式”内容模块。该模块旨在清晰地向潜在客户与合作伙伴展示我们提供的核心合作方式，从而提升信息透明度并优化用户引导。为此，我们创建了一个新的UI组件，并补充了相应的中、英、日三语国际化文案。
+
+实现细节:
+
+1.  **新增合作模式内容**
+    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `customSolutions` 页面新增了 `cooperationModes` 字段。
+        *   **内容扩充**: 填充了该模块的标题、描述，并详细定义了“ODM (原始设计制造)”和“JDM (联合设计制造)”两种合作模式，每种模式均包含标题、副标题和详细说明。
+
+2.  **创建可复用UI组件**
+    *   `src/app/CustomSolutions/CooperationModes.tsx`: 新建了一个独立的React组件，用于动态渲染“合作模式”模块。该组件从国际化文件中获取数据，并将其展示为结构清晰的卡片式布局。
+
+3.  **集成新模块到页面**
+    *   `src/app/[locale]/custom-solutions/page.tsx`: 在“定制化解决方案”页面中引入并渲染了新建的 `CooperationModes` 组件，使新内容模块得以展示。
+
+文件变更:
+
+新增文件:
+- [`src/app/CustomSolutions/CooperationModes.tsx`](src/app/CustomSolutions/CooperationModes.tsx:1) (新建“合作模式”UI组件)
+
+修改文件:
+- [`src/app/[locale]/custom-solutions/page.tsx`](src/app/[locale]/custom-solutions/page.tsx:1) (集成并渲染新的内容模块)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (Added content for the new cooperation modes section)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (Added content for the new cooperation modes section)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (为新的“合作模式”内容节添加文案)
+
+改进效果:
+
+- **信息透明度提升**: “定制化解决方案”页面现在能更清晰地展示与公司合作的多种途径，方便用户快速了解。
+- **用户引导性增强**: 明确的合作模式有助于引导潜在客户选择合适的方案，提升了沟通效率。
+- **代码结构优化**: 通过创建可复用组件，提升了代码的可维护性和扩展性。
+
+影响范围:
+
+- 网站的“定制化解决方案”页面将展示新增的“合作模式”内容区块。
+- 访问该页面的用户将能获取到更清晰、更具引导性的合作信息。
+
+---
+
 V1.16.0 feat(about): 新增“关于我们”页面内容模块，丰富公司介绍
 
 类型: feat, ui, docs

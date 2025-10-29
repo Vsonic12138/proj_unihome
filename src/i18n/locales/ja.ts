@@ -242,7 +242,25 @@ export const dictionary = {
       customSolutions: {
         title: "カスタム協業",
         description:
-          "大学や企業パートナー向けに、ハードウェアカスタマイズ、カリキュラム設計、研究グレードのロボットソリューションを提供します。",
+          "大学、職業学校、K12教育ロボット業界向けにODMとJDMの協力方式をサポート！",
+        cooperationModes: [
+          {
+            id: "odm",
+            title: "ODM",
+            subtitle: "Original Design Manufacturing（オリジナルデザイン製造）",
+            description:
+              "MシリーズとPシリーズの技術を基に、お客様専用の製品をカスタマイズ",
+            icon: "design",
+          },
+          {
+            id: "jdm",
+            title: "JDM",
+            subtitle: "Joint Design Manufacturing（共同設計製造）",
+            description:
+              "私たちは安定したエンボディードロボットのハードウェアプラットフォームの構築が得意で、お客様と共にエンボディードロボット製品を開発できます。",
+            icon: "collaboration",
+          },
+        ],
       },
       caseStudies: {
         title: "導入事例",

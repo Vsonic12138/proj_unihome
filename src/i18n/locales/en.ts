@@ -245,7 +245,25 @@ export const dictionary = {
       customSolutions: {
         title: "Custom Collaboration",
         description:
-          "Partner with us for tailored hardware, curriculum design, and research-grade robotics solutions built around your requirements.",
+          "Supporting ODM and JDM cooperation modes for universities, vocational schools, and K12 educational robotics industry!",
+        cooperationModes: [
+          {
+            id: "odm",
+            title: "ODM",
+            subtitle: "Original Design Manufacturing",
+            description:
+              "Customize exclusive products for you based on M-series and P-series technologies",
+            icon: "design",
+          },
+          {
+            id: "jdm",
+            title: "JDM",
+            subtitle: "Joint Design Manufacturing",
+            description:
+              "We excel at building stable embodied robot hardware platforms and can co-develop embodied robot products with you.",
+            icon: "collaboration",
+          },
+        ],
       },
       caseStudies: {
         title: "Success Stories",
