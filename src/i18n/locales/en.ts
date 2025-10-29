@@ -971,20 +971,33 @@ export const dictionary = {
           ],
           sampleCases: {
             description:
-              "Sample scenarios follow the plan–perceive–act pipeline: the planning workflow diagram links software logic with hardware execution, while the manipulator scenario demonstrates coordinated vision handling and kinematic control.",
-            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            modulesImageAspectClass: "aspect-[21/10]",
-            modulesCardClassName: "w-full p-6",
-            modules: [
-              { name: "Task planning workflow overview", image: "/images/products/rai-p4/rai-p4-task-planning.png" }
-            ],
-            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            compositeRobotsImageAspectClass: "aspect-[21/10]",
-            compositeRobotsCardClassName: "w-full p-6",
-            compositeRobots: [
+              "Two scenarios illustrate the platform workflow: the first highlights task planning from software logic to hardware execution, and the second showcases integrated vision handling and kinematic control.",
+            sections: [
               {
-                name: "Vision handling & kinematics practice",
-                image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                title: "Task planning workflow",
+                description: "Visualizes how speech/vision inputs translate into task decomposition and manipulator execution.",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "Task planning workflow overview",
+                    image: "/images/products/rai-p4/rai-p4-task-planning.png"
+                  }
+                ]
+              },
+              {
+                title: "Vision-guided manipulation lab",
+                description: "Demonstrates coordinated vision recognition, kinematic planning, and manipulator execution in one exercise.",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "Vision handling & kinematics practice",
+                    image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  }
+                ]
               }
             ]
           },

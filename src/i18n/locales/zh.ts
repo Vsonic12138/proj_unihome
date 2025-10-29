@@ -942,23 +942,33 @@ export const dictionary = {
           ],
           sampleCases: {
             description:
-              "结合“规划-感知-执行”流程打造典型示例：学生可通过任务规划流程图快速理解软件到硬件的协同关系，并通过机械臂视觉综合实训掌握运动控制与视觉分拣的协同调度。",
-            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            modulesImageAspectClass: "aspect-[21/10]",
-            modulesCardClassName: "w-full p-6",
-            modules: [
+              "两组示例分别展示了任务规划流程与视觉搬运综合实训：前者帮助学生理解软件指令到硬件执行的映射，后者演示视觉识别、运动学规划与机械臂执行的协同。",
+            sections: [
               {
-                name: "任务规划流程示意",
-                image: "/images/products/rai-p4/rai-p4-task-planning.png"
-              }
-            ],
-            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            compositeRobotsImageAspectClass: "aspect-[21/10]",
-            compositeRobotsCardClassName: "w-full p-6",
-            compositeRobots: [
+                title: "任务规划流程示意",
+                description: "通过流程图梳理语音/视觉输入、任务拆解与机械臂执行的完整链路。",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "任务规划流程示意",
+                    image: "/images/products/rai-p4/rai-p4-task-planning.png"
+                  }
+                ]
+              },
               {
-                name: "视觉搬运与运动学综合实训",
-                image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                title: "视觉搬运与运动学综合实训",
+                description: "展示机械臂结合视觉识别、运动学轨迹与抓取任务的综合实训场景。",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "视觉搬运与运动学综合实训",
+                    image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  }
+                ]
               }
             ]
           },

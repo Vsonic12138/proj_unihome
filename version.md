@@ -34,6 +34,42 @@
 
 ---
 
+V1.15.0 refactor(products): 重构RAI-P4产品案例展示结构，提升内容清晰度
+
+类型: refactor, docs
+
+范围: products, i18n
+
+说明:
+
+本次更新对“具身智能任务规划实训平台 RAI-P4”的产品详情数据结构进行了重构。我们优化了“样机案例” (sampleCases) 部分的组织方式，从原有的两个独立列表升级为更具描述性的 `sections` 结构。这一改进使得案例内容可以被划分为逻辑更清晰、带有独立标题和描述的区块，显著提升了信息的可读性和结构化程度。
+
+实现细节:
+
+1.  **数据结构重构**
+    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，将 `rai-p4` 产品下的 `sampleCases` 字段重构。
+        *   **引入 `sections` 结构**: 新结构允许将案例划分为多个带 `title` 和 `description` 的独立部分，如“任务规划流程示意”和“视觉搬运与运动学综合实训”。
+        *   **内容优化**: 更新了各个语言版本中的描述性文本，使其更准确地反映每个案例的核心内容，增强了专业性和清晰度。
+
+文件变更:
+
+修改文件:
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (Refactored sample cases data structure and updated descriptions)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (Refactored sample cases data structure and updated descriptions)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (重构样机案例数据结构并更新描述文案)
+
+改进效果:
+
+- **内容结构更清晰**: RAI-P4 产品的案例介绍从扁平列表升级为分区块的结构化内容，逻辑更清晰，用户更容易理解。
+- **可读性与专业性提升**: 优化后的标题和描述文本使案例内容更专业、更易于理解，提升了产品信息的价值。
+
+影响范围:
+
+- 网站 “RAI-P4” 产品详情页的“样机案例”部分将采用新的布局和内容展示。
+- 访问该页面的用户将能获取到结构更清晰、描述更详尽的案例信息。
+
+---
+
 V1.14.0 feat(products): 新增五款具身智能产品详情，丰富产品矩阵
 
 类型: feat, docs, ui

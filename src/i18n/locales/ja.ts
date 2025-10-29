@@ -960,18 +960,34 @@ export const dictionary = {
           ],
           sampleCases: {
             description:
-              "計画・知覚・実行の3ステップに沿ったサンプルを通じて、ソフトウェアロジックとハードウェア動作の連携を俯瞰し、ビジョン支援による搬送・運動制御フローを実地で理解できます。",
-            modulesGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            modulesImageAspectClass: "aspect-[21/10]",
-            modulesCardClassName: "w-full p-6",
-            modules: [
-              { name: "タスク計画フロー概要", image: "/images/products/rai-p4/rai-p4-task-planning.png" }
-            ],
-            compositeRobotsGridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-            compositeRobotsImageAspectClass: "aspect-[21/10]",
-            compositeRobotsCardClassName: "w-full p-6",
-            compositeRobots: [
-              { name: "ビジョン搬送と運動制御実習", image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png" }
+              "2 つのシナリオを通して、タスク計画のワークフローと、ビジョン連携による搬送・運動制御の実践的フローを把握できます。",
+            sections: [
+              {
+                title: "タスク計画ワークフロー",
+                description: "音声／視覚入力からタスク分解、マニピュレータ実行までの全体像をフローチャートで把握します。",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "タスク計画フロー概要",
+                    image: "/images/products/rai-p4/rai-p4-task-planning.png"
+                  }
+                ]
+              },
+              {
+                title: "ビジョン搬送と運動学統合実習",
+                description: "視覚認識、運動学計画、ロボットアームの協調制御を一体的に学ぶ実習例です。",
+                gridClassName: "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
+                imageAspectClass: "aspect-[21/10]",
+                cardClassName: "w-full p-6",
+                items: [
+                  {
+                    name: "ビジョン搬送と運動学統合実習",
+                    image: "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  }
+                ]
+              }
             ]
           },
           sensorConfig: {
