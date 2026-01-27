@@ -1,30 +1,21 @@
 "use client";
 
-import type { Dictionary, Locale } from "@/i18n/config";
-import { withLocalePath } from "@/i18n/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect, useMemo, useState } from "react";
+import { useTranslations, useLocale } from 'next-intl';
 import ThemeToggler from "./ThemeToggler";
 import LocaleSwitcher from "./LocaleSwitcher";
 import buildMenu from "./menuData";
 
 type HeaderProps = {
-  locale: Locale;
-  menu: Dictionary["header"]["menu"];
-  languageSwitcher: Dictionary["header"]["languageSwitcher"];
-  aria: Dictionary["common"]["aria"];
-  themeToggleLabel: string;
+  locale: string;
 };
 
-const Header = ({
-  locale,
-  menu,
-  languageSwitcher,
-  aria,
-  themeToggleLabel,
-}: HeaderProps) => {
+const Header = ({ locale }: HeaderProps) => {
+  const t = useTranslations();
+  const currentLocale = useLocale();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const [openIndex, setOpenIndex] = useState(-1);
@@ -41,7 +32,9 @@ const Header = ({
   }, []);
 
   const pathname = usePathname();
-  const menuData = useMemo(() => buildMenu(locale, menu), [locale, menu]);
+  const menu = t.raw('header.menu');
+  const languageSwitcher = t.raw('header.languageSwitcher');
+  const menuData = useMemo(() => buildMenu(currentLocale, menu), [currentLocale, menu]);
 
   return (
     <header
@@ -55,7 +48,7 @@ const Header = ({
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4 xl:mr-12">
             <Link
-              href={withLocalePath(locale, "/")}
+              href={`/${currentLocale}`}
               className={`header-logo block w-full ${
                 sticky ? "py-5 lg:py-2" : "py-8"
               } `}
@@ -67,7 +60,7 @@ const Header = ({
               >
                 <Image
                   src="/images/logo/logo-2.svg"
-                  alt="logo"
+                  alt={t('header.logoAlt')}
                   fill
                   priority
                   sizes="144px"
@@ -75,7 +68,7 @@ const Header = ({
                 />
                 <Image
                   src="/images/logo/logo.svg"
-                  alt="logo"
+                  alt={t('header.logoAlt')}
                   fill
                   priority
                   sizes="144px"
@@ -89,7 +82,7 @@ const Header = ({
               <button
                 onClick={() => setNavbarOpen((open) => !open)}
                 id="navbarToggler"
-                aria-label={aria.mobileMenu}
+                aria-label={t('header.aria.mobileMenu')}
                 className="ring-primary absolute top-1/2 right-4 block translate-y-[-50%] rounded-lg px-3 py-[6px] focus:ring-2 lg:hidden"
               >
                 <span
@@ -194,12 +187,12 @@ const Header = ({
                   }
                 >
                   <LocaleSwitcher
-                    currentLocale={locale}
+                    currentLocale={currentLocale}
                     options={languageSwitcher.options}
                     ariaLabel={languageSwitcher.label}
                   />
                 </Suspense>
-                <ThemeToggler label={themeToggleLabel} />
+                <ThemeToggler label={t('header.aria.themeToggle')} />
               </div>
             </div>
           </div>

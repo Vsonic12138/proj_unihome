@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { withLocalePath } from "@/i18n/utils";
-import type { Locale } from "@/i18n/config";
 
 export type ProductSummary = {
   slug: string;
@@ -13,13 +11,13 @@ export type ProductSummary = {
 };
 
 type ProductCardProps = {
-  locale: Locale;
+  locale: string;
   item: ProductSummary;
   ctaLabel: string;
 };
 
 const ProductCard = ({ locale, item, ctaLabel }: ProductCardProps) => {
-  const href = withLocalePath(locale, `/products/${item.slug}`);
+  const href = `/${locale}/products/${item.slug}`;
 
   return (
     <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-stroke bg-white shadow-one transition hover:shadow-two dark:border-stroke-dark dark:bg-dark">

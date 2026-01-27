@@ -1,10 +1,8 @@
-import type { Dictionary, Locale } from "@/i18n/config";
-import { withLocalePath } from "@/i18n/utils";
 import Link from "next/link";
 
 type ErrorContentProps = {
-  copy: Dictionary["error"];
-  locale: Locale;
+  copy: any;
+  locale: string;
 };
 
 const ErrorContent = ({ copy, locale }: ErrorContentProps) => {
@@ -142,7 +140,7 @@ const ErrorContent = ({ copy, locale }: ErrorContentProps) => {
                 {copy.description}
               </p>
               <Link
-                href={withLocalePath(locale, "/")}
+                href={`/${locale}`}
                 className="rounded-md bg-primary px-8 py-3 text-base font-bold text-white shadow-signUp duration-300 hover:bg-white hover:text-primary md:px-9 lg:px-8 xl:px-9"
               >
                 {copy.button}

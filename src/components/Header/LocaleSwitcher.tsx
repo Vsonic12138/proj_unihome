@@ -1,40 +1,18 @@
 "use client";
 
-import { LOCALE_COOKIE, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useMemo, useTransition } from "react";
+import { useLocale } from 'next-intl';
 
 type Option = {
-  locale: Locale;
+  locale: string;
   label: string;
 };
 
 type LocaleSwitcherProps = {
-  currentLocale: Locale;
+  currentLocale: string;
   options: Array<{ locale: string; label: string }>;
   ariaLabel: string;
-};
-
-const LOCALE_PREFIX = new RegExp(
-  `^/(?:${SUPPORTED_LOCALES.join("|")})(?=/|$)`,
-  "i",
-);
-
-const updateLocaleInPath = (pathname: string, locale: Locale) => {
-  if (LOCALE_PREFIX.test(pathname)) {
-    return pathname.replace(LOCALE_PREFIX, `/${locale}`);
-  }
-  if (pathname.startsWith("/")) {
-    return `/${locale}${pathname}`;
-  }
-  return `/${locale}/${pathname}`;
-};
-
-const normalizePath = (path: string) => {
-  if (path === "/") {
-    return path;
-  }
-  return path.replace(/\/+$/, "");
 };
 
 // Language icon SVG
@@ -61,44 +39,35 @@ const LocaleSwitcher = ({
 }: LocaleSwitcherProps) => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const locale = useLocale();
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
 
   const availableOptions = useMemo<Option[]>(() => {
-    return options
-      .filter((option): option is Option =>
-        SUPPORTED_LOCALES.includes(option.locale as Locale),
-      )
-      .map((option) => ({
-        locale: option.locale as Locale,
-        label: option.label,
-      }));
+    return options.map((option) => ({
+      locale: option.locale,
+      label: option.label,
+    }));
   }, [options]);
 
-  const handleLocaleChange = (nextLocale: Locale) => {
-    if (nextLocale === currentLocale) {
+  const handleLocaleChange = (nextLocale: string) => {
+    if (nextLocale === locale) {
       setIsOpen(false);
       return;
     }
 
-    const nextPath = updateLocaleInPath(pathname, nextLocale);
-    const query = searchParams.toString();
-    const normalizedPath = normalizePath(nextPath);
-    const nextUrl = query ? `${normalizedPath}?${query}` : normalizedPath;
-
-    document.cookie = `${LOCALE_COOKIE}=${nextLocale}; max-age=31536000; path=/`;
+    // Replace current locale in pathname with new locale
+    const newPathname = pathname.replace(`/${locale}`, `/${nextLocale}`);
+    
+    // Set cookie for locale preference
+    document.cookie = `startup-nextjs-language=${nextLocale}; max-age=31536000; path=/`;
 
     setIsOpen(false);
     startTransition(() => {
-      router.replace(nextUrl);
+      router.replace(newPathname);
       router.refresh();
     });
   };
-
-  const currentOption = availableOptions.find(
-    (option) => option.locale === currentLocale,
-  );
 
   return (
     <div className="relative">
@@ -136,7 +105,7 @@ const LocaleSwitcher = ({
                 key={option.locale}
                 onClick={() => handleLocaleChange(option.locale)}
                 className={`block w-full px-4 py-2.5 text-left text-sm transition-colors duration-150 ${
-                  option.locale === currentLocale
+                  option.locale === locale
                     ? "bg-primary/10 text-primary font-medium dark:bg-primary/20"
                     : "text-body-color hover:bg-gray-2 dark:text-body-color-dark dark:hover:bg-dark-bg"
                 }`}

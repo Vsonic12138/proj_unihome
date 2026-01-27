@@ -1,10 +1,9 @@
 import SectionTitle from "@/components/Common/SectionTitle";
-import type { Dictionary, Locale } from "@/i18n/config";
 import ProductCard, { type ProductSummary } from "./ProductCard";
 
 type ProductsGridProps = {
-  locale: Locale;
-  copy: Dictionary["products"]["catalog"];
+  locale: string;
+  copy: any;
 };
 
 type ProductSeries = {

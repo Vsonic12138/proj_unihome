@@ -34,6 +34,86 @@
 
 ---
 
+V1.20.0 feat(i18n): 切换至 next-intl 并重构多语言体系
+
+类型: feat, refactor, fix, chore
+
+范围: i18n, routing, pages, components, config, build
+
+说明:
+
+本次更新完成国际化体系升级，从原有自定义字典方案迁移到 next-intl，并将所有页面与组件统一到 JSON 消息源与 App Router 语言路由体系，提升可维护性与路由稳定性。
+
+实现细节:
+
+1. **国际化核心迁移**
+   * `src/i18n/request.ts`:
+     * 新增 next-intl 请求配置，支持 `requestLocale` 回退与非法语言拦截。
+     * 合并加载多份 JSON 消息模块，统一提供给客户端。
+   * `src/i18n/routing.ts`:
+     * 集中维护 `locales` 与 `defaultLocale`，供路由与中间件复用。
+   * `src/middleware.ts`:
+     * 采用 next-intl 中间件处理语言前缀与 cookie。
+
+2. **消息资源拆分与结构调整**
+   * `messages/*/*.json`:
+     * 新增按语言分组的 JSON 文案目录（home、products、contact、pages 等）。
+   * `src/i18n/locales/*.ts`、`src/i18n/config.ts`、`src/i18n/utils.ts`:
+     * 移除旧的 TypeScript 字典与工具函数。
+
+3. **页面与组件全面对接 next-intl**
+   * `src/app/[locale]/**`:
+     * 页面改用 `getTranslations`/`NextIntlClientProvider`，元数据与内容统一读取 JSON 文案。
+     * 在布局中加入 `setRequestLocale(locale)`，稳定静态渲染。
+   * `src/components/**`:
+     * Header/Footer/Hero/Features/Contact 等组件改用 `useTranslations` 与 `useLocale`。
+     * 语言切换与路由拼接统一按 locale 前缀生成。
+
+4. **构建配置与依赖更新**
+   * `next.config.mjs`:
+     * 使用 next-intl 插件加载请求配置并替换原 `next.config.js`。
+   * `package.json`、`package-lock.json`:
+     * 新增 `next-intl` 依赖并更新锁文件。
+   * `tsconfig.json`:
+     * JSX 配置调整以兼容 App Router 输出。
+
+文件变更:
+
+新增文件:
+- [`src/i18n/request.ts`](src/i18n/request.ts:1) (next-intl 请求配置)
+- [`src/i18n/routing.ts`](src/i18n/routing.ts:1) (统一 locale 配置)
+- [`messages/zh/*.json`](messages/zh/common.json:1) (中文消息模块)
+- [`messages/en/*.json`](messages/en/common.json:1) (英文消息模块)
+- [`messages/ja/*.json`](messages/ja/common.json:1) (日文消息模块)
+- [`next.config.mjs`](next.config.mjs:1) (next-intl 插件配置)
+
+删除文件:
+- [`src/i18n/config.ts`](src/i18n/config.ts:1) (旧字典配置)
+- [`src/i18n/utils.ts`](src/i18n/utils.ts:1) (旧工具函数)
+- [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (旧中文字典)
+- [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (旧英文字典)
+- [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (旧日文字典)
+- [`next.config.js`](next.config.js:1) (旧 CJS 配置)
+
+修改文件:
+- [`src/app/[locale]/layout.tsx`](src/app/[locale]/layout.tsx:1) (注入 NextIntlClientProvider 与 setRequestLocale)
+- [`src/app/[locale]/page.tsx`](src/app/[locale]/page.tsx:1) (首页内容改用翻译读取)
+- [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx:1) (详情页翻译与静态参数改造)
+- [`src/components/Header/index.tsx`](src/components/Header/index.tsx:1) (Header 改为 useTranslations)
+- [`src/components/Footer/index.tsx`](src/components/Footer/index.tsx:1) (Footer 改为 useTranslations)
+
+改进效果:
+
+- **国际化维护更清晰**: 文案按模块拆分为 JSON，便于协作与扩展。
+- **路由与语言一致性提升**: 统一 locales 配置，减少多处重复配置。
+- **页面渲染更稳定**: 避免因 locale 解析不完整而导致 404。
+
+影响范围:
+
+- 影响所有多语言页面、路由与组件文案获取逻辑。
+
+---
+
 V1.19.2 chore(config): 优化 Next.js 生产环境构建配置
 
 类型: chore

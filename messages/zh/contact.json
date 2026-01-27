@@ -1,0 +1,15 @@
+{
+  "contact": {
+    "formTitle": "需要帮助？提交服务单",
+    "formDescription": "我们的支持团队会尽快通过邮件回复你。",
+    "form": {
+      "nameLabel": "您的姓名",
+      "namePlaceholder": "请输入姓名",
+      "emailLabel": "您的邮箱",
+      "emailPlaceholder": "请输入邮箱",
+      "messageLabel": "您的留言",
+      "messagePlaceholder": "请填写想咨询的问题",
+      "submit": "提交工单"
+    }
+  }
+}

@@ -1,10 +1,10 @@
+import { getTranslations } from 'next-intl/server';
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Contact from "@/components/Contact";
-import type { Dictionary } from "@/i18n/config";
 
 type ContactContentProps = {
-  pageCopy: Dictionary["pages"]["contact"];
-  contactCopy: Dictionary["contact"];
+  pageCopy: any["contact"];
+  contactCopy: any;
 };
 
 const ContactContent = ({

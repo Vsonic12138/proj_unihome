@@ -1,0 +1,7 @@
+{
+  "error": {
+    "title": "The page is missing",
+    "description": "The page you're trying to reach may have been deleted or renamed. Try heading back to the homepage.",
+    "button": "Return Home"
+  }
+}

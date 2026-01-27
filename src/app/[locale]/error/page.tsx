@@ -1,17 +1,17 @@
+import { getTranslations } from 'next-intl/server';
 import ErrorContent from "@/app/error/ErrorContent";
-import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const copy = dictionary.error;
+  const t = await getTranslations({ locale });
+  const copy = t.raw('error');
 
   return {
     title: `${copy.title} | Startup`,
@@ -21,11 +21,11 @@ export async function generateMetadata({
 
 const ErrorPage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const t = await getTranslations({ locale });
 
   return (
     <ErrorContent
-      copy={dictionary.error}
+      copy={t.raw('error')}
       locale={locale}
     />
   );

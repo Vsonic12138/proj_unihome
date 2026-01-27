@@ -1,17 +1,17 @@
+import { getTranslations } from 'next-intl/server';
 import ContactContent from "@/app/contact/ContactContent";
-import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const pageCopy = dictionary.pages.contact;
+  const t = await getTranslations({ locale });
+  const pageCopy = t.raw('pages').contact;
 
   return {
     title: `${pageCopy.title} | Startup`,
@@ -21,12 +21,12 @@ export async function generateMetadata({
 
 const ContactPage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const t = await getTranslations({ locale });
 
   return (
     <ContactContent
-      pageCopy={dictionary.pages.contact}
-      contactCopy={dictionary.contact}
+      pageCopy={t.raw('pages').contact}
+      contactCopy={t.raw('contact')}
     />
   );
 };

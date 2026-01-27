@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   getConsentStatus,
   setConsentStatus,
@@ -9,16 +10,6 @@ import {
   enableAnalyticsCookies,
   disableAnalyticsCookies,
 } from '@/lib/cookieConsent';
-
-type CookieConsentProps = {
-  copy: {
-    message: string;
-    learnMore?: string;
-    acceptAll: string;
-    rejectNonEssential: string;
-    privacyPolicyLink?: string;
-  };
-};
 
 const CookieIcon = ({ className }: { className?: string }) => (
   <svg
@@ -91,7 +82,9 @@ const CookieIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const CookieConsent = ({ copy }: CookieConsentProps) => {
+const CookieConsent = () => {
+  const t = useTranslations();
+  const copy = t.raw('cookieConsent') as any;
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
@@ -157,7 +150,7 @@ const CookieConsent = ({ copy }: CookieConsentProps) => {
       }`}
       role="dialog"
       aria-live="polite"
-      aria-label="Cookie consent banner"
+      aria-label={copy.ariaLabel}
     >
       <div className="container mx-auto px-4 py-4 sm:px-6 sm:py-5">
         <div className="overflow-hidden rounded-lg border border-stroke bg-white shadow-lg dark:border-stroke-dark dark:bg-dark">

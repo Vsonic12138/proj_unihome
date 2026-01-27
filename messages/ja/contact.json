@@ -1,0 +1,15 @@
+{
+  "contact": {
+    "formTitle": "お困りですか？サポートチケットを送信してください",
+    "formDescription": "サポートチームができるだけ早くメールでご連絡します。",
+    "form": {
+      "nameLabel": "お名前",
+      "namePlaceholder": "お名前を入力してください",
+      "emailLabel": "メールアドレス",
+      "emailPlaceholder": "メールアドレスを入力してください",
+      "messageLabel": "メッセージ",
+      "messagePlaceholder": "ご相談内容をお書きください",
+      "submit": "チケットを送信"
+    }
+  }
+}

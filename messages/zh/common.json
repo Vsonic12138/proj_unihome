@@ -1,0 +1,162 @@
+{
+  "header": {
+    "menu": {
+      "home": "首页",
+      "products": "产品介绍",
+      "developer": "开发者服务",
+      "customSolutions": "定制合作",
+      "caseStudies": "服务案例",
+      "about": "关于我们",
+      "submenu": {
+        "knowledgeBase": "知识库",
+        "openSource": "开源项目",
+        "caseUniversities": "高校案例",
+        "caseK12": "K12案例",
+        "caseCoResearch": "共研案例"
+      }
+    },
+    "languageSwitcher": {
+      "label": "语言",
+      "options": [
+        {
+          "locale": "zh",
+          "label": "中文"
+        },
+        {
+          "locale": "en",
+          "label": "英语"
+        },
+        {
+          "locale": "ja",
+          "label": "日本語"
+        }
+      ]
+    },
+    "aria": {
+      "mobileMenu": "打开主菜单",
+      "themeToggle": "切换主题",
+      "scrollToTop": "返回顶部"
+    },
+    "logoAlt": "有你同创标志"
+  },
+  "footer": {
+    "logoAlt": "有你同创标志",
+    "socialLabel": "社交媒体",
+    "description": "有你同创智能机器人科技（北京）有限公司\n- 坐落于北京市石景山首钢园冬奥广场内\n- 专注于具身智能机器人技术的教学研究与应用落地\n- 地址：北京市石景山区料仓路6号院10号楼3层101-2",
+    "columns": {
+      "usefulLinks": {
+        "title": "产品",
+        "items": [
+          {
+            "label": "产品平台概览",
+            "path": "/products"
+          },
+          {
+            "label": "精选方案矩阵",
+            "path": "/#features"
+          },
+          {
+            "label": "服务案例",
+            "path": "/case-studies"
+          }
+        ]
+      },
+      "terms": {
+        "title": "开发者服务",
+        "items": [
+          {
+            "label": "开发者中心",
+            "path": "/developers"
+          },
+          {
+            "label": "技术文档",
+            "path": "/developers/knowledge-base"
+          },
+          {
+            "label": "开源项目",
+            "path": "/developers/open-source"
+          }
+        ]
+      },
+      "support": {
+        "title": "定制合作",
+        "items": [
+          {
+            "label": "定制方案",
+            "path": "/custom-solutions"
+          },
+          {
+            "label": "联合研发",
+            "path": "/case-studies/co-research"
+          },
+          {
+            "label": "联系团队",
+            "path": "/contact"
+          }
+        ]
+      }
+    },
+    "contact": {
+      "phoneLabel": "联系电话",
+      "phoneNumber": "+86 176 1035 7571",
+      "phoneTip": "工作日 09:30-18:00",
+      "taobaoLabel": "淘宝店铺",
+      "taobaoHref": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      "bilibiliLabel": "B站官方账号",
+      "bilibiliHref": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+      "modalClose": "关闭",
+      "qq": {
+        "title": "加入官方 QQ 群",
+        "description": "扫码加入 811348489 群，获取课程案例、最新活动。"
+      },
+      "wechat": {
+        "title": "关注微信公众号",
+        "description": "扫码关注公众号，领取教学资料、活动通知。"
+      }
+    }
+  },
+  "floatingContact": {
+    "panelLabel": "联系我们",
+    "fabLabel": "打开联系方式",
+    "closeLabel": "关闭联系方式",
+    "qqGroup": {
+      "label": "QQ群",
+      "number": "811348489",
+      "tooltip": "复制QQ群号",
+      "copy": "复制",
+      "copied": "已复制！"
+    },
+    "phone": {
+      "label": "电话",
+      "name": "佘先生",
+      "number": "+86 176 1035 7571",
+      "tooltip": "复制联系电话",
+      "copy": "复制",
+      "copied": "已复制！"
+    },
+    "taobao": {
+      "label": "淘宝店铺",
+      "tooltip": "访问淘宝店铺",
+      "linkText": "访问",
+      "href": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1"
+    },
+    "bilibili": {
+      "label": "B站官方账号",
+      "tooltip": "访问B站空间",
+      "linkText": "前往",
+      "href": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click"
+    },
+    "wechat": {
+      "label": "微信公众号",
+      "tooltip": "查看二维码",
+      "comingSoon": "使用微信扫描二维码关注公众号"
+    }
+  },
+  "cookieConsent": {
+    "ariaLabel": "Cookie 同意横幅",
+    "message": "我们使用 Cookie 来提升您的浏览体验和网站功能。",
+    "learnMore": "了解更多",
+    "acceptAll": "接受全部",
+    "rejectNonEssential": "仅必要 Cookie"
+  }
+}

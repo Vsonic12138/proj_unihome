@@ -1,0 +1,113 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "id": 1,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-1.png",
+          "alt": "有你同创具身智能创新平台"
+        },
+        "action": {
+          "href": "/products",
+          "label": "了解整体方案"
+        }
+      },
+      {
+        "id": 2,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-2.png",
+          "alt": "教育机器人全栈解决方案"
+        },
+        "action": {
+          "href": "/developers",
+          "label": "进入开发者中心"
+        }
+      },
+      {
+        "id": 3,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-3.png",
+          "alt": "首钢园产教融合空间"
+        },
+        "action": {
+          "href": "/case-studies",
+          "label": "浏览联合案例"
+        }
+      }
+    ],
+    "autoPlayInterval": 6000,
+    "controls": {
+      "previous": "上一张",
+      "next": "下一张",
+      "indicator": "{index}{isCurrent, select, true {（当前）} other {}}",
+      "slideLabel": "第{id}张"
+    }
+  },
+  "features": {
+    "title": "产品平台",
+    "paragraph": "基于「启发、探索、创新、分享」的理念，我们构建涵盖硬件、软件、课程与服务的具身智能产品平台，让教学、科研与产业落地一步到位。",
+    "featuredProducts": {
+      "title": "精选方案矩阵",
+      "description": "围绕“入门启发 → 项目进阶 → 科研创新”三大阶段，精选具有代表性的具身智能产品组合，帮助不同教学目标快速落地。",
+      "ctaDescription": "想了解更多教学与科研场景的搭配？",
+      "viewAllLabel": "浏览全部产品",
+      "slugs": [
+        "ubot-mr20",
+        "gx-mat-09s",
+        "rai-p4"
+      ]
+    },
+    "highlights": [
+      {
+        "title": "全链路部署",
+        "description": "硬件、软件、课程与服务打包交付，降低教学部署与运维成本。"
+      },
+      {
+        "title": "多场景适配",
+        "description": "覆盖 K12、职教、高校与科研场景，兼容课堂教学、竞赛训练与实验室建设。"
+      },
+      {
+        "title": "模块化拓展",
+        "description": "多底盘、多机械臂与 AI 模块自由组合，支持大模型、视觉、控制等跨学科实践。"
+      }
+    ]
+  },
+  "about": {
+    "sectionOne": {
+      "title": "关于有你同创",
+      "description": "有你同创智能机器人科技（北京）有限公司坐落于北京市石景山首钢园冬奥广场内，携手首钢集团共同打造全球领先的具身智能创新平台。我们专注于将具身智能机器人技术应用于教学研究，持续探索落地应用场景，为高校、职校、K12提供集硬件、软件、课程的教育机器人产品。",
+      "highlights": [
+        "具身智能机器人",
+        "产学研一体化",
+        "递进式学习体系",
+        "低成本智能产品",
+        "开源共享社区",
+        "完整教育解决方案"
+      ],
+      "image": {
+        "src": "/images/about/company-mascot.png",
+        "alt": "有你同创智能机器人产品"
+      }
+    },
+    "sectionTwo": {
+      "imageAlt": "具身智能机器人教学现场",
+      "items": [
+        {
+          "title": "启发探索创新",
+          "paragraph": "基于「启发、探索、创新、分享」的核心理念，构建具身智能机器人学习平台，激发学生对机器人技术的兴趣与创造力。"
+        },
+        {
+          "title": "阶梯式课程体系",
+          "paragraph": "系统分析具身机器人技术，结合各学段特点，设计阶梯式、多元化的课程体系，让学习循序渐进、深入浅出。"
+        },
+        {
+          "title": "开源共享生态",
+          "paragraph": "持续构建开源共享的线上学习社区，汇聚优质教学资源与技术文档，推动具身智能机器人教育的普及与发展。"
+        }
+      ]
+    }
+  }
+}

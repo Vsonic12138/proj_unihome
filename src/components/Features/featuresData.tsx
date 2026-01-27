@@ -1,4 +1,3 @@
-import type { Dictionary } from "@/i18n/config";
 import { Feature } from "@/types/feature";
 
 const PLACEHOLDER_IMAGE = "/images/products/placeholder.svg";
@@ -20,7 +19,7 @@ type FeatureSource = {
   imageAlt?: string;
 };
 
-const buildFeatures = (dictionary: Dictionary): Feature[] => {
+const buildFeatures = (dictionary: any): Feature[] => {
   const highlights = dictionary.features.highlights || [];
   
   return highlights.map((highlight, index) => {

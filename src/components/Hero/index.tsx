@@ -1,12 +1,12 @@
 "use client";
 
-import type { Dictionary } from "@/i18n/config";
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 type HeroProps = {
-  copy: Dictionary["hero"];
+  copy: any;
 };
 
 type SlideAction = {
@@ -26,7 +26,8 @@ type SlideMedia = {
   muted?: boolean;
 };
 
-type SlideInput = NonNullable<Dictionary["hero"]["slides"]>[number] & {
+type SlideInput = {
+  id: number;
   media?: SlideMedia;
   image?: string;
   imageAlt?: string;
@@ -44,6 +45,7 @@ type Slide = {
 };
 
 const Hero = ({ copy }: HeroProps) => {
+  const t = useTranslations();
   const normalizedSlides = useMemo<Slide[]>(() => {
     return (copy.slides ?? []).map((item) => {
       const slide = item as SlideInput;
@@ -114,6 +116,7 @@ const Hero = ({ copy }: HeroProps) => {
   }
 
   const renderMedia = (slide: Slide, priority: boolean) => {
+    const fallbackLabel = t('hero.controls.slideLabel', { id: slide.id });
   if (slide.media?.kind === "video") {
     return (
       <video
@@ -133,7 +136,7 @@ const Hero = ({ copy }: HeroProps) => {
     return (
       <Image
         src={slide.media.src}
-        alt={slide.media.alt ?? slide.title ?? slide.action?.ariaLabel ?? slide.action?.label ?? `Slide ${slide.id}`}
+        alt={slide.media.alt ?? slide.title ?? slide.action?.ariaLabel ?? slide.action?.label ?? fallbackLabel}
         fill
         priority={priority}
         sizes="100vw"
@@ -144,7 +147,7 @@ const Hero = ({ copy }: HeroProps) => {
 
   return (
     <div className="flex h-full w-full items-center justify-center bg-gray-200 text-xl font-semibold text-gray-600 dark:bg-gray-700 dark:text-gray-200">
-      {slide.title ?? `Slide ${slide.id}`}
+      {slide.title ?? fallbackLabel}
     </div>
   );
 };
@@ -171,7 +174,7 @@ const Hero = ({ copy }: HeroProps) => {
                   href={slide.action.href}
                   target={slide.action.target ?? "_self"}
                   rel={slide.action.target === "_blank" ? "noopener noreferrer" : undefined}
-                  aria-label={slide.action.ariaLabel ?? slide.action.label ?? slide.title ?? `Slide ${slide.id}`}
+                  aria-label={slide.action.ariaLabel ?? slide.action.label ?? slide.title ?? t('hero.controls.slideLabel', { id: slide.id })}
                   className="relative block h-full w-full flex-shrink-0"
                 >
                   <article className="relative h-full w-full bg-black">
@@ -202,7 +205,7 @@ const Hero = ({ copy }: HeroProps) => {
                 type="button"
                 onClick={handlePrev}
                 className="pointer-events-auto inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/35 text-white backdrop-blur transition hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                aria-label="Previous slide"
+                aria-label={t('hero.controls.previous')}
               >
                 <span aria-hidden className="text-2xl font-semibold">
                   ‹
@@ -212,7 +215,7 @@ const Hero = ({ copy }: HeroProps) => {
                 type="button"
                 onClick={handleNext}
                 className="pointer-events-auto inline-flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/35 text-white backdrop-blur transition hover:bg-black/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                aria-label="Next slide"
+                aria-label={t('hero.controls.next')}
               >
                 <span aria-hidden className="text-2xl font-semibold">
                   ›
@@ -230,7 +233,10 @@ const Hero = ({ copy }: HeroProps) => {
                     type="button"
                     key={slide.id}
                     className={`h-2.5 rounded-full transition-all duration-300 ${index === activeIndex ? "w-12 bg-white" : "w-6 bg-white/35"}`}
-                    aria-label={`${index + 1} ${index === activeIndex ? "(current)" : ""}`}
+                    aria-label={t('hero.controls.indicator', {
+                      index: index + 1,
+                      isCurrent: index === activeIndex ? 'true' : 'false',
+                    })}
                     aria-current={index === activeIndex ? "true" : "false"}
                     onClick={() => handleSelect(index)}
                   />

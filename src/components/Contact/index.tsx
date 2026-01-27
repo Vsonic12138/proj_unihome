@@ -1,7 +1,6 @@
-import type { Dictionary } from "@/i18n/config";
 
 type ContactProps = {
-  copy: Dictionary["contact"];
+  copy: any;
 };
 
 const Contact = ({ copy }: ContactProps) => {

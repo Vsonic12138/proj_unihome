@@ -1,18 +1,18 @@
+import { getTranslations } from 'next-intl/server';
 import PageIntro from "@/components/Common/PageIntro";
 import OpenSourceContent from "@/app/OpenSource/OpenSourceContent";
-import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const pageCopy = dictionary.pages.openSource;
+  const t = await getTranslations({ locale });
+  const pageCopy = t.raw('pages').openSource;
 
   return {
     title: `${pageCopy.title} | Startup`,
@@ -22,8 +22,8 @@ export async function generateMetadata({
 
 const OpenSourcePage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const pageCopy = dictionary.pages.openSource;
+  const t = await getTranslations({ locale });
+  const pageCopy = t.raw('pages').openSource;
 
   return (
     <>

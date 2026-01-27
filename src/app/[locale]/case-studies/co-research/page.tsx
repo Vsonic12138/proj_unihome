@@ -1,17 +1,17 @@
+import { getTranslations } from 'next-intl/server';
 import PageIntro from "@/components/Common/PageIntro";
-import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const pageCopy = dictionary.pages.caseCoResearch;
+  const t = await getTranslations({ locale });
+  const pageCopy = t.raw('pages').caseCoResearch;
 
   return {
     title: `${pageCopy.title} | Startup`,
@@ -21,8 +21,8 @@ export async function generateMetadata({
 
 const CoResearchCasesPage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const pageCopy = dictionary.pages.caseCoResearch;
+  const t = await getTranslations({ locale });
+  const pageCopy = t.raw('pages').caseCoResearch;
 
   return (
     <PageIntro

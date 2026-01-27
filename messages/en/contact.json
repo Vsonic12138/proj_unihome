@@ -1,0 +1,15 @@
+{
+  "contact": {
+    "formTitle": "Need help? Submit a support ticket",
+    "formDescription": "Our support team will respond via email as soon as possible.",
+    "form": {
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Please enter your name",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "Please enter your email",
+      "messageLabel": "Your Message",
+      "messagePlaceholder": "Let us know what you need help with",
+      "submit": "Submit Ticket"
+    }
+  }
+}

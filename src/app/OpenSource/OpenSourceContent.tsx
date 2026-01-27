@@ -1,9 +1,7 @@
 "use client";
 
-import type { Dictionary } from "@/i18n/config";
-
 interface OpenSourceContentProps {
-  copy: Dictionary["pages"]["openSource"];
+  copy: any;
 }
 
 const OpenSourceContent = ({ copy }: OpenSourceContentProps) => {

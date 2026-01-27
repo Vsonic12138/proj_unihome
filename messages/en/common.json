@@ -1,0 +1,162 @@
+{
+  "header": {
+    "menu": {
+      "home": "Home",
+      "products": "Products",
+      "developer": "Developer Services",
+      "customSolutions": "Custom Solutions",
+      "caseStudies": "Case Studies",
+      "about": "About Us",
+      "submenu": {
+        "knowledgeBase": "Knowledge Base",
+        "openSource": "Open Source Projects",
+        "caseUniversities": "Universities",
+        "caseK12": "K12 Education",
+        "caseCoResearch": "Co-Research"
+      }
+    },
+    "languageSwitcher": {
+      "label": "Language",
+      "options": [
+        {
+          "locale": "zh",
+          "label": "中文"
+        },
+        {
+          "locale": "en",
+          "label": "English"
+        },
+        {
+          "locale": "ja",
+          "label": "日本語"
+        }
+      ]
+    },
+    "aria": {
+      "mobileMenu": "Open main menu",
+      "themeToggle": "Toggle theme",
+      "scrollToTop": "Scroll to top"
+    },
+    "logoAlt": "Youni Tongchuang logo"
+  },
+  "footer": {
+    "logoAlt": "Youni Tongchuang logo",
+    "socialLabel": "Social links",
+    "description": "Youni Tongchuang Intelligent Robotics Technology (Beijing) Co., Ltd.\n- Located at Shougang Park Winter Olympic Plaza, Shijingshan District, Beijing\n- Focused on embodied intelligent robotics teaching, research, and applications\n- Address: Unit 101-2, 3F, Building 10, Yard 6, Liaocang Road, Shijingshan District, Beijing",
+    "columns": {
+      "usefulLinks": {
+        "title": "Products",
+        "items": [
+          {
+            "label": "Product Overview",
+            "path": "/products"
+          },
+          {
+            "label": "Solution Matrix",
+            "path": "/#features"
+          },
+          {
+            "label": "Case Studies",
+            "path": "/case-studies"
+          }
+        ]
+      },
+      "terms": {
+        "title": "Developer Services",
+        "items": [
+          {
+            "label": "Developer Hub",
+            "path": "/developers"
+          },
+          {
+            "label": "Knowledge Base",
+            "path": "/developers/knowledge-base"
+          },
+          {
+            "label": "Open Source Projects",
+            "path": "/developers/open-source"
+          }
+        ]
+      },
+      "support": {
+        "title": "Custom Partnerships",
+        "items": [
+          {
+            "label": "Custom Solutions",
+            "path": "/custom-solutions"
+          },
+          {
+            "label": "Co-Research Programs",
+            "path": "/case-studies/co-research"
+          },
+          {
+            "label": "Contact Our Team",
+            "path": "/contact"
+          }
+        ]
+      }
+    },
+    "contact": {
+      "phoneLabel": "Phone",
+      "phoneNumber": "+86 176 1035 7571",
+      "phoneTip": "Mon–Fri, 09:30–18:00 (GMT+8)",
+      "taobaoLabel": "Taobao Store",
+      "taobaoHref": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      "bilibiliLabel": "Bilibili Official Channel",
+      "bilibiliHref": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+      "modalClose": "Close",
+      "qq": {
+        "title": "Join the QQ Community",
+        "description": "Scan to join group 811348489 for course resources and upcoming events."
+      },
+      "wechat": {
+        "title": "Follow on WeChat",
+        "description": "Scan to follow the official account and receive teaching resources."
+      }
+    }
+  },
+  "floatingContact": {
+    "panelLabel": "Contact Us",
+    "fabLabel": "Open contact options",
+    "closeLabel": "Close contact options",
+    "qqGroup": {
+      "label": "QQ Group",
+      "number": "811348489",
+      "tooltip": "Copy QQ group number",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "phone": {
+      "label": "Phone",
+      "name": "Mr. She",
+      "number": "+86 176 1035 7571",
+      "tooltip": "Copy phone number",
+      "copy": "Copy",
+      "copied": "Copied!"
+    },
+    "taobao": {
+      "label": "Taobao Store",
+      "tooltip": "Visit Taobao store",
+      "linkText": "Visit",
+      "href": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1"
+    },
+    "bilibili": {
+      "label": "Bilibili Channel",
+      "tooltip": "Visit our Bilibili channel",
+      "linkText": "Go",
+      "href": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click"
+    },
+    "wechat": {
+      "label": "WeChat Official",
+      "tooltip": "Show QR code",
+      "comingSoon": "Scan to follow our WeChat Official Account"
+    }
+  },
+  "cookieConsent": {
+    "ariaLabel": "Cookie consent banner",
+    "message": "We use cookies to enhance your browsing experience and improve website functionality.",
+    "learnMore": "Learn more",
+    "acceptAll": "Accept All",
+    "rejectNonEssential": "Essential Only"
+  }
+}

@@ -1,3 +1,7 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -11,8 +15,6 @@ const nextConfig = {
   },
   // 生产环境禁用 source map，防止源码泄露
   productionBrowserSourceMaps: false,
-  // 启用 SWC 压缩（Next.js 默认启用，这里显式声明）
-  swcMinify: true,
 };
 
-module.exports = nextConfig;
+export default withNextIntl(nextConfig);

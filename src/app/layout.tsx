@@ -1,4 +1,3 @@
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
 import { Inter } from "next/font/google";
 import "../styles/index.css";
 
@@ -11,13 +10,11 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale?: Locale }>;
+  params: Promise<{ locale?: string }>;
 }) {
   const resolvedParams = await params;
   const localeParam = resolvedParams?.locale;
-  const locale = SUPPORTED_LOCALES.includes((localeParam ?? "") as Locale)
-    ? (localeParam as Locale)
-    : DEFAULT_LOCALE;
+  const locale = localeParam ?? 'zh';
 
   return (
     <html suppressHydrationWarning lang={locale}>

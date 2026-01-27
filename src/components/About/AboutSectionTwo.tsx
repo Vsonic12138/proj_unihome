@@ -1,11 +1,11 @@
 import Image from "next/image";
-import type { Dictionary } from "@/i18n/config";
 
 type AboutSectionTwoProps = {
-  items: Dictionary["about"]["sectionTwo"]["items"];
+  items: any;
+  imageAlt: string;
 };
 
-const AboutSectionTwo = ({ items }: AboutSectionTwoProps) => {
+const AboutSectionTwo = ({ items, imageAlt }: AboutSectionTwoProps) => {
   return (
     <section className="py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -14,7 +14,7 @@ const AboutSectionTwo = ({ items }: AboutSectionTwoProps) => {
             <div className="relative mx-auto mb-12 aspect-[4/3] max-w-[520px] overflow-hidden rounded-3xl lg:m-0">
               <Image
                 src="/images/about/section-two.jpg"
-                alt="具身智能机器人教学现场"
+                alt={imageAlt}
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 520px, 100vw"

@@ -3,11 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FocusEvent, MutableRefObject } from "react";
 import Image from "next/image";
-import type { Dictionary } from "@/i18n/config";
-
-type FloatingContactProps = {
-  copy: Dictionary["floatingContact"];
-};
+import { useTranslations } from 'next-intl';
 
 const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
 const WECHAT_OFFICIAL_QR_SRC =
@@ -23,7 +19,9 @@ const clearTimeoutRef = (
   }
 };
 
-export default function FloatingContact({ copy }: FloatingContactProps) {
+export default function FloatingContact() {
+  const t = useTranslations();
+  const copy = t.raw('floatingContact') as any;
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [copiedQQ, setCopiedQQ] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
@@ -180,7 +178,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
               <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
                 <Image
                   src="/images/icons/qq.svg"
-                  alt="QQ"
+                  alt={copy.qqGroup.label}
                   width={24}
                   height={24}
                   className="dark:invert"
@@ -208,7 +206,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
               <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
                 <Image
                   src="/images/icons/wechat.svg"
-                  alt="WeChat"
+                  alt={copy.wechat.label}
                   width={24}
                   height={24}
                   className="dark:invert"
@@ -230,7 +228,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
               <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10">
                 <Image
                   src="/images/icons/phone.svg"
-                  alt="Phone"
+                  alt={copy.phone.label}
                   width={24}
                   height={24}
                   className="dark:invert"
@@ -376,7 +374,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                       <Image
                         src="/images/icons/qq.svg"
-                        alt="QQ"
+                        alt={copy.qqGroup.label}
                         width={28}
                         height={28}
                         className="dark:brightness-0 dark:invert"
@@ -417,7 +415,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                     <Image
                       src="/images/icons/wechat.svg"
-                        alt="WeChat"
+                        alt={copy.wechat.label}
                         width={28}
                         height={28}
                         className="dark:brightness-0 dark:invert"
@@ -451,7 +449,7 @@ export default function FloatingContact({ copy }: FloatingContactProps) {
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
                       <Image
                         src="/images/icons/phone.svg"
-                        alt="Phone"
+                        alt={copy.phone.label}
                         width={28}
                         height={28}
                         className="dark:brightness-0 dark:invert"

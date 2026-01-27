@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/Common/SectionTitle";
-import type { Dictionary, Locale } from "@/i18n/config";
-import { withLocalePath } from "@/i18n/utils";
 import type { ProductSummary } from "@/components/Products/ProductCard";
 
 type FeaturesProps = {
-  locale: Locale;
-  copy: Dictionary["features"];
-  productsCatalog: Dictionary["products"]["catalog"];
+  locale: string;
+  copy: any;
+  productsCatalog: any["catalog"];
 };
 
 type Highlight = {
@@ -25,7 +23,7 @@ const Features = ({ locale, copy, productsCatalog }: FeaturesProps) => {
     .map((slug) => products.find((item) => item.slug === slug))
     .filter((item): item is ProductSummary => Boolean(item));
 
-  const viewAllHref = withLocalePath(locale, "/products");
+  const viewAllHref = `/${locale}/products`;
   const viewAllLabel = copy.featuredProducts?.viewAllLabel ?? productsCatalog.viewDetailsCta;
 
   return (
@@ -101,14 +99,13 @@ const Features = ({ locale, copy, productsCatalog }: FeaturesProps) => {
 };
 
 type FeaturedProductCardProps = {
-  locale: Locale;
+  locale: string;
   product: ProductSummary;
   ctaLabel: string;
   isPrimary?: boolean;
 };
 
 const FeaturedProductCard = ({ locale, product, ctaLabel, isPrimary = false }: FeaturedProductCardProps) => {
-  const href = withLocalePath(locale, `/products/${product.slug}`);
 
   const wrapperClasses = [
     "group flex flex-col overflow-hidden rounded-2xl border border-black/5 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-white/10 dark:bg-gray-dark/80",
@@ -121,6 +118,8 @@ const FeaturedProductCard = ({ locale, product, ctaLabel, isPrimary = false }: F
     "lg:w-64",
     isPrimary ? "lg:aspect-[16/9]" : "lg:aspect-[4/3]",
   ];
+
+  const href = `/${locale}/products/${product.slug}`;
 
   return (
     <article className={wrapperClasses.join(" ")}>

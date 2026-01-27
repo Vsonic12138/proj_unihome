@@ -1,0 +1,162 @@
+{
+  "header": {
+    "menu": {
+      "home": "ホーム",
+      "products": "製品紹介",
+      "developer": "開発者サービス",
+      "customSolutions": "カスタム協業",
+      "caseStudies": "導入事例",
+      "about": "会社概要",
+      "submenu": {
+        "knowledgeBase": "ナレッジベース",
+        "openSource": "オープンソース",
+        "caseUniversities": "大学事例",
+        "caseK12": "K12事例",
+        "caseCoResearch": "共同研究"
+      }
+    },
+    "languageSwitcher": {
+      "label": "言語",
+      "options": [
+        {
+          "locale": "zh",
+          "label": "中国語"
+        },
+        {
+          "locale": "en",
+          "label": "英語"
+        },
+        {
+          "locale": "ja",
+          "label": "日本語"
+        }
+      ]
+    },
+    "aria": {
+      "mobileMenu": "メインメニューを開く",
+      "themeToggle": "テーマを切り替える",
+      "scrollToTop": "トップへ戻る"
+    },
+    "logoAlt": "有你同创ロゴ"
+  },
+  "footer": {
+    "logoAlt": "有你同创ロゴ",
+    "socialLabel": "ソーシャルリンク",
+    "description": "有你同创知能ロボット科技（北京）有限公司\n- 北京市石景山区首鋼園ウィンターオリンピック広場内に所在\n- 具現化知能ロボット技術の教育・研究・応用に注力\n- 住所：北京市石景山区料仓路6号院10号楼3階101-2",
+    "columns": {
+      "usefulLinks": {
+        "title": "製品",
+        "items": [
+          {
+            "label": "製品プラットフォーム概要",
+            "path": "/products"
+          },
+          {
+            "label": "ソリューションマトリクス",
+            "path": "/#features"
+          },
+          {
+            "label": "導入事例",
+            "path": "/case-studies"
+          }
+        ]
+      },
+      "terms": {
+        "title": "開発者サービス",
+        "items": [
+          {
+            "label": "開発者センター",
+            "path": "/developers"
+          },
+          {
+            "label": "技術ドキュメント",
+            "path": "/developers/knowledge-base"
+          },
+          {
+            "label": "オープンソース",
+            "path": "/developers/open-source"
+          }
+        ]
+      },
+      "support": {
+        "title": "カスタム協業",
+        "items": [
+          {
+            "label": "カスタムソリューション",
+            "path": "/custom-solutions"
+          },
+          {
+            "label": "共同研究プログラム",
+            "path": "/case-studies/co-research"
+          },
+          {
+            "label": "お問い合わせ",
+            "path": "/contact"
+          }
+        ]
+      }
+    },
+    "contact": {
+      "phoneLabel": "電話",
+      "phoneNumber": "+86 176 1035 7571",
+      "phoneTip": "平日 09:30〜18:00（GMT+8）",
+      "taobaoLabel": "淘宝（タオバオ）店舗",
+      "taobaoHref": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1",
+      "bilibiliLabel": "Bilibili公式チャンネル",
+      "bilibiliHref": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click",
+      "modalClose": "閉じる",
+      "qq": {
+        "title": "公式QQグループに参加",
+        "description": "811348489グループに参加して、教材や最新情報を受け取りましょう。"
+      },
+      "wechat": {
+        "title": "公式WeChatをフォロー",
+        "description": "公式アカウントをフォローして、授業資料とイベント情報を受け取れます。"
+      }
+    }
+  },
+  "floatingContact": {
+    "panelLabel": "お問い合わせ",
+    "fabLabel": "連絡先を開く",
+    "closeLabel": "連絡先を閉じる",
+    "qqGroup": {
+      "label": "QQグループ",
+      "number": "811348489",
+      "tooltip": "QQグループ番号をコピー",
+      "copy": "コピー",
+      "copied": "コピーしました！"
+    },
+    "phone": {
+      "label": "電話",
+      "name": "佘様",
+      "number": "+86 176 1035 7571",
+      "tooltip": "電話番号をコピー",
+      "copy": "コピー",
+      "copied": "コピーしました！"
+    },
+    "taobao": {
+      "label": "Taobaoストア",
+      "tooltip": "Taobaoストアを訪問",
+      "linkText": "訪問",
+      "href": "https://4vhhasmxqjt25cg7za43qs6podckjow.taobao.com/shop/view_shop.htm?appUid=RAzN8HWTBLcKSRgwfJESLCpphyAguSqzhXdc1GyTLumi8JFoD49&spm=a21n57.1.hoverItem.1"
+    },
+    "bilibili": {
+      "label": "Bilibiliチャンネル",
+      "tooltip": "Bilibiliチャンネルを開く",
+      "linkText": "移動",
+      "href": "https://space.bilibili.com/1888573035?spm_id_from=333.337.search-card.all.click"
+    },
+    "wechat": {
+      "label": "WeChat公式アカウント",
+      "tooltip": "QRコードを表示",
+      "comingSoon": "QRコードをスキャンしてWeChat公式アカウントをフォローしてください"
+    }
+  },
+  "cookieConsent": {
+    "ariaLabel": "Cookie 同意バナー",
+    "message": "当サイトでは、閲覧体験の向上とウェブサイト機能の改善のためにCookieを使用しています。",
+    "learnMore": "詳細",
+    "acceptAll": "すべて許可",
+    "rejectNonEssential": "必要なもののみ"
+  }
+}

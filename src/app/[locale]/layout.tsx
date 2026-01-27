@@ -3,42 +3,36 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import FloatingContact from "@/components/Common/FloatingContact";
 import CookieConsent from "@/components/Common/CookieConsent";
-import { getDictionary, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { locales } from '@/i18n/routing';
 import type { ReactNode } from "react";
 
 export function generateStaticParams() {
-  return SUPPORTED_LOCALES.map((locale) => ({ locale }));
+  return locales.map((locale) => ({ locale }));
 }
 
 type LocaleLayoutProps = {
   children: ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  setRequestLocale(locale);
+  
+  // Providing all messages to the client side is the easiest way to get started
+  const messages = await getMessages();
 
   return (
-    <>
-      <Header
-        locale={locale}
-        menu={dictionary.header.menu}
-        languageSwitcher={dictionary.header.languageSwitcher}
-        aria={dictionary.common.aria}
-        themeToggleLabel={dictionary.common.aria.themeToggle}
-      />
+    <NextIntlClientProvider messages={messages}>
+      <Header locale={locale} />
       <main>{children}</main>
-      <Footer
-        copy={dictionary.footer}
-        socialLabel={dictionary.common.aria.socialLink}
-        homeHref={`/${locale}`}
-        locale={locale}
-      />
-      <ScrollToTop label={dictionary.common.aria.scrollToTop} />
-      <FloatingContact copy={dictionary.floatingContact} />
-      <CookieConsent copy={dictionary.cookieConsent} />
-    </>
+      <Footer locale={locale} />
+      <ScrollToTop />
+      <FloatingContact />
+      <CookieConsent />
+    </NextIntlClientProvider>
   );
 };
 

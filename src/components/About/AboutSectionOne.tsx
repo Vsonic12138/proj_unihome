@@ -1,8 +1,7 @@
 import Image from "next/image";
-import type { Dictionary } from "@/i18n/config";
 
 type AboutSectionOneProps = {
-  sectionOne: Dictionary["about"]["sectionOne"];
+  sectionOne: any;
 };
 
 const AboutSectionOne = ({ sectionOne }: AboutSectionOneProps) => {

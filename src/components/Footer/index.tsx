@@ -3,24 +3,26 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { Dictionary, Locale } from "@/i18n/config";
-import { withLocalePath } from "@/i18n/utils";
+import { useTranslations, useLocale } from 'next-intl';
 
 const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
 const WECHAT_OFFICIAL_QR_SRC =
   "/images/contact/weChat-official-account.jpg" as const;
 
 type FooterProps = {
-  copy: Dictionary["footer"];
-  socialLabel: string;
-  homeHref: string;
-  locale: Locale;
+  locale: string;
 };
 
 type ContactModalKey = "qq" | "wechat";
 
-const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
+const Footer = ({ locale }: FooterProps) => {
+  const t = useTranslations();
+  const currentLocale = useLocale();
+  
   const [activeModal, setActiveModal] = useState<ContactModalKey | null>(null);
+
+  const socialLabel = t('footer.socialLabel');
+  const homeHref = `/${currentLocale}`;
 
   const contactIcons: Array<
     | {
@@ -43,41 +45,47 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
       type: "link",
       key: "bilibili",
       icon: "/images/icons/bilibili.svg",
-      label: copy.contact.bilibiliLabel,
-      tooltip: copy.contact.bilibiliLabel,
-      href: copy.contact.bilibiliHref,
+      label: t('footer.contact.bilibiliLabel'),
+      tooltip: t('footer.contact.bilibiliLabel'),
+      href: t('footer.contact.bilibiliHref'),
     },
     {
       type: "link",
       key: "taobao",
       icon: "/images/icons/taobao.svg",
-      label: copy.contact.taobaoLabel,
-      tooltip: copy.contact.taobaoLabel,
-      href: copy.contact.taobaoHref,
+      label: t('footer.contact.taobaoLabel'),
+      tooltip: t('footer.contact.taobaoLabel'),
+      href: t('footer.contact.taobaoHref'),
     },
     {
       type: "modal",
       key: "qq",
       icon: "/images/icons/qq.svg",
-      label: copy.contact.qq.title,
-      tooltip: copy.contact.qq.description,
+      label: t('footer.contact.qq.title'),
+      tooltip: t('footer.contact.qq.description'),
     },
     {
       type: "modal",
       key: "wechat",
       icon: "/images/icons/wechat.svg",
-      label: copy.contact.wechat.title,
-      tooltip: copy.contact.wechat.description,
+      label: t('footer.contact.wechat.title'),
+      tooltip: t('footer.contact.wechat.description'),
     },
   ];
 
-  const columns = [
-    copy.columns.usefulLinks,
-    copy.columns.terms,
-    copy.columns.support,
+  const columns = t.raw('footer.columns') as {
+    usefulLinks: { title: string; items: Array<{ label: string; path: string }> };
+    terms: { title: string; items: Array<{ label: string; path: string }> };
+    support: { title: string; items: Array<{ label: string; path: string }> };
+  };
+
+  const columnsArray = [
+    columns.usefulLinks,
+    columns.terms,
+    columns.support,
   ];
 
-  const telHref = `tel:${copy.contact.phoneNumber.replace(/\s+/g, "")}`;
+  const telHref = `tel:${t('footer.contact.phoneNumber').replace(/\s+/g, "")}`;
   const modalHeadingId =
     activeModal === "qq"
       ? "footer-contact-qq"
@@ -88,8 +96,14 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
     activeModal === null
       ? null
       : activeModal === "qq"
-        ? copy.contact.qq
-        : copy.contact.wechat;
+        ? {
+            title: t('footer.contact.qq.title'),
+            description: t('footer.contact.qq.description'),
+          }
+        : {
+            title: t('footer.contact.wechat.title'),
+            description: t('footer.contact.wechat.description'),
+          };
   const modalImage =
     activeModal === null
       ? null
@@ -106,7 +120,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
               <Link href={homeHref} className="mb-8 inline-block">
                 <Image
                   src="/images/logo/logo-text.svg"
-                  alt="logo"
+                  alt={t('footer.logoAlt')}
                   width={220}
                   height={72}
                   className="block w-full max-w-[15rem] object-contain dark:hidden"
@@ -114,7 +128,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                 />
                 <Image
                   src="/images/logo/logo-text-inverse.svg"
-                  alt="logo"
+                  alt={t('footer.logoAlt')}
                   width={220}
                   height={72}
                   className="hidden w-full max-w-[15rem] object-contain dark:block"
@@ -126,7 +140,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                   locale === "zh" ? "text-sm lg:text-base" : "text-sm"
                 }`}
               >
-                {copy.description.split("\n").map((line, index) => (
+                {t('footer.description').split("\n").map((line, index) => (
                   <p
                     key={`footer-description-${index}`}
                     className="whitespace-normal"
@@ -138,16 +152,16 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
               <div className="mb-8 space-y-3 text-sm text-body-color dark:text-body-color-dark">
                 <div>
                   <span className="block text-base font-semibold text-black dark:text-white">
-                    {copy.contact.phoneLabel}
+                    {t('footer.contact.phoneLabel')}
                   </span>
                   <a
                     href={telHref}
                     className="text-base font-medium text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                   >
-                    {copy.contact.phoneNumber}
+                    {t('footer.contact.phoneNumber')}
                   </a>
                   <div className="text-xs text-body-color/80 dark:text-body-color-dark/70">
-                    {copy.contact.phoneTip}
+                    {t('footer.contact.phoneTip')}
                   </div>
                 </div>
               </div>
@@ -155,7 +169,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                 {contactIcons.map((item) => {
                   const aria = `${socialLabel}：${item.label}`;
                   if (item.type === "link") {
-                    const href = withLocalePath(locale, item.href);
+                    const href = `/${currentLocale}${item.href}`;
                     return (
                       <a
                         key={item.key}
@@ -208,7 +222,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
           </div>
           <div className="w-full px-4 lg:w-[62%] xl:w-[60%]">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
-              {columns.map((column) => (
+              {columnsArray.map((column) => (
                 <div key={column.title} className="space-y-5">
                   <h2 className="text-lg font-semibold text-black dark:text-white">
                     {column.title}
@@ -217,7 +231,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
                     {column.items.map((item) => (
                       <li key={`${column.title}-${item.label}`}>
                         <Link
-                          href={withLocalePath(locale, item.path)}
+                          href={`/${currentLocale}${item.path}`}
                           className="text-base text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                         >
                           {item.label}
@@ -247,7 +261,7 @@ const Footer = ({ copy, socialLabel, homeHref, locale }: FooterProps) => {
             <button
               type="button"
               onClick={() => setActiveModal(null)}
-              aria-label={copy.contact.modalClose}
+              aria-label={t('footer.contact.modalClose')}
               className="absolute right-3 top-3 rounded-full p-1 text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
             >
               <svg

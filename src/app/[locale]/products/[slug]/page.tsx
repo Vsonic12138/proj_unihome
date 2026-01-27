@@ -1,18 +1,20 @@
-import { getDictionary, SUPPORTED_LOCALES, type Locale } from "@/i18n/config";
+import { getTranslations } from 'next-intl/server';
+import { locales } from '@/i18n/routing';
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import ImageGridWithLightbox from "@/components/Products/ImageGridWithLightbox";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 };
 
 export async function generateStaticParams() {
-  const params: { locale: Locale; slug: string }[] = [];
-  for (const locale of SUPPORTED_LOCALES) {
-    const dict = await getDictionary(locale);
-    const series = dict.products.catalog.series as Array<{
+  const params: { locale: string; slug: string }[] = [];
+  for (const locale of locales) {
+    const t = await getTranslations({ locale });
+    const products = t.raw('products') as any;
+    const series = products.catalog.series as Array<{
       items: Array<{ slug: string }>;
     }>;
     series.forEach(({ items }) => {
@@ -24,19 +26,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
   const { locale, slug } = await params;
-  const dict = await getDictionary(locale);
-  const details = (dict.products.details as Record<string, any>)[slug];
+  const t = await getTranslations({ locale });
+  const products = t.raw('products') as any;
+  const pages = t.raw('pages') as any;
+  const details = (products.details as Record<string, any>)[slug];
   if (!details) return {};
   return {
-    title: `${details.name} | ${dict.pages.products.title}`,
-    description: details.overview || dict.pages.products.description,
+    title: `${details.name} | ${pages.products.title}`,
+    description: details.overview || pages.products.description,
   };
 }
 
 const ProductDetailsPage = async ({ params }: PageParams) => {
   const { locale, slug } = await params;
-  const dict = await getDictionary(locale);
-  const details = (dict.products.details as Record<string, any>)[slug];
+  const t = await getTranslations({ locale });
+  const products = t.raw('products') as any;
+  const dict = { products };
+  const details = (products.details as Record<string, any>)[slug];
 
   if (!details) return notFound();
 
@@ -99,7 +105,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
         {/* Product Features */}
         {details.features?.length ? (
           <div className="mt-12">
-            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).features || "产品特点"}</h2>
+            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).features}</h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {details.features.map((feature: any, i: number) => {
                 const featureMedia = Array.isArray(feature.media) ? feature.media : null;
@@ -133,7 +139,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
         {/* Sample Cases */}
         {sampleCases && (
           <div className="mt-12">
-            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).sampleCases || "样机案例"}</h2>
+            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).sampleCases}</h2>
             <p className="mb-8 text-base text-body-color dark:text-body-color-dark">{sampleCases.description}</p>
 
             {sampleCustomSections
@@ -178,7 +184,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                 {sampleCases.modules?.length ? (
                   <div className="mb-8">
                     <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                      {(dict.products.detailLabels as any).modules || "机器人模块"}
+                      {(dict.products.detailLabels as any).modules}
                       {sampleCases.modules.length ? `（${sampleCases.modules.length}种）` : null}
                     </h3>
                     <ImageGridWithLightbox
@@ -194,7 +200,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                 {sampleCases.chassis?.length ? (
                   <div className="mb-8">
                     <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                      {(dict.products.detailLabels as any).chassis || "机器人底盘"}
+                      {(dict.products.detailLabels as any).chassis}
                       {sampleCases.chassis.length ? `（${sampleCases.chassis.length}种）` : null}
                     </h3>
                     <ImageGridWithLightbox
@@ -209,7 +215,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                 {sampleCases.arms?.length ? (
                   <div className="mb-8">
                     <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                      {(dict.products.detailLabels as any).arms || "机械臂构型"}
+                      {(dict.products.detailLabels as any).arms}
                       {sampleCases.arms.length ? `（${sampleCases.arms.length}种）` : null}
                     </h3>
                     <ImageGridWithLightbox
@@ -224,7 +230,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                 {sampleCases.compositeRobots?.length ? (
                   <div className="mb-8">
                     <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                      {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
+                      {(dict.products.detailLabels as any).compositeRobots}
                       {sampleCases.compositeRobots.length ? `（${sampleCases.compositeRobots.length}种）` : null}
                     </h3>
                     <ImageGridWithLightbox
@@ -239,7 +245,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
                 {sampleCases.compositeGroups?.length ? (
                   <div className="mb-8">
                     <h3 className="mb-4 text-xl font-semibold text-black dark:text-white">
-                      {(dict.products.detailLabels as any).compositeRobots || "复合机器人"}
+                      {(dict.products.detailLabels as any).compositeRobots}
                     </h3>
                     <div className="space-y-4">
                       {sampleCases.compositeGroups.map((group: any, i: number) => (
@@ -267,12 +273,12 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
 
         {/* Configuration Section */}
         <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{dict.products.detailLabels.configuration}</h2>
+          <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).configuration}</h2>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Sensor Config */}
             {details.sensorConfig && (
               <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).sensorConfig || "传感器配置"}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).sensorConfig}</h3>
                 <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">{details.sensorConfig.description}</p>
                 {details.sensorConfig.list?.length ? (
                   <ul className="list-disc pl-5 text-sm text-body-color dark:text-body-color-dark">
@@ -287,7 +293,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {/* Controller Config */}
             {details.controllerConfig && (
               <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).controllerConfig || "控制器配置"}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).controllerConfig}</h3>
                 <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{details.controllerConfig.description}</p>
                 {details.controllerConfig.images?.length ? (
                   <div className="mt-4 grid grid-cols-1 place-items-center">
@@ -321,7 +327,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
             {/* Software Config */}
             {softwareConfig && (
               <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
-                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).softwareConfig || "软件配置"}</h3>
+                <h3 className="mb-3 text-lg font-semibold text-black dark:text-white">{(dict.products.detailLabels as any).softwareConfig}</h3>
                 <p className="mb-3 text-sm text-body-color dark:text-body-color-dark">{softwareConfig.description}</p>
                 {softwareConfig.ecosystem && (
                   <p className="text-sm text-body-color dark:text-body-color-dark">{softwareConfig.ecosystem}</p>
@@ -531,7 +537,7 @@ const ProductDetailsPage = async ({ params }: PageParams) => {
         {/* Technical Specs */}
         {details.specs?.length ? (
           <div className="mt-12">
-            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{dict.products.detailLabels.specs}</h2>
+            <h2 className="mb-6 text-2xl font-bold text-black dark:text-white sm:text-3xl">{(dict.products.detailLabels as any).specs}</h2>
             <div className="rounded-lg border border-stroke bg-white p-6 dark:border-stroke-dark dark:bg-dark">
               <ul className="list-disc pl-5 text-sm text-body-color dark:text-body-color-dark">
                 {details.specs.map((spec: string, i: number) => (

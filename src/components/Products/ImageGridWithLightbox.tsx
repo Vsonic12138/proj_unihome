@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 
 type GalleryItem = {
   name: string;
@@ -34,6 +35,7 @@ const ImageGridWithLightbox = ({
   unoptimized = true,
   cardClassName = "",
 }: ImageGridWithLightboxProps) => {
+  const t = useTranslations();
   const safeItems = useMemo(() => items ?? [], [items]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -87,7 +89,7 @@ const ImageGridWithLightbox = ({
               type="button"
               className={`${baseCardClasses} ${cardClassName}`.trim()}
               onClick={() => setActiveIndex(index)}
-              aria-label={`${item.name} — View larger image`}
+              aria-label={t('products.lightbox.viewLarger', { name: item.name })}
             >
               <div className={`relative w-full overflow-hidden rounded bg-gray-50 dark:bg-gray-800 ${imageAspectClass}`}>
                 <Image
@@ -112,7 +114,7 @@ const ImageGridWithLightbox = ({
           aria-modal="true"
           onClick={close}
         >
-          <button type="button" className={`${overlayButtonClasses}`} onClick={close} aria-label="Close image">
+          <button type="button" className={`${overlayButtonClasses}`} onClick={close} aria-label={t('products.lightbox.close')}>
             <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
               <path
                 d="M6 6l12 12M6 18L18 6"
@@ -133,7 +135,7 @@ const ImageGridWithLightbox = ({
                   event.stopPropagation();
                   showPrev();
                 }}
-                aria-label="Previous image"
+                aria-label={t('products.lightbox.previous')}
               >
                 <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
                   <path
@@ -152,7 +154,7 @@ const ImageGridWithLightbox = ({
                   event.stopPropagation();
                   showNext();
                 }}
-                aria-label="Next image"
+                aria-label={t('products.lightbox.next')}
               >
                 <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
                   <path
@@ -190,7 +192,11 @@ const ImageGridWithLightbox = ({
             </div>
             <p className="text-center text-sm font-medium text-white/90">
               {safeItems[activeIndex].name}
-              {safeItems.length > 1 && <span className="ml-2 text-xs text-white/60">({activeIndex + 1}/{safeItems.length})</span>}
+              {safeItems.length > 1 && (
+                <span className="ml-2 text-xs text-white/60">
+                  {t('products.lightbox.counter', { index: activeIndex + 1, total: safeItems.length })}
+                </span>
+              )}
             </p>
           </div>
         </div>

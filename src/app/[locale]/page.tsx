@@ -1,21 +1,21 @@
+import { getTranslations } from 'next-intl/server';
 import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
-import { getDictionary, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
 
 type PageParams = {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
-  const homeMeta = dictionary.pages.home;
+  const t = await getTranslations({ locale });
+  const homeMeta = t.raw('pages').home;
 
   return {
     title: homeMeta?.title ?? "Youni Tongchuang",
@@ -27,19 +27,22 @@ export async function generateMetadata({
 
 const HomePage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const dictionary = await getDictionary(locale);
+  const t = await getTranslations({ locale });
 
   return (
     <>
       <ScrollUp />
-      <Hero copy={dictionary.hero} />
+      <Hero copy={t.raw('hero')} />
       <Features
         locale={locale}
-        copy={dictionary.features}
-        productsCatalog={dictionary.products.catalog}
+        copy={t.raw('features')}
+        productsCatalog={t.raw('products').catalog}
       />
-      <AboutSectionTwo items={dictionary.about.sectionTwo.items} />
-      <Contact copy={dictionary.contact} />
+      <AboutSectionTwo
+        items={t.raw('about').sectionTwo.items}
+        imageAlt={t.raw('about').sectionTwo.imageAlt}
+      />
+      <Contact copy={t.raw('contact')} />
     </>
   );
 };

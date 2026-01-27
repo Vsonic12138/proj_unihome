@@ -1,0 +1,113 @@
+{
+  "hero": {
+    "slides": [
+      {
+        "id": 1,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-1.png",
+          "alt": "Embodied intelligence innovation hub"
+        },
+        "action": {
+          "href": "/products",
+          "label": "Discover Our Platform"
+        }
+      },
+      {
+        "id": 2,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-2.png",
+          "alt": "Full-stack embodied robotics solutions"
+        },
+        "action": {
+          "href": "/developers",
+          "label": "Visit Developer Hub"
+        }
+      },
+      {
+        "id": 3,
+        "media": {
+          "kind": "image",
+          "src": "/images/hero/slide-3.png",
+          "alt": "Industry-education integrated innovation space"
+        },
+        "action": {
+          "href": "/case-studies",
+          "label": "Explore Case Studies"
+        }
+      }
+    ],
+    "autoPlayInterval": 6000,
+    "controls": {
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "indicator": "{index}{isCurrent, select, true { (current)} other {}}",
+      "slideLabel": "Slide {id}"
+    }
+  },
+  "features": {
+    "title": "Product Platform",
+    "paragraph": "Guided by the principles of Inspire, Explore, Innovate, and Share, we deliver an embodied intelligence product platform that unifies hardware, software, curriculum, and services for seamless teaching, research, and deployment.",
+    "featuredProducts": {
+      "title": "Curated Product Pathways",
+      "description": "We highlight three representative solutions covering activation, advanced courses, and research scenarios—helping teams launch embodied intelligence programs faster.",
+      "ctaDescription": "Need the full catalog tailored to your teaching or research plans?",
+      "viewAllLabel": "Browse all products",
+      "slugs": [
+        "ubot-mr20",
+        "gx-mat-09s",
+        "rai-p4"
+      ]
+    },
+    "highlights": [
+      {
+        "title": "End-to-end delivery",
+        "description": "Hardware, software, curriculum, and services arrive together to keep deployment and maintenance overhead low."
+      },
+      {
+        "title": "Multi-scenario coverage",
+        "description": "From K12 and vocational programs to university labs and research centers, every route extends into competitions and hands-on training."
+      },
+      {
+        "title": "Modular expansion",
+        "description": "Mix and match chassis, robotic arms, and AI modules to support cross-disciplinary practice in LLMs, vision, control, and more."
+      }
+    ]
+  },
+  "about": {
+    "sectionOne": {
+      "title": "About UNI Robotics",
+      "description": "UNI Robotics Technology (Beijing) Co., Ltd. is located in the Winter Olympics Plaza at Shougang Park, Shijingshan District, Beijing, partnering with Shougang Group to build a world-leading embodied intelligence innovation platform. We focus on applying embodied intelligent robotics technology to teaching and research, continuously exploring practical application scenarios, and providing integrated hardware, software, and curriculum robotics products for universities, vocational colleges, and K12 institutions.",
+      "highlights": [
+        "Embodied Intelligent Robotics",
+        "Industry-Academia-Research Integration",
+        "Progressive Learning System",
+        "Affordable Intelligent Products",
+        "Open-Source Community",
+        "Complete Education Solutions"
+      ],
+      "image": {
+        "src": "/images/about/company-mascot.png",
+        "alt": "UNI Robotics Products"
+      }
+    },
+    "sectionTwo": {
+      "imageAlt": "Embodied robotics teaching environment",
+      "items": [
+        {
+          "title": "Inspire, Explore, Innovate",
+          "paragraph": "Built on the core principles of \"Inspire, Explore, Innovate, and Share,\" we construct embodied intelligent robotics learning platforms that spark students' interest and creativity in robotics technology."
+        },
+        {
+          "title": "Tiered Curriculum System",
+          "paragraph": "Systematically analyzing embodied robotics technology and tailoring content to different educational levels, we design progressive, diverse curricula that make learning gradual and accessible."
+        },
+        {
+          "title": "Open-Source Ecosystem",
+          "paragraph": "Continuously building an open-source online learning community that aggregates quality teaching resources and technical documentation, promoting the popularization and development of embodied intelligent robotics education."
+        }
+      ]
+    }
+  }
+}
