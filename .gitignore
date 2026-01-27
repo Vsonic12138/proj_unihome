@@ -49,6 +49,8 @@ lerna-debug.log*
 .env.production
 .env.production.local
 .env*.local
+.envrc
+.direnv/
 
 # 编辑器与系统文件
 /.vscode/
