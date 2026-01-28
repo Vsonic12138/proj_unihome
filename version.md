@@ -34,6 +34,33 @@
 
 ---
 
+V1.20.2 chore(build): 修复 package-lock.json 依赖配置
+
+类型: chore
+
+范围: build, dependencies
+
+说明:
+本次更新修复 package-lock.json 中 jiti 包的 peer 依赖标记问题，移除不必要的 peer: true 属性，确保依赖解析正确性。
+
+实现细节:
+1. **依赖配置修复**
+   * `package-lock.json`:
+     * 移除 `jiti` 包的 `peer: true` 标记，避免潜在的依赖冲突问题。
+
+文件变更:
+修改文件:
+- [`package-lock.json`](package-lock.json:1) (修复 jiti 依赖配置)
+
+改进效果:
+- **依赖管理更规范**: 避免 peer 依赖标记导致的解析歧义。
+- **构建稳定性提升**: 确保依赖树结构清晰，减少潜在冲突。
+
+影响范围:
+- 仅影响构建时的依赖解析过程，不影响业务逻辑和运行时行为。
+
+---
+
 V1.20.1 docs(repo): 更新项目说明并清理忽略规则
 
 类型: docs, chore, remove
