@@ -60,7 +60,7 @@ const LocaleSwitcher = ({
     const newPathname = pathname.replace(`/${locale}`, `/${nextLocale}`);
     
     // Set cookie for locale preference
-    document.cookie = `startup-nextjs-language=${nextLocale}; max-age=31536000; path=/`;
+    document.cookie = `proj_uinhome-language=${nextLocale}; max-age=31536000; path=/`;
 
     setIsOpen(false);
     startTransition(() => {

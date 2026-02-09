@@ -34,6 +34,60 @@
 
 ---
 
+V1.20.3 chore(repo): 去模板化并清理静态资源
+
+类型: chore, remove, docs
+
+范围: repo, assets, config, docs
+
+说明:
+本次更新完成项目标识去模板化与无用静态资源清理，统一包名与语言 Cookie，并移除未引用的模板组件与素材，进一步收敛官网资产。
+
+实现细节:
+1. **项目标识去模板化**
+   * `package.json` / `package-lock.json`:
+     * 包名统一为 `proj_uinhome`。
+   * `src/middleware.ts`、`src/components/Header/LocaleSwitcher.tsx`、`README.md`:
+     * 更新语言偏好 Cookie 为 `proj_uinhome-language`。
+
+2. **模板资源清理**
+   * `src/components/Brands/*`、`src/components/video-modal.tsx`:
+     * 移除未使用的品牌墙与视频弹窗组件。
+   * `public/images/brands/*`、`public/images/blog/*`、`public/images/testimonials/*`、`public/images/video/*`、`public/images/404.svg`:
+     * 清理模板品牌、博客、评价、视频素材与 404 插图。
+
+3. **文档调整**
+   * `README.md`:
+     * 移除模板致谢内容。
+
+文件变更:
+修改文件:
+- [`README.md`](README.md:1) (移除模板致谢并更新 Cookie 说明)
+- [`package.json`](package.json:1) (包名调整为 proj_uinhome)
+- [`package-lock.json`](package-lock.json:1) (同步包名)
+- [`src/middleware.ts`](src/middleware.ts:1) (更新语言 Cookie 名)
+- [`src/components/Header/LocaleSwitcher.tsx`](src/components/Header/LocaleSwitcher.tsx:1) (更新语言 Cookie 名)
+
+删除文件:
+- [`src/components/Brands/brandsData.tsx`](src/components/Brands/brandsData.tsx:1) (移除模板品牌墙数据)
+- [`src/components/Brands/index.tsx`](src/components/Brands/index.tsx:1) (移除模板品牌墙组件)
+- [`src/components/video-modal.tsx`](src/components/video-modal.tsx:1) (移除模板视频弹窗)
+- [`public/images/404.svg`](public/images/404.svg:1) (移除模板 404 插图)
+- [`public/images/brands/formbold.svg`](public/images/brands/formbold.svg:1) (清理品牌墙模板素材)
+- [`public/images/blog/blog-01.jpg`](public/images/blog/blog-01.jpg:1) (清理博客模板素材)
+- [`public/images/testimonials/author-01.png`](public/images/testimonials/author-01.png:1) (清理评价模板素材)
+- [`public/images/video/video.jpg`](public/images/video/video.jpg:1) (清理视频模板素材)
+
+改进效果:
+- **品牌一致性提升**: 包名与 Cookie 统一为项目标识，降低模板痕迹。
+- **仓库更精简**: 移除未引用组件与模板素材，减少资源冗余。
+- **文档更清晰**: README 去模板化，说明更聚焦实际项目。
+
+影响范围:
+- 仅影响项目标识与静态资源，不改变业务功能逻辑与页面结构。
+
+---
+
 V1.20.2 chore(build): 修复 package-lock.json 依赖配置
 
 类型: chore

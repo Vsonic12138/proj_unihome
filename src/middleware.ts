@@ -13,7 +13,7 @@ export default createMiddleware({
   
   // Cookie name for locale preference
   localeCookie: {
-    name: 'startup-nextjs-language',
+    name: 'proj_uinhome-language',
   },
 });
 

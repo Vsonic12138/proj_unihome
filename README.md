@@ -70,7 +70,7 @@ npm run lint
 - **文案文件**：位于 `messages/{en,zh,ja}/*.json`，按页面与组件模块拆分。
 - **请求配置**：`src/i18n/request.ts` 负责加载对应语言的 JSON 文案。
 - **路由结构**：所有页面在 `src/app/[locale]/` 下注册，`generateStaticParams` 会自动针对每种语言生成静态路径。
-- **语言切换**：`src/components/Header/LocaleSwitcher.tsx` 提供下拉切换，并将用户选择写入 Cookie（名称 `startup-nextjs-language`）。
+- **语言切换**：`src/components/Header/LocaleSwitcher.tsx` 提供下拉切换，并将用户选择写入 Cookie（名称 `proj_uinhome-language`）。
 - **新增语言步骤**：
   1. 在 `src/i18n/routing.ts` 中添加语言代码；
   2. 在 `messages/{locale}` 下新增并补齐 JSON 文案；
@@ -129,11 +129,3 @@ npm run lint
 - **自托管**：通过 Docker/Nginx 部署时，记得转发所有未知路由到 Next.js 应用，以便国际化中间件生效。
 
 ---
-
-## 🙏 致谢
-
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- 原模板作者 [NextJSTemplates](https://nextjstemplates.com/)
-  
-如果这个模板对你的项目有所帮助，欢迎 Star ⭐️ 支持我们。
