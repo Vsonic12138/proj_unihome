@@ -34,6 +34,77 @@
 
 ---
 
+V1.20.5 chore(deps): 深度清理模板残留依赖与资源
+
+类型: chore, remove, docs
+
+范围: deps, types, assets, config
+
+说明:
+本次更新对项目进行了深度清理，移除了从开源 startup 模板继承的未使用依赖、类型定义、静态资源和冗余配置文件，同时新增 AGENTS.md 开发规范文档，进一步精简代码库并提升可维护性。
+
+实现细节:
+1. **依赖清理**
+   * `package.json` / `package-lock.json`:
+     * 移除未使用的 `autoprefixer`（Tailwind CSS v4 已内置）
+
+2. **类型定义清理**
+   * `src/types/testimonial.ts`:
+     * 移除未使用的客户评价类型定义。
+   * `src/types/brand.ts`:
+     * 移除未使用的品牌logo类型定义。
+   * `src/types/blog.ts`:
+     * 移除未使用的博客类型定义。
+
+3. **静态资源清理**
+   * `public/images/about/about-image.svg` / `about-image-dark.svg` / `about-image-2.svg` / `about-image-2-dark.svg`:
+     * 移除未使用的 about 页面插图。
+   * `public/images/hero/shape-01.svg` / `shape-02.svg`:
+     * 移除未使用的 hero 装饰图形。
+   * `public/images/favicon.png`:
+     * 移除冗余的 favicon（已存在 favicon.ico）。
+
+4. **配置文件清理**
+   * `jsconfig.json`:
+     * 移除冗余的 JavaScript 配置文件（项目使用 TypeScript，`tsconfig.json` 已足够）。
+
+5. **文档新增**
+   * `AGENTS.md`:
+     * 新增开发规范文档，包含构建命令、项目技术栈、代码风格指南和目录结构说明。
+
+文件变更:
+修改文件:
+- [`package.json`](package.json:1) (移除 autoprefixer 依赖)
+- [`package-lock.json`](package-lock.json:1) (同步依赖更新)
+
+删除文件:
+- [`src/types/testimonial.ts`](src/types/testimonial.ts:1) (未使用的客户评价类型)
+- [`src/types/brand.ts`](src/types/brand.ts:1) (未使用的品牌类型)
+- [`src/types/blog.ts`](src/types/blog.ts:1) (未使用的博客类型)
+- [`public/images/about/about-image.svg`](public/images/about/about-image.svg:1) (未使用插图)
+- [`public/images/about/about-image-dark.svg`](public/images/about/about-image-dark.svg:1) (未使用插图)
+- [`public/images/about/about-image-2.svg`](public/images/about/about-image-2.svg:1) (未使用插图)
+- [`public/images/about/about-image-2-dark.svg`](public/images/about/about-image-2-dark.svg:1) (未使用插图)
+- [`public/images/hero/shape-01.svg`](public/images/hero/shape-01.svg:1) (未使用装饰图形)
+- [`public/images/hero/shape-02.svg`](public/images/hero/shape-02.svg:1) (未使用装饰图形)
+- [`public/images/favicon.png`](public/images/favicon.png:1) (冗余 favicon)
+- [`jsconfig.json`](jsconfig.json:1) (冗余 JS 配置)
+
+新增文件:
+- [`AGENTS.md`](AGENTS.md:1) (开发规范文档)
+
+改进效果:
+- **代码库更精简**: 移除未使用依赖和类型定义，减少维护负担。
+- **资源更纯净**: 清理未引用图片，减小仓库体积。
+- **配置更规范**: 移除冗余 jsconfig.json，避免与 tsconfig.json 冲突。
+- **文档更完善**: 新增 AGENTS.md 为后续开发提供规范指引。
+
+影响范围:
+- 仅清理未使用资源，不影响业务功能逻辑与页面结构。
+- 构建验证通过，确认无运行时错误。
+
+---
+
 V1.20.4 chore(legal): 更新许可证为公司专有 All Rights Reserved
 
 类型: chore, docs
