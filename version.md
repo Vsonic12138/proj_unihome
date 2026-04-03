@@ -3,6 +3,7 @@
 记录更新内容，提交的时候无需将日期一起放入commit当中。
 
 **更新类型说明：**
+
 - 类型(type)：
   - feat: 功能变更（新增/修改功能）
   - remove: 删除内容（文件/代码/资源）
@@ -18,19 +19,65 @@
 版本格式: `V{主版本}.{次版本}.{修订版本}`
 
 **版本号说明**:
+
 - 主版本: 当做出不兼容的 API 修改或重大功能变更时递增
 - 次版本: 当以向后兼容的方式添加功能时递增
 - 修订版本: 当进行向后兼容的问题修复时递增
 
 **版本升级规则**:
+
 - 修订版本 `V1.0.1`: 修复小问题、安全性更新
 - 次版本 `V1.1.0`: 添加向后兼容的新功能
 - 主版本 `V2.0.0`: 重大功能更新、不兼容的API变更
 
 **注意事项**:
+
 - 版本号严格按照语义化版本规范执行
 - 每次发布新版本时，至少递增一个数字
 - 首次发布版本号从 `V1.0.0` 开始
+
+---
+
+V1.20.6 style(format): 统一 Markdown 列表标记和格式规范
+
+类型: style, chore
+
+范围: docs, formatting
+
+说明:
+本次更新对整个 `version.md` 文件执行 Prettier 格式化，统一 Markdown 列表标记（`*` → `-`），规范化标题和列表间的空行，确保文档风格一致。
+
+实现细节:
+
+1. **列表标记统一**
+
+   - 将所有 `*` 无序列表标记统一为 `-`（符合 Prettier 默认风格）
+   - 确保列表缩进和间距一致性
+
+2. **空行规范化**
+
+   - 在标题和列表之间添加适当的空行
+   - 保持段落间的视觉分隔清晰
+
+3. **格式一致性**
+   - 统一代码块和引用格式
+   - 确保所有列表项使用相同标记风格
+
+文件变更:
+修改文件:
+
+- [`version.md`](version.md:1) (Prettier 格式化，统一 Markdown 风格)
+
+改进效果:
+
+- **风格一致性**: 整个文档使用统一的 `-` 列表标记，符合 Prettier 和社区最佳实践。
+- **可读性提升**: 规范化的空行使文档结构更清晰。
+- **维护成本降低**: 后续编辑不会触发意外的格式变更。
+
+影响范围:
+
+- 仅格式化变更，不影响业务功能逻辑与页面结构。
+- 所有内容保持不变，仅标记风格统一。
 
 ---
 
@@ -44,40 +91,47 @@ V1.20.5 chore(deps): 深度清理模板残留依赖与资源
 本次更新对项目进行了深度清理，移除了从开源 startup 模板继承的未使用依赖、类型定义、静态资源和冗余配置文件，同时新增 AGENTS.md 开发规范文档，进一步精简代码库并提升可维护性。
 
 实现细节:
+
 1. **依赖清理**
-   * `package.json` / `package-lock.json`:
-     * 移除未使用的 `autoprefixer`（Tailwind CSS v4 已内置）
+
+   - `package.json` / `package-lock.json`:
+     - 移除未使用的 `autoprefixer`（Tailwind CSS v4 已内置）
 
 2. **类型定义清理**
-   * `src/types/testimonial.ts`:
-     * 移除未使用的客户评价类型定义。
-   * `src/types/brand.ts`:
-     * 移除未使用的品牌logo类型定义。
-   * `src/types/blog.ts`:
-     * 移除未使用的博客类型定义。
+
+   - `src/types/testimonial.ts`:
+     - 移除未使用的客户评价类型定义。
+   - `src/types/brand.ts`:
+     - 移除未使用的品牌logo类型定义。
+   - `src/types/blog.ts`:
+     - 移除未使用的博客类型定义。
 
 3. **静态资源清理**
-   * `public/images/about/about-image.svg` / `about-image-dark.svg` / `about-image-2.svg` / `about-image-2-dark.svg`:
-     * 移除未使用的 about 页面插图。
-   * `public/images/hero/shape-01.svg` / `shape-02.svg`:
-     * 移除未使用的 hero 装饰图形。
-   * `public/images/favicon.png`:
-     * 移除冗余的 favicon（已存在 favicon.ico）。
+
+   - `public/images/about/about-image.svg` / `about-image-dark.svg` / `about-image-2.svg` / `about-image-2-dark.svg`:
+     - 移除未使用的 about 页面插图。
+   - `public/images/hero/shape-01.svg` / `shape-02.svg`:
+     - 移除未使用的 hero 装饰图形。
+   - `public/images/favicon.png`:
+     - 移除冗余的 favicon（已存在 favicon.ico）。
 
 4. **配置文件清理**
-   * `jsconfig.json`:
-     * 移除冗余的 JavaScript 配置文件（项目使用 TypeScript，`tsconfig.json` 已足够）。
+
+   - `jsconfig.json`:
+     - 移除冗余的 JavaScript 配置文件（项目使用 TypeScript，`tsconfig.json` 已足够）。
 
 5. **文档新增**
-   * `AGENTS.md`:
-     * 新增开发规范文档，包含构建命令、项目技术栈、代码风格指南和目录结构说明。
+   - `AGENTS.md`:
+     - 新增开发规范文档，包含构建命令、项目技术栈、代码风格指南和目录结构说明。
 
 文件变更:
 修改文件:
+
 - [`package.json`](package.json:1) (移除 autoprefixer 依赖)
 - [`package-lock.json`](package-lock.json:1) (同步依赖更新)
 
 删除文件:
+
 - [`src/types/testimonial.ts`](src/types/testimonial.ts:1) (未使用的客户评价类型)
 - [`src/types/brand.ts`](src/types/brand.ts:1) (未使用的品牌类型)
 - [`src/types/blog.ts`](src/types/blog.ts:1) (未使用的博客类型)
@@ -91,15 +145,18 @@ V1.20.5 chore(deps): 深度清理模板残留依赖与资源
 - [`jsconfig.json`](jsconfig.json:1) (冗余 JS 配置)
 
 新增文件:
+
 - [`AGENTS.md`](AGENTS.md:1) (开发规范文档)
 
 改进效果:
+
 - **代码库更精简**: 移除未使用依赖和类型定义，减少维护负担。
 - **资源更纯净**: 清理未引用图片，减小仓库体积。
 - **配置更规范**: 移除冗余 jsconfig.json，避免与 tsconfig.json 冲突。
 - **文档更完善**: 新增 AGENTS.md 为后续开发提供规范指引。
 
 影响范围:
+
 - 仅清理未使用资源，不影响业务功能逻辑与页面结构。
 - 构建验证通过，确认无运行时错误。
 
@@ -115,23 +172,27 @@ V1.20.4 chore(legal): 更新许可证为公司专有 All Rights Reserved
 本次更新将项目许可证从模板 MIT 替换为公司官方专用许可证，明确仓库内容归北京有你同创科技有限公司所有，以符合官网项目合规要求。
 
 实现细节:
+
 1. **许可证主体更新**
-   * `LICENSE`:
-     * 将原 MIT 许可文本（Copyright (c) 2023 Next.js Templates）移除。
-     * 替换为公司官方专有许可证（All Rights Reserved），指定版权主体为“北京有你同创科技有限公司”，年份为 2026。
-     * 明确未经书面授权禁止复制、修改、分发，仅限经授权的员工/承包商按协议内部使用。
-     * 保留对第三方开源组件的许可声明的特别段落，确保依赖仍按各自许可证处理。
+   - `LICENSE`:
+     - 将原 MIT 许可文本（Copyright (c) 2023 Next.js Templates）移除。
+     - 替换为公司官方专有许可证（All Rights Reserved），指定版权主体为“北京有你同创科技有限公司”，年份为 2026。
+     - 明确未经书面授权禁止复制、修改、分发，仅限经授权的员工/承包商按协议内部使用。
+     - 保留对第三方开源组件的许可声明的特别段落，确保依赖仍按各自许可证处理。
 
 文件变更:
 修改文件:
+
 - [`LICENSE`](LICENSE:1) (替换为公司专有 All Rights Reserved 许可证，版权主体为北京有你同创科技有限公司，年份 2026)
 
 改进效果:
+
 - **合规性提升**: 许可证明确与公司主体一致，消除了模板残留的版权归属问题。
 - **权责清晰**: 明确了使用范围与授权要求，降低法律争议风险。
 - **第三方兼容性**: 保留第三方组件按各自许可证授权的声明，不影响开源依赖合规。
 
 影响范围:
+
 - 法律/合规层面：变更仓库对外版权声明；不影响代码逻辑与运行时行为，也无需更新部署。
 
 ---
@@ -146,24 +207,28 @@ V1.20.3 chore(repo): 去模板化并清理静态资源
 本次更新完成项目标识去模板化与无用静态资源清理，统一包名与语言 Cookie，并移除未引用的模板组件与素材，进一步收敛官网资产。
 
 实现细节:
+
 1. **项目标识去模板化**
-   * `package.json` / `package-lock.json`:
-     * 包名统一为 `proj_uinhome`。
-   * `src/middleware.ts`、`src/components/Header/LocaleSwitcher.tsx`、`README.md`:
-     * 更新语言偏好 Cookie 为 `proj_uinhome-language`。
+
+   - `package.json` / `package-lock.json`:
+     - 包名统一为 `proj_uinhome`。
+   - `src/middleware.ts`、`src/components/Header/LocaleSwitcher.tsx`、`README.md`:
+     - 更新语言偏好 Cookie 为 `proj_uinhome-language`。
 
 2. **模板资源清理**
-   * `src/components/Brands/*`、`src/components/video-modal.tsx`:
-     * 移除未使用的品牌墙与视频弹窗组件。
-   * `public/images/brands/*`、`public/images/blog/*`、`public/images/testimonials/*`、`public/images/video/*`、`public/images/404.svg`:
-     * 清理模板品牌、博客、评价、视频素材与 404 插图。
+
+   - `src/components/Brands/*`、`src/components/video-modal.tsx`:
+     - 移除未使用的品牌墙与视频弹窗组件。
+   - `public/images/brands/*`、`public/images/blog/*`、`public/images/testimonials/*`、`public/images/video/*`、`public/images/404.svg`:
+     - 清理模板品牌、博客、评价、视频素材与 404 插图。
 
 3. **文档调整**
-   * `README.md`:
-     * 移除模板致谢内容。
+   - `README.md`:
+     - 移除模板致谢内容。
 
 文件变更:
 修改文件:
+
 - [`README.md`](README.md:1) (移除模板致谢并更新 Cookie 说明)
 - [`package.json`](package.json:1) (包名调整为 proj_uinhome)
 - [`package-lock.json`](package-lock.json:1) (同步包名)
@@ -171,6 +236,7 @@ V1.20.3 chore(repo): 去模板化并清理静态资源
 - [`src/components/Header/LocaleSwitcher.tsx`](src/components/Header/LocaleSwitcher.tsx:1) (更新语言 Cookie 名)
 
 删除文件:
+
 - [`src/components/Brands/brandsData.tsx`](src/components/Brands/brandsData.tsx:1) (移除模板品牌墙数据)
 - [`src/components/Brands/index.tsx`](src/components/Brands/index.tsx:1) (移除模板品牌墙组件)
 - [`src/components/video-modal.tsx`](src/components/video-modal.tsx:1) (移除模板视频弹窗)
@@ -181,11 +247,13 @@ V1.20.3 chore(repo): 去模板化并清理静态资源
 - [`public/images/video/video.jpg`](public/images/video/video.jpg:1) (清理视频模板素材)
 
 改进效果:
+
 - **品牌一致性提升**: 包名与 Cookie 统一为项目标识，降低模板痕迹。
 - **仓库更精简**: 移除未引用组件与模板素材，减少资源冗余。
 - **文档更清晰**: README 去模板化，说明更聚焦实际项目。
 
 影响范围:
+
 - 仅影响项目标识与静态资源，不改变业务功能逻辑与页面结构。
 
 ---
@@ -200,19 +268,23 @@ V1.20.2 chore(build): 修复 package-lock.json 依赖配置
 本次更新修复 package-lock.json 中 jiti 包的 peer 依赖标记问题，移除不必要的 peer: true 属性，确保依赖解析正确性。
 
 实现细节:
+
 1. **依赖配置修复**
-   * `package-lock.json`:
-     * 移除 `jiti` 包的 `peer: true` 标记，避免潜在的依赖冲突问题。
+   - `package-lock.json`:
+     - 移除 `jiti` 包的 `peer: true` 标记，避免潜在的依赖冲突问题。
 
 文件变更:
 修改文件:
+
 - [`package-lock.json`](package-lock.json:1) (修复 jiti 依赖配置)
 
 改进效果:
+
 - **依赖管理更规范**: 避免 peer 依赖标记导致的解析歧义。
 - **构建稳定性提升**: 确保依赖树结构清晰，减少潜在冲突。
 
 影响范围:
+
 - 仅影响构建时的依赖解析过程，不影响业务逻辑和运行时行为。
 
 ---
@@ -230,26 +302,30 @@ V1.20.1 docs(repo): 更新项目说明并清理忽略规则
 实现细节:
 
 1. **README 定位更新**
-   * `README.md`:
-     * 更新为公司官网描述，补充官网链接占位。
-     * 同步国际化方案说明为 next-intl 与 JSON 文案结构。
-     * 移除开源许可章节。
+
+   - `README.md`:
+     - 更新为公司官网描述，补充官网链接占位。
+     - 同步国际化方案说明为 next-intl 与 JSON 文案结构。
+     - 移除开源许可章节。
 
 2. **忽略规则补充**
-   * `.gitignore`:
-     * 增加 `.envrc` 与 `.direnv/` 忽略，避免本地环境配置被提交。
+
+   - `.gitignore`:
+     - 增加 `.envrc` 与 `.direnv/` 忽略，避免本地环境配置被提交。
 
 3. **无用脚本清理**
-   * `scan_i18n.sh`:
-     * 删除旧的扫描脚本文件。
+   - `scan_i18n.sh`:
+     - 删除旧的扫描脚本文件。
 
 文件变更:
 
 修改文件:
+
 - [`README.md`](README.md:1) (更新官网定位与国际化说明)
 - [`.gitignore`](.gitignore:1) (补充本地环境忽略项)
 
 删除文件:
+
 - [`scan_i18n.sh`](scan_i18n.sh:1) (移除旧脚本)
 
 改进效果:
@@ -276,39 +352,43 @@ V1.20.0 feat(i18n): 切换至 next-intl 并重构多语言体系
 实现细节:
 
 1. **国际化核心迁移**
-   * `src/i18n/request.ts`:
-     * 新增 next-intl 请求配置，支持 `requestLocale` 回退与非法语言拦截。
-     * 合并加载多份 JSON 消息模块，统一提供给客户端。
-   * `src/i18n/routing.ts`:
-     * 集中维护 `locales` 与 `defaultLocale`，供路由与中间件复用。
-   * `src/middleware.ts`:
-     * 采用 next-intl 中间件处理语言前缀与 cookie。
+
+   - `src/i18n/request.ts`:
+     - 新增 next-intl 请求配置，支持 `requestLocale` 回退与非法语言拦截。
+     - 合并加载多份 JSON 消息模块，统一提供给客户端。
+   - `src/i18n/routing.ts`:
+     - 集中维护 `locales` 与 `defaultLocale`，供路由与中间件复用。
+   - `src/middleware.ts`:
+     - 采用 next-intl 中间件处理语言前缀与 cookie。
 
 2. **消息资源拆分与结构调整**
-   * `messages/*/*.json`:
-     * 新增按语言分组的 JSON 文案目录（home、products、contact、pages 等）。
-   * `src/i18n/locales/*.ts`、`src/i18n/config.ts`、`src/i18n/utils.ts`:
-     * 移除旧的 TypeScript 字典与工具函数。
+
+   - `messages/*/*.json`:
+     - 新增按语言分组的 JSON 文案目录（home、products、contact、pages 等）。
+   - `src/i18n/locales/*.ts`、`src/i18n/config.ts`、`src/i18n/utils.ts`:
+     - 移除旧的 TypeScript 字典与工具函数。
 
 3. **页面与组件全面对接 next-intl**
-   * `src/app/[locale]/**`:
-     * 页面改用 `getTranslations`/`NextIntlClientProvider`，元数据与内容统一读取 JSON 文案。
-     * 在布局中加入 `setRequestLocale(locale)`，稳定静态渲染。
-   * `src/components/**`:
-     * Header/Footer/Hero/Features/Contact 等组件改用 `useTranslations` 与 `useLocale`。
-     * 语言切换与路由拼接统一按 locale 前缀生成。
+
+   - `src/app/[locale]/**`:
+     - 页面改用 `getTranslations`/`NextIntlClientProvider`，元数据与内容统一读取 JSON 文案。
+     - 在布局中加入 `setRequestLocale(locale)`，稳定静态渲染。
+   - `src/components/**`:
+     - Header/Footer/Hero/Features/Contact 等组件改用 `useTranslations` 与 `useLocale`。
+     - 语言切换与路由拼接统一按 locale 前缀生成。
 
 4. **构建配置与依赖更新**
-   * `next.config.mjs`:
-     * 使用 next-intl 插件加载请求配置并替换原 `next.config.js`。
-   * `package.json`、`package-lock.json`:
-     * 新增 `next-intl` 依赖并更新锁文件。
-   * `tsconfig.json`:
-     * JSX 配置调整以兼容 App Router 输出。
+   - `next.config.mjs`:
+     - 使用 next-intl 插件加载请求配置并替换原 `next.config.js`。
+   - `package.json`、`package-lock.json`:
+     - 新增 `next-intl` 依赖并更新锁文件。
+   - `tsconfig.json`:
+     - JSX 配置调整以兼容 App Router 输出。
 
 文件变更:
 
 新增文件:
+
 - [`src/i18n/request.ts`](src/i18n/request.ts:1) (next-intl 请求配置)
 - [`src/i18n/routing.ts`](src/i18n/routing.ts:1) (统一 locale 配置)
 - [`messages/zh/*.json`](messages/zh/common.json:1) (中文消息模块)
@@ -317,6 +397,7 @@ V1.20.0 feat(i18n): 切换至 next-intl 并重构多语言体系
 - [`next.config.mjs`](next.config.mjs:1) (next-intl 插件配置)
 
 删除文件:
+
 - [`src/i18n/config.ts`](src/i18n/config.ts:1) (旧字典配置)
 - [`src/i18n/utils.ts`](src/i18n/utils.ts:1) (旧工具函数)
 - [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts:1) (旧中文字典)
@@ -325,6 +406,7 @@ V1.20.0 feat(i18n): 切换至 next-intl 并重构多语言体系
 - [`next.config.js`](next.config.js:1) (旧 CJS 配置)
 
 修改文件:
+
 - [`src/app/[locale]/layout.tsx`](src/app/[locale]/layout.tsx:1) (注入 NextIntlClientProvider 与 setRequestLocale)
 - [`src/app/[locale]/page.tsx`](src/app/[locale]/page.tsx:1) (首页内容改用翻译读取)
 - [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx:1) (详情页翻译与静态参数改造)
@@ -356,18 +438,20 @@ V1.19.2 chore(config): 优化 Next.js 生产环境构建配置
 实现细节:
 
 1. **禁用生产环境 Source Map**
-   * `next.config.js`:
-     * 新增 `productionBrowserSourceMaps: false` 配置。
-     * 此举可以防止在生产环境中泄露客户端源代码，提升应用的安全性。
+
+   - `next.config.js`:
+     - 新增 `productionBrowserSourceMaps: false` 配置。
+     - 此举可以防止在生产环境中泄露客户端源代码，提升应用的安全性。
 
 2. **启用 SWC 压缩**
-   * `next.config.js`:
-     * 新增 `swcMinify: true` 配置。
-     * 虽然这是 Next.js 的默认行为，但显式声明可以确保项目始终使用基于 Rust 的 SWC 编译器进行代码压缩，以获得更快的构建速度。
+   - `next.config.js`:
+     - 新增 `swcMinify: true` 配置。
+     - 虽然这是 Next.js 的默认行为，但显式声明可以确保项目始终使用基于 Rust 的 SWC 编译器进行代码压缩，以获得更快的构建速度。
 
 文件变更:
 
 修改文件:
+
 - [`next.config.js`](next.config.js:1) (添加生产环境构建优化配置)
 
 改进效果:
@@ -394,19 +478,21 @@ V1.19.1 ui(floating-contact): 优化悬浮联系组件位置布局
 实现细节:
 
 1. **桌面版侧边栏位置优化**
-   * `src/components/Common/FloatingContact.tsx:163`:
-     * 将桌面版右侧面板的定位从 `bottom-1/4` (25%位置) 调整至 `bottom-[15%]` (15%位置)
-     * 使侧边栏在视觉上更加突出，同时避免与页面底部内容产生视觉冲突
+
+   - `src/components/Common/FloatingContact.tsx:163`:
+     - 将桌面版右侧面板的定位从 `bottom-1/4` (25%位置) 调整至 `bottom-[15%]` (15%位置)
+     - 使侧边栏在视觉上更加突出，同时避免与页面底部内容产生视觉冲突
 
 2. **移动版悬浮按钮位置调整**
-   * `src/components/Common/FloatingContact.tsx:314`:
-     * 将滚动状态下的按钮位置从 `bottom-24` 优化为 `bottom-20`
-     * 将默认状态下的按钮位置从 `bottom-6` 优化为 `bottom-4`
-     * 提供了更舒适的触控体验和更好的视觉平衡
+   - `src/components/Common/FloatingContact.tsx:314`:
+     - 将滚动状态下的按钮位置从 `bottom-24` 优化为 `bottom-20`
+     - 将默认状态下的按钮位置从 `bottom-6` 优化为 `bottom-4`
+     - 提供了更舒适的触控体验和更好的视觉平衡
 
 文件变更:
 
 修改文件:
+
 - [`src/components/Common/FloatingContact.tsx`](src/components/Common/FloatingContact.tsx:163) (调整桌面版和移动版悬浮组件的位置定位)
 
 改进效果:
@@ -418,7 +504,7 @@ V1.19.1 ui(floating-contact): 优化悬浮联系组件位置布局
 影响范围:
 
 - 网站所有页面的悬浮联系组件将展示优化后的位置布局
-  
+
 ---
 
 V1.19.0 feat(privacy): 新增 Cookie 同意管理横幅，优化默认设置
@@ -434,25 +520,29 @@ V1.19.0 feat(privacy): 新增 Cookie 同意管理横幅，优化默认设置
 实现细节:
 
 1.  **Cookie 同意管理功能**
-    *   `src/lib/cookieConsent.ts`: 新增了处理 Cookie 同意逻辑的核心模块。它提供了获取、设置和重置用户同意状态的功能，并将用户的选择存储在 Cookie 和 localStorage 中。
-    *   `src/components/Common/CookieConsent.tsx`: 创建了一个新的 React 组件，用于展示 Cookie 同意横幅。该组件具有响应式设计，并包含优雅的滑入/滑出动画效果。
-    *   `src/app/[locale]/layout.tsx`: 将 `CookieConsent` 组件集成到全局布局中，确保所有访问者都能看到。
-    *   `src/i18n/locales/(en|ja|zh).ts`: 为 Cookie 横幅的所有文本内容添加了对应的国际化翻译。
+
+    - `src/lib/cookieConsent.ts`: 新增了处理 Cookie 同意逻辑的核心模块。它提供了获取、设置和重置用户同意状态的功能，并将用户的选择存储在 Cookie 和 localStorage 中。
+    - `src/components/Common/CookieConsent.tsx`: 创建了一个新的 React 组件，用于展示 Cookie 同意横幅。该组件具有响应式设计，并包含优雅的滑入/滑出动画效果。
+    - `src/app/[locale]/layout.tsx`: 将 `CookieConsent` 组件集成到全局布局中，确保所有访问者都能看到。
+    - `src/i18n/locales/(en|ja|zh).ts`: 为 Cookie 横幅的所有文本内容添加了对应的国际化翻译。
 
 2.  **UI 与动画增强**
-    *   `src/styles/index.css`: 新增了 `@keyframes slideUp` 和 `slideDownOut` 动画规则，用于控制横幅的出现和消失，提升了用户交互的流畅度。
+
+    - `src/styles/index.css`: 新增了 `@keyframes slideUp` 和 `slideDownOut` 动画规则，用于控制横幅的出现和消失，提升了用户交互的流畅度。
 
 3.  **默认设置优化**
-    *   `src/app/providers.tsx`: 将 `ThemeProvider` 的 `defaultTheme` 从 `dark` 修改为 `light`，使网站首次加载时以亮色主题呈现。
-    *   `src/i18n/config.ts`: 将 `DEFAULT_LOCALE` 从 `en` 修改为 `zh`，使中文成为网站的默认语言。
+    - `src/app/providers.tsx`: 将 `ThemeProvider` 的 `defaultTheme` 从 `dark` 修改为 `light`，使网站首次加载时以亮色主题呈现。
+    - `src/i18n/config.ts`: 将 `DEFAULT_LOCALE` 从 `en` 修改为 `zh`，使中文成为网站的默认语言。
 
 文件变更:
 
 新增文件:
+
 - [`src/components/Common/CookieConsent.tsx`](src/components/Common/CookieConsent.tsx:1) (新建 Cookie 同意横幅 UI 组件)
 - [`src/lib/cookieConsent.ts`](src/lib/cookieConsent.ts:1) (新增 Cookie 同意状态管理逻辑)
 
 修改文件:
+
 - [`src/app/[locale]/layout.tsx`](src/app/[locale]/layout.tsx:1) (在主布局中集成 Cookie 横幅)
 - [`src/app/providers.tsx`](src/app/providers.tsx:1) (将默认主题修改为亮色)
 - [`src/i18n/config.ts`](src/i18n/config.ts:1) (将默认语言修改为中文)
@@ -487,26 +577,29 @@ V1.18.3 ui(header): 优化头部组件交互动画与语言顺序
 实现细节:
 
 1.  **主题切换器动画增强**
-    *   `src/components/Header/ThemeToggler.tsx`:
-        *   **交互动画**: 当用户点击切换“亮色/暗色”主题时，图标会以一个优雅的“旋转淡入”动画（`iconSpinIn`）进行替换，提供了即时且生动的视觉反馈。
-        *   **悬停效果**: 为按钮添加了 `hover` 状态下的背景色变化，增强了可交互性。
-    *   `src/styles/index.css`:
-        *   **新增动画**: 添加了 `@keyframes iconSpinIn` 规则，定义了图标切换时的动画效果。
+
+    - `src/components/Header/ThemeToggler.tsx`:
+      - **交互动画**: 当用户点击切换“亮色/暗色”主题时，图标会以一个优雅的“旋转淡入”动画（`iconSpinIn`）进行替换，提供了即时且生动的视觉反馈。
+      - **悬停效果**: 为按钮添加了 `hover` 状态下的背景色变化，增强了可交互性。
+    - `src/styles/index.css`:
+      - **新增动画**: 添加了 `@keyframes iconSpinIn` 规则，定义了图标切换时的动画效果。
 
 2.  **语言选择器动画优化**
-    *   `src/components/Header/LocaleSwitcher.tsx`:
-        *   **背景遮罩动画**: 下拉菜单展开时的背景遮罩层现在会以“淡入”（`fadeIn`）效果出现。
-        *   **下拉菜单动画**: 下拉菜单本身则以“向下滑入”（`slideDown`）的动画效果展开，使整个过程更加流畅自然。
-    *   `src/styles/index.css`:
-        *   **新增动画**: 添加了 `@keyframes fadeIn` 和 `@keyframes slideDown` 规则，以支持上述动画效果。
+
+    - `src/components/Header/LocaleSwitcher.tsx`:
+      - **背景遮罩动画**: 下拉菜单展开时的背景遮罩层现在会以“淡入”（`fadeIn`）效果出现。
+      - **下拉菜单动画**: 下拉菜单本身则以“向下滑入”（`slideDown`）的动画效果展开，使整个过程更加流畅自然。
+    - `src/styles/index.css`:
+      - **新增动画**: 添加了 `@keyframes fadeIn` 和 `@keyframes slideDown` 规则，以支持上述动画效果。
 
 3.  **语言顺序调整**
-    *   `src/i18n/locales/(en|ja|zh).ts`:
-        *   **顺序优化**: 将“语言选择器”下拉菜单中的语言顺序调整为“中文”、“English”、“日本語”，将中文置于首位，更符合主要用户群体的习惯。
+    - `src/i18n/locales/(en|ja|zh).ts`:
+      - **顺序优化**: 将“语言选择器”下拉菜单中的语言顺序调整为“中文”、“English”、“日本語”，将中文置于首位，更符合主要用户群体的习惯。
 
 文件变更:
 
 修改文件:
+
 - [`src/components/Header/ThemeToggler.tsx`](src/components/Header/ThemeToggler.tsx:1) (为主题切换图标添加动画和悬停效果)
 - [`src/components/Header/LocaleSwitcher.tsx`](src/components/Header/LocaleSwitcher.tsx:1) (为语言选择器下拉菜单添加动画)
 - [`src/styles/index.css`](src/styles/index.css:1) (新增 `fadeIn`, `slideDown`, `iconSpinIn` 的 `@keyframes` 动画)
@@ -539,16 +632,18 @@ V1.18.2 ui(hero): 优化首页轮播图视觉表现与布局
 实现细节:
 
 1.  **轮播视频铺满容器**
-    *   `src/components/Hero/index.tsx`:
-        *   **样式调整**: 将轮播图内视频元素的 `object-fit` 样式从 `object-contain` 更改为 `object-cover`。此举确保了视频内容能够像图片一样完全覆盖其容器，消除了在某些宽高比下可能出现的黑边。
+
+    - `src/components/Hero/index.tsx`:
+      - **样式调整**: 将轮播图内视频元素的 `object-fit` 样式从 `object-contain` 更改为 `object-cover`。此举确保了视频内容能够像图片一样完全覆盖其容器，消除了在某些宽高比下可能出现的黑边。
 
 2.  **移除模块间白边**
-    *   `src/components/Hero/index.tsx`:
-        *   **布局修复**: 移除了 `Hero` 组件根 `section` 元素的底部内边距（`pb-8`, `sm:pb-12`, `lg:pb-16`）。这消除了轮播图与其下方“产品平台”模块之间的白色间隙，使页面过渡更加平滑、无缝。
+    - `src/components/Hero/index.tsx`:
+      - **布局修复**: 移除了 `Hero` 组件根 `section` 元素的底部内边距（`pb-8`, `sm:pb-12`, `lg:pb-16`）。这消除了轮播图与其下方“产品平台”模块之间的白色间隙，使页面过渡更加平滑、无缝。
 
 文件变更:
 
 修改文件:
+
 - [`src/components/Hero/index.tsx`](src/components/Hero/index.tsx:1) (调整视频填充模式并移除组件底部边距)
 - [`next-env.d.ts`](next-env.d.ts:1) (Next.js 类型声明更新)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (国际化文案更新)
@@ -579,13 +674,14 @@ V1.18.1 ui(about): 优化“关于我们”页面核心亮点为勾选列表样�
 实现细节:
 
 1.  **UI组件重构**
-    *   `src/components/About/AboutSectionOne.tsx`:
-        *   **布局变更**: 将原先的 `flex flex-wrap` 布局调整为 `grid sm:grid-cols-2`，使列表在不同屏幕尺寸下都能保持对齐和结构化。
-        *   **样式增强**: 为每个亮点项添加了一个勾选（`✓`）SVG图标，并调整了文本样式，使其更加突出和易于阅读。
+    - `src/components/About/AboutSectionOne.tsx`:
+      - **布局变更**: 将原先的 `flex flex-wrap` 布局调整为 `grid sm:grid-cols-2`，使列表在不同屏幕尺寸下都能保持对齐和结构化。
+      - **样式增强**: 为每个亮点项添加了一个勾选（`✓`）SVG图标，并调整了文本样式，使其更加突出和易于阅读。
 
 文件变更:
 
 修改文件:
+
 - [`src/components/About/AboutSectionOne.tsx`](src/components/About/AboutSectionOne.tsx:1) (重构核心亮点区块的UI布局与样式)
 
 改进效果:
@@ -612,26 +708,31 @@ V1.18.0 feat(developers): 新增“开源项目”页面，集中展示硬件与
 实现细节:
 
 1.  **新增开源项目内容**
-    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `openSource` 页面新增了完整的内容结构。
-        *   **内容扩充**: 添加了页面的标题、描述，并将开源项目划分为“硬件开源 (PCB)”和“软件开源 (代码)”两大类别。
-        *   **项目详情**: 为每个类别填充了多个具体的开源项目，包含项目名称、详细描述、技术标签和外部链接。
+
+    - `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `openSource` 页面新增了完整的内容结构。
+      - **内容扩充**: 添加了页面的标题、描述，并将开源项目划分为“硬件开源 (PCB)”和“软件开源 (代码)”两大类别。
+      - **项目详情**: 为每个类别填充了多个具体的开源项目，包含项目名称、详细描述、技术标签和外部链接。
 
 2.  **创建开源项目UI组件**
-    *   `src/app/OpenSource/OpenSourceContent.tsx`: 新建了一个独立的React组件，用于动态渲染“开源项目”页面的所有内容。该组件通过卡片式布局清晰地展示了各个项目，并优化了交互体验。
+
+    - `src/app/OpenSource/OpenSourceContent.tsx`: 新建了一个独立的React组件，用于动态渲染“开源项目”页面的所有内容。该组件通过卡片式布局清晰地展示了各个项目，并优化了交互体验。
 
 3.  **集成新页面**
-    *   `src/app/[locale]/developers/open-source/page.tsx`: 创建了新的页面路由，并在其中引入并渲染了新建的 `OpenSourceContent` 组件，使新页面得以展示。
+
+    - `src/app/[locale]/developers/open-source/page.tsx`: 创建了新的页面路由，并在其中引入并渲染了新建的 `OpenSourceContent` 组件，使新页面得以展示。
 
 4.  **项目配置优化**
-    *   `tsconfig.json`: 将 `jsx` 编译选项从 `"preserve"` 更新为 `"react-jsx"`，以适配较新版本的React JSX转换机制。
-    *   `next-env.d.ts`: 将Next.js类型声明的引用方式从 `/// <reference path=... />` 更新为 `import` 语句，以改善模块解析。
+    - `tsconfig.json`: 将 `jsx` 编译选项从 `"preserve"` 更新为 `"react-jsx"`，以适配较新版本的React JSX转换机制。
+    - `next-env.d.ts`: 将Next.js类型声明的引用方式从 `/// <reference path=... />` 更新为 `import` 语句，以改善模块解析。
 
 文件变更:
 
 新增文件:
+
 - [`src/app/OpenSource/OpenSourceContent.tsx`](src/app/OpenSource/OpenSourceContent.tsx:1) (新建“开源项目”UI组件)
 
 修改文件:
+
 - [`src/app/[locale]/developers/open-source/page.tsx`](src/app/[locale]/developers/open-source/page.tsx:1) (集成并渲染新组件)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (Added content for the new open source page)
 - [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (Added content for the new open source page)
@@ -665,21 +766,25 @@ V1.17.0 feat(solutions): 新增“定制化解决方案”页面合作模式模�
 实现细节:
 
 1.  **新增合作模式内容**
-    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `customSolutions` 页面新增了 `cooperationModes` 字段。
-        *   **内容扩充**: 填充了该模块的标题、描述，并详细定义了“ODM (原始设计制造)”和“JDM (联合设计制造)”两种合作模式，每种模式均包含标题、副标题和详细说明。
+
+    - `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `customSolutions` 页面新增了 `cooperationModes` 字段。
+      - **内容扩充**: 填充了该模块的标题、描述，并详细定义了“ODM (原始设计制造)”和“JDM (联合设计制造)”两种合作模式，每种模式均包含标题、副标题和详细说明。
 
 2.  **创建可复用UI组件**
-    *   `src/app/CustomSolutions/CooperationModes.tsx`: 新建了一个独立的React组件，用于动态渲染“合作模式”模块。该组件从国际化文件中获取数据，并将其展示为结构清晰的卡片式布局。
+
+    - `src/app/CustomSolutions/CooperationModes.tsx`: 新建了一个独立的React组件，用于动态渲染“合作模式”模块。该组件从国际化文件中获取数据，并将其展示为结构清晰的卡片式布局。
 
 3.  **集成新模块到页面**
-    *   `src/app/[locale]/custom-solutions/page.tsx`: 在“定制化解决方案”页面中引入并渲染了新建的 `CooperationModes` 组件，使新内容模块得以展示。
+    - `src/app/[locale]/custom-solutions/page.tsx`: 在“定制化解决方案”页面中引入并渲染了新建的 `CooperationModes` 组件，使新内容模块得以展示。
 
 文件变更:
 
 新增文件:
+
 - [`src/app/CustomSolutions/CooperationModes.tsx`](src/app/CustomSolutions/CooperationModes.tsx:1) (新建“合作模式”UI组件)
 
 修改文件:
+
 - [`src/app/[locale]/custom-solutions/page.tsx`](src/app/[locale]/custom-solutions/page.tsx:1) (集成并渲染新的内容模块)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts:1) (Added content for the new cooperation modes section)
 - [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts:1) (Added content for the new cooperation modes section)
@@ -711,24 +816,28 @@ V1.16.0 feat(about): 新增“关于我们”页面内容模块，丰富公司�
 实现细节:
 
 1.  **新增“关于我们”第一节内容**
-    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `about` 页面新增了 `sectionOne` 字段。
-        *   **内容扩充**: 填充了关于公司定位、业务重点的详细描述，并提炼了“具身智能机器人”、“产学研一体化”等六大核心亮点 (`highlights`)。
-        *   **品牌形象**: 引入了新的公司吉祥物图片资源，增强了品牌辨识度。
-    *   `src/app/about/AboutContent.tsx`: 更新了页面结构，将新内容节 `sectionOne` 动态渲染到页面中。
+
+    - `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `about` 页面新增了 `sectionOne` 字段。
+      - **内容扩充**: 填充了关于公司定位、业务重点的详细描述，并提炼了“具身智能机器人”、“产学研一体化”等六大核心亮点 (`highlights`)。
+      - **品牌形象**: 引入了新的公司吉祥物图片资源，增强了品牌辨识度。
+    - `src/app/about/AboutContent.tsx`: 更新了页面结构，将新内容节 `sectionOne` 动态渲染到页面中。
 
 2.  **创建可复用组件**
-    *   `src/components/About/AboutSectionOne.tsx`: 新建了一个独立的React组件，用于展示图文结合的内容区块。该组件负责渲染标题、描述、亮点标签和配图，具有良好的可复用性。
+
+    - `src/components/About/AboutSectionOne.tsx`: 新建了一个独立的React组件，用于展示图文结合的内容区块。该组件负责渲染标题、描述、亮点标签和配图，具有良好的可复用性。
 
 3.  **更新页面引言**
-    *   `src/i18n/locales/*.ts`: 更新了“关于我们”页面的引言描述 (`pageIntro.about.description`)，使其更贴合品牌愿景——“让每个人都能快乐地链接未来智能！”。
+    - `src/i18n/locales/*.ts`: 更新了“关于我们”页面的引言描述 (`pageIntro.about.description`)，使其更贴合品牌愿景——“让每个人都能快乐地链接未来智能！”。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/about/company-mascot.png`](public/images/about/company-mascot.png) (新增公司吉祥物图片)
 - [`src/components/About/AboutSectionOne.tsx`](src/components/About/AboutSectionOne.tsx) (新建“关于”页面第一节内容的UI组件)
 
 修改文件:
+
 - [`src/app/about/AboutContent.tsx`](src/app/about/AboutContent.tsx) (集成并渲染新的内容节)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (Added content for the new about section and updated page description)
 - [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (Added content for the new about section and updated page description)
@@ -760,13 +869,14 @@ V1.15.0 refactor(products): 重构RAI-P4产品案例展示结构，提升内容�
 实现细节:
 
 1.  **数据结构重构**
-    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，将 `rai-p4` 产品下的 `sampleCases` 字段重构。
-        *   **引入 `sections` 结构**: 新结构允许将案例划分为多个带 `title` 和 `description` 的独立部分，如“任务规划流程示意”和“视觉搬运与运动学综合实训”。
-        *   **内容优化**: 更新了各个语言版本中的描述性文本，使其更准确地反映每个案例的核心内容，增强了专业性和清晰度。
+    - `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，将 `rai-p4` 产品下的 `sampleCases` 字段重构。
+      - **引入 `sections` 结构**: 新结构允许将案例划分为多个带 `title` 和 `description` 的独立部分，如“任务规划流程示意”和“视觉搬运与运动学综合实训”。
+      - **内容优化**: 更新了各个语言版本中的描述性文本，使其更准确地反映每个案例的核心内容，增强了专业性和清晰度。
 
 文件变更:
 
 修改文件:
+
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (Refactored sample cases data structure and updated descriptions)
 - [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (Refactored sample cases data structure and updated descriptions)
 - [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (重构样机案例数据结构并更新描述文案)
@@ -796,25 +906,29 @@ V1.14.0 feat(products): 新增五款具身智能产品详情，丰富产品矩�
 实现细节:
 
 1.  **新增五款产品体系**
-    *   `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `rai-q2`, `rai-m4`, `alo-le4`, `rai-p4`, `uni-wr2` 五款产品添加了完整且详尽的数据结构。
-        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
-        *   **结构化实验体系**: 为每款产品设计了按 `sections` (章节) 组织的结构化实验大纲，内容详实，逻辑清晰，显著提升了产品的教学价值。
-        *   **图文并茂**: `features` 和 `sampleCases` 字段支持内嵌媒体和自定义区块，使产品介绍更直观、更具吸引力。
+
+    - `src/i18n/locales/*.ts`: 在中、英、日三种语言的国际化文件中，为 `rai-q2`, `rai-m4`, `alo-le4`, `rai-p4`, `uni-wr2` 五款产品添加了完整且详尽的数据结构。
+      - **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+      - **结构化实验体系**: 为每款产品设计了按 `sections` (章节) 组织的结构化实验大纲，内容详实，逻辑清晰，显著提升了产品的教学价值。
+      - **图文并茂**: `features` 和 `sampleCases` 字段支持内嵌媒体和自定义区块，使产品介绍更直观、更具吸引力。
 
 2.  **新增大量产品图片资源**
-    *   `public/images/products/`: 为 `alo-le4`, `rai-m4`, `rai-q2` 三款新产品新增了多张高质量图片，包括主图、各角度视图、功能示意图等，并已在产品数据中正确引用。
+
+    - `public/images/products/`: 为 `alo-le4`, `rai-m4`, `rai-q2` 三款新产品新增了多张高质量图片，包括主图、各角度视图、功能示意图等，并已在产品数据中正确引用。
 
 3.  **产品图片路径更新与规范化**
-    *   `public/images/products/ubot-mr20/`: 将 `ubot-mr20` 的主图重命名为 `ubot-mr20-hero.jpg` 并移入专属文件夹，统一了资源管理规范。
-    *   `src/i18n/locales/*.ts`: 全面更新了各产品数据中的图片路径，将原有的占位符替换为实际的产品图片，确保了产品展示的准确性。
+
+    - `public/images/products/ubot-mr20/`: 将 `ubot-mr20` 的主图重命名为 `ubot-mr20-hero.jpg` 并移入专属文件夹，统一了资源管理规范。
+    - `src/i18n/locales/*.ts`: 全面更新了各产品数据中的图片路径，将原有的占位符替换为实际的产品图片，确保了产品展示的准确性。
 
 4.  **UI 组件微调**
-    *   `src/components/Common/Breadcrumb.tsx`: 为面包屑导航增加了底部间距，优化了页面顶部布局的呼吸感。
-    *   `src/components/Common/PageIntro.tsx`: 调整了页面引言组件的渲染逻辑，当没有子内容时不再渲染空白区域，提升了页面的健壮性。
+    - `src/components/Common/Breadcrumb.tsx`: 为面包屑导航增加了底部间距，优化了页面顶部布局的呼吸感。
+    - `src/components/Common/PageIntro.tsx`: 调整了页面引言组件的渲染逻辑，当没有子内容时不再渲染空白区域，提升了页面的健壮性。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/products/alo-le4/front-view.png`](public/images/products/alo-le4/front-view.png)
 - [`public/images/products/alo-le4/module-overview.png`](public/images/products/alo-le4/module-overview.png)
 - [`public/images/products/alo-le4/top-view.png`](public/images/products/alo-le4/top-view.png)
@@ -830,9 +944,11 @@ V1.14.0 feat(products): 新增五款具身智能产品详情，丰富产品矩�
 - [`public/images/products/rai-q2/top-view.png`](public/images/products/rai-q2/top-view.png)
 
 重命名文件:
+
 - `public/images/products/ubot-mr20-main.jpg` -> [`public/images/products/ubot-mr20/ubot-mr20-hero.jpg`](public/images/products/ubot-mr20/ubot-mr20-hero.jpg)
 
 修改文件:
+
 - [`src/components/Common/Breadcrumb.tsx`](src/components/Common/Breadcrumb.tsx) (UI样式微调)
 - [`src/components/Common/PageIntro.tsx`](src/components/Common/PageIntro.tsx) (优化渲染逻辑)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (新增五款产品数据并更新图片路径)
@@ -865,25 +981,28 @@ V1.13.0 feat(products): 全面重构UNI-WR2产品详情，构建桌面级ROS工�
 实现细节:
 
 1.  **新增 UNI-WR2 产品体系**
-    *   `src/i18n/locales/zh.ts`: 在国际化文件中，为 `uni-wr2` 添加了完整且详尽的数据结构。
-        *   **内容深度扩充**: 新增了 `overview` (概述), `applicable` (适用场景), `highlights` (核心亮点), `features` (产品特点), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
-        *   **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“ROS 基础”到“移动机器人运动学控制”的3大主题，共计8个具体实验项目。
-        *   **自定义内容区块**: 在 `sampleCases` 中引入了 `sections` 结构，用于自定义展示外观、尺寸、BOM 等内容，取代了原有的固定分类。
-        *   **图文并茂的特性**: `features` 字段现在支持内嵌 `media` 数组，允许每个产品特性都配有多张图片进行说明。
+
+    - `src/i18n/locales/zh.ts`: 在国际化文件中，为 `uni-wr2` 添加了完整且详尽的数据结构。
+      - **内容深度扩充**: 新增了 `overview` (概述), `applicable` (适用场景), `highlights` (核心亮点), `features` (产品特点), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+      - **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“ROS 基础”到“移动机器人运动学控制”的3大主题，共计8个具体实验项目。
+      - **自定义内容区块**: 在 `sampleCases` 中引入了 `sections` 结构，用于自定义展示外观、尺寸、BOM 等内容，取代了原有的固定分类。
+      - **图文并茂的特性**: `features` 字段现在支持内嵌 `media` 数组，允许每个产品特性都配有多张图片进行说明。
 
 2.  **产品详情页 UI 渲染重构**
-    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
-        *   **特性媒体渲染**: 组件现在能够动态渲染每个 `feature` 卡片中包含的图片网格，使特性介绍更直观。
-        *   **自定义区块渲染**: 页面新增了对 `sampleCases.sections` 的渲染逻辑，使其可以根据数据动态生成标题和图片网格，提高了内容展示的灵活性。
-        *   **向后兼容**: 渲染逻辑会优先检查并使用新的 `sampleCustomSections`，如果不存在，则回退到旧的 `modules`, `chassis` 等分类，确保了对旧数据的兼容性。
-        *   **样式优化**: 调整了控制器配置图片的布局和样式，使其在页面上展示效果更佳。
+
+    - `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
+      - **特性媒体渲染**: 组件现在能够动态渲染每个 `feature` 卡片中包含的图片网格，使特性介绍更直观。
+      - **自定义区块渲染**: 页面新增了对 `sampleCases.sections` 的渲染逻辑，使其可以根据数据动态生成标题和图片网格，提高了内容展示的灵活性。
+      - **向后兼容**: 渲染逻辑会优先检查并使用新的 `sampleCustomSections`，如果不存在，则回退到旧的 `modules`, `chassis` 等分类，确保了对旧数据的兼容性。
+      - **样式优化**: 调整了控制器配置图片的布局和样式，使其在页面上展示效果更佳。
 
 3.  **新增产品图片资源**
-    *   `public/images/products/uni-wr2/`: 为 UNI-WR2 新增了12张高质量产品图片，包括主图 (`hero`)、各角度外观图、功能示意图、硬件细节图（控制器、BOM）以及软件图标，并已在产品数据中正确引用。
+    - `public/images/products/uni-wr2/`: 为 UNI-WR2 新增了12张高质量产品图片，包括主图 (`hero`)、各角度外观图、功能示意图、硬件细节图（控制器、BOM）以及软件图标，并已在产品数据中正确引用。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/products/uni-wr2/uni-wr2-bom.png`](public/images/products/uni-wr2/uni-wr2-bom.png)
 - [`public/images/products/uni-wr2/uni-wr2-controller.png`](public/images/products/uni-wr2/uni-wr2-controller.png)
 - [`public/images/products/uni-wr2/uni-wr2-desktop-layout.png`](public/images/products/uni-wr2/uni-wr2-desktop-layout.png)
@@ -898,6 +1017,7 @@ V1.13.0 feat(products): 全面重构UNI-WR2产品详情，构建桌面级ROS工�
 - [`public/images/products/uni-wr2/uni-wr2-software-ubuntu.png`](public/images/products/uni-wr2/uni-wr2-software-ubuntu.png)
 
 修改文件:
+
 - [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以支持更丰富的数据结构)
 - [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (全面重构UNI-WR2产品数据)
 
@@ -927,31 +1047,36 @@ V1.12.0 feat(products): 全面重构RAI-P4产品详情，构建具身智能任�
 实现细节:
 
 1.  **新增 RAI-P4 产品体系**
-    *   `src/i18n/locales/zh.ts`: 在国际化文件中，为 `rai-p4` 添加了完整且详尽的数据结构。
-        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
-        *   **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“机器人本体控制”到“嵌入式开发”的9大主题，共计40余个具体实验项目，逻辑清晰，内容详实。
-        *   **专业化案例与配置**: 为 `sampleCases` 和 `softwareConfig` 增加了更具体的展示内容和图片，并允许通过数据驱动的方式自定义其样式。
+
+    - `src/i18n/locales/zh.ts`: 在国际化文件中，为 `rai-p4` 添加了完整且详尽的数据结构。
+      - **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+      - **结构化实验体系**: 全面设计了 `experiments` 字段，将其组织为按 `sections` (章节) 划分的结构化大纲，涵盖了从“机器人本体控制”到“嵌入式开发”的9大主题，共计40余个具体实验项目，逻辑清晰，内容详实。
+      - **专业化案例与配置**: 为 `sampleCases` 和 `softwareConfig` 增加了更具体的展示内容和图片，并允许通过数据驱动的方式自定义其样式。
 
 2.  **产品详情页 UI 渲染重构**
-    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
-        *   **数据驱动样式**: 组件现在可以从产品数据中读取并应用自定义的 CSS 类名（如 `modulesGridClassName`, `softwareImageGridClassName` 等），使得不同产品的布局可以高度定制化，提高了组件的灵活性和可复用性。
-        *   **健壮性提升**: 代码现在会优雅地处理可选字段（如 `sampleCases`, `softwareConfig`），确保即使某些产品数据不完整，页面也能正常渲染。
+
+    - `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了重构，以增强其对不同数据结构的适应性。
+      - **数据驱动样式**: 组件现在可以从产品数据中读取并应用自定义的 CSS 类名（如 `modulesGridClassName`, `softwareImageGridClassName` 等），使得不同产品的布局可以高度定制化，提高了组件的灵活性和可复用性。
+      - **健壮性提升**: 代码现在会优雅地处理可选字段（如 `sampleCases`, `softwareConfig`），确保即使某些产品数据不完整，页面也能正常渲染。
 
 3.  **组件功能增强**
-    *   `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格组件新增了 `cardClassName` 属性，允许对单个图片卡片容器进行样式定制，以适应不同尺寸和布局的图片展示需求。
+
+    - `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格组件新增了 `cardClassName` 属性，允许对单个图片卡片容器进行样式定制，以适应不同尺寸和布局的图片展示需求。
 
 4.  **新增产品图片资源**
-    *   `public/images/products/rai-p4/`: 为 RAI-P4 新增了产品主图 (`hero.png`) 以及多张展示其核心功能的图片（任务规划、工作流、软件套件），并已在产品数据中正确引用。
+    - `public/images/products/rai-p4/`: 为 RAI-P4 新增了产品主图 (`hero.png`) 以及多张展示其核心功能的图片（任务规划、工作流、软件套件），并已在产品数据中正确引用。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/products/rai-p4/rai-p4-hero.png`](public/images/products/rai-p4/rai-p4-hero.png)
 - [`public/images/products/rai-p4/rai-p4-manipulator-workflows.png`](public/images/products/rai-p4/rai-p4-manipulator-workflows.png)
 - [`public/images/products/rai-p4/rai-p4-software-suite.png`](public/images/products/rai-p4/rai-p4-software-suite.png)
 - [`public/images/products/rai-p4/rai-p4-task-planning.png`](public/images/products/rai-p4/rai-p4-task-planning.png)
 
 修改文件:
+
 - [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以支持数据驱动样式)
 - [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx) (增加样式定制属性)
 - [`src/i18n/locales/zh.ts`](src/i18n/locales/zh.ts) (全面重构RAI-P4产品数据)
@@ -982,32 +1107,37 @@ V1.11.0 feat(products): 新增GX-MAT-09S产品详情，重构实验体系与UI
 实现细节:
 
 1.  **新增 GX-MAT-09S 产品体系**
-    *   `src/i18n/locales/*.ts`: 在三种语言（中、英、日）的国际化文件中，为 `gx-mat-09s` 添加了完整且详尽的数据结构。
-        *   **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
-        *   **结构化实验体系**: 全面重构了 `experiments` 字段，将其设计为按 `sections` (章节) 组织的结构化大纲，涵盖了从“单片机”到“移动导航”的9大主题，共计78个具体实验项目，逻辑清晰，内容详实。
-        *   **样机案例分组**: 在 `sampleCases` 中引入了 `compositeGroups` 字段，用于分类展示基于不同底盘的复合机器人组合，使信息结构更有条理。
+
+    - `src/i18n/locales/*.ts`: 在三种语言（中、英、日）的国际化文件中，为 `gx-mat-09s` 添加了完整且详尽的数据结构。
+      - **内容深度扩充**: 新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置) 等字段，并填充了专业内容。
+      - **结构化实验体系**: 全面重构了 `experiments` 字段，将其设计为按 `sections` (章节) 组织的结构化大纲，涵盖了从“单片机”到“移动导航”的9大主题，共计78个具体实验项目，逻辑清晰，内容详实。
+      - **样机案例分组**: 在 `sampleCases` 中引入了 `compositeGroups` 字段，用于分类展示基于不同底盘的复合机器人组合，使信息结构更有条理。
 
 2.  **产品详情页 UI 渲染升级**
-    *   `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了多项重构，以适配新的数据结构。
-        *   **动态计数**: 样机案例部分的标题（如“机器人模块”、“机器人底盘”）现在会动态计算并显示其包含的种类数量。
-        *   **实验体系渲染**: 页面现在能够渲染新的、按章节划分的实验体系，将每个实验章节以独立的卡片形式展示，提升了可读性。
-        *   **分组列表展示**: 新增了对 `compositeGroups` 的渲染逻辑，以分组形式清晰地展示各类复合机器人。
+
+    - `src/app/[locale]/products/[slug]/page.tsx`: 对产品详情页的渲染逻辑进行了多项重构，以适配新的数据结构。
+      - **动态计数**: 样机案例部分的标题（如“机器人模块”、“机器人底盘”）现在会动态计算并显示其包含的种类数量。
+      - **实验体系渲染**: 页面现在能够渲染新的、按章节划分的实验体系，将每个实验章节以独立的卡片形式展示，提升了可读性。
+      - **分组列表展示**: 新增了对 `compositeGroups` 的渲染逻辑，以分组形式清晰地展示各类复合机器人。
 
 3.  **新增产品图片资源**
-    *   `public/images/products/gx-mat-09s/`: 为 GX-MAT-09S 新增了产品主图 (`hero.png`) 以及多张控制器图片（Arduino, RDK X5, STM32），并已在 `controllerConfig` 中正确引用。
+
+    - `public/images/products/gx-mat-09s/`: 为 GX-MAT-09S 新增了产品主图 (`hero.png`) 以及多张控制器图片（Arduino, RDK X5, STM32），并已在 `controllerConfig` 中正确引用。
 
 4.  **组件样式微调**
-    *   `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格中的图片添加了 `rounded-lg` 样式，使其视觉效果与网站整体风格更统一。
+    - `src/components/Products/ImageGridWithLightbox.tsx`: 为图片网格中的图片添加了 `rounded-lg` 样式，使其视觉效果与网站整体风格更统一。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/products/gx-mat-09s/hero.png`](public/images/products/gx-mat-09s/hero.png)
 - [`public/images/products/gx-mat-09s/controller/arduino-mega2560.png`](public/images/products/gx-mat-09s/controller/arduino-mega2560.png)
 - [`public/images/products/gx-mat-09s/controller/rdk-x5.png`](public/images/products/gx-mat-09s/controller/rdk-x5.png)
 - [`public/images/products/gx-mat-09s/controller/stm32f407.jpg`](public/images/products/gx-mat-09s/controller/stm32f407.jpg)
 
 修改文件:
+
 - [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构UI渲染以适配新数据)
 - [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx) (样式微调)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (新增GX-MAT-09S产品数据)
@@ -1040,32 +1170,37 @@ V1.10.0 feat(products): 引入图片灯箱并全面更新产品体系
 实现细节:
 
 1.  **新增图片灯箱组件 (Image Lightbox)**
-    *   `src/components/Products/ImageGridWithLightbox.tsx`: 创建了一个全新的、可复用的图片网格组件，该组件集成了灯箱功能，允许用户点击图片后进行放大预览。
-    *   `src/app/[locale]/products/[slug]/page.tsx`: 在 Ubot MR20 产品详情页中，使用 `ImageGridWithLightbox` 组件重构了“机器人模块”、“机器人底盘”和“复合机器人”部分的图片展示逻辑，替代了原有的静态图片列表，提升了交互体验和代码的可维护性。
+
+    - `src/components/Products/ImageGridWithLightbox.tsx`: 创建了一个全新的、可复用的图片网格组件，该组件集成了灯箱功能，允许用户点击图片后进行放大预览。
+    - `src/app/[locale]/products/[slug]/page.tsx`: 在 Ubot MR20 产品详情页中，使用 `ImageGridWithLightbox` 组件重构了“机器人模块”、“机器人底盘”和“复合机器人”部分的图片展示逻辑，替代了原有的静态图片列表，提升了交互体验和代码的可维护性。
 
 2.  **产品数据体系全面升级**
-    *   `src/i18n/locales/*.ts`: 对三种语言（中、英、日）的国际化文件进行了大规模内容更新。
-        *   **产品型号标准化**: 统一并简化了产品型号，例如 `gx-mat-09s23` 更新为 `gx-mat-09s`，`rai-p433` 更新为 `rai-p4` 等，使其更清晰易记。
-        *   **内容结构化扩充**: 为 `gx-mat-09s`, `rai-p4`, `rai-m4`, `rai-q2`, `uni-wr2`, `alo-le4` 等核心产品系统性地补充了 `configuration` (配置清单), `experiments` (实验项目), `specs` (技术参数) 等详细字段。
-        *   **FAQ 更新**: 根据新的产品体系和定位，全面修订了“常见问题解答”部分的内容，使其信息更准确、更具指导性。
+
+    - `src/i18n/locales/*.ts`: 对三种语言（中、英、日）的国际化文件进行了大规模内容更新。
+      - **产品型号标准化**: 统一并简化了产品型号，例如 `gx-mat-09s23` 更新为 `gx-mat-09s`，`rai-p433` 更新为 `rai-p4` 等，使其更清晰易记。
+      - **内容结构化扩充**: 为 `gx-mat-09s`, `rai-p4`, `rai-m4`, `rai-q2`, `uni-wr2`, `alo-le4` 等核心产品系统性地补充了 `configuration` (配置清单), `experiments` (实验项目), `specs` (技术参数) 等详细字段。
+      - **FAQ 更新**: 根据新的产品体系和定位，全面修订了“常见问题解答”部分的内容，使其信息更准确、更具指导性。
 
 3.  **新增产品详情图片**
-    *   `public/images/products/ubot-mr20/`: 为 Ubot MR20 产品新增了控制器 (`controller`) 和软件界面 (`software`) 的高清图片。
-    *   `src/i18n/locales/*.ts`: 将新增的图片资源整合进 `ubot-mr20` 的 `controllerConfig` 和 `softwareConfig` 数据中，实现了图文并茂的展示效果。
+
+    - `public/images/products/ubot-mr20/`: 为 Ubot MR20 产品新增了控制器 (`controller`) 和软件界面 (`software`) 的高清图片。
+    - `src/i18n/locales/*.ts`: 将新增的图片资源整合进 `ubot-mr20` 的 `controllerConfig` 和 `softwareConfig` 数据中，实现了图文并茂的展示效果。
 
 4.  **项目配置调整**
-    *   `tsconfig.json`: 将 `jsx` 编译选项从 `"react-jsx"` 修改为 `"preserve"`，以适应项目构建需求。
-    *   `next-env.d.ts`: 更新了 Next.js 的类型定义引用路径。
+    - `tsconfig.json`: 将 `jsx` 编译选项从 `"react-jsx"` 修改为 `"preserve"`，以适应项目构建需求。
+    - `next-env.d.ts`: 更新了 Next.js 的类型定义引用路径。
 
 文件变更:
 
 新增文件:
+
 - [`public/images/products/ubot-mr20/controller/controller-overview.png`](public/images/products/ubot-mr20/controller/controller-overview.png)
 - [`public/images/products/ubot-mr20/software/openblock-interface-1.jpg`](public/images/products/ubot-mr20/software/openblock-interface-1.jpg)
 - [`public/images/products/ubot-mr20/software/openblock-interface-2.jpg`](public/images/products/ubot-mr20/software/openblock-interface-2.jpg)
 - [`src/components/Products/ImageGridWithLightbox.tsx`](src/components/Products/ImageGridWithLightbox.tsx)
 
 修改文件:
+
 - [`src/app/[locale]/products/[slug]/page.tsx`](src/app/[locale]/products/[slug]/page.tsx) (重构图片展示逻辑)
 - [`src/i18n/locales/en.ts`](src/i18n/locales/en.ts) (全面更新产品数据体系)
 - [`src/i18n/locales/ja.ts`](src/i18n/locales/ja.ts) (全面更新产品数据体系)
@@ -1099,26 +1234,31 @@ V1.9.0 feat(products): 丰富Ubot MR20产品详情页，增加模块化案例与
 实现细节:
 
 1.  **产品内容体系化扩充**
-    *   `src/i18n/locales/*.ts`: 针对 `ubot-mr20` 产品，在三种语言（中、英、日）的国际化文件中完全重构了数据结构。新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置), `experiments` (实验项目) 和 `specs` (技术参数) 等多个详细字段。
-    *   `experiments` 字段被设计为一套完整的教学大纲，涵盖了从“实验准备”到“扩展项目”的六个阶段，共包含32个基础实验和20个扩展项目，逻辑清晰，内容详实。
+
+    - `src/i18n/locales/*.ts`: 针对 `ubot-mr20` 产品，在三种语言（中、英、日）的国际化文件中完全重构了数据结构。新增了 `overview` (概述), `features` (产品特点), `sampleCases` (样机案例), `sensorConfig` (传感器配置), `controllerConfig` (控制器配置), `softwareConfig` (软件配置), `experiments` (实验项目) 和 `specs` (技术参数) 等多个详细字段。
+    - `experiments` 字段被设计为一套完整的教学大纲，涵盖了从“实验准备”到“扩展项目”的六个阶段，共包含32个基础实验和20个扩展项目，逻辑清晰，内容详实。
 
 2.  **产品详情页UI重构与渲染**
-    *   `src/app/[locale]/products/[slug]/page.tsx`: 更新了产品详情页的渲染逻辑，以适配新的、高度结构化的产品数据。页面现在可以动态展示样机案例中的各类图片（如机器人模块、底盘、机械臂、复合机器人），并以清晰的卡片和列表形式呈现实验项目和技术规格。
+
+    - `src/app/[locale]/products/[slug]/page.tsx`: 更新了产品详情页的渲染逻辑，以适配新的、高度结构化的产品数据。页面现在可以动态展示样机案例中的各类图片（如机器人模块、底盘、机械臂、复合机器人），并以清晰的卡片和列表形式呈现实验项目和技术规格。
 
 3.  **新增大量高清产品图片**
-    *   `public/images/products/`: 新增了 `ubot-mr20` 的主图 (`ubot-mr20-main.jpg`) 以及一个包含超过30张图片的 `ubot-mr20` 专属目录。这些图片详细展示了产品的各个模块、不同底盘和机械臂的组合形态，为页面内容提供了强有力的视觉支持。
+
+    - `public/images/products/`: 新增了 `ubot-mr20` 的主图 (`ubot-mr20-main.jpg`) 以及一个包含超过30张图片的 `ubot-mr20` 专属目录。这些图片详细展示了产品的各个模块、不同底盘和机械臂的组合形态，为页面内容提供了强有力的视觉支持。
 
 4.  **国际化文案与标签更新**
-    *   在 `detailLabels` 中添加了新的标签（如“产品特点”、“样机案例”、“机器人模块”等），以支持新版详情页的UI展示。
-    *   更新了产品列表页中 `ubot-mr20` 的简介和图片，使其信息与详情页保持一致。
+    - 在 `detailLabels` 中添加了新的标签（如“产品特点”、“样机案例”、“机器人模块”等），以支持新版详情页的UI展示。
+    - 更新了产品列表页中 `ubot-mr20` 的简介和图片，使其信息与详情页保持一致。
 
 文件变更:
 
 新增文件:
+
 - public/images/products/ubot-mr20-main.jpg
 - public/images/products/ubot-mr20/ (整个目录及其下所有图片)
 
 修改文件:
+
 - src/app/[locale]/products/[slug]/page.tsx (适配新数据结构，重构UI渲染)
 - src/i18n/locales/en.ts (全面更新ubot-mr20产品数据)
 - src/i18n/locales/ja.ts (全面更新ubot-mr20产品数据)
@@ -1150,6 +1290,7 @@ V1.8.0 refactor(products): 重构产品目录结构并移除博客与认证功�
 实现细节:
 
 1. 产品目录结构重构
+
    - `src/i18n/locales/*.ts`: 核心数据结构变更。将原有的扁平化产品列表 (`products.catalog.items`) 调整为按系列分组的结构 (`products.catalog.series`)，例如 “M 系列” 和 “P 系列”，使产品分类更加清晰。
    - `src/components/Products/index.tsx`: 更新了产品列表页的渲染逻辑，现在会先遍历产品系列，再展示系列下的具体产品卡片。
    - `src/app/[locale]/products/[slug]/page.tsx`: 修改了动态路由的静态参数生成逻辑 (`generateStaticParams`)，以适配新的嵌套式产品数据结构。
@@ -1168,6 +1309,7 @@ V1.8.0 refactor(products): 重构产品目录结构并移除博客与认证功�
 文件变更:
 
 删除文件:
+
 - src/app/[locale]/blog/page.tsx
 - src/app/[locale]/blog-details/page.tsx
 - src/app/[locale]/blog-sidebar/page.tsx
@@ -1178,9 +1320,10 @@ V1.8.0 refactor(products): 重构产品目录结构并移除博客与认证功�
 - src/app/blog-sidebar/BlogSidebarContent.tsx
 - src/app/signin/SigninContent.tsx
 - src/app/signup/SignupContent.tsx
-- src/components/Blog/* (整个目录)
+- src/components/Blog/\* (整个目录)
 
 修改文件:
+
 - src/i18n/locales/en.ts (重构产品数据，移除废弃文案)
 - src/i18n/locales/ja.ts (重构产品数据，移除废弃文案)
 - src/i18n/locales/zh.ts (重构产品数据，移除废弃文案)
@@ -1198,6 +1341,7 @@ V1.8.0 refactor(products): 重构产品目录结构并移除博客与认证功�
 - 优化信息架构: 产品按系列分类，结构更清晰，有助于用户根据需求快速找到合适的产品。
 
 影响范围:
+
 - 网站不再提供博客内容和用户注册/登录功能。
 - 产品列表页的展示方式已更新为按系列分组。
 - 网站的整体导航和信息结构更加精简。
@@ -1217,12 +1361,14 @@ V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组
 实现细节:
 
 1. 面包屑组件重构
+
    - `src/components/Common/Breadcrumb.tsx`: 核心重构文件。
      - 完全移除了用于生成导航路径（如 "首页 / 关于我们"）的 `Link` 和 `ul` 列表结构。
      - 删除了 `homeLabel` 和 `homeHref` 属性，组件现在只负责展示 `pageName` 和 `description`。
      - 调整了布局样式，使其作为页面引言（Page Intro）的标题部分。
 
 2. 封装组件与页面适配
+
    - `src/components/Common/PageIntro.tsx`: 作为 `Breadcrumb` 的直接封装组件，移除了对应的 `homeLabel` 和 `homeHref` 属性传递。
    - `src/app/[locale]/**/*.tsx`: 所有使用 `PageIntro` 或 `Breadcrumb` 的页面都进行了更新，删除了不再需要的属性。这包括“关于我们”、“联系我们”、“案例研究”下的所有子页面、“开发者服务”下的所有子页面以及“产品”页面等。
    - `src/app/*/AboutContent.tsx`, `ContactContent.tsx`, `BlogContent.tsx`, `ErrorContent.tsx`: 这些内容组件也同步更新，不再接收和传递面包屑相关的属性。
@@ -1233,6 +1379,7 @@ V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组
 文件变更:
 
 修改文件:
+
 - src/components/Common/Breadcrumb.tsx (组件核心重构)
 - src/components/Common/PageIntro.tsx (移除废弃属性)
 - src/app/about/AboutContent.tsx (适配组件变更)
@@ -1240,10 +1387,10 @@ V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组
 - src/app/error/ErrorContent.tsx (适配组件变更)
 - src/app/blog/BlogContent.tsx (适配组件变更)
 - src/app/[locale]/about/page.tsx (适配组件变更)
-- src/app/[locale]/case-studies/**/*.tsx (适配组件变更)
+- src/app/[locale]/case-studies/\*_/_.tsx (适配组件变更)
 - src/app/[locale]/contact/page.tsx (适配组件变更)
 - src/app/[locale]/custom-solutions/page.tsx (适配组件变更)
-- src/app/[locale]/developers/**/*.tsx (适配组件变更)
+- src/app/[locale]/developers/\*_/_.tsx (适配组件变更)
 - src/app/[locale]/error/page.tsx (适配组件变更)
 - src/app/[locale]/products/page.tsx (适配组件变更)
 - src/i18n/locales/en.ts (移除废弃文案)
@@ -1257,6 +1404,7 @@ V1.7.1 refactor(breadcrumb): 移除面包屑导航路径，简化页面标题组
 - 职责单一: `Breadcrumb` 组件的职责更加明确，现在专注于作为页面标题展示，而非导航。
 
 影响范围:
+
 - 全站所有二级页面的顶部UI均已更新。
 - 传统的面包屑导航功能已被移除。
 
@@ -1275,18 +1423,21 @@ V1.7.0 feat(footer): 重构页脚，增加社交媒体弹窗并更新链接结�
 实现细节:
 
 1. 页脚功能重构与UI升级
+
    - `src/components/Footer/index.tsx`: 完全重构了页脚组件。
      - 使用 `useState` 管理弹窗状态，实现了点击社交图标（QQ、微信）弹出二维码模态窗口的功能。
      - 社交链接和页脚导航栏目现在通过读取i18n配置文件动态生成，增强了可维护性和国际化支持。
      - 新增了Bilibili图标链接。
 
 2. 国际化内容更新
+
    - `src/i18n/locales/*.ts`: 在 `en`, `ja`, `zh` 语言文件中：
      - 更新了 `footer.columns` 的内容，将原有的“常用链接”、“条款政策”等替换为“产品”、“开发者服务”、“定制合作”，使其更具业务导向性。
      - 新增了 `footer.contact` 对象，用于存放联系方式、社交链接以及弹窗所需的文案。
      - 在 `floatingContact` 中增加了Bilibili的链接和文案。
 
 3. 组件UI优化与功能增强
+
    - `src/components/Common/FloatingContact.tsx`:
      - 新增了Bilibili的快捷链接。
      - 淘宝链接改为从i18n配置中动态获取，而非硬编码。
@@ -1300,6 +1451,7 @@ V1.7.0 feat(footer): 重构页脚，增加社交媒体弹窗并更新链接结�
 文件变更:
 
 修改文件:
+
 - src/components/Footer/index.tsx (组件完全重构)
 - src/i18n/locales/en.ts (页脚及联系方式内容更新)
 - src/i18n/locales/ja.ts (页脚及联系方式内容更新)
@@ -1318,6 +1470,7 @@ V1.7.0 feat(footer): 重构页脚，增加社交媒体弹窗并更新链接结�
 - 视觉效果改善: “关于我们”板块的卡片式设计使页面布局更清晰、更具现代感。
 
 影响范围:
+
 - 网站的页脚部分在外观和功能上发生了显著变化。
 - 用户与社交媒体渠道的交互方式得到简化。
 - 网站的整体导航结构在页脚部分得到了更清晰的体现。
@@ -1337,17 +1490,20 @@ V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向
 实现细节:
 
 1. 首页Hero区域重构
+
    - `src/components/Hero/index.tsx`: 将原有的静态Hero区域替换为支持自动播放的动态轮播组件。
    - `public/images/hero/`: 新增 `slide-1.png`, `slide-2.png`, `slide-3.png` 作为轮播图资源。
    - `src/i18n/locales/*.ts`: 更新了 `hero` 部分的文案，以适应新的轮播图数据结构，包含图片、链接等。
 
 2. “产品平台”板块升级 (原“核心优势”)
+
    - `src/components/Features/index.tsx`: 重构了该组件，现在分为“精选方案矩阵”和“亮点”两部分，更聚焦于产品展示。
    - `src/components/Features/SingleFeature.tsx`: 更新了单个特性组件的UI，现在展示产品图片、摘要和关键词，而非简单的图标和段落。
    - `src/types/feature.ts`: 修改了 `Feature` 类型定义，以匹配新的数据结构。
    - `src/i18n/locales/*.ts`: 完全重写了 `features` 部分的文案，以反映新的“产品平台”定位。
 
 3. 内容与组件简化
+
    - `src/components/About/AboutSectionOne.tsx`: 删除了此组件，简化了关于我们部分的介绍。
    - `src/components/Contact/NewsLatterBox.tsx`: 移除了邮件订阅组件，使联系表单更简洁。
    - `src/app/[locale]/page.tsx`: 更新首页布局，移除了已删除的组件。
@@ -1360,6 +1516,7 @@ V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向
 文件变更:
 
 新增文件:
+
 - public/images/about/section-two.jpg
 - public/images/hero/slide-1.png
 - public/images/hero/slide-2.png
@@ -1370,12 +1527,14 @@ V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向
 - public/images/products/placeholder.svg
 
 删除文件:
+
 - public/images/icons/QQ.svg
 - public/images/icons/wechat-fill.svg
 - src/components/About/AboutSectionOne.tsx
 - src/components/Contact/NewsLatterBox.tsx
 
 修改文件:
+
 - src/app/[locale]/page.tsx (页面结构调整)
 - src/components/Hero/index.tsx (组件完全重构)
 - src/components/Features/index.tsx (组件重构)
@@ -1399,6 +1558,7 @@ V1.6.0 feat(homepage): 重新设计主页，采用动态主视觉轮播和面向
 - 代码可维护性: 组件化的重构和类型定义的更新，提升了代码质量和后续的可维护性。
 
 影响范围:
+
 - 网站首页的整体外观和用户体验发生了显著变化。
 - “核心优势”板块被“产品平台”取代，信息传递的重心从抽象概念转向具体产品。
 - 移除了邮件订阅功能，简化了用户与我们联系的渠道。
@@ -1418,6 +1578,7 @@ V1.5.1 chore(dependencies): 更新Next.js依赖至最新版本并优化项目配
 实现细节:
 
 1. Next.js依赖升级
+
    - `package-lock.json`: 将Next.js主依赖从15.4.5升级至15.5.6
    - `@next/env`: 从15.4.5升级至15.5.6
    - 所有平台相关的SWC编译器依赖均从15.4.5升级至15.5.6 (darwin-arm64, darwin-x64, linux-arm64-gnu, linux-arm64-musl, linux-x64-gnu, linux-x64-musl, win32-arm64-msvc, win32-x64-msvc)
@@ -1430,6 +1591,7 @@ V1.5.1 chore(dependencies): 更新Next.js依赖至最新版本并优化项目配
 文件变更:
 
 修改文件:
+
 - .gitignore (全面优化忽略规则)
 - next-env.d.ts (添加路由类型引用)
 - package-lock.json (Next.js及相关依赖升级)
@@ -1442,6 +1604,7 @@ V1.5.1 chore(dependencies): 更新Next.js依赖至最新版本并优化项目配
 - 项目维护性提升：依赖关系更加清晰，便于后续维护
 
 影响范围:
+
 - 项目构建和运行基于更新后的Next.js版本
 - Git提交行为受更新的忽略规则影响
 - 类型检查包含新的路由类型定义
@@ -1461,17 +1624,20 @@ V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互
 实现细节:
 
 1. 产品详情模块
+
    - `src/app/[locale]/products/[slug]/page.tsx`: 新增产品动态路由页面，用于展示单个产品的详细信息。
    - `src/components/Products/ProductCard.tsx`: 新增产品详情卡片组件，包含产品标题、描述、视频和功能列表等内容。
    - `src/components/Products/FAQ.tsx`: 新增可折叠的常见问题解答(FAQ)组件，以更好地解答用户疑问。
 
 2. 悬浮联系组件增强
+
    - `src/components/Common/FloatingContact.tsx`: 重构悬浮联系组件，从简单的电话图标链接变为一个可展开的联系方式面板。
    - `public/images/contact/weChat-official-account.jpg`: 新增微信公众号二维码图片资源。
    - `public/images/icons/phone.svg`: 更新了电话图标的视觉样式。
    - 组件现在包含电话、QQ群二维码和微信公众号二维码，提供多种便捷的联系途径。
 
 3. 首页与产品页集成
+
    - `src/app/[locale]/page.tsx`: 在首页右下角集成了新的悬浮联系组件，方便用户随时联系。
    - `src/app/[locale]/products/page.tsx`: 更新了产品列表页面，为后续展示产品卡片列表做好了准备。
 
@@ -1481,6 +1647,7 @@ V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互
 文件变更:
 
 新增文件:
+
 - public/images/contact/weChat-official-account.jpg
 - src/app/[locale]/products/[slug]/page.tsx
 - src/components/Products/FAQ.tsx
@@ -1488,6 +1655,7 @@ V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互
 - src/components/Products/index.tsx
 
 修改文件:
+
 - next-env.d.ts (类型定义清理)
 - public/images/icons/phone.svg (图标样式更新)
 - src/app/[locale]/page.tsx (集成悬浮联系组件)
@@ -1504,6 +1672,7 @@ V1.5.0 feat(products): 新增产品详情页与悬浮联系组件，丰富交互
 - 体验更统一: 通过组件化的方式构建产品详情和FAQ，确保了网站整体风格的一致性。
 
 影响范围:
+
 - 网站新增了 `/products/[slug]` 动态产品详情路由。
 - 网站所有页面的右下角将出现新的悬浮联系按钮，显著改变了用户联系我们的交互方式。
 - 产品列表页面的内容结构已更新，为下一步的产品展示奠定了基础。
@@ -1523,16 +1692,19 @@ V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专�
 实现细节:
 
 1. 模板化组件移除
+
    - `src/components/Pricing/`：删除整个定价组件目录，包括 `OfferList.tsx`、`PricingBox.tsx`、`index.tsx`
    - `src/components/Testimonials/`：删除客户评价组件目录，包括 `SingleTestimonial.tsx`、`index.tsx`
    - `src/components/Video/index.tsx`：删除视频展示组件
 
 2. 首页结构简化
+
    - `src/app/[locale]/page.tsx`：移除 `Video`、`Testimonials`、`Pricing` 组件的导入和使用
    - 简化后的首页结构为：Hero → Features → Brands → AboutSectionOne → AboutSectionTwo → Contact
    - 保留核心业务展示内容，移除营销导向的模板化内容
 
 3. 品牌标识优化
+
    - `public/images/logo/logo.svg`：主品牌标识文件优化，文件大小减少 70% (1340 → 393 行)
    - `public/images/logo/logo-2.svg`：品牌变体标识优化，文件大小减少 45% (739 → 437 行)
    - `public/images/logo/logo-text.svg`：文字标识大幅优化，文件大小减少 73% (2305 → 611 行)
@@ -1540,6 +1712,7 @@ V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专�
    - 所有标识文件在保持视觉效果的同时大幅提升了加载性能
 
 4. 国际化内容更新
+
    - `src/i18n/locales/en.ts`：英文版本内容专业化更新，标题从"智能机器人教育解决方案领先提供商"更新为"具身智能创新全球领导者"
    - `src/i18n/locales/ja.ts`：日文版本对应内容同步更新
    - `src/i18n/locales/zh.ts`：中文版本内容本地化优化
@@ -1551,6 +1724,7 @@ V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专�
 文件变更:
 
 删除文件:
+
 - src/components/Pricing/OfferList.tsx
 - src/components/Pricing/PricingBox.tsx
 - src/components/Pricing/index.tsx
@@ -1559,6 +1733,7 @@ V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专�
 - src/components/Video/index.tsx
 
 修改文件:
+
 - src/app/[locale]/page.tsx (移除模板组件)
 - src/components/Footer/index.tsx (信息更新)
 - src/i18n/locales/en.ts (内容专业化)
@@ -1578,6 +1753,7 @@ V1.4.0 remove(template): 移除定价、评价、视频等模板化组件，专�
 - 维护简化：减少组件数量，降低后续维护复杂度
 
 影响范围:
+
 - 首页用户体验显著改变
 - 移除了价格展示和客户评价等销售导向内容
 - 网站更加偏向技术解决方案展示而非产品销售
@@ -1597,12 +1773,14 @@ V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研�
 实现细节:
 
 1. 导航架构重新设计
+
    - `src/components/Header/menuData.tsx`：完全重构导航菜单，从通用模板结构改为业务导向布局
    - 新增"产品"、"开发者服务"、"定制解决方案"、"案例研究"等核心导航项
    - 移除"博客"、"支持"、"更多页面"等通用模板导航
    - 案例研究下设"大学项目"、"K12教育"、"联合研究"子菜单
 
 2. 新增核心业务页面
+
    - `src/app/[locale]/products/page.tsx`：产品组合展示页面
    - `src/app/[locale]/developers/page.tsx`：开发者服务总览
    - `src/app/[locale]/developers/knowledge-base/page.tsx`：知识库页面
@@ -1614,12 +1792,14 @@ V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研�
    - `src/app/[locale]/case-studies/co-research/page.tsx`：联合研究案例
 
 3. 国际化内容全面升级
+
    - `src/i18n/locales/en.ts`：英文版本专业化内容，突出智能机器人教育解决方案定位
    - `src/i18n/locales/ja.ts`：日文版本本地化适配
    - `src/i18n/locales/zh.ts`：中文版本品牌信息更新
    - 所有页面均有对应的国际化内容支持
 
 4. 品牌视觉识别更新
+
    - `public/favicon.ico`：更新网站图标
    - `public/images/logo/logo.svg`：主品牌标识全面升级
    - `public/images/logo/logo-2.svg`：品牌变体标识更新
@@ -1633,6 +1813,7 @@ V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研�
 文件变更:
 
 新增文件:
+
 - src/app/[locale]/products/page.tsx
 - src/app/[locale]/developers/page.tsx
 - src/app/[locale]/developers/knowledge-base/page.tsx
@@ -1647,6 +1828,7 @@ V1.3.0 feat(website): 全面重构网站结构，新增产品展示与案例研�
 - public/images/logo/logo-text-inverse.svg
 
 修改文件:
+
 - src/components/Header/menuData.tsx (完全重构)
 - src/components/Header/index.tsx (适配新导航)
 - src/components/Footer/index.tsx (信息更新)
@@ -1680,6 +1862,7 @@ V1.2.0 remove(blog): 移除博客相关页面及导航入口
 实现细节:
 
 1. 页面移除
+
    - `src/app/[locale]/blog-details/page.tsx`、`src/app/[locale]/blog-sidebar/page.tsx`、`src/app/[locale]/blog/page.tsx`：全部内容替换为 `notFound()`，原有博客详情、侧边栏、列表页功能被废弃。
    - `src/app/[locale]/page.tsx`：主页移除 `BlogSection` 组件，不再展示博客板块。
 
@@ -1715,6 +1898,7 @@ V1.1.2 feat(i18n): 英文和日文版本国际化内容优化
 实现细节:
 
 1. 英文版本内容优化 (src/i18n/locales/en.ts)
+
    - 更新导航菜单文案，简化页面名称表述（如 "About Page" → "About"）
    - 重写Hero区域标题和描述，突出"有你同创"作为智能机器人教育解决方案提供商的定位
    - 优化产品特性文案，将通用功能描述替换为具体的教育机器人产品介绍
@@ -1755,29 +1939,33 @@ V1.1.1 feat(contact): 新增浮动联系方式组件与深色主题样式优化
 实现细节:
 
 1. 浮动联系方式组件开发
-    - 新增 `FloatingContact` 组件，包含可折叠的联系面板和浮动操作按钮
-    - 支持QQ群号复制、电话号码复制、淘宝店铺链接等功能
-    - 集成二维码展示、复制成功提示、键盘导航等交互特性
-    - 响应式设计，移动端自动切换为模态弹窗形式
+
+   - 新增 `FloatingContact` 组件，包含可折叠的联系面板和浮动操作按钮
+   - 支持QQ群号复制、电话号码复制、淘宝店铺链接等功能
+   - 集成二维码展示、复制成功提示、键盘导航等交互特性
+   - 响应式设计，移动端自动切换为模态弹窗形式
 
 2. 多语言国际化支持
-    - 在 `en.ts`、`zh.ts`、`ja.ts` 中新增 `floatingContact` 词典配置
-    - 包含完整的文案国际化：QQ群、电话、淘宝、微信等联系方式的标签和提示信息
-    - 支持复制成功提示、访问链接等交互文案的本地化
+
+   - 在 `en.ts`、`zh.ts`、`ja.ts` 中新增 `floatingContact` 词典配置
+   - 包含完整的文案国际化：QQ群、电话、淘宝、微信等联系方式的标签和提示信息
+   - 支持复制成功提示、访问链接等交互文案的本地化
 
 3. 联系方式资源集成
-    - 新增联系相关图标：QQ、电话、淘宝、微信填充图标
-    - 添加QQ群二维码图片资源，便于用户扫码加群
-    - 配置淘宝店铺链接和微信预留接口
+
+   - 新增联系相关图标：QQ、电话、淘宝、微信填充图标
+   - 添加QQ群二维码图片资源，便于用户扫码加群
+   - 配置淘宝店铺链接和微信预留接口
 
 4. 深色主题样式统一
-    - 修正多个组件在深色模式下的背景色一致性（从 `#2C303B` 统一为 `#2d2520`）
-    - 更新错误页面的主色调，保持与品牌橙色 `#ff6b35` 一致
-    - 优化视频区域SVG渐变色，适配新的主题色彩
+
+   - 修正多个组件在深色模式下的背景色一致性（从 `#2C303B` 统一为 `#2d2520`）
+   - 更新错误页面的主色调，保持与品牌橙色 `#ff6b35` 一致
+   - 优化视频区域SVG渐变色，适配新的主题色彩
 
 5. 全局布局集成
-    - 在主布局文件中引入FloatingContact组件
-    - 传递多语言词典配置，确保组件支持国际化
+   - 在主布局文件中引入FloatingContact组件
+   - 传递多语言词典配置，确保组件支持国际化
 
 文件变更:
 
@@ -1813,15 +2001,17 @@ V1.1.0 feat(branding): 官网品牌化内容重塑与主题色更新
 实现细节:
 
 1. 品牌内容全面焕新
-    - 重写 `hero`, `features`, `about` 及 `footer` 等核心板块的中文文案，使其精准传达“有你同创”在教育机器人领域的专业定位与产品优势。
-    - 内容聚焦于拼装小车、ROS2平台、具身智能机器人等核心产品，强调为高校提供解决方案的价值。
+
+   - 重写 `hero`, `features`, `about` 及 `footer` 等核心板块的中文文案，使其精准传达“有你同创”在教育机器人领域的专业定位与产品优势。
+   - 内容聚焦于拼装小车、ROS2平台、具身智能机器人等核心产品，强调为高校提供解决方案的价值。
 
 2. 主题色与视觉调整
-    - 将全局主色调从蓝色 (`#4A6CF7`) 更改为更具活力的橙色 (`#ff6b35`)，更新了 CSS 变量与 Hero 区域的 SVG 矢量图形配色，提升品牌辨识度。
-    - 调整了 Hero 区域两个核心行动号召（CTA）按钮的链接，使其指向页面内部的“产品优势”和“联系我们”板块，优化了用户站内导航体验。
+
+   - 将全局主色调从蓝色 (`#4A6CF7`) 更改为更具活力的橙色 (`#ff6b35`)，更新了 CSS 变量与 Hero 区域的 SVG 矢量图形配色，提升品牌辨识度。
+   - 调整了 Hero 区域两个核心行动号召（CTA）按钮的链接，使其指向页面内部的“产品优势”和“联系我们”板块，优化了用户站内导航体验。
 
 3. 工程维护
-    - 清理了 `next-env.d.ts` 文件中不再需要的路由类型定义引用，保持项目整洁。
+   - 清理了 `next-env.d.ts` 文件中不再需要的路由类型定义引用，保持项目整洁。
 
 文件变更:
 
@@ -1851,23 +2041,26 @@ V1.0.1 docs(readme): 完整本地化README文档为中文
 实现细节:
 
 1. 文档结构重组
-    - 重新设计README结构，增加功能亮点、技术栈、快速开始等核心板块
-    - 移除原有英文的商业化推广内容，聚焦技术文档本身
+
+   - 重新设计README结构，增加功能亮点、技术栈、快速开始等核心板块
+   - 移除原有英文的商业化推广内容，聚焦技术文档本身
 
 2. 本地化内容覆盖
-    - 标题、说明文字、代码注释等全部改为中文
-    - 保持技术术语的准确性，如Next.js、TypeScript、Tailwind CSS等专有名词保持原文
-    - 代码示例和命令行操作使用中文说明
+
+   - 标题、说明文字、代码注释等全部改为中文
+   - 保持技术术语的准确性，如Next.js、TypeScript、Tailwind CSS等专有名词保持原文
+   - 代码示例和命令行操作使用中文说明
 
 3. 国际化功能详解
-    - 详细说明多语言路由体系的工作原理
-    - 提供完整的国际化配置指南
-    - 包含语言切换、词典管理、SEO优化等关键信息
+
+   - 详细说明多语言路由体系的工作原理
+   - 提供完整的国际化配置指南
+   - 包含语言切换、词典管理、SEO优化等关键信息
 
 4. 开发与部署指南
-    - 增加详细的快速开始步骤
-    - 补充技术栈对照表和目录结构说明
-    - 提供多种部署方案的建议
+   - 增加详细的快速开始步骤
+   - 补充技术栈对照表和目录结构说明
+   - 提供多种部署方案的建议
 
 文件变更:
 
@@ -1895,22 +2088,22 @@ V1.0.0 feat(i18n): 引入多语言路由体系与词典资源
 实现细节:
 
 1. 路由与中间件改造
-    - 全量迁移页面文案至词典，新增拆分组件（如 AboutContent、BlogContent、ContactContent 等）以简化翻译维护。
-3. 交互组件国际化
-    - 新增 LocaleSwitcher 并嵌入导航栏，实现语言切换、Cookie 记忆与页面刷新。
-    - 更新博客、定价、视频、页头页脚等组件，使按钮标签、ARIA 文案、分页等均来自词典数据。
-4. 无障碍与工程细节
-    - 将 ScrollToTop 改为 <button>，补齐键盘可达性与聚焦样式。
-    - .gitignore 新增 *.tsbuildinfo，避免 TypeScript 增量编译文件入库。
-    - 自动生成的 next-env.d.ts 及其路由声明保持同步。
+   - 全量迁移页面文案至词典，新增拆分组件（如 AboutContent、BlogContent、ContactContent 等）以简化翻译维护。
+2. 交互组件国际化
+   - 新增 LocaleSwitcher 并嵌入导航栏，实现语言切换、Cookie 记忆与页面刷新。
+   - 更新博客、定价、视频、页头页脚等组件，使按钮标签、ARIA 文案、分页等均来自词典数据。
+3. 无障碍与工程细节
+   - 将 ScrollToTop 改为 <button>，补齐键盘可达性与聚焦样式。
+   - .gitignore 新增 \*.tsbuildinfo，避免 TypeScript 增量编译文件入库。
+   - 自动生成的 next-env.d.ts 及其路由声明保持同步。
 
 文件变更:
 
 - 新增: src/app/[locale]/...、src/app/about/AboutContent.tsx、src/app/contact/ContactContent.tsx、src/app/blog-details/BlogDetailsContent.tsx、src/app/blog-sidebar/BlogSidebarContent.tsx、src/app/signin/
   SigninContent.tsx、src/app/signup/SignupContent.tsx
 - 新增: src/i18n/config.ts、src/i18n/locales/{en,zh,ja}.ts、src/i18n/utils.ts、src/components/Header/LocaleSwitcher.tsx、src/middleware.ts、version.md
-- 修改: src/app/layout.tsx、src/app/providers.tsx、src/components/* 大量组件的文案来源与参数签名
-- 修改: .gitignore（忽略 *.tsbuildinfo）
+- 修改: src/app/layout.tsx、src/app/providers.tsx、src/components/\* 大量组件的文案来源与参数签名
+- 修改: .gitignore（忽略 \*.tsbuildinfo）
 - 删除/重构: 原 src/app/{page.tsx,about/page.tsx,...} 等单语言页面，改由内容组件 + [locale] 路由接管
 - 修改: src/components/ScrollToTop/index.tsx（按钮化处理）
 - 自动更新: next-env.d.ts（Next.js 路由类型声明）
