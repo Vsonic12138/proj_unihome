@@ -67,6 +67,83 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.24.0 remove(scripts): 清理一次性 Payload 内容维护脚本
+
+类型: remove
+
+范围: scripts
+
+说明:
+本次提交聚焦 `scripts/payload` 目录的内容清理，删除一批仅服务于单次产品修补、测试或恢复操作的脚本。这些脚本未作为项目长期运维入口使用，继续保留会增加脚本目录的维护成本与理解负担，因此本次将其从仓库中移除。
+
+实现细节:
+
+1. **删除一次性样机案例与内容回填脚本**
+   - 删除 `fill-09s-sample-cases.ts`
+   - 删除 `fill-alo-le4-content.ts`
+   - 删除 `fill-rai-m4-sample-cases.ts`
+   - 删除 `fill-rai-p4-sample-cases.ts`
+   - 删除 `fill-ubot-mr40-sample-cases.ts`
+   - 删除 `fill-uni-wr2-content.ts`
+
+2. **删除单次修补与恢复脚本**
+   - 删除 `patch-09s-images.ts`
+   - 删除 `patch-rai-m4-sample-cases.ts`
+   - 删除 `patch-rai-p4-controller.ts`
+   - 删除 `patch-rai-p4.ts`
+   - 删除 `patch-ubot-highlights.ts`
+   - 删除 `recover-rai-p4.ts`
+   - 删除 `recover-rai-p4-v2.ts`
+   - 删除 `remove-09s-experiment.ts`
+
+3. **删除临时检查与测试脚本**
+   - 删除 `inspect-rai-m4.ts`
+   - 删除 `test-id.ts`
+   - 删除 `test-locale.ts`
+
+4. **同步版本记录**
+   - 更新 `package.json`、`package-lock.json` 与 `version.md` 版本号到 `1.24.0`。
+
+文件变更:
+修改文件:
+
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+删除文件:
+
+- `/scripts/payload/fill-09s-sample-cases.ts`
+- `/scripts/payload/fill-alo-le4-content.ts`
+- `/scripts/payload/fill-rai-m4-sample-cases.ts`
+- `/scripts/payload/fill-rai-p4-sample-cases.ts`
+- `/scripts/payload/fill-ubot-mr40-sample-cases.ts`
+- `/scripts/payload/fill-uni-wr2-content.ts`
+- `/scripts/payload/inspect-rai-m4.ts`
+- `/scripts/payload/patch-09s-images.ts`
+- `/scripts/payload/patch-rai-m4-sample-cases.ts`
+- `/scripts/payload/patch-rai-p4-controller.ts`
+- `/scripts/payload/patch-rai-p4.ts`
+- `/scripts/payload/patch-ubot-highlights.ts`
+- `/scripts/payload/recover-rai-p4.ts`
+- `/scripts/payload/recover-rai-p4-v2.ts`
+- `/scripts/payload/remove-09s-experiment.ts`
+- `/scripts/payload/test-id.ts`
+- `/scripts/payload/test-locale.ts`
+
+改进效果:
+
+- `scripts/payload` 目录中的一次性维护脚本数量减少，目录职责更清晰。
+- 降低后续继续误用历史修补脚本的风险。
+- 保留备份、发布、迁移、通用修复等长期可复用脚本。
+
+影响范围:
+
+- 影响仓库中的 Payload 辅助脚本目录结构。
+- 不直接修改前端页面、CMS schema 或线上内容数据。
+
+---
+
 V1.23.3 fix(products): 修复 MR40 样机案例展示并统一多语言产品标识
 
 类型: fix
