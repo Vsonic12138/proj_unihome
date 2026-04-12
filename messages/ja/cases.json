@@ -1,0 +1,9 @@
+{
+  "cases": {
+    "backToList": "一覧に戻る",
+    "serviceCases": "サービス事例",
+    "empty": "導入事例はありません",
+    "viewDetails": "詳細を見る",
+    "noImage": "画像なし"
+  }
+}

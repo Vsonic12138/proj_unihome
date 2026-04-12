@@ -67,6 +67,68 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.23.0 feat(cases): 重构服务案例路由与多语言内容结构
+
+类型: feat
+
+范围: cases
+
+说明:
+本次提交聚焦服务案例模块的 CMS 化与结构调整，重构 `case-studies` 路由组织方式，接入新的案例详情与分类页面，同时补充对应的三语文案与案例展示组件，替换旧的专题页面结构，使案例模块与新的 CMS 内容模型保持一致。
+
+实现细节:
+
+1. **重构案例路由结构**
+   - 调整 `src/app/[locale]/case-studies/page.tsx` 列表页。
+   - 新增基于 slug 的案例详情路由与分类页面目录。
+   - 删除旧的 `co-research`、`k12`、`universities` 等遗留页面实现。
+
+2. **补充案例前台组件**
+   - 新增 `src/components/Cases/`，统一承接案例卡片、详情区块及分类展示逻辑。
+
+3. **同步三语案例文案**
+   - 新增 `messages/{zh,en,ja}/cases.json`。
+   - 让案例列表页、分类页和详情页在三语环境下具备完整文案支撑。
+
+4. **统一案例模块与 CMS 内容模型**
+   - 让前台案例访问路径、分类结构与 Payload 中的 case studies 数据组织方式保持一致。
+
+文件变更:
+修改文件:
+
+- `/src/app/[locale]/case-studies/page.tsx`
+
+新增文件 / 目录:
+
+- `/src/app/[locale]/case-studies/[slug]/`
+- `/src/app/[locale]/case-studies/innovation-competition/`
+- `/src/app/[locale]/case-studies/practical-teaching/`
+- `/src/app/[locale]/case-studies/sci-tech-innovation/`
+- `/src/app/[locale]/case-studies/training-base/`
+- `/src/components/Cases/`
+- `/messages/zh/cases.json`
+- `/messages/en/cases.json`
+- `/messages/ja/cases.json`
+
+删除文件:
+
+- `/src/app/[locale]/case-studies/co-research/page.tsx`
+- `/src/app/[locale]/case-studies/k12/page.tsx`
+- `/src/app/[locale]/case-studies/universities/page.tsx`
+
+改进效果:
+
+- 服务案例模块具备更清晰的路由组织和更稳定的多语言内容结构。
+- 前台案例页面与 CMS 数据模型对齐，便于后续继续运营与扩展。
+- 替换旧的专题页残留实现，减少维护歧义。
+
+影响范围:
+
+- 影响 `case-studies` 列表页、分类页与详情页访问结构。
+- 影响三语案例文案与案例相关前台组件渲染逻辑。
+
+---
+
 V1.22.0 feat(pages): 将多语言页面与通用组件接入 CMS 内容源
 
 类型: feat

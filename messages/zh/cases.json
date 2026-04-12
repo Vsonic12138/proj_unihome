@@ -1,0 +1,9 @@
+{
+  "cases": {
+    "backToList": "返回列表",
+    "serviceCases": "服务案例",
+    "empty": "暂无案例内容",
+    "viewDetails": "查看详情",
+    "noImage": "图片暂缺"
+  }
+}

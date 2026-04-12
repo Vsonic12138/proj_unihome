@@ -15,6 +15,8 @@ type PageParams = {
   params: Promise<{ locale: string }>;
 };
 
+const SLUG = "case-studies-sci-tech-innovation";
+
 export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
@@ -30,7 +32,7 @@ export async function generateMetadata({
   const page = await tryGetPageBySlug({
     payload,
     locale: payloadLocale,
-    slug: "case-studies",
+    slug: SLUG,
     depth: 1,
     draft: isPreview,
   });
@@ -44,7 +46,7 @@ export async function generateMetadata({
   };
 }
 
-const CaseStudiesPage = async ({ params }: PageParams) => {
+const SciTechInnovationCasesPage = async ({ params }: PageParams) => {
   const { locale } = await params;
   const isPreview = (await draftMode()).isEnabled;
   if (isPreview) noStore();
@@ -56,23 +58,26 @@ const CaseStudiesPage = async ({ params }: PageParams) => {
   const page = await tryGetPageBySlug({
     payload,
     locale: payloadLocale,
-    slug: "case-studies",
-    depth: 2,
+    slug: SLUG,
+    depth: 3,
     draft: isPreview,
   });
-  if (!page?.title || !page?.seo?.description) return notFound();
+
+  if (!page?.title) return notFound();
+  const introTitle = (page as any)?.intro?.title ?? page.title;
+  const introDescription = (page as any)?.intro?.description ?? page.seo?.description ?? "";
 
   return (
     <>
       <PageIntro
-        title={page.title}
-        description={page.seo.description}
+        title={introTitle}
+        description={introDescription}
       />
-      {Array.isArray((page as any).blocks) ? (
+      {Array.isArray((page as any)?.blocks) ? (
         <BlockRenderer locale={locale} blocks={(page as any).blocks} />
       ) : null}
     </>
   );
 };
 
-export default CaseStudiesPage;
+export default SciTechInnovationCasesPage;
