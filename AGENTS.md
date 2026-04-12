@@ -1,123 +1,25 @@
-# Agent Instructions
+# Repository Guidelines
 
-## Build Commands
+## Project Structure & Module Organization
+This repository is a `Next.js 15` App Router site with `Payload CMS` integration. Application routes live under `src/app`, with localized pages in `src/app/[locale]`. Reusable UI components are in `src/components`, i18n loading logic is in `src/i18n`, and CMS collections, globals, blocks, and admin customizations are under `src/payload`. Translation dictionaries are stored in `messages/{en,zh,ja}`. Static assets belong in `public/`. Operational notes and migration plans live in `docs/`, while CMS utilities and seed scripts live in `scripts/payload/`.
 
-```bash
-# Install dependencies
-npm install
+## Build, Test, and Development Commands
+- `npm install`: install project dependencies.
+- `npm run dev`: start the local Next.js dev server.
+- `npm run build`: create the production build.
+- `npm run start`: run the production build locally.
+- `npm run lint`: run the Next.js ESLint ruleset.
+- `npm run generate:types`: regenerate Payload types after schema changes.
+- `npm run seed:payload` and `npm run publish:all`: seed or publish CMS content when content models change.
 
-# Development server (port 3000)
-npm run dev
+## Coding Style & Naming Conventions
+Use TypeScript for all new app code. Follow the existing 2-space indentation and keep imports clean and grouped. Components and CMS schema files use `PascalCase` filenames such as `HeroBlock.ts` or `LocaleSwitcher.tsx`; utility and route-support files use `camelCase` or framework naming like `request.ts` and `page.tsx`. Run `npm run lint` before submitting changes. Formatting is handled by `Prettier` with `prettier-plugin-tailwindcss`, so keep Tailwind classes sortable instead of hand-grouping them.
 
-# Production build
-npm run build
+## Testing Guidelines
+There is no dedicated automated test suite configured in this repository today. At minimum, run `npm run lint` and manually verify affected localized routes, key CMS-backed pages, and any modified API preview flow. If you add automated tests later, place them near the feature or in a clear `tests/` directory and use names ending in `.test.ts` or `.test.tsx`.
 
-# Start production server
-npm run start
+## Commit & Pull Request Guidelines
+Recent history follows a versioned Conventional Commit style, for example `V1.20.7 chore(config): ...` and `V1.20.6 style(format): ...`. Keep the `Vx.y.z type(scope): summary` pattern, use imperative summaries, and keep scopes specific. PRs should include a short description, impacted routes or CMS areas, linked issues when available, and screenshots for UI changes. Mention any required content migration, seeding, or publish steps in the PR body.
 
-# Lint check (ESLint)
-npm run lint
-```
-
-## Project Stack
-
-- **Framework**: Next.js 15 (App Router), React 19, TypeScript 5
-- **Styling**: Tailwind CSS v4, PostCSS
-- **i18n**: next-intl (zh/en/ja)
-- **Theme**: next-themes (dark mode)
-
-## Code Style
-
-### Imports
-- Use `@/*` alias for `src/*` imports
-- React imports: `import { useState, useCallback } from "react"`
-- Next.js imports: `import Image from "next/image"`, `import Link from "next/link"`
-- i18n: `import { useTranslations } from "next-intl"` (client) / `import { getTranslations } from "next-intl/server"` (server)
-
-### Formatting
-- Prettier with `prettier-plugin-tailwindcss`
-- 2-space indentation
-- Double quotes for strings
-- Semicolons required
-
-### Component Structure
-```tsx
-// Default exports, PascalCase
-const ComponentName = ({ prop1, prop2 }: ComponentProps) => {
-  // Hooks at top
-  const t = useTranslations();
-  const [state, setState] = useState(initial);
-
-  // Callbacks with useCallback
-  const handleClick = useCallback(() => { ... }, [deps]);
-
-  // Render
-  return ( ... );
-};
-
-export default ComponentName;
-```
-
-### TypeScript
-- Prefer explicit types over `any`
-- Interface/Type naming: PascalCase
-- Props type: `ComponentNameProps` or inline `{ prop: type }`
-- `strict: false` in tsconfig (be lenient)
-
-### File Naming
-- Components: `PascalCase/index.tsx` or `PascalCase.tsx`
-- Utils: `camelCase.ts`
-- Types: `kebab-case.ts` in `/types`
-- Page components: `page.tsx` (Next.js convention)
-
-### Accessibility
-- All interactive elements need `aria-label`
-- Buttons must be focusable with visible focus ring
-- Use semantic HTML (`<button>` not `<div onClick>`)
-
-### i18n
-- Never hardcode UI text
-- Use translation keys: `t('namespace.key')` or `t.raw('namespace')` for objects
-- JSON files in `/messages/{locale}/`
-
-### Styling
-- Tailwind utility classes, responsive with `sm:`, `md:`, `lg:`
-- Dark mode: `dark:` prefix
-- Arbitrary values: `bg-[#FCFCFC]` when needed
-
-### Error Handling
-- Use optional chaining (`?.`) and nullish coalescing (`??`)
-- Provide fallbacks for dynamic content
-
-### Performance
-- Use `useMemo` for expensive computations
-- Use `useCallback` for event handlers passed to children
-- Images: use `next/Image` with proper `sizes`
-
-## Directory Structure
-
-```
-src/
-  app/[locale]/       # Routed pages
-  app/                # Layouts, providers, non-routed components
-  components/         # Reusable components
-  i18n/               # Routing and request config
-  types/              # TypeScript types
-  lib/                # Utilities
-  styles/             # Global CSS
-messages/             # Translation JSONs
-```
-
-## Client vs Server Components
-
-- **Server by default** (async functions allowed)
-- Add `"use client"` when using:
-  - React hooks (useState, useEffect, etc.)
-  - Browser APIs
-  - Event handlers
-
-## Notes
-
-- Node.js >= 18.17.0 required
-- Language cookie: `proj_uinhome-language`
-- No test runner configured
+## Configuration & Content Notes
+Check `payload.config.ts`, `next.config.mjs`, and `src/middleware.ts` before changing routing, locales, or CMS behavior. Do not edit generated snapshots in `backups/` unless the task is explicitly about content restore/export.

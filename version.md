@@ -67,6 +67,55 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.23.1 chore(config): 整理开发文档与变更日志辅助脚本
+
+类型: chore
+
+范围: config
+
+说明:
+本次提交聚焦开发辅助内容整理，补充仓库说明文档、同步开发协作规范，并将变更日志生成脚本从旧的 `.js` 版本切换为 `.cjs` 版本，便于在当前项目配置下稳定运行，减少后续维护歧义。
+
+实现细节:
+
+1. **补充与整理开发文档**
+   - 更新 `AGENTS.md`。
+   - 新增 `docs/` 下的项目说明与运维相关文档。
+
+2. **调整变更日志辅助脚本**
+   - 新增 `scripts/generate-changelog.cjs`。
+   - 删除旧的 `scripts/generate-changelog.js`，统一脚本形态。
+
+3. **同步版本记录**
+   - 更新 `version.md`，登记本次文档与脚本整理内容。
+
+文件变更:
+修改文件:
+
+- `/AGENTS.md`
+- `/version.md`
+
+新增文件 / 目录:
+
+- `/docs/`
+- `/scripts/generate-changelog.cjs`
+
+删除文件:
+
+- `/scripts/generate-changelog.js`
+
+改进效果:
+
+- 仓库内的开发说明和协作规则更完整。
+- 版本日志辅助脚本与当前 Node/模块配置保持一致。
+- 为后续提交和版本记录维护提供更稳定的辅助能力。
+
+影响范围:
+
+- 仅影响开发文档、协作规范与辅助脚本，不影响前台业务功能。
+
+---
+
 V1.23.0 feat(cases): 重构服务案例路由与多语言内容结构
 
 类型: feat
