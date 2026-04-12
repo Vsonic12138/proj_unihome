@@ -20,7 +20,8 @@ export default createMiddleware({
 export const config = {
   // Match all pathnames except for
   // - api routes
+  // - admin routes (Payload CMS)
   // - _next (static files)
   // - any file with an extension (e.g. favicon.ico)
-  matcher: ['/((?!api|_next|.*\\..*).*)'],
+  matcher: ['/((?!api|admin|_next|.*\\..*).*)'],
 };

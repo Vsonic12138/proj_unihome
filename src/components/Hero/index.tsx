@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 type HeroProps = {
   copy: any;
@@ -46,6 +46,7 @@ type Slide = {
 
 const Hero = ({ copy }: HeroProps) => {
   const t = useTranslations();
+  const locale = useLocale();
   const normalizedSlides = useMemo<Slide[]>(() => {
     return (copy.slides ?? []).map((item) => {
       const slide = item as SlideInput;
@@ -74,16 +75,9 @@ const Hero = ({ copy }: HeroProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    if (slides.length <= 1) {
-      return;
-    }
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % slides.length);
-    }, autoPlayInterval);
-
-    return () => {
-      clearInterval(timer);
-    };
+    // 禁用自动轮播 (按用户需求调整为不轮播)
+    // if (slides.length <= 1) return;
+    // const timer = setInterval(() => { ... }, interval);
   }, [slides.length, autoPlayInterval]);
 
   const handleSelect = useCallback((index: number) => {
@@ -140,7 +134,7 @@ const Hero = ({ copy }: HeroProps) => {
         fill
         priority={priority}
         sizes="100vw"
-        style={{ objectFit: "cover" }}
+        className="object-cover transition-transform duration-[4000ms] ease-out group-hover:scale-105"
       />
     );
   }
@@ -159,7 +153,7 @@ const Hero = ({ copy }: HeroProps) => {
     >
       <div
         className="relative w-full overflow-hidden bg-black"
-        style={{ height: "min(100vh, 920px)", minHeight: "920px" }}
+        style={{ aspectRatio: "16/7", minHeight: "400px" }}
       >
         <div
           className="flex h-full w-full transition-transform duration-700 ease-out"
@@ -169,13 +163,13 @@ const Hero = ({ copy }: HeroProps) => {
             if (slide.action?.href) {
               // Use Link component when href is present
               return (
-                <Link
+                  <Link
                   key={slide.id}
-                  href={slide.action.href}
+                  href={slide.action.href.startsWith("http") ? slide.action.href : `/${locale}${slide.action.href.startsWith("/") ? slide.action.href : `/${slide.action.href}`}`}
                   target={slide.action.target ?? "_self"}
                   rel={slide.action.target === "_blank" ? "noopener noreferrer" : undefined}
                   aria-label={slide.action.ariaLabel ?? slide.action.label ?? slide.title ?? t('hero.controls.slideLabel', { id: slide.id })}
-                  className="relative block h-full w-full flex-shrink-0"
+                  className="group relative block h-full w-full flex-shrink-0 overflow-hidden"
                 >
                   <article className="relative h-full w-full bg-black">
                     {renderMedia(slide, index === 0)}
@@ -187,7 +181,7 @@ const Hero = ({ copy }: HeroProps) => {
               return (
                 <div
                   key={slide.id}
-                  className="relative block h-full w-full flex-shrink-0"
+                  className="group relative block h-full w-full flex-shrink-0 overflow-hidden"
                 >
                   <article className="relative h-full w-full bg-black">
                     {renderMedia(slide, index === 0)}

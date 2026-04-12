@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useEffect, useState, useRef } from "react";
+import { useLocale } from "next-intl";
 import {
-  getConsentStatus,
   setConsentStatus,
   shouldShowBanner,
   enableFunctionalCookies,
@@ -82,9 +81,30 @@ const CookieIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const CookieConsent = () => {
-  const t = useTranslations();
-  const copy = t.raw('cookieConsent') as any;
+type CookieConsentProps = {
+  siteSettings?: any | null;
+};
+
+const CookieConsent = ({ siteSettings }: CookieConsentProps) => {
+  const locale = useLocale();
+  const payloadCopy = siteSettings?.cookieConsent;
+  const copy =
+    payloadCopy && typeof payloadCopy === "object" && payloadCopy.ariaLabel && payloadCopy.message
+      ? payloadCopy
+      : null;
+  const rawPrivacyPolicyLink = String(copy?.privacyPolicyLink ?? "/privacy-policy").trim();
+  const privacyPolicyLink =
+    rawPrivacyPolicyLink.startsWith("http://") || rawPrivacyPolicyLink.startsWith("https://")
+      ? rawPrivacyPolicyLink
+      : rawPrivacyPolicyLink === "/"
+        ? `/${locale}`
+        : rawPrivacyPolicyLink.startsWith(`/${locale}/`) || rawPrivacyPolicyLink === `/${locale}`
+          ? rawPrivacyPolicyLink
+          : rawPrivacyPolicyLink.startsWith("/")
+            ? `/${locale}${rawPrivacyPolicyLink}`
+            : `/${locale}/${rawPrivacyPolicyLink}`;
+  const isExternalPrivacyLink = privacyPolicyLink.startsWith("http://") || privacyPolicyLink.startsWith("https://");
+
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
 
@@ -92,6 +112,7 @@ const CookieConsent = () => {
   const hasDismissedRef = useRef(false);
 
   useEffect(() => {
+    if (!copy) return;
     // Only check once on mount
     if (hasDismissedRef.current) return;
 
@@ -104,11 +125,24 @@ const CookieConsent = () => {
     }, 500);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [copy]);
+
+  useEffect(() => {
+    if (!copy) return;
+
+    const handleOpenPreferences = () => {
+      hasDismissedRef.current = false;
+      setIsAnimatingOut(false);
+      setIsVisible(true);
+    };
+
+    window.addEventListener("cookie-consent:open", handleOpenPreferences);
+    return () => window.removeEventListener("cookie-consent:open", handleOpenPreferences);
+  }, [copy]);
 
   const handleAccept = () => {
     // Save consent immediately
-    setConsentStatus('accepted');
+    setConsentStatus("accepted");
     enableFunctionalCookies();
     enableAnalyticsCookies();
 
@@ -124,7 +158,7 @@ const CookieConsent = () => {
 
   const handleReject = () => {
     // Save consent immediately
-    setConsentStatus('rejected');
+    setConsentStatus("rejected");
     enableFunctionalCookies(); // Language preference is always enabled
     disableAnalyticsCookies();
 
@@ -141,12 +175,13 @@ const CookieConsent = () => {
   // Don't render anything if:
   // 1. Banner has been dismissed by user
   // 2. Banner is not visible
+  if (!copy) return null;
   if (hasDismissedRef.current || !isVisible) return null;
 
   return (
     <div
       className={`fixed inset-x-0 bottom-0 z-50 ${
-        isAnimatingOut ? 'animate-slideDown' : 'animate-slideUp'
+        isAnimatingOut ? "animate-slideDown" : "animate-slideUp"
       }`}
       role="dialog"
       aria-live="polite"
@@ -164,14 +199,14 @@ const CookieConsent = () => {
                 <div className="flex-1">
                   <p className="text-sm text-body-color dark:text-body-color-dark sm:text-base">
                     {copy.message}
-                    {copy.privacyPolicyLink && copy.learnMore && (
+                    {privacyPolicyLink && copy.learnMore && (
                       <>
                         {' '}
                         <a
-                          href={copy.privacyPolicyLink}
+                          href={privacyPolicyLink}
                           className="font-medium text-primary underline hover:no-underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          target={isExternalPrivacyLink ? "_blank" : undefined}
+                          rel={isExternalPrivacyLink ? "noopener noreferrer" : undefined}
                         >
                           {copy.learnMore}
                         </a>

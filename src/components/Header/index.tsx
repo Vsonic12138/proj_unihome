@@ -8,12 +8,82 @@ import { useTranslations, useLocale } from 'next-intl';
 import ThemeToggler from "./ThemeToggler";
 import LocaleSwitcher from "./LocaleSwitcher";
 import buildMenu from "./menuData";
+import type { Menu } from "@/types/menu";
 
 type HeaderProps = {
   locale: string;
+  navigation?: any | null;
+  siteSettings?: any | null;
 };
 
-const Header = ({ locale }: HeaderProps) => {
+type MediaLike =
+  | number
+  | string
+  | null
+  | undefined
+  | {
+      url?: string | null;
+      sizes?: Record<string, { url?: string | null } | undefined> | null;
+    };
+
+function resolveMediaURL(media: MediaLike): string | null {
+  if (!media) return null;
+  if (typeof media === "string") return media;
+  if (typeof media === "number") return null;
+
+  if (media.url) return media.url;
+  if (media.sizes?.hero?.url) return media.sizes.hero.url;
+  if (media.sizes?.card?.url) return media.sizes.card.url;
+  if (media.sizes?.thumbnail?.url) return media.sizes.thumbnail.url;
+
+  return null;
+}
+
+function prefixLocaleHref(currentLocale: string, href: string): string {
+  if (!href) return `/${currentLocale}`;
+  if (href.startsWith("http://") || href.startsWith("https://")) return href;
+  if (href === "/") return `/${currentLocale}`;
+  if (href.startsWith("/")) return `/${currentLocale}${href}`;
+  return `/${currentLocale}/${href}`;
+}
+
+function buildMenuFromNavigation(currentLocale: string, navigation: any): Menu[] {
+  const items = Array.isArray(navigation?.items) ? navigation.items : [];
+  return items
+    .map((item: any, index: number) => {
+      const href = String(item?.href ?? "");
+      const title = String(item?.label ?? "");
+      const path = prefixLocaleHref(currentLocale, href);
+
+      const children = Array.isArray(item?.children) ? item.children : [];
+      const submenu = children
+        .map((child: any, childIndex: number) => {
+          const childHref = String(child?.href ?? "");
+          const childTitle = String(child?.label ?? "");
+          if (!childHref || !childTitle) return null;
+          return {
+            id: (index + 1) * 100 + childIndex + 1,
+            title: childTitle,
+            path: prefixLocaleHref(currentLocale, childHref),
+            newTab: false,
+          } satisfies Menu;
+        })
+        .filter(Boolean) as Menu[];
+
+      if (!title) return null;
+
+      return {
+        id: index + 1,
+        title,
+        path: submenu.length > 0 ? undefined : path,
+        newTab: false,
+        submenu: submenu.length > 0 ? submenu : undefined,
+      } satisfies Menu;
+    })
+    .filter(Boolean) as Menu[];
+}
+
+const Header = ({ locale, navigation, siteSettings }: HeaderProps) => {
   const t = useTranslations();
   const currentLocale = useLocale();
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -32,9 +102,18 @@ const Header = ({ locale }: HeaderProps) => {
   }, []);
 
   const pathname = usePathname();
-  const menu = t.raw('header.menu');
+
   const languageSwitcher = t.raw('header.languageSwitcher');
-  const menuData = useMemo(() => buildMenu(currentLocale, menu), [currentLocale, menu]);
+  const menuData = useMemo(() => buildMenuFromNavigation(currentLocale, navigation), [currentLocale, navigation]);
+  const frontendBranding = siteSettings?.frontendBranding ?? {};
+  const headerLogo =
+    resolveMediaURL(frontendBranding?.headerLogo) ?? "/images/logo/logo-2.svg";
+  const headerLogoInverse =
+    resolveMediaURL(frontendBranding?.headerLogoInverse) ?? "/images/logo/logo.svg";
+
+  if (!navigation?.items?.length) {
+    return null;
+  }
 
   return (
     <header
@@ -46,7 +125,7 @@ const Header = ({ locale }: HeaderProps) => {
     >
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
-          <div className="w-60 max-w-full px-4 xl:mr-12">
+          <div className="w-40 max-w-full px-4 lg:mr-4 xl:mr-8">
             <Link
               href={`/${currentLocale}`}
               className={`header-logo block w-full ${
@@ -59,7 +138,7 @@ const Header = ({ locale }: HeaderProps) => {
                 } w-36 max-w-full`}
               >
                 <Image
-                  src="/images/logo/logo-2.svg"
+                  src={headerLogo}
                   alt={t('header.logoAlt')}
                   fill
                   priority
@@ -67,7 +146,7 @@ const Header = ({ locale }: HeaderProps) => {
                   className="object-contain dark:hidden"
                 />
                 <Image
-                  src="/images/logo/logo.svg"
+                  src={headerLogoInverse}
                   alt={t('header.logoAlt')}
                   fill
                   priority
@@ -109,13 +188,13 @@ const Header = ({ locale }: HeaderProps) => {
                     : "invisible top-[120%] opacity-0"
                 }`}
               >
-                <ul className="block lg:flex lg:space-x-12">
+                <ul className="block lg:flex lg:space-x-6 xl:space-x-12">
                   {menuData.map((menuItem, index) => (
                     <li key={menuItem.id} className="group relative">
                       {menuItem.path ? (
                         <Link
                           href={menuItem.path}
-                          className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${
+                          className={`flex py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 whitespace-nowrap ${
                             pathname === menuItem.path
                               ? "text-primary dark:text-white"
                               : "text-dark hover:text-primary dark:text-white/70 dark:hover:text-white"
@@ -131,7 +210,7 @@ const Header = ({ locale }: HeaderProps) => {
                                 value === index ? -1 : index,
                               )
                             }
-                            className="text-dark group-hover:text-primary flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 dark:text-white/70 dark:group-hover:text-white"
+                            className="text-dark group-hover:text-primary flex cursor-pointer items-center justify-between py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 whitespace-nowrap dark:text-white/70 dark:group-hover:text-white"
                           >
                             {menuItem.title}
                             <span className="pl-3">

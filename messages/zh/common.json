@@ -10,9 +10,10 @@
       "submenu": {
         "knowledgeBase": "知识库",
         "openSource": "开源项目",
-        "caseUniversities": "高校案例",
-        "caseK12": "K12案例",
-        "caseCoResearch": "共研案例"
+        "casePracticalTeaching": "实训教学案例",
+        "caseSciTechInnovation": "科技创新案例",
+        "caseInnovationCompetition": "创新竞赛案例",
+        "caseTrainingBase": "培训基地"
       }
     },
     "languageSwitcher": {
@@ -98,6 +99,8 @@
     },
     "contact": {
       "phoneLabel": "联系电话",
+      "emailLabel": "官方邮箱",
+      "addressLabel": "地址",
       "phoneNumber": "+86 176 1035 7571",
       "phoneTip": "工作日 09:30-18:00",
       "taobaoLabel": "淘宝店铺",
@@ -113,7 +116,12 @@
         "title": "关注微信公众号",
         "description": "扫码关注公众号，领取教学资料、活动通知。"
       }
-    }
+    },
+    "legal": {
+      "privacyPolicy": "隐私与 Cookie 政策",
+      "cookieSettings": "Cookie 设置"
+    },
+    "copyright": "© {year} {companyName} 版权所有。京ICP备xxxxxxxx号-x 公安备案号：xxxxxxxxxxxxxx"
   },
   "floatingContact": {
     "panelLabel": "联系我们",
@@ -158,5 +166,47 @@
     "learnMore": "了解更多",
     "acceptAll": "接受全部",
     "rejectNonEssential": "仅必要 Cookie"
+  },
+  "privacyPolicy": {
+    "title": "隐私与 Cookie 政策",
+    "description": "说明本网站如何使用 Cookie、本地存储及相关技术，以及您如何管理偏好设置。",
+    "intro": "本页面用于说明本站在访问过程中使用的 Cookie、本地存储与类似技术。除网站运行所必需的项目外，我们不会在未获得明确同意前启用分析或营销类追踪。",
+    "cmsLegalTitle": "补充法律声明",
+    "meta": {
+      "title": "隐私与 Cookie 政策",
+      "description": "查看本站的 Cookie 使用说明、存储类型以及偏好管理方式。"
+    },
+    "sections": [
+      {
+        "title": "我们使用哪些存储",
+        "body": [
+          "必要存储：用于维持站点基础运行、安全性以及您明确发起的功能请求。",
+          "功能性存储：用于保存语言偏好、主题偏好等体验设置，帮助您在后续访问中保持一致体验。",
+          "同意状态存储：用于记录您对 Cookie 横幅的选择，避免重复弹出。"
+        ]
+      },
+      {
+        "title": "当前站点中的主要项目",
+        "body": [
+          "cookie-consent-status：记录您接受全部或仅必要的选择。",
+          "proj_uinhome-language：记录您主动切换的站点语言。",
+          "theme 本地存储：记录您选择的明暗主题偏好。"
+        ]
+      },
+      {
+        "title": "分析与营销",
+        "body": [
+          "当前站点未默认启用分析类或营销类追踪脚本。",
+          "如未来接入访问统计、广告归因或第三方营销工具，我们将先更新本政策，并在获得您同意后再启用相应存储。"
+        ]
+      },
+      {
+        "title": "如何管理 Cookie 偏好",
+        "body": [
+          "您可以在页脚点击“Cookie 设置”重新打开偏好提示横幅，并更新自己的选择。",
+          "您也可以通过浏览器设置删除已有 Cookie 或限制本地存储，但这可能影响站点部分功能。"
+        ]
+      }
+    ]
   }
 }

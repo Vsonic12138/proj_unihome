@@ -67,6 +67,106 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.22.0 feat(pages): 将多语言页面与通用组件接入 CMS 内容源
+
+类型: feat
+
+范围: pages
+
+说明:
+本次提交聚焦官网前台页面的 CMS 化改造，将首页、关于、联系、开发者、产品等多语言页面及其通用展示组件接入 Payload 内容源，同时补齐对应的多语言消息文件与前台渲染适配逻辑，使页面内容能够由 CMS 统一驱动。
+
+实现细节:
+
+1. **接通多语言页面的数据读取**
+   - 调整 `src/app/[locale]/` 下首页、关于、联系、开发者、产品等页面路由。
+   - 统一改为按当前 locale 读取 CMS 页面内容、全局配置与产品数据。
+
+2. **接入前台区块渲染能力**
+   - 新增 `src/components/payload/`，承接 CMS blocks 的前台渲染。
+   - 让页面可根据 CMS 配置渲染 Hero、Features、Contact、Rich Text 等区块。
+
+3. **改造通用前台组件**
+   - 调整 Header、Footer、Hero、Features、Contact、Breadcrumb、Cookie 相关组件。
+   - 补齐产品相关展示组件对 CMS 数据的消费能力。
+
+4. **同步多语言文案文件**
+   - 更新 `messages/{zh,en,ja}` 下与首页、通用、页面、产品、联系相关的消息文件。
+   - 让前台静态文案与 CMS 输出在三语环境下保持一致。
+
+5. **补充路由与样式配套调整**
+   - 调整 `src/i18n/request.ts`、`src/middleware.ts` 与全局样式。
+   - 删除旧的根布局 `src/app/layout.tsx`，统一由 locale 布局承接前台结构。
+
+文件变更:
+修改文件:
+
+- `/src/app/[locale]/layout.tsx`
+- `/src/app/[locale]/page.tsx`
+- `/src/app/[locale]/about/page.tsx`
+- `/src/app/[locale]/contact/page.tsx`
+- `/src/app/[locale]/custom-solutions/page.tsx`
+- `/src/app/[locale]/developers/page.tsx`
+- `/src/app/[locale]/developers/knowledge-base/page.tsx`
+- `/src/app/[locale]/developers/open-source/page.tsx`
+- `/src/app/[locale]/products/page.tsx`
+- `/src/app/[locale]/products/[slug]/page.tsx`
+- `/src/app/[locale]/error/page.tsx`
+- `/src/components/About/AboutSectionTwo.tsx`
+- `/src/components/Common/Breadcrumb.tsx`
+- `/src/components/Common/CookieConsent.tsx`
+- `/src/components/Common/FloatingContact.tsx`
+- `/src/components/Contact/index.tsx`
+- `/src/components/Features/index.tsx`
+- `/src/components/Footer/index.tsx`
+- `/src/components/Header/index.tsx`
+- `/src/components/Header/menuData.tsx`
+- `/src/components/Hero/index.tsx`
+- `/src/components/Products/FAQ.tsx`
+- `/src/components/Products/ImageGridWithLightbox.tsx`
+- `/src/i18n/request.ts`
+- `/src/middleware.ts`
+- `/src/styles/index.css`
+- `/messages/zh/common.json`
+- `/messages/zh/contact.json`
+- `/messages/zh/home.json`
+- `/messages/zh/pages.json`
+- `/messages/zh/products.json`
+- `/messages/en/common.json`
+- `/messages/en/contact.json`
+- `/messages/en/home.json`
+- `/messages/en/pages.json`
+- `/messages/en/products.json`
+- `/messages/ja/common.json`
+- `/messages/ja/contact.json`
+- `/messages/ja/home.json`
+- `/messages/ja/pages.json`
+- `/messages/ja/products.json`
+
+新增文件 / 目录:
+
+- `/src/components/payload/`
+- `/src/components/Common/CookiePreferencesButton.tsx`
+- `/src/components/Products/SafeProductImage.tsx`
+- `/src/app/[locale]/privacy-policy/`
+
+删除文件:
+
+- `/src/app/layout.tsx`
+
+改进效果:
+
+- 官网主要前台页面开始由 CMS 内容统一驱动。
+- 三语页面的内容来源、渲染方式与组件行为趋于一致。
+- 为后续 case studies、资源页与更多前台模块的 CMS 化改造打下基础。
+
+影响范围:
+
+- 影响首页、关于页、联系页、开发者页、产品页等主要前台路由。
+- 影响三语页面渲染、导航读取与通用组件展示逻辑。
+
+---
+
 V1.21.0 feat(cms): 接入 Payload CMS 基础设施与后台管理能力
 
 类型: feat

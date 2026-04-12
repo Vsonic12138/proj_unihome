@@ -23,6 +23,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
     detailLabels,
     pages,
     error,
+    cases,
   ] = await Promise.all([
     import(`../../messages/${resolvedLocale}/common.json`),
     import(`../../messages/${resolvedLocale}/home.json`),
@@ -35,6 +36,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
     import(`../../messages/${resolvedLocale}/detailLabels.json`),
     import(`../../messages/${resolvedLocale}/pages.json`),
     import(`../../messages/${resolvedLocale}/error.json`),
+    import(`../../messages/${resolvedLocale}/cases.json`),
   ]);
 
   return {
@@ -51,6 +53,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
       ...detailLabels,
       ...pages,
       ...error,
+      ...cases,
     },
   };
 });

@@ -22,7 +22,195 @@
     },
     "knowledgeBase": {
       "title": "ナレッジベース",
-      "description": "ハードウェアのセットアップ、ソフトウェア設定、授業運用に関するドキュメントやチュートリアルを参照できます。"
+      "description": "UNI Roboticsのトレーニングチュートリアル、製品マニュアル、プロジェクトドキュメントをご覧ください。基礎的なアプリケーションから最先端の開発まで、幅広くカバーしています。",
+      "categories": [
+        {
+          "id": "m-series",
+          "title": "M シリーズ · トレーニングチュートリアル",
+          "description": "Mシリーズロボットキット向けのトレーニングチュートリアル。Arduino、OpenBlockビジュアルプログラミング、STM32、ESP32など多様な開発方法を網羅しています。",
+          "projects": [
+            {
+              "id": 1,
+              "name": "Arduino ロボット実習チュートリアル",
+              "description": "Arduinoベースの包括的なロボット実習システム。シャーシ制御、センサーアプリケーション、ロボットアーム操作、総合プロジェクト開発などを網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/sdaqpo?#",
+              "tags": [
+                "Mシリーズ",
+                "Arduino",
+                "チュートリアル"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Arduino + OpenBlock グラフィカルロボット実習チュートリアル",
+              "description": "OpenBlockビジュアルプログラミングプラットフォームとArduinoハードウェアを組み合わせ、初心者でも素早くロボット開発に入門できます。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yzgzp7?#",
+              "tags": [
+                "Mシリーズ",
+                "ビジュアル",
+                "OpenBlock"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Arduino ロボット実習チュートリアル（ポッドキャスト版）",
+              "description": "ポッドキャスト形式で提供されるArduinoロボット実習チュートリアル。いつでもどこでも学習でき、自学自習にも最適です。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/quickh?#",
+              "tags": [
+                "Mシリーズ",
+                "Arduino",
+                "ポッドキャスト"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "STM32 ロボット実習チュートリアル",
+              "description": "STM32マイコンに基づくロボット開発実習。専門的な組み込み開発を目的とし、大学のマイコン・ロボティクス総合コースに適しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/qasv9m?#",
+              "tags": [
+                "Mシリーズ",
+                "STM32",
+                "組み込み"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "ESP32 グラフィカルロボット実習チュートリアル",
+              "description": "ESP32ボードを使ったグラフィカルロボット実習。Wi-Fiと豊富な周辺機器をサポートし、IoTとロボティクスの融合コースに最適です。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/anet35?#",
+              "tags": [
+                "Mシリーズ",
+                "ESP32",
+                "ビジュアル"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-series",
+          "title": "P シリーズ · トレーニングチュートリアル",
+          "description": "高度なPシリーズ実習プラットフォーム向けのチュートリアル。移動ナビゲーション、エンボディドAIタスクプランニング、エンドツーエンド学習などを網羅しています。",
+          "projects": [
+            {
+              "id": 6,
+              "name": "移動ロボットナビゲーション＆ビジョン実習チュートリアル",
+              "description": "UNI-WR2ポータブルROS ナビゲーションプラットフォームのチュートリアル。SLAMマッピング、自律ナビゲーション、コンピュータビジョンの実習を網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vtbi0g?#",
+              "tags": [
+                "UNI-WR2",
+                "ROS2",
+                "ナビゲーション"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "エンボディドロボット タスクプランニング 総合実習チュートリアル",
+              "description": "RAI-P4プラットフォームを活用し、大規模モデル・音声・ビジョン・ロボットアームを統合した総合実習チュートリアル。インテリジェントエージェントのタスクプランニング全工程を網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/nyxrc7?#",
+              "tags": [
+                "RAI-P4",
+                "LLM",
+                "エンボディドAI"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "エンボディド エンドツーエンド エンジニアリング デプロイ 実習チュートリアル",
+              "description": "ALO-LE4プラットフォームとACTアーキテクチャに基づくエンドツーエンドのエンボディドロボットデプロイ実習。データ収集・模倣学習・エンジニアリング展開を網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/efqngz?#",
+              "tags": [
+                "ALO-LE4",
+                "エンドツーエンド",
+                "模倣学習"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "courses",
+          "title": "コース · ナレッジベース",
+          "description": "各専門コース向けの理論と実践のナレッジベース。マシンビジョン、センサー、ロボティクス、PID制御、移動ナビゲーションなどのコア分野を網羅しています。",
+          "projects": [
+            {
+              "id": 9,
+              "name": "《マシンビジョン技術と応用 ナレッジベース V1.0》",
+              "description": "マシンビジョンのコア技術を体系的に解説。画像処理、物体検出（YOLO）、マルチモーダルVLMビジョンアプリケーションなどを網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/hyt2n3?#",
+              "tags": [
+                "ビジョン",
+                "YOLO",
+                "深層学習"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "《センサー検出と制御 ナレッジベース V1.0》",
+              "description": "センサーの原理とロボット制御の総合ナレッジベース。一般的なセンサーの応用（超音波・IMU・LiDARなど）と制御ロジックの実装を網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/fl5gl0?#",
+              "tags": [
+                "センサー",
+                "制御",
+                "ハードウェア"
+              ]
+            },
+            {
+              "id": 11,
+              "name": "《ロボティクス基礎実践 V2.0》",
+              "description": "ロボティクスのコア理論と実践を織り交ぜた内容で、運動学、動力学、軌道計画、総合実験プロジェクトを網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/kvtnc0?#",
+              "tags": [
+                "ロボティクス",
+                "運動学",
+                "実践"
+              ]
+            },
+            {
+              "id": 12,
+              "name": "《PID制御とロボット応用 V1.0》",
+              "description": "PID制御アルゴリズムの原理とロボットエンジニアリング実践。シャーシやアームのシナリオを中心にパラメータ調整と実験検証を解説しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/bpm5r7?#",
+              "tags": [
+                "PID",
+                "制御",
+                "エンジニアリング"
+              ]
+            },
+            {
+              "id": 13,
+              "name": "《マイコン技術原理とArduino応用 V2.0》",
+              "description": "マイコンの基礎とArduinoプラットフォームを組み合わせた体系的なナレッジベース。ペリフェラルドライバ・割り込み・通信プロトコル・ロボットアプリケーション事例を網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yfe243?#",
+              "tags": [
+                "マイコン",
+                "Arduino",
+                "組み込み"
+              ]
+            },
+            {
+              "id": 14,
+              "name": "《PID制御アルゴリズムと実践 V3.0》",
+              "description": "上級向けPID制御マニュアル。カスケードPID・フィードフォワード制御などの高度な制御戦略を解説し、移動ロボットでの総合エンジニアリング実践を含みます。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vk723k?#",
+              "tags": [
+                "PID",
+                "上級",
+                "カスケード制御"
+              ]
+            },
+            {
+              "id": 15,
+              "name": "《移動ロボットナビゲーションと測位設計開発マニュアル（SLAM-ROS2）V3.0》",
+              "description": "ROS2ベースの移動ロボットナビゲーションと測位の完全なナレッジベース。Cartographer・Gmapping・Nav2ナビゲーションスタックなどの主要ソリューションを網羅しています。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/omutky?#",
+              "tags": [
+                "ROS2",
+                "SLAM",
+                "ナビゲーション"
+              ]
+            }
+          ]
+        }
+      ]
     },
     "openSource": {
       "title": "オープンソース",
@@ -211,17 +399,21 @@
       "title": "導入事例",
       "description": "授業、競技会、共同研究などで、各パートナーが当社ロボットソリューションをどのように活用しているかをご紹介します。"
     },
-    "caseUniversities": {
-      "title": "大学事例",
-      "description": "大学が実験室構築や授業カリキュラム、イノベーションセンターに当社プラットフォームをどのように導入しているかをご覧ください。"
+    "casePracticalTeaching": {
+      "title": "実践教育事例",
+      "description": "各機関が当社のプラットフォームを実践トレーニングや実験室構築にどのように統合しているかをご覧ください。"
     },
-    "caseK12": {
-      "title": "K12事例",
-      "description": "小中高校が当社のロボット教材を用いて、STEM教育やロボットリテラシーをどのように育成しているかを紹介します。"
+    "caseSciTechInnovation": {
+      "title": "科学技術革新事例",
+      "description": "当社のプラットフォームを活用した技術革新や最先端の学術研究の成功事例をご紹介します。"
     },
-    "caseCoResearch": {
-      "title": "共同研究",
-      "description": "知能ロボットやAIなどの分野で当社技術を活用した共同研究の成果をご覧ください。"
+    "caseInnovationCompetition": {
+      "title": "イノベーションコンテスト事例",
+      "description": "当社の製品が、主要なロボティクスイノベーションコンテストで学生チームをどのように支援しているかをご覧ください。"
+    },
+    "caseTrainingBase": {
+      "title": "トレーニングベース",
+      "description": "トレーニングベースと連携して実施しているロボット教育とその成果をご紹介します。"
     }
   }
 }

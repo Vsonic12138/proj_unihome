@@ -22,7 +22,195 @@
     },
     "knowledgeBase": {
       "title": "Knowledge Base",
-      "description": "Browse documentation, tutorials, and troubleshooting guides covering hardware installation, software configuration, and classroom deployment."
+      "description": "Explore UNI Robotics training tutorials, product manuals, and project documentation — from fundamental applications to cutting-edge development.",
+      "categories": [
+        {
+          "id": "m-series",
+          "title": "M-Series · Training Tutorials",
+          "description": "Training tutorials for the M-Series robot kits, covering Arduino, OpenBlock graphical programming, STM32, ESP32, and other development methods.",
+          "projects": [
+            {
+              "id": 1,
+              "name": "Arduino Robot Training Tutorial",
+              "description": "A comprehensive Arduino-based robot training system covering chassis control, sensor applications, robotic arm operation, and integrated project development.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/sdaqpo?#",
+              "tags": [
+                "M-Series",
+                "Arduino",
+                "Tutorial"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Arduino + OpenBlock Graphical Robot Training Tutorial",
+              "description": "Uses the OpenBlock graphical programming platform with Arduino hardware, enabling beginners to quickly get started with robot development.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yzgzp7?#",
+              "tags": [
+                "M-Series",
+                "Graphical",
+                "OpenBlock"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Arduino Robot Training Tutorial (Podcast Edition)",
+              "description": "Arduino robot training tutorials presented in podcast format, perfect for on-the-go learning and self-paced study.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/quickh?#",
+              "tags": [
+                "M-Series",
+                "Arduino",
+                "Podcast"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "STM32 Robot Training Tutorial",
+              "description": "Robot development training based on the STM32 microcontroller, aimed at professional embedded development for university MCU and robotics courses.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/qasv9m?#",
+              "tags": [
+                "M-Series",
+                "STM32",
+                "Embedded"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "ESP32 Graphical Robot Training Tutorial",
+              "description": "Graphical robot training using the ESP32 board with Wi-Fi and rich peripheral support, ideal for IoT and robotics integrated courses.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/anet35?#",
+              "tags": [
+                "M-Series",
+                "ESP32",
+                "Graphical"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-series",
+          "title": "P-Series · Training Tutorials",
+          "description": "Tutorials for the advanced P-Series training platforms, covering mobile navigation, embodied AI task planning, and end-to-end learning.",
+          "projects": [
+            {
+              "id": 6,
+              "name": "Mobile Robot Navigation & Vision Training Tutorial",
+              "description": "Tutorial for the UNI-WR2 portable ROS navigation platform, covering SLAM mapping, autonomous navigation, and computer vision training.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vtbi0g?#",
+              "tags": [
+                "UNI-WR2",
+                "ROS2",
+                "Navigation"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "Embodied Robot Task Planning Comprehensive Training Tutorial",
+              "description": "A comprehensive tutorial for the RAI-P4 platform integrating large models, voice, vision, and robotic arms, covering the full pipeline of intelligent agent task planning.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/nyxrc7?#",
+              "tags": [
+                "RAI-P4",
+                "LLM",
+                "Embodied AI"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "Embodied End-to-End Engineering Deployment Tutorial",
+              "description": "An end-to-end embodied robot deployment training tutorial based on the ALO-LE4 platform and ACT architecture, covering data collection, imitation learning, and engineering deployment.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/efqngz?#",
+              "tags": [
+                "ALO-LE4",
+                "End-to-End",
+                "Imitation Learning"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "courses",
+          "title": "Course Knowledge Bases",
+          "description": "Theory and practice knowledge bases for professional courses, covering machine vision, sensors, robotics, PID control, mobile navigation, and more.",
+          "projects": [
+            {
+              "id": 9,
+              "name": "Machine Vision Technology & Applications Knowledge Base V1.0",
+              "description": "A systematic overview of core machine vision technology, including image processing, object detection (YOLO), and multimodal VLM vision applications.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/hyt2n3?#",
+              "tags": [
+                "Vision",
+                "YOLO",
+                "Deep Learning"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "Sensor Detection & Control Knowledge Base V1.0",
+              "description": "An integrated knowledge base on sensor principles and robot control, covering common sensor applications (ultrasonic, IMU, LiDAR, etc.) and control logic.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/fl5gl0?#",
+              "tags": [
+                "Sensors",
+                "Control",
+                "Hardware"
+              ]
+            },
+            {
+              "id": 11,
+              "name": "Fundamentals of Robotics Practice V2.0",
+              "description": "Interleaved theory and practice in core robotics, covering kinematics, dynamics, trajectory planning, and comprehensive lab projects.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/kvtnc0?#",
+              "tags": [
+                "Robotics",
+                "Kinematics",
+                "Practice"
+              ]
+            },
+            {
+              "id": 12,
+              "name": "PID Control & Robotics Applications V1.0",
+              "description": "PID control algorithm principles and robot engineering practice, focused on chassis and arm scenarios for parameter tuning and experimental validation.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/bpm5r7?#",
+              "tags": [
+                "PID",
+                "Control",
+                "Engineering"
+              ]
+            },
+            {
+              "id": 13,
+              "name": "MCU Principles & Arduino Applications V2.0",
+              "description": "Systematic knowledge of MCU fundamentals combined with the Arduino platform, covering peripheral drivers, interrupts, communication protocols, and robot application cases.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yfe243?#",
+              "tags": [
+                "MCU",
+                "Arduino",
+                "Embedded"
+              ]
+            },
+            {
+              "id": 14,
+              "name": "PID Control Algorithm & Practice V3.0",
+              "description": "An advanced PID control manual covering cascade PID, feedforward control, and other strategies, with comprehensive engineering practice on mobile robots.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vk723k?#",
+              "tags": [
+                "PID",
+                "Advanced",
+                "Cascade Control"
+              ]
+            },
+            {
+              "id": 15,
+              "name": "Mobile Robot Navigation & Localization Design Manual (SLAM-ROS2) V3.0",
+              "description": "A complete knowledge base for ROS2-based mobile robot navigation and localization, covering Cartographer, Gmapping, Nav2 navigation stacks, and more.",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/omutky?#",
+              "tags": [
+                "ROS2",
+                "SLAM",
+                "Navigation"
+              ]
+            }
+          ]
+        }
+      ]
     },
     "openSource": {
       "title": "Open Source Projects",
@@ -211,17 +399,21 @@
       "title": "Success Stories",
       "description": "See how different partners deploy our robotics solutions across teaching, competitions, and joint research initiatives."
     },
-    "caseUniversities": {
-      "title": "University Programs",
-      "description": "Discover how higher-education institutions integrate our robotics platforms into labs, coursework, and innovation centers."
+    "casePracticalTeaching": {
+      "title": "Practical Teaching Cases",
+      "description": "Discover how institutions integrate our platforms into practical training and lab construction."
     },
-    "caseK12": {
-      "title": "K12 Education",
-      "description": "Learn how middle and high schools use our kits to inspire early-stage STEM learning and robotics literacy."
+    "caseSciTechInnovation": {
+      "title": "Sci-Tech Innovation Cases",
+      "description": "Explore successful practices in technological innovation and cutting-edge academic research using our platforms."
     },
-    "caseCoResearch": {
-      "title": "Joint Research",
-      "description": "Review collaborative R&D efforts that leverage our technology for advanced robotics, AI, and interdisciplinary exploration."
+    "caseInnovationCompetition": {
+      "title": "Innovation Competition Cases",
+      "description": "See how our products help student teams stand out in major robotics innovation competitions."
+    },
+    "caseTrainingBase": {
+      "title": "Training Base",
+      "description": "Learn about our robotics education and achievements in collaboration with training bases."
     }
   }
 }

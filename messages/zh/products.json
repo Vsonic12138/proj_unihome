@@ -12,17 +12,17 @@
           "items": [
             {
               "slug": "ubot-mr20",
-              "name": "具身机器人创新设计套装 Ubot MR20",
-              "model": "Ubot MR20",
+              "name": "具身机器人创新设计套装（四十合一）Ubot MR40",
+              "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-              "brief": "具身智能机器人创新设计套件（二十合一）。结合人工智能通识课程实践套装，从零搭建20余种智能机器人，支持图形化/C++/Python多语言编程。"
+              "brief": "可以从零搭建典型的40种具身场景使用的机器人构型，包含底盘、机械臂、复合机器人。支持图形化/C++（Arduino）/Python多语言编程。配套阶梯式的课程资源，适合零基础学习、科创及竞赛使用。"
             },
             {
               "slug": "gx-mat-09s",
               "name": "具身机器人创新设计平台（增强版）GX-MAT-09S",
               "model": "GX-MAT-09S",
               "image": "/images/products/gx-mat-09s/hero.png",
-              "brief": "11种底盘 + 7种机械臂，88种复合形态，新增激光雷达 + RDK X5 主板；适配进阶课程、科研。"
+              "brief": "工程级具身复合机器人设计套装，支持构建11种+7种机械臂，80余种复合机器人构型，采用12V编码直流电机，底盘负载可达25kg。控制涵盖Arduino、STM32、边缘计算板，支持多层级开发，涵盖了视觉、激光雷达等主流机器人传感器。适合开展专业创新实训。"
             }
           ]
         },
@@ -36,7 +36,7 @@
               "name": "具身智能任务规划实训平台 RAI-P4",
               "model": "RAI-P4",
               "image": "/images/products/rai-p4/rai-p4-hero.png",
-              "brief": "集成AI语音/视觉，4自由度机械臂，支持ROS2；适配大模型应用、机器视觉、ROS课程。"
+              "brief": "集成大模型、语音、视觉、机械臂、云台，一站式具身交互智能体实训平台。适配主流大模型，如Deepseek、通义千问、豆包等，涵盖OpenCV、YOLO、多模态VLM等视觉内容，配套0-1设计智能体、机器人控制、智能体开发、视觉集成开发等实训课程包，适合专业课程实训。"
             },
             {
               "slug": "uni-wr2",
@@ -57,14 +57,14 @@
               "name": "具身复合机器人系统设计实训平台 RAI-M4",
               "model": "RAI-M4",
               "image": "/images/products/rai-m4/front-view.png",
-              "brief": "麦轮全向底盘 + 4轴机械臂，接入DeepSeek/通义千问；适配移动机器人导航与大模型部署。"
+              "brief": "集成全向底盘、五轴机械臂、深度相机、激光雷达、语音交互，一站式具身智能实训平台。适配主流通义千问等大模型，三种视觉方案，两种Slam导航方案，内置ROS2，配套完善的具身智能体、视觉、导航、机器人操作系统课程，适合开展专业综合实训。"
             },
             {
               "slug": "alo-le4",
               "name": "具身机器人操作规划综合实训平台 ALO-LE4",
               "model": "ALO-LE4",
               "image": "/images/products/alo-le4/front-view.png",
-              "brief": "双5自由度机械臂（主从跟随），ACT架构，可调光源；适配模仿学习与端到端控制研究。"
+              "brief": "双五轴臂，基于ACT架构端到端方案设计的具身机器人操作执行的实训平台，无需部署一站式开箱试用，既可作为数据采集平台，也适合用于模仿学习与端到端智能控制方案的研究"
             }
           ]
         }
@@ -100,17 +100,22 @@
       "controllerConfig": "控制器配置",
       "softwareConfig": "软件配置",
       "experiments": "实验项目",
-      "configuration": "配置清单",
+      "configuration": "系统配置",
       "specs": "技术参数",
       "comingSoon": "内容即将更新"
     },
     "details": {
       "ubot-mr20": {
-        "name": "Ubot MR20",
-        "subtitle": "具身智能机器人创新设计套件（二十合一）",
-        "model": "Ubot MR20",
+        "name": "具身机器人创新设计套装（四十合一）Ubot MR40",
+        "subtitle": "具身智能机器人创新设计套件（四十合一）",
+        "model": "Ubot MR40",
         "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-        "overview": "Ubot MR20是结合机器人的人工智能通识课程实践套装，学习者可以从零搭建20余种智能机器人，结合语音识别让学习者了解人工智能技术在机器人中的应用，学习者还可以通过图形化编程/C++编程进行机器人避让、机器人循迹、机器人姿态检测等智能功能的开发。",
+        "overview": "可以从零搭建典型的40种具身场景使用的机器人构型，包含底盘、机械臂、复合机器人。支持图形化/C++（Arduino）/Python多语言编程。配套阶梯式的课程资源，适合零基础学习、科创及竞赛使用。",
+        "highlights": [
+          "模块化自由搭建40种经典机器人构型",
+          "兼容图形化编程与C++/Python多语言开发",
+          "零基础入门到专业科创竞赛全面覆盖"
+        ],
         "applicable": "K12、中职/高职一年级、大一学生",
         "features": [
           {
@@ -567,11 +572,11 @@
         "subtitle": "具身复合机器人创新设计套装（增强版）",
         "model": "GX-MAT-09S",
         "image": "/images/products/gx-mat-09s/hero.png",
-        "overview": "具身智能机器人融合了智能决策、智能感知与强操作能力，可在服务、家庭等非结构化场景中完成终端任务，是下一代机器人技术的重要方向。当前具身机器人形态以移动复合机器人为主，GX-MAT-09S 从此出发，对典型具身复合机器人进行模块化拆解，让学习者洞察其机构、驱动与智能系统。\n\n凭借模块化部件，学生可以自由构造 11 种典型具身底盘、7 种典型机械臂，并组合出 88 种具身复合机器人，完整体验“设计-搭建-控制”的工程流程。平台同时集成 AI 视觉、AI 语音、姿态检测、避障、巡线、激光雷达等感知单元，覆盖具身机器人核心传感需求。\n\n控制系统包含 Arduino、STM32 与地平线 RDK X5 三板架构，兼顾图形化入门、单片机专业开发与 Ubuntu+ROS 的高阶 AI 应用，满足日常教学、课程实训、毕业设计、科研开发与竞赛训练的多层次需求。",
+        "overview": "工程级具身复合机器人设计套装，支持构建 11 种底盘 + 9 种机械臂末端，覆盖差速、全向、转向多种运动学结构，可组合出 70+ 种具身复合机器人构型。采用 12V 编码直流电机，底盘负载可达 25kg。控制系统涵盖 Arduino（图形化/C++ 入门）、STM32（专业单片机开发）、地平线 RDK X5（Ubuntu+ROS，10 TOPS），支持多层级开发。集成 AI 视觉、AI 语音、IMU 姿态、激光雷达等主流传感器，适合开展专业机器人工程实训与竞赛备战。",
         "highlights": [
-          "11 种移动底盘 + 7 种机械臂，组合 88 种具身复合形态",
-          "AI 视觉、语音、姿态、巡线、激光雷达等多模态传感融合",
-          "Arduino + STM32 + RDK X5 控制体系覆盖入门到科研"
+          "11 种移动底盘 + 9 种机械臂末端，覆盖差速、全向、转向等多种运动学体系",
+          "AI 视觉、AI 语音、姿态 IMU、激光雷达等多模态传感融合感知",
+          "Arduino + STM32 + 地平线 RDK X5（10 TOPS）三层控制架构，从入门到科研全覆盖"
         ],
         "applicable": "高校机器人课程综合实践、研究开发、创新竞赛训练",
         "features": [
@@ -601,81 +606,91 @@
           "chassis": [
             {
               "name": "三轮双驱差速底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-differential-chassis.png"
             },
             {
-              "name": "前轮转向三轮双驱底盘",
-              "image": ""
+              "name": "三轮双驱前轮转向底盘",
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-front-steering-chassis.png"
             },
             {
               "name": "三轮三驱福来轮全向底盘（方案A）",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-1.png"
             },
             {
               "name": "三轮三驱福来轮全向底盘（方案B）",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-2.png"
             },
             {
               "name": "四轮双驱差速底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "四轮四驱差速底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-four-drive-differential-chassis.png"
             },
             {
               "name": "四轮四驱福来轮全向底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-foley-omni-chassis.png"
             },
             {
               "name": "四轮四驱麦轮全向底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-mecanum-omni-chassis.png"
             },
             {
               "name": "四轮八驱转向底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-eight-drive-steering-chassis.png"
             },
             {
               "name": "六轮双驱差速底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "六轮六驱差速底盘",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-six-drive-differential-chassis.png"
             }
           ],
           "arms": [
             {
-              "name": "二自由度云台",
-              "image": ""
+              "name": "2 自由度云台",
+              "image": "/images/products/gx-mat-09s/arms/2-dof-gimbal.png"
             },
             {
-              "name": "3 自由度串联机械臂",
-              "image": ""
+              "name": "3 自由度串联机械臂（方案一）",
+              "image": "/images/products/gx-mat-09s/arms/3-dof-arm-1.png"
+            },
+            {
+              "name": "3 自由度串联机械臂（方案二）",
+              "image": "/images/products/gx-mat-09s/arms/3-axis-arm-2.png"
             },
             {
               "name": "4 自由度串联机械臂",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/4-axis-serial-arm.png"
             },
             {
               "name": "4 自由度 SCARA 机械臂",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/4-axis-scara-arm.png"
             },
             {
               "name": "5 自由度串联机械臂",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/5-axis-serial-arm.png"
             },
             {
-              "name": "6 自由度串联机械臂（方案一）",
-              "image": ""
+              "name": "6 自由度串联机械臂",
+              "image": "/images/products/gx-mat-09s/arms/6-axis-arm.png"
             },
             {
-              "name": "6 自由度串联机械臂（方案二）",
-              "image": ""
+              "name": "7 自由度串联机械臂",
+              "image": "/images/products/gx-mat-09s/arms/7-axis-arm.png"
             },
             {
-              "name": "8 自由度双臂机械臂",
-              "image": ""
+              "name": "双臂操作机器人",
+              "image": "/images/products/gx-mat-09s/arms/dual-arm.png"
+            }
+          ],
+          "compositeRobots": [
+            {
+              "name": "复合机器人构型总览",
+              "image": "/images/products/gx-mat-09s/composite/composite-robot-demo.png"
             }
           ],
           "compositeGroups": [
@@ -769,22 +784,12 @@
           ]
         },
         "controllerConfig": {
-          "description": "控制系统包含 Arduino、STM32 与地平线 RDK X5：Arduino 支持图形化与 C++ 快速入门，STM32 适合单片机深入开发，RDK X5 预装 Ubuntu + ROS，10 TOPS 算力满足具身机器人高阶应用。",
+          "description": "控制系统采用 Arduino + STM32 + 地平线 RDK X5 三层架构：Arduino 提供丰富的 IO 接口与图形化/C++ 快速入门，STM32F407 适合专业单片机深入开发与嵌入式工程实践，RDK X5 预装 Ubuntu + ROS，搭载 10 TOPS 边缘 AI 算力，可运行 SLAM、视觉感知、具身大模型等高阶应用。三者协同，满足从基础教学到机器人科研的全流程需求。",
           "images": [
             {
-              "src": "/images/products/gx-mat-09s/controller/arduino-mega2560.png",
-              "alt": "Arduino Mega 2560 控制板",
-              "caption": "Arduino Mega 2560：图形化/C++ 快速入门平台"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/stm32f407.jpg",
-              "alt": "STM32F407 开发板",
-              "caption": "STM32F407：单片机深入开发与嵌入式控制"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/rdk-x5.png",
-              "alt": "地平线 RDK X5",
-              "caption": "Horizon RDK X5：Ubuntu + ROS，10 TOPS AI 运算平台"
+              "src": "/images/products/gx-mat-09s/controller/motherboard.png",
+              "alt": "GX-MAT-09S 三层控制板全景",
+              "caption": "Arduino + STM32F407 + RDK X5 三层控制系统"
             }
           ]
         },
@@ -795,48 +800,6 @@
         "experiments": {
           "summary": "实验体系覆盖单片机、传感器、嵌入式、机器视觉、底盘设计、机械臂控制、复合机器人应用、ROS 以及移动导航定位等方向，提供由浅入深的完整项目路径。",
           "sections": [
-            {
-              "title": "单片机综合项目",
-              "description": "结合 Arduino 与 STM32，完成从主控认知到 EEPROM、库安装的基础训练。",
-              "items": [
-                {
-                  "name": "Arduino 控制板认知实验",
-                  "desc": "了解芯片参数、接口、存储器与电路布局，完成编程环境配置。"
-                },
-                {
-                  "name": "STM32 控制板认知实验",
-                  "desc": "熟悉 STM32 主控板性能、引脚、电路结构及开发环境配置。"
-                },
-                {
-                  "name": "LED 灯闪烁实验",
-                  "desc": "掌握 digitalWrite()、delay() 等基础函数，完成数字输出实验。"
-                },
-                {
-                  "name": "模拟输入监控实验",
-                  "desc": "使用 analogRead()/analogWrite()/Serial API，读取并可视化模拟信号。"
-                },
-                {
-                  "name": "串口传输实验",
-                  "desc": "配置 Serial.begin()，实现串口数据收发与调试输出。"
-                },
-                {
-                  "name": "EEPROM 读取实验",
-                  "desc": "调用 EEPROM.read()，展示非易失存储读取流程。"
-                },
-                {
-                  "name": "EEPROM 清除实验",
-                  "desc": "通过 EEPROM.write() 完成数据清除与擦写操作。"
-                },
-                {
-                  "name": "EEPROM 写入实验",
-                  "desc": "掌握 EEPROM.write() 写入流程，确保数据持久化。"
-                },
-                {
-                  "name": "扩展库安装实验",
-                  "desc": "安装 MsTimer2 等扩展库，并用定时器实现 Blink 功能。"
-                }
-              ]
-            },
             {
               "title": "电机综合项目",
               "description": "聚焦直流电机与舵机控制，结合编码器与 PID 算法完成精准调速。",
@@ -1123,7 +1086,7 @@
         "subtitle": "具身机器人任务规划综合实训平台",
         "model": "RAI-P4",
         "image": "/images/products/rai-p4/rai-p4-hero.png",
-        "overview": "RAI-P4 是将人工智能技术与机器人技术深度结合的具身智能实训平台，集成 AI 语音、AI 视觉、典型 4 自由度机械臂、智能机器人常用传感器与 AI 嵌入式主板，帮助学生在真实机器人系统中完成智能算法部署与调试，打通理论课程与综合实践环节。\n\n平台围绕“具身任务规划—感知决策—操作执行”三步流程打造多场景实验，覆盖语音对话、任务语义理解、视觉云台追踪、视觉机械臂搬运、运动学轨迹控制、AI 视觉果蔬检测等内容。",
+        "overview": "集成大模型、语音、视觉、机械臂、云台，一站式具身交互智能体实训平台。适配主流大模型，如Deepseek、通义千问、豆包等，涵盖OpenCV、YOLO、多模态VLM等视觉内容，配套0-1设计智能体、机器人控制、智能体开发、视觉集成开发等实训课程包，适合专业课程实训。",
         "applicable": "面向高校人工智能、机器人、自动化、计算机科学等相关专业，支持大模型应用、机器视觉、机器学习、深度学习、嵌入式开发、传感器检测与控制、ROS、机器人学、机器人仿真设计与智能系统集成等课程的综合实践。",
         "highlights": [
           "AI 语音、视觉与机械臂控制一体化平台",
@@ -1145,31 +1108,20 @@
           }
         ],
         "sampleCases": {
-          "description": "两组示例分别展示了任务规划流程与视觉搬运综合实训：前者帮助学生理解软件指令到硬件执行的映射，后者演示视觉识别、运动学规划与机械臂执行的协同。",
           "sections": [
             {
-              "title": "任务规划流程示意",
-              "description": "通过流程图梳理语音/视觉输入、任务拆解与机械臂执行的完整链路。",
+              "title": "样机案例",
               "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
               "imageAspectClass": "aspect-[21/10]",
               "cardClassName": "w-full p-6",
               "items": [
                 {
                   "name": "任务规划流程示意",
-                  "image": "/images/products/rai-p4/rai-p4-task-planning.png"
-                }
-              ]
-            },
-            {
-              "title": "视觉搬运与运动学综合实训",
-              "description": "展示机械臂结合视觉识别、运动学轨迹与抓取任务的综合实训场景。",
-              "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-              "imageAspectClass": "aspect-[21/10]",
-              "cardClassName": "w-full p-6",
-              "items": [
+                  "image": "/images/products/rai-p4/rai-p4-task-planning-1.png"
+                },
                 {
-                  "name": "视觉搬运与运动学综合实训",
-                  "image": "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  "name": "RAI-P4 综合实训展示",
+                  "image": "/images/products/rai-p4/rai-p4-comprehensive-training-display.png"
                 }
               ]
             }
@@ -1179,10 +1131,8 @@
           "description": "覆盖智能语音、视觉感知与常见机器人动作反馈传感器，满足具身任务规划链路的多模态输入需求。",
           "list": [
             "AI 语音交互麦克风阵列",
-            "视觉云台摄像模组",
             "颜色识别传感器",
-            "姿态检测传感器",
-            "物体识别/距离检测扩展接口"
+            "姿态检测传感器"
           ]
         },
         "controllerConfig": {
@@ -1422,7 +1372,7 @@
         "name": "具身复合机器人系统设计实训平台 RAI-M4",
         "model": "RAI-M4",
         "image": "/images/products/rai-m4/front-view.png",
-        "overview": "具身智能可以拆解为任务规划、感知决策、操作执行三个环节，每个环节都可引入 AI 提升交互、决策与操作的泛化能力。RAI-M4 在任务规划阶段引入 DeepSeek 与通义千问，实现随机对话语义理解与自然语言指令到任务流程的转换；在感知决策端结合通义千问的多模态识别能力，无需预训练即可探索更丰富的感知场景。\n\n硬件层面，RAI-M4 采用麦克纳姆轮全向底盘，实现全向移动；串联四轴机械臂末端负载可达 300g、抓取范围 240mm，并配套夹爪。感知单元包含高清摄像头（可选深度相机）、激光雷达、陀螺仪、呼吸灯等模块，覆盖常见交互与定位所需的传感器。\n\n主控架构为上下位机双主控：上位机负责任务规划、视觉感知决策、导航规划、底盘与机械臂运动学等复杂算法；下位机负责电机 PID 控制、交互模块驱动，并承载与上位机的通信中继。平台支持移动机器人技术与大模型部署应用的综合教学实践，可服务机器人、机电、智能制造、自动化、电子信息等专业课程与拓展实训。",
+        "overview": "集成全向底盘、五轴机械臂、深度相机、激光雷达、语音交互，一站式具身智能实训平台。适配主流通义千问等大模型，三种视觉方案，两种Slam导航方案，内置ROS2，配套完善的具身智能体、视觉、导航、机器人操作系统课程，适合开展专业综合实训。",
         "highlights": [
           "全向移动底盘 + 四轴机械臂的复合机器人形态",
           "通义千问 + DeepSeek 等大模型深度接入",
@@ -1947,7 +1897,7 @@
         "name": "具身机器人操作规划综合实训平台 ALO-LE4",
         "model": "ALO-LE4",
         "image": "/images/products/alo-le4/front-view.png",
-        "overview": "具身智能的操作执行环节常见路径包括强化学习与端到端方案：前者常用于仿生、人形构型，后者适用于轮式复合机器人与机械臂。ALO-LE4 以机械臂为核心，基于 ACT 架构打造端到端具身操作实训平台，可同时作为数据采集平台与模仿学习、端到端智能控制研究载体。\n\n平台搭载两台 5 自由度机械臂：主臂供操作者手动演示、采集动作数据，从臂根据训练后的 ACT 模型执行自主操作。顶置与侧置双摄像头负责颜色、位置检测，并为模型提供视觉训练数据；内置可调环境光源，可模拟不同光照条件。\n\nALO-LE4 为具身智能、模仿学习与数据采集研究提供稳定可控的实验环境，便于构建“感知—决策—执行”的闭环。在教学中，可覆盖机器人学、机器视觉等课程实践，帮助学习者直观理解具身智能关键概念并提升工程与科研能力，支持高校与科研机构高效推进相关教学与研究。",
+        "overview": "双五轴臂，基于ACT架构端到端方案设计的具身机器人操作执行的实训平台，无需部署一站式开箱试用，既可作为数据采集平台，也适合用于模仿学习与端到端智能控制方案的研究",
         "highlights": [
           "一机多用：数据采集、智能训练与验证统一平台",
           "一站式部署：高度集成，开箱即用并支持快速重置",

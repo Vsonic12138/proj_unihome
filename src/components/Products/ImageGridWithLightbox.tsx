@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import SafeProductImage from "./SafeProductImage";
 
 type GalleryItem = {
   name: string;
@@ -92,7 +92,7 @@ const ImageGridWithLightbox = ({
               aria-label={t('products.lightbox.viewLarger', { name: item.name })}
             >
               <div className={`relative w-full overflow-hidden rounded bg-gray-50 dark:bg-gray-800 ${imageAspectClass}`}>
-                <Image
+                <SafeProductImage
                   src={imageSrc}
                   alt={item.name}
                   fill
@@ -175,7 +175,7 @@ const ImageGridWithLightbox = ({
           >
             <div className="relative w-full overflow-hidden rounded-lg border border-white/10 bg-black/40 shadow-inner">
               <div className="relative mx-auto h-[60vh] w-full max-w-3xl">
-                <Image
+                <SafeProductImage
                   src={
                     safeItems[activeIndex].image && safeItems[activeIndex].image?.trim().length
                       ? safeItems[activeIndex].image!

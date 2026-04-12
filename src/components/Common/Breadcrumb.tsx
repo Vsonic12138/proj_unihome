@@ -9,11 +9,11 @@ const Breadcrumb = ({ pageName, description }: BreadcrumbProps) => {
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="max-w-[640px]">
+            <div className="max-w-5xl">
               <h1 className="mb-5 text-2xl font-bold text-black dark:text-white sm:text-3xl">
                 {pageName}
               </h1>
-              <p className="text-base font-medium leading-relaxed text-body-color">
+              <p className="text-base font-medium leading-relaxed text-body-color" style={{ wordBreak: 'keep-all' }}>
                 {description}
               </p>
             </div>

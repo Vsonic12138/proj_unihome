@@ -3,12 +3,31 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FocusEvent, MutableRefObject } from "react";
 import Image from "next/image";
-import { useTranslations } from 'next-intl';
 
-const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
-const WECHAT_OFFICIAL_QR_SRC =
-  "/images/contact/weChat-official-account.jpg" as const;
 const VISITED_STORAGE_KEY = "floatingContactVisited";
+
+type MediaLike =
+  | number
+  | string
+  | null
+  | undefined
+  | {
+      url?: string | null;
+      sizes?: Record<string, { url?: string | null } | undefined> | null;
+    };
+
+function resolveMediaURL(media: MediaLike): string | null {
+  if (!media) return null;
+  if (typeof media === "string") return media;
+  if (typeof media === "number") return null;
+
+  if (media.url) return media.url;
+  if (media.sizes?.hero?.url) return media.sizes.hero.url;
+  if (media.sizes?.card?.url) return media.sizes.card.url;
+  if (media.sizes?.thumbnail?.url) return media.sizes.thumbnail.url;
+
+  return null;
+}
 
 const clearTimeoutRef = (
   ref: MutableRefObject<ReturnType<typeof setTimeout> | null>,
@@ -19,9 +38,17 @@ const clearTimeoutRef = (
   }
 };
 
-export default function FloatingContact() {
-  const t = useTranslations();
-  const copy = t.raw('floatingContact') as any;
+type FloatingContactProps = {
+  siteSettings?: any | null;
+};
+
+export default function FloatingContact({ siteSettings }: FloatingContactProps) {
+  const payloadCopy = siteSettings?.floatingContact;
+  const copy =
+    payloadCopy && typeof payloadCopy === "object" && payloadCopy.panelLabel
+      ? payloadCopy
+      : null;
+
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [copiedQQ, setCopiedQQ] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
@@ -100,6 +127,23 @@ export default function FloatingContact() {
     };
   }, []);
 
+  const [desktopPos, setDesktopPos] = useState({ x: 0, y: 0 });
+  const isDraggingDesktop = useRef(false);
+  const startDesktopPos = useRef({ x: 0, y: 0 });
+  const startDesktopMouse = useRef({ x: 0, y: 0 });
+  const dragDistance = useRef(0);
+
+  if (!copy) {
+    return null;
+  }
+
+  const qqQRCodeFromPayload = resolveMediaURL(copy?.qqGroup?.qrImage);
+  const wechatQRCodeFromPayload = resolveMediaURL(copy?.wechat?.qrImage);
+  const qqQRCodeSrc = qqQRCodeFromPayload ?? null;
+  const wechatQRCodeSrc = wechatQRCodeFromPayload ?? null;
+  const bilibiliHref = String(copy?.bilibili?.href ?? "").trim();
+  const taobaoHref = String(copy?.taobao?.href ?? "").trim();
+
   const clearCloseTimeout = () => {
     clearTimeoutRef(closeTimeoutRef);
   };
@@ -154,15 +198,45 @@ export default function FloatingContact() {
     }
   };
 
+
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingDesktop.current = true;
+    dragDistance.current = 0;
+    startDesktopMouse.current = { x: e.clientX, y: e.clientY };
+    startDesktopPos.current = { ...desktopPos };
+    e.currentTarget.setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingDesktop.current) return;
+    const deltaX = e.clientX - startDesktopMouse.current.x;
+    const deltaY = e.clientY - startDesktopMouse.current.y;
+    dragDistance.current = Math.max(Math.abs(deltaX), Math.abs(deltaY));
+    setDesktopPos({
+      x: 0, // Only allow vertical dragging
+      y: startDesktopPos.current.y + deltaY,
+    });
+  };
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingDesktop.current = false;
+    e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+
   return (
     <>
       {/* Desktop Version - Side Panel */}
       <div
-        className="fixed bottom-[15%] right-0 z-[35] hidden translate-y-1/2 md:block"
+        className="fixed right-0 top-2/3 z-[35] hidden cursor-grab active:cursor-grabbing md:block"
         onMouseEnter={openPanel}
         onMouseLeave={handleMouseLeave}
         onFocusCapture={openPanel}
         onBlurCapture={handleDesktopBlur}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        style={{ transform: `translate(${desktopPos.x}px, ${desktopPos.y}px)` }}
       >
         <div className="flex items-center">
           {/* Expanded Panel */}
@@ -185,13 +259,15 @@ export default function FloatingContact() {
                 />
               </div>
               <div className="absolute bottom-full right-1/2 hidden w-48 translate-x-1/2 transform rounded-md bg-white p-3 text-center shadow-lg group-hover:block dark:bg-dark">
-                <Image
-                  src={QQ_GROUP_QR_SRC}
-                  alt={copy.qqGroup.label}
-                  width={160}
-                  height={160}
-                  className="mx-auto rounded"
-                />
+                {qqQRCodeSrc ? (
+                  <Image
+                    src={qqQRCodeSrc}
+                    alt={copy.qqGroup.label}
+                    width={160}
+                    height={160}
+                    className="mx-auto h-auto max-h-[160px] w-full max-w-[160px] rounded object-contain"
+                  />
+                ) : null}
                 <p className="mt-1 text-sm">{copy.qqGroup.number}</p>
                 <button
                   onClick={() => handleCopy(copy.qqGroup.number, "qq")}
@@ -213,13 +289,15 @@ export default function FloatingContact() {
                 />
               </div>
               <div className="absolute bottom-full right-1/2 hidden w-48 translate-x-1/2 transform rounded-md bg-white p-3 text-center shadow-lg group-hover:block dark:bg-dark">
-                <Image
-                  src={WECHAT_OFFICIAL_QR_SRC}
-                  alt={copy.wechat.label}
-                  width={160}
-                  height={160}
-                  className="mx-auto rounded"
-                />
+                {wechatQRCodeSrc ? (
+                  <Image
+                    src={wechatQRCodeSrc}
+                    alt={copy.wechat.label}
+                    width={160}
+                    height={160}
+                    className="mx-auto h-auto max-h-[160px] w-full max-w-[160px] rounded object-contain"
+                  />
+                ) : null}
                 <p className="mt-1 text-xs">{copy.wechat.tooltip}</p>
               </div>
             </div>
@@ -246,39 +324,43 @@ export default function FloatingContact() {
               </div>
             </div>
             {/* Bilibili */}
-            <a
-              href={copy.bilibili.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
-              aria-label={copy.bilibili.tooltip}
-              title={copy.bilibili.tooltip}
-            >
-              <Image
-                src="/images/icons/bilibili.svg"
-                alt={copy.bilibili.label}
-                width={24}
-                height={24}
-                className="dark:invert"
-              />
-            </a>
+            {bilibiliHref ? (
+              <a
+                href={bilibiliHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
+                aria-label={copy.bilibili.tooltip}
+                title={copy.bilibili.tooltip}
+              >
+                <Image
+                  src="/images/icons/bilibili.svg"
+                  alt={copy.bilibili.label}
+                  width={24}
+                  height={24}
+                  className="dark:invert"
+                />
+              </a>
+            ) : null}
             {/* Taobao */}
-            <a
-              href={copy.taobao.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
-              aria-label={copy.taobao.tooltip}
-              title={copy.taobao.tooltip}
-            >
-              <Image
-                src="/images/icons/taobao.svg"
-                alt={copy.taobao.label}
-                width={24}
-                height={24}
-                className="dark:invert"
-              />
-            </a>
+            {taobaoHref ? (
+              <a
+                href={taobaoHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10"
+                aria-label={copy.taobao.tooltip}
+                title={copy.taobao.tooltip}
+              >
+                <Image
+                  src="/images/icons/taobao.svg"
+                  alt={copy.taobao.label}
+                  width={24}
+                  height={24}
+                  className="dark:invert"
+                />
+              </a>
+            ) : null}
           </div>
 
           {/* Collapsed Vertical Tab */}
@@ -390,15 +472,17 @@ export default function FloatingContact() {
                     </div>
                   </div>
                   <div className="mb-3 flex justify-center">
-                    <Image
-                      src={QQ_GROUP_QR_SRC}
-                      alt={copy.qqGroup.label}
-                      width={220}
-                      height={220}
-                      className="rounded-lg"
-                      priority
-                      unoptimized
-                    />
+                    {qqQRCodeSrc ? (
+                      <Image
+                        src={qqQRCodeSrc}
+                        alt={copy.qqGroup.label}
+                        width={220}
+                        height={220}
+                        className="mx-auto h-auto max-h-[220px] w-full max-w-[220px] rounded-lg object-contain"
+                        priority
+                        unoptimized
+                      />
+                    ) : null}
                   </div>
                   <button
                     onClick={() => handleCopy(copy.qqGroup.number, "qq")}
@@ -431,15 +515,17 @@ export default function FloatingContact() {
                     </div>
                   </div>
                   <div className="mb-3 flex justify-center">
-                    <Image
-                      src={WECHAT_OFFICIAL_QR_SRC}
-                      alt={copy.wechat.label}
-                      width={220}
-                      height={220}
-                      className="rounded-lg"
-                      priority
-                      unoptimized
-                    />
+                    {wechatQRCodeSrc ? (
+                      <Image
+                        src={wechatQRCodeSrc}
+                        alt={copy.wechat.label}
+                        width={220}
+                        height={220}
+                        className="mx-auto h-auto max-h-[220px] w-full max-w-[220px] rounded-lg object-contain"
+                        priority
+                        unoptimized
+                      />
+                    ) : null}
                   </div>
                 </div>
 
@@ -477,62 +563,66 @@ export default function FloatingContact() {
                 </div>
 
                 {/* Bilibili */}
-                <div className="border-b border-stroke pb-6 dark:border-stroke-dark">
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                      <Image
-                        src="/images/icons/bilibili.svg"
-                        alt={copy.bilibili.label}
-                        width={28}
-                        height={28}
-                        className="dark:brightness-0 dark:invert"
-                      />
-                    </div>
-                    <div>
-                      <div className="mb-1 text-base font-semibold text-black dark:text-white">
-                        {copy.bilibili.label}
+                {bilibiliHref ? (
+                  <div className="border-b border-stroke pb-6 dark:border-stroke-dark">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                        <Image
+                          src="/images/icons/bilibili.svg"
+                          alt={copy.bilibili.label}
+                          width={28}
+                          height={28}
+                          className="dark:brightness-0 dark:invert"
+                        />
+                      </div>
+                      <div>
+                        <div className="mb-1 text-base font-semibold text-black dark:text-white">
+                          {copy.bilibili.label}
+                        </div>
                       </div>
                     </div>
+                    <a
+                      href={bilibiliHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                      title={copy.bilibili.tooltip}
+                    >
+                      {copy.bilibili.linkText}
+                    </a>
                   </div>
-                  <a
-                    href={copy.bilibili.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"
-                    title={copy.bilibili.tooltip}
-                  >
-                    {copy.bilibili.linkText}
-                  </a>
-                </div>
+                ) : null}
 
                 {/* Taobao */}
-                <div>
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
-                      <Image
-                        src="/images/icons/taobao.svg"
-                        alt={copy.taobao.label}
-                        width={28}
-                        height={28}
-                        className="dark:brightness-0 dark:invert"
-                      />
-                    </div>
-                    <div>
-                      <div className="mb-1 text-base font-semibold text-black dark:text-white">
-                        {copy.taobao.label}
+                {taobaoHref ? (
+                  <div>
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center">
+                        <Image
+                          src="/images/icons/taobao.svg"
+                          alt={copy.taobao.label}
+                          width={28}
+                          height={28}
+                          className="dark:brightness-0 dark:invert"
+                        />
+                      </div>
+                      <div>
+                        <div className="mb-1 text-base font-semibold text-black dark:text-white">
+                          {copy.taobao.label}
+                        </div>
                       </div>
                     </div>
+                    <a
+                      href={taobaoHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                      title={copy.taobao.tooltip}
+                    >
+                      {copy.taobao.linkText}
+                    </a>
                   </div>
-                  <a
-                    href={copy.taobao.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full rounded-lg bg-primary/10 py-2 text-center text-sm font-medium text-primary transition-colors hover:bg-primary/20"
-                    title={copy.taobao.tooltip}
-                  >
-                    {copy.taobao.linkText}
-                  </a>
-                </div>
+                ) : null}
               </div>
             </div>
           </div>

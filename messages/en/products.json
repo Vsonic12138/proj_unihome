@@ -12,17 +12,17 @@
           "items": [
             {
               "slug": "ubot-mr20",
-              "name": "Embodied Robotics Innovation Kit Ubot MR20",
-              "model": "Ubot MR20",
+              "name": "Embodied Robot Innovation Design Kit (40-in-1) Ubot MR40",
+              "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-              "brief": "Embodied intelligence robot innovation design kit (20-in-1). Combined with AI general education practice kit, build 20+ intelligent robots from scratch, supports block-based/C++/Python multi-language programming."
+              "brief": "Build 40 typical embodied robot configurations from scratch, including chassis, robotic arms, and composite robots. Supports graphical/C++ (Arduino)/Python multi-language programming. Equipped with step-by-step curriculum resources, suitable for zero-basis learning, science innovation, and competition use."
             },
             {
               "slug": "gx-mat-09s",
               "name": "Embodied Robotics Innovation Platform (Enhanced) GX-MAT-09S",
               "model": "GX-MAT-09S",
               "image": "/images/products/gx-mat-09s/hero.png",
-              "brief": "11 chassis + 7 robotic arms; 88 composite forms; adds LiDAR + RDK X5 board. For advanced courses and research."
+              "brief": "Engineering-grade embodied composite robot design kit, supporting the construction of 11 chassis + 7 robotic arms and over 80 composite robot configurations. Uses 12V encoded DC motors with a chassis load capacity up to 25kg. Control covers Arduino, STM32, and edge computing boards, supporting multi-level development and mainstream robot sensors like vision and LiDAR. Suitable for professional innovation training."
             }
           ]
         },
@@ -36,7 +36,7 @@
               "name": "Embodied Robot Task Planning Training Platform RAI-P4",
               "model": "RAI-P4",
               "image": "/images/products/rai-p4/rai-p4-hero.png",
-              "brief": "Desktop embodied-intelligence lab integrating AI voice/vision, a 4-DOF arm, and ROS2 for plan–sense–act experiments."
+              "brief": "A one-stop embodied interactive agent training platform integrating large models, voice, vision, robotic arms, and gimbals. Adapts to mainstream large models such as DeepSeek, Qwen, and Doubao. Covers vision content like OpenCV, YOLO, and multi-modal VLM. Equipped with training courses covering 0-1 agent design, robot control, agent development, and vision integration. Suitable for professional course training."
             },
             {
               "slug": "uni-wr2",
@@ -57,14 +57,14 @@
               "name": "Embodied Composite Robot System Design Training Platform RAI-M4",
               "model": "RAI-M4",
               "image": "/images/products/rai-m4/front-view.png",
-              "brief": "Mecanum omni chassis + 4-axis arm; connects DeepSeek/Qwen. For mobile navigation and LLM deployment."
+              "brief": "A one-stop embodied AI training platform integrating an omnidirectional chassis, 5-axis robotic arm, depth camera, LiDAR, and voice interaction. Adapts to mainstream large models like Qwen. Features 3 vision solutions and 2 SLAM navigation solutions. Built-in ROS 2. Equipped with comprehensive courses on embodied agents, vision, navigation, and Robot Operating System. Suitable for professional comprehensive training."
             },
             {
               "slug": "alo-le4",
               "name": "Embodied Robot Manipulation Planning Training Platform ALO-LE4",
               "model": "ALO-LE4",
               "image": "/images/products/alo-le4/front-view.png",
-              "brief": "Two 5-DOF arms (master-follower), ACT architecture, adjustable lighting. For imitation learning and end-to-end control."
+              "brief": "Dual 5-axis arms. An embodied robot operation and execution training platform based on the ACT architecture end-to-end solution. Ready-to-use out of the box with no deployment required. Can serve as a data collection platform and is also suitable for research on imitation learning and end-to-end intelligent control solutions."
             }
           ]
         }
@@ -106,11 +106,16 @@
     },
     "details": {
       "ubot-mr20": {
-        "name": "Ubot MR20",
-        "subtitle": "Embodied Intelligence Robot Innovation Design Kit (20-in-1)",
-        "model": "Ubot MR20",
+        "name": "Embodied Robot Innovation Design Kit (40-in-1) Ubot MR40",
+        "subtitle": "Embodied AI Robot Innovation Design Kit (40-in-1)",
+        "model": "Ubot MR40",
         "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-        "overview": "Ubot MR20 is an AI general education practice kit combined with robotics. Learners can build over 20 different intelligent robots from scratch, incorporating voice recognition to understand AI applications in robotics. Learners can also develop intelligent features such as obstacle avoidance, line tracking, and posture detection through block-based programming, C++, or Python programming.",
+        "overview": "Build 40 typical embodied robot configurations from scratch, including chassis, robotic arms, and composite robots. Supports graphical/C++ (Arduino)/Python multi-language programming. Equipped with step-by-step curriculum resources, suitable for zero-basis learning, science innovation, and competition use.",
+        "highlights": [
+          "Modular design for building 40 classic robot configurations",
+          "Compatible with graphical programming and C++/Python development",
+          "Comprehensive coverage from zero-basis learning to robotics competitions"
+        ],
         "applicable": "K12, vocational/college year 1, undergraduate freshmen",
         "features": [
           {
@@ -567,11 +572,11 @@
         "subtitle": "Enhanced Embodied Hybrid Robotics Design Suite",
         "model": "GX-MAT-09S",
         "image": "/images/products/gx-mat-09s/hero.png",
-        "overview": "Embodied robotics blends intelligent decision-making, rich perception, and powerful actuation so robots can perform in unstructured service and household environments. The first wave of deployable embodiments is converging on mobile hybrid robots.\n\nGX-MAT-09S dissects representative mobile embodied robots with a modular architecture that exposes mechanical structure, drive systems, sensing pipelines, and intelligent control. Learners can design, assemble, and tune 11 mobile chassis, 7 manipulator variants, and 88 composite robots using the included part library.\n\nThe platform incorporates all essential perception units—AI vision, monocular imaging, AI speech, posture IMU, obstacle avoidance, line tracking, and lidar navigation—delivering end-to-end situational awareness.\n\nA three-tier controller stack (Arduino, STM32, and Horizon RDK X5 with Ubuntu + ROS and 10 TOPS compute) supports classroom instruction, research, prototyping, and competition preparation.",
+        "overview": "Engineering-grade embodied composite robot design kit supporting 11 mobile chassis configurations and 9 end-effector arm types, covering differential, holonomic, and steering drive architectures, combinable into 70+ embodied hybrid robot configurations. Equipped with 12V encoded DC motors with a chassis load capacity up to 25 kg. The three-tier controller stack—Arduino (graphical/C++ entry), STM32 (professional MCU development), and Horizon RDK X5 (Ubuntu + ROS, 10 TOPS edge AI)—enables multi-level development from classroom to research. Integrates AI vision, AI speech, posture IMU, and navigation-grade LiDAR for full-stack embodied sensing.",
         "highlights": [
-          "11 modular chassis + 7 manipulators → 88 hybrid robot builds",
-          "Full-stack sensing: AI vision, speech, IMU, line tracking, lidar",
-          "Arduino + STM32 + Horizon RDK X5 (10 TOPS) controller stack"
+          "11 mobile chassis + 9 end-effector arms covering differential, holonomic, and steering kinematics",
+          "AI vision, AI speech, posture IMU, and LiDAR for multi-modal embodied sensing",
+          "Arduino + STM32 + Horizon RDK X5 (10 TOPS) three-tier controller stack from entry to research"
         ],
         "applicable": "University robotics labs, research programs, and competition teams",
         "features": [
@@ -601,81 +606,91 @@
           "chassis": [
             {
               "name": "Tri-wheel dual-drive differential chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-differential-chassis.png"
             },
             {
-              "name": "Tri-wheel front-steering dual-drive chassis",
-              "image": ""
+              "name": "Tri-wheel dual-drive front-steering chassis",
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-front-steering-chassis.png"
             },
             {
-              "name": "Tri-wheel tri-drive holonomic chassis (Option A)",
-              "image": ""
+              "name": "Tri-wheel tri-drive omni chassis (Option A)",
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-1.png"
             },
             {
-              "name": "Tri-wheel tri-drive holonomic chassis (Option B)",
-              "image": ""
+              "name": "Tri-wheel tri-drive omni chassis (Option B)",
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-2.png"
             },
             {
               "name": "Four-wheel dual-drive differential chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "Four-wheel four-drive differential chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-four-drive-differential-chassis.png"
             },
             {
               "name": "Four-wheel four-drive Foley-wheel holonomic chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-foley-omni-chassis.png"
             },
             {
-              "name": "Four-wheel four-drive mecanum chassis",
-              "image": ""
+              "name": "Four-wheel four-drive mecanum omni chassis",
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-mecanum-omni-chassis.png"
             },
             {
               "name": "Four-wheel eight-drive steering chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-eight-drive-steering-chassis.png"
             },
             {
               "name": "Six-wheel dual-drive differential chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "Six-wheel six-drive differential chassis",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-six-drive-differential-chassis.png"
             }
           ],
           "arms": [
             {
               "name": "2-DOF gimbal",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/2-dof-gimbal.png"
             },
             {
-              "name": "3-DOF serial manipulator",
-              "image": ""
+              "name": "3-DOF serial arm (Option A)",
+              "image": "/images/products/gx-mat-09s/arms/3-dof-arm-1.png"
+            },
+            {
+              "name": "3-DOF serial arm (Option B)",
+              "image": "/images/products/gx-mat-09s/arms/3-axis-arm-2.png"
             },
             {
               "name": "4-DOF serial manipulator",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/4-axis-serial-arm.png"
             },
             {
               "name": "4-DOF SCARA manipulator",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/4-axis-scara-arm.png"
             },
             {
               "name": "5-DOF serial manipulator",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/arms/5-axis-serial-arm.png"
             },
             {
-              "name": "6-DOF serial manipulator (Option A)",
-              "image": ""
+              "name": "6-DOF serial manipulator",
+              "image": "/images/products/gx-mat-09s/arms/6-axis-arm.png"
             },
             {
-              "name": "6-DOF serial manipulator (Option B)",
-              "image": ""
+              "name": "7-DOF serial manipulator",
+              "image": "/images/products/gx-mat-09s/arms/7-axis-arm.png"
             },
             {
-              "name": "8-DOF dual-arm manipulator",
-              "image": ""
+              "name": "Dual-arm robot system",
+              "image": "/images/products/gx-mat-09s/arms/dual-arm.png"
+            }
+          ],
+          "compositeRobots": [
+            {
+              "name": "Composite Robot Configuration Overview",
+              "image": "/images/products/gx-mat-09s/composite/composite-robot-demo.png"
             }
           ],
           "compositeGroups": [
@@ -769,22 +784,12 @@
           ]
         },
         "controllerConfig": {
-          "description": "The control stack combines Arduino for graphical/C++ entry, STM32 for professional MCU development, and Horizon RDK X5 (Ubuntu + ROS, 10 TOPS) for advanced embodied intelligence workloads.",
+          "description": "The three-tier controller stack combines Arduino (rich I/O with graphical/C++ entry), STM32F407 (professional MCU development and embedded engineering), and Horizon RDK X5 (Ubuntu + ROS, 10 TOPS edge AI for SLAM, vision, and embodied AI workloads), covering the full spectrum from classroom teaching to robotics research.",
           "images": [
             {
-              "src": "/images/products/gx-mat-09s/controller/arduino-mega2560.png",
-              "alt": "Arduino Mega 2560 controller board",
-              "caption": "Arduino Mega 2560: rapid entry via graphical and C++ programming"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/stm32f407.jpg",
-              "alt": "STM32F407 development board",
-              "caption": "STM32F407: professional MCU development and embedded control"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/rdk-x5.png",
-              "alt": "Horizon RDK X5 compute module",
-              "caption": "Horizon RDK X5: Ubuntu + ROS platform with 10 TOPS AI compute"
+              "src": "/images/products/gx-mat-09s/controller/motherboard.png",
+              "alt": "GX-MAT-09S three-tier controller board overview",
+              "caption": "Arduino + STM32F407 + RDK X5 three-tier controller system"
             }
           ]
         },
@@ -1123,7 +1128,7 @@
         "subtitle": "Embodied Robotics Task Planning Comprehensive Training Platform",
         "model": "RAI-P4",
         "image": "/images/products/rai-p4/rai-p4-hero.png",
-        "overview": "RAI-P4 is an embodied intelligence training platform that tightly couples AI technologies with robotics. It integrates AI speech, AI vision, a representative 4-DOF manipulator, sensors commonly used in embodied robots, and an AI edge controller so learners can deploy and debug intelligent algorithms on real hardware—bridging theoretical coursework with comprehensive practice.\n\nThe curriculum follows a plan–perceive–act workflow, covering voice dialogue, task semantic understanding, vision-based pan-tilt tracking, vision-guided arm handling, manipulator trajectory control, AI vision fruit detection, and more.",
+        "overview": "A one-stop embodied interactive agent training platform integrating large models, voice, vision, robotic arms, and gimbals. Adapts to mainstream large models such as DeepSeek, Qwen, and Doubao. Covers vision content like OpenCV, YOLO, and multi-modal VLM. Equipped with training courses covering 0-1 agent design, robot control, agent development, and vision integration. Suitable for professional course training.",
         "applicable": "Ideal for university programs in artificial intelligence, robotics, automation, and computer science that span LLM applications, computer vision, machine learning, deep learning, embedded development, sensing and control, ROS, robotics, simulation, and intelligent system integration.",
         "highlights": [
           "Unified platform for AI speech, AI vision, and manipulator control",
@@ -1145,31 +1150,20 @@
           }
         ],
         "sampleCases": {
-          "description": "Two scenarios illustrate the platform workflow: the first highlights task planning from software logic to hardware execution, and the second showcases integrated vision handling and kinematic control.",
           "sections": [
             {
-              "title": "Task planning workflow",
-              "description": "Visualizes how speech/vision inputs translate into task decomposition and manipulator execution.",
+              "title": "Lab Scenarios",
               "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
               "imageAspectClass": "aspect-[21/10]",
               "cardClassName": "w-full p-6",
               "items": [
                 {
                   "name": "Task planning workflow overview",
-                  "image": "/images/products/rai-p4/rai-p4-task-planning.png"
-                }
-              ]
-            },
-            {
-              "title": "Vision-guided manipulation lab",
-              "description": "Demonstrates coordinated vision recognition, kinematic planning, and manipulator execution in one exercise.",
-              "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-              "imageAspectClass": "aspect-[21/10]",
-              "cardClassName": "w-full p-6",
-              "items": [
+                  "image": "/images/products/rai-p4/rai-p4-task-planning-1.png"
+                },
                 {
-                  "name": "Vision handling & kinematics practice",
-                  "image": "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  "name": "RAI-P4 Comprehensive Training Display",
+                  "image": "/images/products/rai-p4/rai-p4-comprehensive-training-display.png"
                 }
               ]
             }
@@ -1179,10 +1173,8 @@
           "description": "Provides multimodal inputs required for embodied task planning, covering speech, vision, and motion feedback.",
           "list": [
             "AI speech interaction microphone array",
-            "Vision pan-tilt camera module",
             "Color recognition sensor",
-            "Posture sensing IMU",
-            "Expandable ports for object recognition / distance sensing"
+            "Posture sensing IMU"
           ]
         },
         "controllerConfig": {
@@ -1422,7 +1414,7 @@
         "name": "Embodied Composite Robot System Design Training Platform RAI-M4",
         "model": "RAI-M4",
         "image": "/images/products/rai-m4/front-view.png",
-        "overview": "Embodied intelligence can be decomposed into task planning, perception & decision-making, and manipulation. Each stage benefits from AI to improve interaction, reasoning, and execution. RAI-M4 integrates DeepSeek and Qwen to interpret free-form conversations at the planning layer, translating natural language into executable robotic workflows; on the perception side, Qwen’s multimodal capabilities enable broad object understanding without bespoke pre-training.\n\nHardware-wise, RAI-M4 combines a mecanum omni-directional chassis for agile motion with a serial 4-DOF manipulator (300 g payload, 240 mm reach, equipped with a gripper). The sensing suite includes an HD camera (optional depth camera), LiDAR, IMU/gyroscope, and breathing light indicators for interaction feedback.\n\nA dual-controller architecture powers the system: an upper controller handles planning, perception, navigation, and kinematic algorithms for both chassis and arm, while the lower controller executes motor PID loops, drives interactive modules, and relays communications. The platform supports hands-on curricula in mobile robotics and large-model deployment, fitting programmes in robotics, mechatronics, intelligent manufacturing, automation, and electronic information.",
+        "overview": "A one-stop embodied AI training platform integrating an omnidirectional chassis, 5-axis robotic arm, depth camera, LiDAR, and voice interaction. Adapts to mainstream large models like Qwen. Features 3 vision solutions and 2 SLAM navigation solutions. Built-in ROS 2. Equipped with comprehensive courses on embodied agents, vision, navigation, and Robot Operating System. Suitable for professional comprehensive training.",
         "highlights": [
           "Hybrid platform: mecanum chassis plus 4-DOF manipulator",
           "DeepSeek + Qwen large-model integration for planning and perception",
@@ -1947,7 +1939,7 @@
         "name": "Embodied Robot Manipulation Planning Training Platform ALO-LE4",
         "model": "ALO-LE4",
         "image": "/images/products/alo-le4/front-view.png",
-        "overview": "In embodied intelligence, the execution stage often relies on either reinforcement learning—common for bionic or humanoid forms—or end-to-end approaches used in wheeled composite robots and robotic arms. ALO-LE4 adopts the latter, centring on a robotic-arm configuration built on the ACT architecture to deliver an end-to-end embodied manipulation training platform. It functions both as a data collection rig and as a research platform for imitation learning and end-to-end intelligent control.\n\nALO-LE4 integrates two 5-DOF arms: the master arm is manipulated directly to capture motion data, while the slave arm reproduces tasks autonomously using an ACT model trained on joint-angle and sensor data. Top- and side-mounted cameras detect object colour and position while feeding visual data into ACT training. An adjustable lighting system simulates diverse environments for robustness testing.\n\nThe platform provides a stable, controllable environment for embodied intelligence, imitation learning, and data-collection studies, enabling complete “perception–decision–execution” loops. In education, it supports hands-on modules in robotics and computer vision, helping learners grasp key embodied-intelligence concepts and strengthen engineering and research skills. Universities and research institutes can deploy ALO-LE4 for efficient teaching and experimentation, accelerating embodied-intelligence development.",
+        "overview": "Dual 5-axis arms. An embodied robot operation and execution training platform based on the ACT architecture end-to-end solution. Ready-to-use out of the box with no deployment required. Can serve as a data collection platform and is also suitable for research on imitation learning and end-to-end intelligent control solutions.",
         "highlights": [
           "Two-in-one platform: data collection plus intelligent training and validation",
           "Rapid, integrated deployment with independent reset for each subsystem",

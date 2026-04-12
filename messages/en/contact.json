@@ -7,6 +7,15 @@
       "namePlaceholder": "Please enter your name",
       "emailLabel": "Your Email",
       "emailPlaceholder": "Please enter your email",
+      "phoneLabel": "Your Phone Number",
+      "phonePlaceholder": "Please enter your phone number",
+      "intentionLabel": "Cooperation Intention",
+      "intentionPlaceholder": "Please select your intention",
+      "intentionOptions": [
+        "Course/Lab/Major Construction",
+        "Joint Product Development",
+        "Channel Cooperation"
+      ],
       "messageLabel": "Your Message",
       "messagePlaceholder": "Let us know what you need help with",
       "submit": "Submit Ticket"

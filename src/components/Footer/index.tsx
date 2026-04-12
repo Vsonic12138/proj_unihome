@@ -3,26 +3,95 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations, useLocale } from 'next-intl';
-
-const QQ_GROUP_QR_SRC = "/images/contact/qq-group-qrcode.jpg" as const;
-const WECHAT_OFFICIAL_QR_SRC =
-  "/images/contact/weChat-official-account.jpg" as const;
+import { useTranslations, useLocale } from "next-intl";
+import { RichText as PayloadRichText } from "@payloadcms/richtext-lexical/react";
+import CookiePreferencesButton from "@/components/Common/CookiePreferencesButton";
 
 type FooterProps = {
   locale: string;
+  footerData?: any | null;
+  siteSettings?: any | null;
 };
 
 type ContactModalKey = "qq" | "wechat";
 
-const Footer = ({ locale }: FooterProps) => {
+type MediaLike =
+  | number
+  | string
+  | null
+  | undefined
+  | {
+      url?: string | null;
+      sizes?: Record<string, { url?: string | null } | undefined> | null;
+    };
+
+function resolveMediaURL(media: MediaLike): string | null {
+  if (!media) return null;
+  if (typeof media === "string") return media;
+  if (typeof media === "number") return null;
+
+  if (media.url) return media.url;
+  if (media.sizes?.hero?.url) return media.sizes.hero.url;
+  if (media.sizes?.card?.url) return media.sizes.card.url;
+  if (media.sizes?.thumbnail?.url) return media.sizes.thumbnail.url;
+
+  return null;
+}
+
+function prefixLocaleHref(currentLocale: string, href: string): string {
+  if (!href) return `/${currentLocale}`;
+  if (href.startsWith("http://") || href.startsWith("https://")) return href;
+  if (href === "/") return `/${currentLocale}`;
+  if (href.startsWith("/")) return `/${currentLocale}${href}`;
+  return `/${currentLocale}/${href}`;
+}
+
+const Footer = ({ locale, footerData, siteSettings }: FooterProps) => {
   const t = useTranslations();
   const currentLocale = useLocale();
-  
+  const year = new Date().getFullYear();
+  const companyName = String(siteSettings?.companyName ?? "").trim();
+
   const [activeModal, setActiveModal] = useState<ContactModalKey | null>(null);
+
+  if (!footerData) {
+    return null;
+  }
 
   const socialLabel = t('footer.socialLabel');
   const homeHref = `/${currentLocale}`;
+  const frontendBranding = siteSettings?.frontendBranding ?? {};
+  const footerLogo =
+    resolveMediaURL(frontendBranding?.footerLogo) ?? "/images/logo/logo-text.svg";
+  const footerLogoInverse =
+    resolveMediaURL(frontendBranding?.footerLogoInverse) ?? "/images/logo/logo-text-inverse.svg";
+
+  const contactItems = Array.isArray(footerData?.contactItems)
+    ? (footerData.contactItems as Array<{
+        key?: "bilibili" | "taobao" | "qq" | "wechat";
+        type?: "link" | "qr";
+        label?: string;
+        href?: string;
+        description?: string;
+        image?: MediaLike;
+      }>)
+    : [];
+
+  const getItem = (key: "bilibili" | "taobao" | "qq" | "wechat") => {
+    return contactItems.find((item) => item?.key === key) ?? null;
+  };
+
+  const bilibili = getItem("bilibili");
+  const taobao = getItem("taobao");
+  const qq = getItem("qq");
+  const wechat = getItem("wechat");
+
+  const qqTitle = String(qq?.label ?? "").trim();
+  const wechatTitle = String(wechat?.label ?? "").trim();
+  const qqDescription = String(qq?.description ?? "").trim();
+  const wechatDescription = String(wechat?.description ?? "").trim();
+  const payloadQQImage = resolveMediaURL(qq?.image);
+  const payloadWeChatImage = resolveMediaURL(wechat?.image);
 
   const contactIcons: Array<
     | {
@@ -40,52 +109,79 @@ const Footer = ({ locale }: FooterProps) => {
         label: string;
         tooltip: string;
       }
-  > = [
-    {
+  > = [];
+
+  const bilibiliHref = String(bilibili?.href ?? "").trim();
+  const taobaoHref = String(taobao?.href ?? "").trim();
+  const bilibiliLabel = String(bilibili?.label ?? "").trim();
+  const taobaoLabel = String(taobao?.label ?? "").trim();
+
+  if (bilibiliHref && bilibiliLabel) {
+    contactIcons.push({
       type: "link",
       key: "bilibili",
       icon: "/images/icons/bilibili.svg",
-      label: t('footer.contact.bilibiliLabel'),
-      tooltip: t('footer.contact.bilibiliLabel'),
-      href: t('footer.contact.bilibiliHref'),
-    },
-    {
+      label: String(bilibiliLabel),
+      tooltip: String(bilibiliLabel),
+      href: bilibiliHref,
+    });
+  }
+
+  if (taobaoHref && taobaoLabel) {
+    contactIcons.push({
       type: "link",
       key: "taobao",
       icon: "/images/icons/taobao.svg",
-      label: t('footer.contact.taobaoLabel'),
-      tooltip: t('footer.contact.taobaoLabel'),
-      href: t('footer.contact.taobaoHref'),
-    },
-    {
+      label: String(taobaoLabel),
+      tooltip: String(taobaoLabel),
+      href: taobaoHref,
+    });
+  }
+
+  if (qqTitle && payloadQQImage) {
+    contactIcons.push({
       type: "modal",
       key: "qq",
       icon: "/images/icons/qq.svg",
-      label: t('footer.contact.qq.title'),
-      tooltip: t('footer.contact.qq.description'),
-    },
-    {
+      label: qqTitle,
+      tooltip: qqTitle,
+    });
+  }
+
+  if (wechatTitle && payloadWeChatImage) {
+    contactIcons.push({
       type: "modal",
       key: "wechat",
       icon: "/images/icons/wechat.svg",
-      label: t('footer.contact.wechat.title'),
-      tooltip: t('footer.contact.wechat.description'),
-    },
-  ];
+      label: wechatTitle,
+      tooltip: wechatTitle,
+    });
+  }
 
-  const columns = t.raw('footer.columns') as {
-    usefulLinks: { title: string; items: Array<{ label: string; path: string }> };
-    terms: { title: string; items: Array<{ label: string; path: string }> };
-    support: { title: string; items: Array<{ label: string; path: string }> };
-  };
+  const payloadSections = Array.isArray(footerData?.sections)
+    ? (footerData.sections as Array<{
+        title?: string;
+        links?: Array<{ label?: string; href?: string }>;
+      }>)
+    : [];
 
-  const columnsArray = [
-    columns.usefulLinks,
-    columns.terms,
-    columns.support,
-  ];
+  const columnsArray = payloadSections.map((section) => ({
+    title: String(section?.title ?? ""),
+    items: (section?.links ?? [])
+      .map((link) => ({
+        label: String(link?.label ?? ""),
+        path: String(link?.href ?? ""),
+      }))
+      .filter((item) => item.label && item.path),
+  }));
 
-  const telHref = `tel:${t('footer.contact.phoneNumber').replace(/\s+/g, "")}`;
+  const footerContactInfo = (footerData as any)?.contactInfo ?? null;
+  const payloadPhone = String(footerContactInfo?.phone ?? siteSettings?.contactInfo?.phone ?? "").trim();
+  const payloadEmail = String(footerContactInfo?.email ?? siteSettings?.contactInfo?.email ?? "").trim();
+  const payloadAddress = String(footerContactInfo?.address ?? siteSettings?.contactInfo?.address ?? "").trim();
+  const phoneNumber = payloadPhone || "";
+  const telHref = `tel:${phoneNumber.replace(/\s+/g, "")}`;
+  const mailToHref = payloadEmail ? `mailto:${payloadEmail}` : "";
   const modalHeadingId =
     activeModal === "qq"
       ? "footer-contact-qq"
@@ -97,19 +193,20 @@ const Footer = ({ locale }: FooterProps) => {
       ? null
       : activeModal === "qq"
         ? {
-            title: t('footer.contact.qq.title'),
-            description: t('footer.contact.qq.description'),
+            title: qqTitle,
+            description: qqDescription,
           }
         : {
-            title: t('footer.contact.wechat.title'),
-            description: t('footer.contact.wechat.description'),
+            title: wechatTitle,
+            description: wechatDescription,
           };
+
   const modalImage =
     activeModal === null
       ? null
       : activeModal === "qq"
-        ? QQ_GROUP_QR_SRC
-        : WECHAT_OFFICIAL_QR_SRC;
+        ? payloadQQImage
+        : payloadWeChatImage;
 
   return (
     <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -119,7 +216,7 @@ const Footer = ({ locale }: FooterProps) => {
             <div className="mb-12 lg:mb-16">
               <Link href={homeHref} className="mb-8 inline-block">
                 <Image
-                  src="/images/logo/logo-text.svg"
+                  src={footerLogo}
                   alt={t('footer.logoAlt')}
                   width={220}
                   height={72}
@@ -127,7 +224,7 @@ const Footer = ({ locale }: FooterProps) => {
                   priority
                 />
                 <Image
-                  src="/images/logo/logo-text-inverse.svg"
+                  src={footerLogoInverse}
                   alt={t('footer.logoAlt')}
                   width={220}
                   height={72}
@@ -140,36 +237,56 @@ const Footer = ({ locale }: FooterProps) => {
                   locale === "zh" ? "text-sm lg:text-base" : "text-sm"
                 }`}
               >
-                {t('footer.description').split("\n").map((line, index) => (
-                  <p
-                    key={`footer-description-${index}`}
-                    className="whitespace-normal"
-                  >
-                    {line}
-                  </p>
-                ))}
+                {footerData?.description ? (
+                  <PayloadRichText data={footerData.description as any} />
+                ) : null}
               </div>
-              <div className="mb-8 space-y-3 text-sm text-body-color dark:text-body-color-dark">
-                <div>
-                  <span className="block text-base font-semibold text-black dark:text-white">
-                    {t('footer.contact.phoneLabel')}
-                  </span>
-                  <a
-                    href={telHref}
-                    className="text-base font-medium text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-                  >
-                    {t('footer.contact.phoneNumber')}
-                  </a>
-                  <div className="text-xs text-body-color/80 dark:text-body-color-dark/70">
-                    {t('footer.contact.phoneTip')}
+              <div className="mb-8 space-y-4 text-sm text-body-color dark:text-body-color-dark">
+                {phoneNumber && (
+                  <div>
+                    <span className="block text-base font-semibold text-black dark:text-white">
+                      {t('footer.contact.phoneLabel')}
+                    </span>
+                    <a
+                      href={telHref}
+                      className="text-base font-medium text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      {phoneNumber}
+                    </a>
+                    <div className="text-xs mt-1 text-body-color/80 dark:text-body-color-dark/70">
+                      {t('footer.contact.phoneTip')}
+                    </div>
                   </div>
-                </div>
+                )}
+                {payloadEmail && (
+                  <div>
+                    <span className="block text-base font-semibold text-black dark:text-white">
+                      {t('footer.contact.emailLabel')} 
+                    </span>
+                    <a
+                      href={mailToHref}
+                      className="text-base font-medium text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                    >
+                      {payloadEmail}
+                    </a>
+                  </div>
+                )}
+                {payloadAddress && (
+                  <div>
+                    <span className="block text-base font-semibold text-black dark:text-white">
+                      {t('footer.contact.addressLabel')}
+                    </span>
+                    <div className="text-base font-medium text-body-color dark:text-body-color-dark">
+                      {payloadAddress}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="flex items-center gap-6">
                 {contactIcons.map((item) => {
                   const aria = `${socialLabel}：${item.label}`;
                   if (item.type === "link") {
-                    const href = `/${currentLocale}${item.href}`;
+                    const href = prefixLocaleHref(currentLocale, item.href);
                     return (
                       <a
                         key={item.key}
@@ -222,8 +339,8 @@ const Footer = ({ locale }: FooterProps) => {
           </div>
           <div className="w-full px-4 lg:w-[62%] xl:w-[60%]">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-12">
-              {columnsArray.map((column) => (
-                <div key={column.title} className="space-y-5">
+              {columnsArray.map((column, index) => (
+                <div key={`${column.title || "section"}-${index}`} className="space-y-5">
                   <h2 className="text-lg font-semibold text-black dark:text-white">
                     {column.title}
                   </h2>
@@ -231,7 +348,7 @@ const Footer = ({ locale }: FooterProps) => {
                     {column.items.map((item) => (
                       <li key={`${column.title}-${item.label}`}>
                         <Link
-                          href={`/${currentLocale}${item.path}`}
+                          href={prefixLocaleHref(currentLocale, item.path)}
                           className="text-base text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                         >
                           {item.label}
@@ -284,16 +401,18 @@ const Footer = ({ locale }: FooterProps) => {
             >
               {modalCopy.title}
             </h3>
-            <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">
-              {modalCopy.description}
-            </p>
+            {modalCopy.description ? (
+              <p className="mb-4 text-sm text-body-color dark:text-body-color-dark">
+                {modalCopy.description}
+              </p>
+            ) : null}
             <div className="mx-auto max-w-[220px] overflow-hidden rounded-2xl border border-body-color/15 bg-white p-3 dark:border-white/15 dark:bg-gray-950">
               <Image
                 src={modalImage}
                 alt={modalCopy.title}
                 width={220}
                 height={220}
-                className="h-auto w-full rounded-xl"
+                className="mx-auto h-auto max-h-[220px] w-full max-w-[220px] rounded-xl object-contain"
                 priority={false}
                 unoptimized
               />
@@ -302,7 +421,18 @@ const Footer = ({ locale }: FooterProps) => {
         </div>
       )}
       <div className="border-t border-body-color/15 py-6 text-center text-sm text-body-color dark:border-white/10 dark:text-body-color-dark">
-        版权所有 有你同创智能机器人科技（北京）科技有限公司 京ICP备xxxxxxxx号-x 公安备案号：xxxxxxxxxxxxxx
+        <div className="flex flex-col items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link
+              href={`/${currentLocale}/privacy-policy`}
+              className="text-sm text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+            >
+              {t("footer.legal.privacyPolicy")}
+            </Link>
+            <CookiePreferencesButton />
+          </div>
+          <div>{t("footer.copyright", { year, companyName })}</div>
+        </div>
       </div>
       <div className="absolute right-0 top-14 z-[-1]">
         <svg

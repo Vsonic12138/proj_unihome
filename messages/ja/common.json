@@ -10,9 +10,10 @@
       "submenu": {
         "knowledgeBase": "ナレッジベース",
         "openSource": "オープンソース",
-        "caseUniversities": "大学事例",
-        "caseK12": "K12事例",
-        "caseCoResearch": "共同研究"
+        "casePracticalTeaching": "実践教育事例",
+        "caseSciTechInnovation": "科学技術革新事例",
+        "caseInnovationCompetition": "イノベーションコンテスト事例",
+        "caseTrainingBase": "トレーニングベース"
       }
     },
     "languageSwitcher": {
@@ -98,6 +99,8 @@
     },
     "contact": {
       "phoneLabel": "電話",
+      "emailLabel": "メール",
+      "addressLabel": "住所",
       "phoneNumber": "+86 176 1035 7571",
       "phoneTip": "平日 09:30〜18:00（GMT+8）",
       "taobaoLabel": "淘宝（タオバオ）店舗",
@@ -113,7 +116,12 @@
         "title": "公式WeChatをフォロー",
         "description": "公式アカウントをフォローして、授業資料とイベント情報を受け取れます。"
       }
-    }
+    },
+    "legal": {
+      "privacyPolicy": "プライバシー・Cookie ポリシー",
+      "cookieSettings": "Cookie 設定"
+    },
+    "copyright": "© {year} {companyName} | ICPxxxxxxxx-x | 公安备案番号：xxxxxxxxxxxxxx"
   },
   "floatingContact": {
     "panelLabel": "お問い合わせ",
@@ -158,5 +166,47 @@
     "learnMore": "詳細",
     "acceptAll": "すべて許可",
     "rejectNonEssential": "必要なもののみ"
+  },
+  "privacyPolicy": {
+    "title": "プライバシー・Cookie ポリシー",
+    "description": "本サイトで使用する Cookie、ローカルストレージ、および類似技術と、その設定方法を説明します。",
+    "intro": "このページでは、本サイトの閲覧時に使用される Cookie、ローカルストレージ、および類似技術について説明します。サイト運用に必要な項目を除き、明確な同意を得る前に分析またはマーケティング追跡を有効化することはありません。",
+    "cmsLegalTitle": "補足法的表示",
+    "meta": {
+      "title": "プライバシー・Cookie ポリシー",
+      "description": "本サイトで使用される保存技術と Cookie 設定の管理方法を確認できます。"
+    },
+    "sections": [
+      {
+        "title": "本サイトで使用する保存技術",
+        "body": [
+          "必要な保存技術は、サイトの基本動作、セキュリティ、および利用者が明示的に要求した機能を支えます。",
+          "機能性保存は、言語やテーマなどの設定を保持し、次回以降の訪問でも一貫した体験を提供します。",
+          "同意状態の保存は、バナーでの選択結果を記録し、同じ案内が繰り返し表示されることを防ぎます。"
+        ]
+      },
+      {
+        "title": "現在主に使用している項目",
+        "body": [
+          "cookie-consent-status は、すべて許可したか必要なもののみにしたかを記録します。",
+          "proj_uinhome-language は、利用者が選択した表示言語を記録します。",
+          "theme のローカルストレージは、明るいテーマまたは暗いテーマの設定を保存します。"
+        ]
+      },
+      {
+        "title": "分析およびマーケティング",
+        "body": [
+          "現在のサイトでは、分析系またはマーケティング系の追跡スクリプトを既定で有効化していません。",
+          "今後、アクセス解析、計測、または第三者のマーケティングツールを導入する場合は、本ポリシーを更新し、必要な場合は同意取得後にのみ有効化します。"
+        ]
+      },
+      {
+        "title": "設定の管理方法",
+        "body": [
+          "フッターの Cookie 設定から同意バナーを再度開き、選択を更新できます。",
+          "ブラウザ設定から Cookie の削除やローカルストレージの制限も可能ですが、一部機能に影響する場合があります。"
+        ]
+      }
+    ]
   }
 }

@@ -7,6 +7,15 @@
       "namePlaceholder": "请输入姓名",
       "emailLabel": "您的邮箱",
       "emailPlaceholder": "请输入邮箱",
+      "phoneLabel": "您的手机号",
+      "phonePlaceholder": "请输入手机号",
+      "intentionLabel": "合作意向选择",
+      "intentionPlaceholder": "请选择合作意向",
+      "intentionOptions": [
+        "课程/实验室/专业建设合作",
+        "联合开发产品",
+        "渠道合作"
+      ],
       "messageLabel": "您的留言",
       "messagePlaceholder": "请填写想咨询的问题",
       "submit": "提交工单"

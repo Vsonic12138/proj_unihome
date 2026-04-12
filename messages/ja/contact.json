@@ -7,6 +7,15 @@
       "namePlaceholder": "お名前を入力してください",
       "emailLabel": "メールアドレス",
       "emailPlaceholder": "メールアドレスを入力してください",
+      "phoneLabel": "電話番号",
+      "phonePlaceholder": "電話番号を入力してください",
+      "intentionLabel": "協力の意向",
+      "intentionPlaceholder": "協力の意向を選択してください",
+      "intentionOptions": [
+        "コース/研究室/専攻の共同構築",
+        "共同製品開発",
+        "チャネル協力"
+      ],
       "messageLabel": "メッセージ",
       "messagePlaceholder": "ご相談内容をお書きください",
       "submit": "チケットを送信"

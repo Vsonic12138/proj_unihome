@@ -50,20 +50,26 @@ const buildMenu = (
       submenu: [
         {
           id: 51,
-          title: menu.submenu.caseUniversities,
-          path: `/${locale}/case-studies/universities`,
+          title: menu.submenu.casePracticalTeaching,
+          path: `/${locale}/case-studies/practical-teaching`,
           newTab: false,
         },
         {
           id: 52,
-          title: menu.submenu.caseK12,
-          path: `/${locale}/case-studies/k12`,
+          title: menu.submenu.caseSciTechInnovation,
+          path: `/${locale}/case-studies/sci-tech-innovation`,
           newTab: false,
         },
         {
           id: 53,
-          title: menu.submenu.caseCoResearch,
-          path: `/${locale}/case-studies/co-research`,
+          title: menu.submenu.caseInnovationCompetition,
+          path: `/${locale}/case-studies/innovation-competition`,
+          newTab: false,
+        },
+        {
+          id: 54,
+          title: menu.submenu.caseTrainingBase,
+          path: `/${locale}/case-studies/training-base`,
           newTab: false,
         },
       ],

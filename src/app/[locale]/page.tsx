@@ -1,10 +1,14 @@
-import { getTranslations } from 'next-intl/server';
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
-import Contact from "@/components/Contact";
-import Features from "@/components/Features";
-import Hero from "@/components/Hero";
+import BlockRenderer from "@/components/payload/BlockRenderer";
+import {
+  tryGetPageBySlug,
+  tryGetPayloadClient,
+  toPayloadLocale,
+} from "@/lib/payload";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { unstable_noStore as noStore } from "next/cache";
 
 type PageParams = {
   params: Promise<{ locale: string }>;
@@ -14,35 +18,57 @@ export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
-  const homeMeta = t.raw('pages').home;
+  const isPreview = (await draftMode()).isEnabled;
+  if (isPreview) noStore();
+
+  const payload = await tryGetPayloadClient();
+  const payloadLocale = toPayloadLocale(locale);
+  if (!payload) return {};
+
+  const page = await tryGetPageBySlug({
+    payload,
+    locale: payloadLocale,
+    slug: "home",
+    depth: 0,
+    draft: isPreview,
+  });
+
+  const seoTitle = (page as any)?.seo?.title ?? (page as any)?.title;
+  const seoDescription = (page as any)?.seo?.description;
 
   return {
-    title: homeMeta?.title ?? "Youni Tongchuang",
-    description:
-      homeMeta?.description ??
-      "Youni Tongchuang provides embodied intelligence robotics platforms for education and research.",
+    title: seoTitle ?? undefined,
+    description: seoDescription ?? undefined,
   };
 }
 
 const HomePage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
+  const isPreview = (await draftMode()).isEnabled;
+  if (isPreview) noStore();
+
+  const payload = await tryGetPayloadClient();
+  const payloadLocale = toPayloadLocale(locale);
+
+  if (!payload) return notFound();
+
+  const page = await tryGetPageBySlug({
+    payload,
+    locale: payloadLocale,
+    slug: "home",
+    depth: 3,
+    draft: isPreview,
+  });
+
+  if (!(page as any)?.blocks?.length) return notFound();
 
   return (
     <>
       <ScrollUp />
-      <Hero copy={t.raw('hero')} />
-      <Features
+      <BlockRenderer
         locale={locale}
-        copy={t.raw('features')}
-        productsCatalog={t.raw('products').catalog}
+        blocks={(page as any).blocks}
       />
-      <AboutSectionTwo
-        items={t.raw('about').sectionTwo.items}
-        imageAlt={t.raw('about').sectionTwo.imageAlt}
-      />
-      <Contact copy={t.raw('contact')} />
     </>
   );
 };

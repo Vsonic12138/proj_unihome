@@ -60,20 +60,20 @@
         "rai-p4"
       ]
     },
-    "highlights": [
-      {
-        "title": "End-to-end delivery",
-        "description": "Hardware, software, curriculum, and services arrive together to keep deployment and maintenance overhead low."
-      },
-      {
-        "title": "Multi-scenario coverage",
-        "description": "From K12 and vocational programs to university labs and research centers, every route extends into competitions and hands-on training."
-      },
-      {
-        "title": "Modular expansion",
-        "description": "Mix and match chassis, robotic arms, and AI modules to support cross-disciplinary practice in LLMs, vision, control, and more."
-      }
-    ]
+      "highlights": [
+        {
+          "title": "General Cognition - M Series",
+          "description": "Modular Embodied Composite Robot Innovation Platform\nCovers all configurations of embodied AI robots, providing users with a comprehensive understanding of embodied AI technology. Designed for zero-foundation robot design learners."
+        },
+        {
+          "title": "Functional Design - P Series",
+          "description": "Deeply deconstructs embodied AI technology, allowing users to deeply understand embodied composite robot technology. Positioned for higher education and scientific research scenarios."
+        },
+        {
+          "title": "Innovative Application - X Series",
+          "description": "Practical operational robots based on scenario applications, positioned for scientific research and industry application scenarios."
+        }
+      ]
   },
   "about": {
     "sectionOne": {
@@ -96,8 +96,8 @@
       "imageAlt": "Embodied robotics teaching environment",
       "items": [
         {
-          "title": "Inspire, Explore, Innovate",
-          "paragraph": "Built on the core principles of \"Inspire, Explore, Innovate, and Share,\" we construct embodied intelligent robotics learning platforms that spark students' interest and creativity in robotics technology."
+          "title": "PBL Project-Based Learning",
+          "paragraph": "Focuses on cultivating students' ability to solve real-world problems. Creates a U-shaped learning system from discovering industry problems → analyzing task scenarios → learning challenges → building solutions with modular products → forming real problem-solving abilities."
         },
         {
           "title": "Tiered Curriculum System",

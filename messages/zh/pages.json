@@ -22,7 +22,195 @@
     },
     "knowledgeBase": {
       "title": "知识库",
-      "description": "查阅硬件安装、软件配置、课程部署等文档教程，快速定位问题解决方案。"
+      "description": "探索 UNI Robotics 的实训教程、产品操作手册与配套项目文档，从基础应用到前沿开发一应俱全。",
+      "categories": [
+        {
+          "id": "m-series",
+          "title": "产品：M 系列 · 实训教程",
+          "description": "面向 M 系列机器人套装的配套实训教程，覆盖 Arduino、OpenBlock 图形化、STM32、ESP32 等多种开发方式。",
+          "projects": [
+            {
+              "id": 1,
+              "name": "Arduino 开发机器人实训教程",
+              "description": "基于 Arduino 开发的机器人实训体系，涵盖底盘控制、传感器应用、机械臂操控及综合项目开发等内容。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/sdaqpo?#",
+              "tags": [
+                "M系列",
+                "Arduino",
+                "实训教程"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Arduino+OpenBlock 图形化开发机器人实训教程",
+              "description": "采用 OpenBlock 图形化编程平台结合 Arduino 硬件，适合零基础学习者快速上手机器人开发。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yzgzp7?#",
+              "tags": [
+                "M系列",
+                "图形化编程",
+                "OpenBlock"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Arduino 开发机器人实训教程（语音播客版本）",
+              "description": "以语音播客形式呈现的 Arduino 机器人实训教程，便于随时随地学习，适合自学和碎片化时间利用。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/quickh?#",
+              "tags": [
+                "M系列",
+                "Arduino",
+                "语音播客"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "STM32 开发机器人实训教程",
+              "description": "基于 STM32 微控制器的机器人开发实训，面向专业嵌入式开发，适合高校单片机与机器人综合课程。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/qasv9m?#",
+              "tags": [
+                "M系列",
+                "STM32",
+                "嵌入式开发"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "ESP32 图形化开发机器人实训教程",
+              "description": "基于 ESP32 开发板的图形化机器人实训教程，支持 Wi-Fi 通信与丰富外设接口，适合物联网与机器人融合课程。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/anet35?#",
+              "tags": [
+                "M系列",
+                "ESP32",
+                "图形化编程"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "p-series",
+          "title": "产品：P 系列 · 实训教程",
+          "description": "面向 P 系列高阶实训平台的配套教程，覆盖移动导航、具身智能任务规划与端到端学习等前沿方向。",
+          "projects": [
+            {
+              "id": 6,
+              "name": "移动机器人导航与视觉设计开发实训教程",
+              "description": "面向 UNI-WR2 便携式 ROS 导航平台的配套教程，涵盖 SLAM 建图、自主导航、机器视觉等实训内容。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vtbi0g?#",
+              "tags": [
+                "UNI-WR2",
+                "ROS2",
+                "导航定位"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "具身机器人任务规划综合实训教程",
+              "description": "基于 RAI-P4 平台，集成大模型、语音、视觉与机械臂的综合实训教程，涵盖智能体任务规划全链路。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/nyxrc7?#",
+              "tags": [
+                "RAI-P4",
+                "大模型",
+                "具身智能"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "具身端到端工程部署实训教程",
+              "description": "基于 ALO-LE4 平台与 ACT 架构的端到端具身机器人部署实训，涵盖数据采集、模仿学习与工程化落地。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/efqngz?#",
+              "tags": [
+                "ALO-LE4",
+                "端到端",
+                "模仿学习"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "courses",
+          "title": "课程 · 知识库文档",
+          "description": "配套各专业课程的理论与实践知识库，覆盖机器视觉、传感器、机器人学、PID 控制、移动导航等核心领域。",
+          "projects": [
+            {
+              "id": 9,
+              "name": "《机器视觉技术与应用知识库 V1.0》",
+              "description": "系统梳理机器视觉核心技术栈，涵盖图像处理、目标检测（YOLO）、VLM 多模态视觉应用等内容，适配机器视觉相关课程。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/hyt2n3?#",
+              "tags": [
+                "机器视觉",
+                "YOLO",
+                "深度学习"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "《传感器检测与控制知识库 V1.0》",
+              "description": "传感器原理与机器人控制综合知识库，覆盖常用传感器应用（超声波、IMU、激光雷达等）与控制逻辑实现。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/fl5gl0?#",
+              "tags": [
+                "传感器",
+                "控制",
+                "硬件接口"
+              ]
+            },
+            {
+              "id": 11,
+              "name": "《机器人学基础实践 V2.0》",
+              "description": "机器人学核心理论与实践穿插编排，覆盖运动学、动力学、轨迹规划及综合实验项目，适配机器人学课程。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/kvtnc0?#",
+              "tags": [
+                "机器人学",
+                "运动学",
+                "综合实践"
+              ]
+            },
+            {
+              "id": 12,
+              "name": "《PID 控制及机器人应用 V1.0》",
+              "description": "PID 控制算法原理与机器人工程实践，以机器人底盘、机械臂等场景为主线讲解 PID 参数整定与实验验证。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/bpm5r7?#",
+              "tags": [
+                "PID控制",
+                "控制算法",
+                "工程实践"
+              ]
+            },
+            {
+              "id": 13,
+              "name": "《单片机技术原理及 Arduino 应用 V2.0》",
+              "description": "单片机基础理论结合 Arduino 平台的系统化知识体系，涵盖外设驱动、中断、通信协议及机器人应用案例。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/yfe243?#",
+              "tags": [
+                "单片机",
+                "Arduino",
+                "嵌入式"
+              ]
+            },
+            {
+              "id": 14,
+              "name": "《PID 控制算法与实践 V3.0》",
+              "description": "进阶版 PID 控制手册，深入讲解串级 PID、前馈控制等进阶控制策略，并结合移动机器人进行全流程工程实践。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/vk723k?#",
+              "tags": [
+                "PID控制",
+                "进阶",
+                "串级控制"
+              ]
+            },
+            {
+              "id": 15,
+              "name": "《移动机器人导航与定位设计开发手册（SLAM-ROS2）V3.0》",
+              "description": "基于 ROS2 的移动机器人导航与定位完整知识体系，覆盖 Cartographer、Gmapping、Nav2 导航栈等主流方案。",
+              "link": "https://unirobot.yuque.com/org-wiki-unirobot-gr9ewx/omutky?#",
+              "tags": [
+                "ROS2",
+                "SLAM",
+                "导航定位"
+              ]
+            }
+          ]
+        }
+      ]
     },
     "openSource": {
       "title": "开源项目",
@@ -211,17 +399,21 @@
       "title": "服务案例",
       "description": "了解不同合作伙伴如何在教学、竞赛与联合研发中应用我们的机器人产品。"
     },
-    "caseUniversities": {
-      "title": "高校案例",
-      "description": "深入了解高校如何将我们的平台融入实验室建设、课程体系与创新中心。"
+    "casePracticalTeaching": {
+      "title": "实训教学案例",
+      "description": "深入了解各院校如何将我们的平台融入实训体系与实验室建设。"
     },
-    "caseK12": {
-      "title": "K12案例",
-      "description": "看看中小学如何用我们的机器人套件激发学生对STEM的兴趣与实践能力。"
+    "caseSciTechInnovation": {
+      "title": "科技创新案例",
+      "description": "探索科技创新与前沿学术研究中使用我们平台的成功实践。"
     },
-    "caseCoResearch": {
-      "title": "共研案例",
-      "description": "了解我们与合作伙伴在智能机器人、人工智能等领域的联合研发成果。"
+    "caseInnovationCompetition": {
+      "title": "创新竞赛案例",
+      "description": "看看我们的产品如何助力学生团队在各大机器人创新竞赛中脱颖而出。"
+    },
+    "caseTrainingBase": {
+      "title": "培训基地",
+      "description": "了解我们与各地培训基地合作开展的机器人教育及成果展示。"
     }
   }
 }

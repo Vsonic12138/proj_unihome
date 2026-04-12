@@ -12,17 +12,17 @@
           "items": [
             {
               "slug": "ubot-mr20",
-              "name": "具現化ロボット革新デザインキット Ubot MR20",
-              "model": "Ubot MR20",
+              "name": "エンボディド・ロボット イノベーションデザインキット (40-in-1) Ubot MR40",
+              "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-              "brief": "具現化知能ロボット革新デザインキット（二十合一）。AI通識教育実践キットと組み合わせ、ゼロから20種類以上の知能ロボットを構築でき、ブロック型/C++/Pythonマルチ言語プログラミングをサポート。"
+              "brief": "シャーシ、ロボットアーム、複合ロボットを含む、40種類の代表的なエンボディド・ロボット構成をゼロから構築可能。ビジュアルプログラミング/C++ (Arduino)/Pythonの多言語プログラミングをサポート。段階的なカリキュラムリソースを備え、ゼロからの学習、科学イノベーション、競技での使用に適しています。"
             },
             {
               "slug": "gx-mat-09s",
               "name": "具現化ロボット革新デザインプラットフォーム（強化版）GX-MAT-09S",
               "model": "GX-MAT-09S",
               "image": "/images/products/gx-mat-09s/hero.png",
-              "brief": "11種シャーシ + 7種アーム、88種複合形態、LiDAR + RDK X5 追加。上級授業・研究向け。"
+              "brief": "エンジニアリングレベルのエンボディド複合ロボット設計キット。11種類のシャーシ+7種類のロボットアーム、80種類以上の複合ロボット構成の構築をサポート。12Vエンコーダ付きDCモーターを採用し、シャーシの最大積載量は25kg。制御はArduino、STM32、エッジコンピューティングボードを網羅し、マルチレベルの開発をサポート。ビジョンやLiDARなどの主流ロボットセンサーを搭載。専門的なイノベーショントレーニングに適しています。"
             }
           ]
         },
@@ -36,7 +36,7 @@
               "name": "具現化ロボットタスク計画 総合実習プラットフォーム RAI-P4",
               "model": "RAI-P4",
               "image": "/images/products/rai-p4/rai-p4-hero.png",
-              "brief": "AI音声・視覚と4自由度アームを一体化したデスクトップ実習環境。計画・知覚・行動を統合したROS2カリキュラム向け。"
+              "brief": "大規模モデル、音声、ビジョン、ロボットアーム、ジンバルを統合したワンストップのエンボディドインタラクティブエージェントトレーニングプラットフォーム。DeepSeek、Qwen、Doubaoなどの主流の大規模モデルに適合。OpenCV、YOLO、マルチモーダルVLMなどのビジョンコンテンツを網羅。0-1エージェント設計、ロボット制御、エージェント開発、ビジョン統合開発などの実習コースパッケージが付属しており、専門コースのトレーニングに適しています。"
             },
             {
               "slug": "uni-wr2",
@@ -57,14 +57,14 @@
               "name": "具現化複合ロボット システム設計実習プラットフォーム RAI-M4",
               "model": "RAI-M4",
               "image": "/images/products/rai-m4/front-view.png",
-              "brief": "メカナム全方向シャーシ + 4軸アーム、DeepSeek/通義千問に接続。移動ロボット航法・LLM導入向け。"
+              "brief": "全方向シャーシ、5軸ロボットアーム、デプスカメラ、LiDAR、音声対話を統合したワンストップのエンボディドAIトレーニングプラットフォーム。Qwenなどの主流の大規模モデルに適合。3つのビジョンソリューション、2つのSLAMナビゲーションソリューション、ROS 2を内蔵。エンボディドエージェント、ビジョン、ナビゲーション、ロボットオペレーティングシステムに関する包括的なコースを備え、専門的な総合トレーニングに適しています。"
             },
             {
               "slug": "alo-le4",
               "name": "具現化ロボット 操作計画 総合実習プラットフォーム ALO-LE4",
               "model": "ALO-LE4",
               "image": "/images/products/alo-le4/front-view.png",
-              "brief": "二つの5自由度アーム（主従追従）、ACT アーキテクチャ、調光可能な照明。模倣学習・E2E制御研究向け。"
+              "brief": "デュアル5軸アーム搭載。ACTアーキテクチャのエンドツーエンドソリューションに基づく、エンボディドロボット操作実行トレーニングプラットフォーム。デプロイ不要ですぐに使用可能。データ収集プラットフォームとして機能するほか、模倣学習やエンドツーエンドのインテリジェント制御ソリューションの研究にも適しています。"
             }
           ]
         }
@@ -106,11 +106,16 @@
     },
     "details": {
       "ubot-mr20": {
-        "name": "Ubot MR20",
-        "subtitle": "具現化知能ロボット革新デザインキット(二十合一)",
-        "model": "Ubot MR20",
+        "name": "エンボディド・ロボット イノベーションデザインキット (40-in-1) Ubot MR40",
+        "subtitle": "エンボディドAIロボット イノベーションデザインキット (40-in-1)",
+        "model": "Ubot MR40",
         "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
-        "overview": "Ubot MR20はロボットと人工知能の通識教育実践キットを組み合わせたもので、学習者は20種類以上の知能ロボットをゼロから構築でき、音声認識を組み合わせることで、学習者にロボットにおける人工知能技術の応用を理解させることができます。学習者はブロックプログラミング/C++プログラミングを通じて、ロボットの障害物回避、ライントレース、姿勢検出などの知能機能を開発することもできます。",
+        "overview": "シャーシ、ロボットアーム、複合ロボットを含む、40種類の代表的なエンボディド・ロボット構成をゼロから構築可能。ビジュアルプログラミング/C++ (Arduino)/Pythonの多言語プログラミングをサポート。段階的なカリキュラムリソースを備え、ゼロからの学習、科学イノベーション、競技での使用に適しています。",
+        "highlights": [
+          "40種類の代表的なロボット形態を構築可能なモジュール設計",
+          "ビジュアルプログラミングおよびC++/Python開発に対応",
+          "初心者の基礎学習からロボット競技まで幅広くカバー"
+        ],
         "applicable": "K12、専門・高専1年、学部1年生",
         "features": [
           {
@@ -567,11 +572,11 @@
         "subtitle": "具現化ロボット革新デザインスイート（強化版）",
         "model": "GX-MAT-09S",
         "image": "/images/products/gx-mat-09s/hero.png",
-        "overview": "具現化ロボットは知能的な意思決定・豊富なセンシング・高い操作能力を融合し、サービスや家庭など非構造環境で任務を遂行する次世代ロボットです。現在はモバイル複合型が実用化の主流となりつつあります。\n\nGX-MAT-09S は代表的な具現化モバイルロボットの構造をモジュール化し、機構・駆動・センシング・制御を分解して学べるよう設計されています。付属パーツを用いて 11 種のシャーシ、7 種のロボットアーム、88 種の複合ロボットを設計・組立・チューニングできます。\n\nプラットフォームには AI ビジョン、単眼カメラ、AI 音声、姿勢 IMU、障害物回避、ライントレース、ナビゲーション用 LiDAR など、具現化ロボットに必要なセンシングユニットを統合しています。\n\nArduino・STM32・Horizon RDK X5（Ubuntu + ROS、10 TOPS）による 3 層コントローラ構成で、授業・研究開発・競技トレーニングまで幅広いニーズに対応します。",
+        "overview": "エンジニアリングレベルのエンボディド複合ロボット設計キット。11種のシャーシ + 9種のアームをサポートし、70以上の複合ロボット構成を組合せ可能。12V エンコーダDCモーター採用、シャーシ最大負荷25kg。三層制御（Arduino/STM32/RDK X5 10TOPS）、AIビジョン・音声・IMU・LiDARを統合。専門的なロボット工学実訓に最適。",
         "highlights": [
-          "11 種のモバイルシャーシ + 7 種のロボットアームで 88 種の複合ロボットを構成",
-          "AI ビジョン、音声、IMU、ライントレース、LiDAR など多モーダルセンシングを統合",
-          "Arduino + STM32 + Horizon RDK X5（10 TOPS）の三層コントローラスタック"
+          "11種シャーシ + 9種アーム、差動・全方向・ステアリングなど多様な運動学体系",
+          "AIビジョン・AI音声・IMU姿勢・LiDARなど多モーダルセンシング融合",
+          "Arduino + STM32 + Horizon RDK X5（10 TOPS）三層制御アーキテクチャ"
         ],
         "applicable": "大学ロボット実験・研究開発・競技トレーニング",
         "features": [
@@ -601,81 +606,85 @@
           "chassis": [
             {
               "name": "三輪二駆差動シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-differential-chassis.png"
             },
             {
               "name": "三輪二駆前輪操舵シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-front-steering-chassis.png"
             },
             {
               "name": "三輪三駆スウェーデンホイール全方向シャーシ（A案）",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-1.png"
             },
             {
               "name": "三輪三駆スウェーデンホイール全方向シャーシ（B案）",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/tri-wheel-tri-drive-omni-chassis-2.png"
             },
             {
               "name": "四輪二駆差動シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "四輪四駆差動シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-four-drive-differential-chassis.png"
             },
             {
               "name": "四輪四駆スウェーデンホイール全方向シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-foley-omni-chassis.png"
             },
             {
               "name": "四輪四駆メカナム全方向シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-mecanum-omni-chassis.png"
             },
             {
               "name": "四輪八駆ステアリングシャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/four-wheel-eight-drive-steering-chassis.png"
             },
             {
               "name": "六輪二駆差動シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-dual-drive-differential-chassis.png"
             },
             {
               "name": "六輪六駆差動シャーシ",
-              "image": ""
+              "image": "/images/products/gx-mat-09s/chassis/six-wheel-six-drive-differential-chassis.png"
             }
           ],
           "arms": [
             {
-              "name": "2 自由度ジンバル",
-              "image": ""
+              "name": "2自由度ジンバル",
+              "image": "/images/products/gx-mat-09s/arms/2-dof-gimbal.png"
             },
             {
-              "name": "3 自由度直列ロボットアーム",
-              "image": ""
+              "name": "3自由度直列アーム（A案）",
+              "image": "/images/products/gx-mat-09s/arms/3-dof-arm-1.png"
             },
             {
-              "name": "4 自由度直列ロボットアーム",
-              "image": ""
+              "name": "3自由度直列アーム（B案）",
+              "image": "/images/products/gx-mat-09s/arms/3-axis-arm-2.png"
             },
             {
-              "name": "4 自由度 SCARA ロボットアーム",
-              "image": ""
+              "name": "4自由度直列アーム",
+              "image": "/images/products/gx-mat-09s/arms/4-axis-serial-arm.png"
             },
             {
-              "name": "5 自由度直列ロボットアーム",
-              "image": ""
+              "name": "4自由度 SCARA アーム",
+              "image": "/images/products/gx-mat-09s/arms/4-axis-scara-arm.png"
             },
             {
-              "name": "6 自由度直列ロボットアーム（A案）",
-              "image": ""
+              "name": "5自由度直列アーム",
+              "image": "/images/products/gx-mat-09s/arms/5-axis-serial-arm.png"
             },
             {
-              "name": "6 自由度直列ロボットアーム（B案）",
-              "image": ""
+              "name": "6自由度直列アーム",
+              "image": "/images/products/gx-mat-09s/arms/6-axis-arm.png"
             },
             {
-              "name": "8 自由度デュアルアーム",
-              "image": ""
+              "name": "7自由度直列アーム",
+              "image": "/images/products/gx-mat-09s/arms/7-axis-arm.png"
+            },
+            {
+              "name": "デュアルアームロボットシステム",
+              "image": "/images/products/gx-mat-09s/arms/dual-arm.png"
             }
           ],
           "compositeGroups": [
@@ -755,6 +764,12 @@
                 "四輪ステアリング＋SCARA 複合ロボット"
               ]
             }
+          ],
+          "compositeRobots": [
+            {
+              "name": "複合ロボット構型一覧",
+              "image": "/images/products/gx-mat-09s/composite/composite-robot-demo.png"
+            }
           ]
         },
         "sensorConfig": {
@@ -769,22 +784,12 @@
           ]
         },
         "controllerConfig": {
-          "description": "Arduino でのグラフィカル／C++ 入門、STM32 による本格的 MCU 開発、Ubuntu+ROS を搭載した Horizon RDK X5（10 TOPS）の三層構成で、具現化ロボットの高度な応用までカバーします。",
+          "description": "三層コントローラ構成：Arduino（グラフィカル/C++ 入門）、STM32F407（専門 MCU 開発）、Horizon RDK X5（Ubuntu + ROS、10 TOPS エッジ AI）を組合せ、授業からロボット研究まで全領域をカバーします。",
           "images": [
             {
-              "src": "/images/products/gx-mat-09s/controller/arduino-mega2560.png",
-              "alt": "Arduino Mega 2560 コントローラボード",
-              "caption": "Arduino Mega 2560：グラフィカル／C++ プログラミングの快速入門"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/stm32f407.jpg",
-              "alt": "STM32F407 開発ボード",
-              "caption": "STM32F407：本格的な MCU 開発と組込み制御に対応"
-            },
-            {
-              "src": "/images/products/gx-mat-09s/controller/rdk-x5.png",
-              "alt": "Horizon RDK X5 コンピュートモジュール",
-              "caption": "Horizon RDK X5：Ubuntu + ROS、10 TOPS の AI 計算プラットフォーム"
+              "src": "/images/products/gx-mat-09s/controller/motherboard.png",
+              "alt": "GX-MAT-09S 三層コントローラ全景",
+              "caption": "Arduino + STM32F407 + RDK X5 三層制御システム"
             }
           ]
         },
@@ -795,48 +800,6 @@
         "experiments": {
           "summary": "マイコン、センサ、組込み Linux、コンピュータビジョン、シャーシ設計、ロボットアーム制御、複合ロボット、ROS、ナビゲーションまでを網羅し、入門から応用までの学習ルートを形成します。",
           "sections": [
-            {
-              "title": "マイコン総合プロジェクト",
-              "description": "Arduino と STM32 を用いて、基板理解から EEPROM・ライブラリ活用までをトレーニングします。",
-              "items": [
-                {
-                  "name": "Arduino ボード認識実験",
-                  "desc": "チップ性能・インターフェース・回路構成を理解し、開発環境を構築する。"
-                },
-                {
-                  "name": "STM32 ボード認識実験",
-                  "desc": "STM32 の性能・ピン配置・電源回路とツールチェーン構築を学ぶ。"
-                },
-                {
-                  "name": "LED 点滅実験",
-                  "desc": "digitalWrite() と delay() を用いてデジタル出力制御を体験する。"
-                },
-                {
-                  "name": "アナログ入力モニタ実験",
-                  "desc": "analogRead()/analogWrite()/Serial API を使い、アナログ信号を読み取り表示する。"
-                },
-                {
-                  "name": "シリアル通信実験",
-                  "desc": "Serial.begin() を設定し、データ送受信とログ出力を行う。"
-                },
-                {
-                  "name": "EEPROM 読み出し実験",
-                  "desc": "EEPROM.read() を用いて永続データを取得する。"
-                },
-                {
-                  "name": "EEPROM クリア実験",
-                  "desc": "EEPROM.write() を利用し、データ消去と書き込み方法を習得する。"
-                },
-                {
-                  "name": "EEPROM 書き込み実験",
-                  "desc": "EEPROM.write() で設定値を書き込み、永続化する。"
-                },
-                {
-                  "name": "拡張ライブラリ導入実験",
-                  "desc": "MsTimer2 をインストールし、タイマで Blink を再構築する。"
-                }
-              ]
-            },
             {
               "title": "モータ総合プロジェクト",
               "description": "DC モータとサーボの制御、エンコーダ計測と PID 制御を習得します。",
@@ -1123,7 +1086,7 @@
         "subtitle": "具現化ロボットタスク計画総合実習プラットフォーム",
         "model": "RAI-P4",
         "image": "/images/products/rai-p4/rai-p4-hero.png",
-        "overview": "RAI-P4はAI技術とロボット技術を密接に融合させた具現化知能実習プラットフォームです。AI音声、AIビジョン、代表的な4自由度ロボットアーム、具現化ロボットで頻用されるセンサー群、AIエッジコントローラを統合し、学習者が実機上で知能アルゴリズムをデプロイ／デバッグできるようにすることで、講義の理論と総合実習をシームレスに接続します。\n\nプラットフォームは「計画→知覚→実行」の流れに沿ったシナリオを用意し、音声対話、タスク意味理解、ビジョンパンチルト追跡、ビジョン支援のアーム搬送、運動学軌跡制御、AIビジョンによる果物検出などを体系的に学べます。",
+        "overview": "大規模モデル、音声、ビジョン、ロボットアーム、ジンバルを統合したワンストップのエンボディドインタラクティブエージェントトレーニングプラットフォーム。DeepSeek、Qwen、Doubaoなどの主流の大規模モデルに適合。OpenCV、YOLO、マルチモーダルVLMなどのビジョンコンテンツを網羅。0-1エージェント設計、ロボット制御、エージェント開発、ビジョン統合開発などの実習コースパッケージが付属しており、専門コースのトレーニングに適しています。",
         "applicable": "人工知能、ロボティクス、自動化、計算機科学などの大学・高専向けカリキュラムに適しており、大規模言語モデル応用、コンピュータビジョン、機械学習、ディープラーニング、組込み開発、センサ計測と制御、ROS、ロボティクス、シミュレーション、知能システム統合といった実習を網羅します。",
         "highlights": [
           "AI音声・AIビジョン・マニピュレータ制御を一体化したオールインワンプラットフォーム",
@@ -1145,31 +1108,20 @@
           }
         ],
         "sampleCases": {
-          "description": "2 つのシナリオを通して、タスク計画のワークフローと、ビジョン連携による搬送・運動制御の実践的フローを把握できます。",
           "sections": [
             {
-              "title": "タスク計画ワークフロー",
-              "description": "音声／視覚入力からタスク分解、マニピュレータ実行までの全体像をフローチャートで把握します。",
+              "title": "実習シナリオ",
               "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
               "imageAspectClass": "aspect-[21/10]",
               "cardClassName": "w-full p-6",
               "items": [
                 {
                   "name": "タスク計画フロー概要",
-                  "image": "/images/products/rai-p4/rai-p4-task-planning.png"
-                }
-              ]
-            },
-            {
-              "title": "ビジョン搬送と運動学統合実習",
-              "description": "視覚認識、運動学計画、ロボットアームの協調制御を一体的に学ぶ実習例です。",
-              "gridClassName": "grid-cols-1 place-items-center gap-6 max-w-5xl mx-auto",
-              "imageAspectClass": "aspect-[21/10]",
-              "cardClassName": "w-full p-6",
-              "items": [
+                  "image": "/images/products/rai-p4/rai-p4-task-planning-1.png"
+                },
                 {
-                  "name": "ビジョン搬送と運動学統合実習",
-                  "image": "/images/products/rai-p4/rai-p4-manipulator-workflows.png"
+                  "name": "RAI-P4 総合実習展示",
+                  "image": "/images/products/rai-p4/rai-p4-comprehensive-training-display.png"
                 }
               ]
             }
@@ -1179,10 +1131,8 @@
           "description": "音声・視覚・運動フィードバックなど、具現化タスク計画に必要なマルチモーダル入力を網羅しています。",
           "list": [
             "AI音声インタラクション用マイクアレイ",
-            "ビジョンパンチルトカメラモジュール",
             "カラー認識センサー",
-            "姿勢推定IMUセンサー",
-            "物体認識／距離検知用の拡張インターフェース"
+            "姿勢推定IMUセンサー"
           ]
         },
         "controllerConfig": {
@@ -1422,7 +1372,7 @@
         "name": "具現化複合ロボットシステム設計実習プラットフォーム RAI-M4",
         "model": "RAI-M4",
         "image": "/images/products/rai-m4/front-view.png",
-        "overview": "具現化知能はタスク計画・感知判断・操作実行の 3 フェーズに分解でき、それぞれに AI を組み込むことで対話や意思決定、操作の汎化能力を高められます。RAI-M4 はタスク計画段階で DeepSeek と通義千問を活用し、自由度の高い対話からロボットが理解できるタスクフローへ変換します。感知判断では通義千問のマルチモーダル能力を用い、専用学習なしで幅広い対象を認識できます。\n\nハードウェアは麦克納姆ホイール全方向シャーシに四軸直列型アーム（最大負荷 300g、到達距離 240mm、グリッパ付属）を組み合わせ、HD カメラ（オプションで深度カメラ）、LiDAR、IMU／ジャイロ、呼吸ライトなどのセンシング・インタラクションモジュールを搭載します。\n\n制御構成は上位・下位デュアルコントローラ方式で、上位機がタスク計画・ビジョン認識・ナビゲーション計画・底盤／アームの運動学を担当、下位機がモータ PID 制御やインタラクション表示、上位機との通信リレーを担います。移動ロボット技術と大規模モデル応用の実習を支援し、ロボット系・メカトロ系・スマート製造・制御・電子情報などの専攻でカリキュラム実習や発展型実習に活用できます。",
+        "overview": "全方向シャーシ、5軸ロボットアーム、デプスカメラ、LiDAR、音声対話を統合したワンストップのエンボディドAIトレーニングプラットフォーム。Qwenなどの主流の大規模モデルに適合。3つのビジョンソリューション、2つのSLAMナビゲーションソリューション、ROS 2を内蔵。エンボディドエージェント、ビジョン、ナビゲーション、ロボットオペレーティングシステムに関する包括的なコースを備え、専門的な総合トレーニングに適しています。",
         "highlights": [
           "全方向移動シャーシ + 四軸アームによる複合ロボット形態",
           "通義千問 + DeepSeek など大規模モデルの深度連携",
@@ -1947,7 +1897,7 @@
         "name": "具現化ロボット操作計画総合実習プラットフォーム ALO-LE4",
         "model": "ALO-LE4",
         "image": "/images/products/alo-le4/front-view.png",
-        "overview": "具現化知能の操作実行フェーズには強化学習とエンドツーエンド方式があり、前者は生体模倣や人型構成、後者は移動型複合ロボットやロボットアームに多く用いられます。ALO-LE4 はロボットアーム構成に基づき、ACT アーキテクチャでエンドツーエンド実装を行う操作実習プラットフォームです。データ収集装置としても、模倣学習・エンドツーエンド制御研究基盤としても活用できます。\n\n2 台の 5 自由度アームを搭載し、1 台は操作者が操作する主アーム、もう 1 台は追従動作を行う従アームです。主アームで取得した関節角データなどを用い ACT モデルを訓練し、従アームが自律的にタスクを実行します。トップとサイドに配置したカメラは物体の色・位置を検知し、同時に ACT 学習用の視覚データとして活用。可変環境照明により多様な光条件を再現できます。\n\nALO-LE4 は具現化知能・模倣学習・データ収集研究に安定した実験環境を提供し、「認知―意思決定―実行」のループ構築を支援します。教育現場ではロボット工学・コンピュータビジョンなどの実習をカバーし、具現化知能の概念と実装を直感的に理解させることで、学習者の工学・研究能力を高めます。大学・研究機関において関連授業や研究を効率的に推進でき、具現化知能の方法論を探求・実装する一助となります。",
+        "overview": "デュアル5軸アーム搭載。ACTアーキテクチャのエンドツーエンドソリューションに基づく、エンボディドロボット操作実行トレーニングプラットフォーム。デプロイ不要ですぐに使用可能。データ収集プラットフォームとして機能するほか、模倣学習やエンドツーエンドのインテリジェント制御ソリューションの研究にも適しています。",
         "highlights": [
           "データ収集と知能トレーニングを兼ね備えた一体型プラットフォーム",
           "高集約・ワンストップ設計で迅速導入、各システムに独立リセットキーを搭載",

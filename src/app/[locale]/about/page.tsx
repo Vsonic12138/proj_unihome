@@ -1,6 +1,14 @@
-import { getTranslations } from 'next-intl/server';
-import AboutContent from "@/app/about/AboutContent";
+import PageIntro from "@/components/Common/PageIntro";
+import BlockRenderer from "@/components/payload/BlockRenderer";
+import { notFound } from "next/navigation";
+import {
+  tryGetPageBySlug,
+  tryGetPayloadClient,
+  toPayloadLocale,
+} from "@/lib/payload";
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { unstable_noStore as noStore } from "next/cache";
 
 type PageParams = {
   params: Promise<{ locale: string }>;
@@ -10,24 +18,58 @@ export async function generateMetadata({
   params,
 }: PageParams): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
-  const pageCopy = t.raw('pages.about') as any;
+  const isPreview = (await draftMode()).isEnabled;
+  if (isPreview) noStore();
+
+  const payload = await tryGetPayloadClient();
+  const payloadLocale = toPayloadLocale(locale);
+  if (!payload) return {};
+
+  const page = await tryGetPageBySlug({
+    payload,
+    locale: payloadLocale,
+    slug: "about",
+    depth: 1,
+    draft: isPreview,
+  });
+  if (!page) return {};
+  const title = page.seo?.title ?? page.title;
+  const description = page.seo?.description;
 
   return {
-    title: `${pageCopy.title} | Startup`,
-    description: pageCopy.description,
+    title: title ? `${title} | Startup` : undefined,
+    description: description ?? undefined,
   };
 }
 
 const AboutPage = async ({ params }: PageParams) => {
   const { locale } = await params;
-  const t = await getTranslations({ locale });
+  const isPreview = (await draftMode()).isEnabled;
+  if (isPreview) noStore();
+
+  const payload = await tryGetPayloadClient();
+  const payloadLocale = toPayloadLocale(locale);
+  if (!payload) return notFound();
+
+  const page = await tryGetPageBySlug({
+    payload,
+    locale: payloadLocale,
+    slug: "about",
+    depth: 2,
+    draft: isPreview,
+  });
+  if (!page?.title || !page?.seo?.description) return notFound();
 
   return (
-    <AboutContent
-      pageCopy={t.raw('pages.about')}
-      aboutCopy={t.raw('about')}
-    />
+    <>
+      <PageIntro
+        title={page.title}
+        description={page.seo.description}
+      />
+      {Array.isArray((page as any).blocks) ? (
+        <BlockRenderer locale={locale} blocks={(page as any).blocks} />
+      ) : null}
+    </>
   );
 };
 

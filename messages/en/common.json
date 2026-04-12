@@ -10,9 +10,10 @@
       "submenu": {
         "knowledgeBase": "Knowledge Base",
         "openSource": "Open Source Projects",
-        "caseUniversities": "Universities",
-        "caseK12": "K12 Education",
-        "caseCoResearch": "Co-Research"
+        "casePracticalTeaching": "Practical Teaching",
+        "caseSciTechInnovation": "Sci-Tech Innovation",
+        "caseInnovationCompetition": "Innovation Competition",
+        "caseTrainingBase": "Training Base"
       }
     },
     "languageSwitcher": {
@@ -98,6 +99,8 @@
     },
     "contact": {
       "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "addressLabel": "Address",
       "phoneNumber": "+86 176 1035 7571",
       "phoneTip": "Mon–Fri, 09:30–18:00 (GMT+8)",
       "taobaoLabel": "Taobao Store",
@@ -113,7 +116,12 @@
         "title": "Follow on WeChat",
         "description": "Scan to follow the official account and receive teaching resources."
       }
-    }
+    },
+    "legal": {
+      "privacyPolicy": "Privacy & Cookie Policy",
+      "cookieSettings": "Cookie Settings"
+    },
+    "copyright": "© {year} {companyName}. All rights reserved. | ICPxxxxxxxx-x | Public Security Registration: xxxxxxxxxxxx"
   },
   "floatingContact": {
     "panelLabel": "Contact Us",
@@ -158,5 +166,47 @@
     "learnMore": "Learn more",
     "acceptAll": "Accept All",
     "rejectNonEssential": "Essential Only"
+  },
+  "privacyPolicy": {
+    "title": "Privacy & Cookie Policy",
+    "description": "Explains how this website uses cookies, local storage, and similar technologies, and how you can manage your preferences.",
+    "intro": "This page explains the cookies, local storage, and similar technologies used when you browse this website. Other than items required for core site operation, we do not enable analytics or marketing tracking before obtaining clear consent.",
+    "cmsLegalTitle": "Additional Legal Notice",
+    "meta": {
+      "title": "Privacy & Cookie Policy",
+      "description": "Review the storage technologies used on this site and how to manage your cookie preferences."
+    },
+    "sections": [
+      {
+        "title": "Storage used on this site",
+        "body": [
+          "Necessary storage supports core website operation, security, and features that you explicitly request.",
+          "Functional storage saves experience preferences such as language and theme so the website stays consistent on future visits.",
+          "Consent status storage remembers your banner choice so the prompt does not repeatedly reappear."
+        ]
+      },
+      {
+        "title": "Main items currently in use",
+        "body": [
+          "cookie-consent-status stores whether you accepted all cookies or chose essential only.",
+          "proj_uinhome-language stores the website language you actively selected.",
+          "theme local storage stores your preferred light or dark theme."
+        ]
+      },
+      {
+        "title": "Analytics and marketing",
+        "body": [
+          "The website does not currently enable analytics or marketing tracking scripts by default.",
+          "If we later add analytics, attribution, or third-party marketing tools, we will update this policy and only enable those technologies after consent is obtained where required."
+        ]
+      },
+      {
+        "title": "How to manage preferences",
+        "body": [
+          "Use the Cookie Settings entry in the footer to reopen the consent banner and update your selection.",
+          "You can also remove cookies or restrict local storage in your browser settings, but doing so may affect some site features."
+        ]
+      }
+    ]
   }
 }
