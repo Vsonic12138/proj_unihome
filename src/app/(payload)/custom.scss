@@ -1,0 +1,259 @@
+/* Custom styling for the Payload UI */
+
+@layer payload-default {
+  /* ----------------------------------------------------- */
+  /* UniHome Orange & White Theme Overrides                */
+  /* ----------------------------------------------------- */
+  
+  :root,
+  [data-theme="light"] {
+    --brand-orange: #f97316;
+    --brand-orange-hover: #ea580c;
+    --brand-orange-light: #fff7ed;
+    --brand-orange-border: #fed7aa;
+    
+    --theme-success-400: var(--brand-orange);
+    --theme-success-500: var(--brand-orange);
+    --theme-success-alert-bg: var(--brand-orange-light);
+    --theme-success-alert-border: var(--brand-orange-border);
+    --theme-text-link: var(--brand-orange);
+  }
+
+  [data-theme="dark"] {
+    --brand-orange: #f97316;
+    --brand-orange-hover: #fdba74;
+    --brand-orange-light: rgba(249, 115, 22, 0.12); /* Subtle dark orange inset */
+    --brand-orange-border: rgba(249, 115, 22, 0.3);
+
+    --theme-success-400: var(--brand-orange);
+    --theme-success-500: var(--brand-orange);
+    --theme-success-alert-bg: var(--brand-orange-light);
+    --theme-success-alert-border: var(--brand-orange-border);
+    --theme-text-link: var(--brand-orange);
+  }
+
+  /* ----------------------------------------------------- */
+  /* Primary Action Buttons                                */
+  /* ----------------------------------------------------- */
+  .btn--style-primary {
+    background-color: var(--brand-orange) !important;
+    border-color: var(--brand-orange) !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25) !important;
+    transition: all 0.2s ease-in-out !important;
+
+    &:hover, &:focus {
+      background-color: var(--brand-orange-hover) !important;
+      border-color: var(--brand-orange-hover) !important;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4) !important;
+      transform: translateY(-1px);
+    }
+  }
+
+  /* ----------------------------------------------------- */
+  /* Sidebar Navigation Enhancements                       */
+  /* ----------------------------------------------------- */
+  .nav {
+    &__link {
+      transition: all 0.2s ease !important;
+      position: relative;
+      border-radius: 6px !important;
+      
+      &--active {
+        background-color: var(--brand-orange-light) !important;
+        color: var(--brand-orange) !important;
+        font-weight: 600 !important;
+        
+        /* Subtle left border indicator to make it clear but not obtrusive */
+        &::before {
+          content: "";
+          position: absolute;
+          left: -8px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 60%;
+          width: 3px;
+          background-color: var(--brand-orange);
+          border-radius: 0 4px 4px 0;
+        }
+
+        svg {
+          color: var(--brand-orange) !important;
+          fill: currentColor !important;
+        }
+      }
+      
+      &:hover:not(&--active) {
+        color: var(--brand-orange) !important;
+      }
+    }
+  }
+
+  /* ----------------------------------------------------- */
+  /* Unified Preview Button (Orange)                       */
+  /* ----------------------------------------------------- */
+  .doc-controls__controls a[href*="/api/preview"],
+  a[class*="btn"][href*="/api/preview"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 0 14px !important;
+    min-width: 0 !important;
+    width: auto !important;
+    background-color: var(--brand-orange) !important;
+    border-color: var(--brand-orange) !important;
+    color: #ffffff !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.01em !important;
+    overflow: visible !important;
+    white-space: nowrap !important;
+    transition: all 0.2s ease-in-out !important;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25) !important;
+  }
+
+  .doc-controls__controls a[href*="/api/preview"]:hover,
+  a[class*="btn"][href*="/api/preview"]:hover {
+    background-color: var(--brand-orange-hover) !important;
+    border-color: var(--brand-orange-hover) !important;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4) !important;
+    transform: translateY(-1px);
+  }
+
+  .doc-controls__controls a[href*="/api/preview"] svg,
+  a[class*="btn"][href*="/api/preview"] svg {
+    width: 14px !important;
+    height: 14px !important;
+    flex-shrink: 0;
+  }
+
+  /* 预览按钮文字（按当前录入语言/locale 自动切换） */
+  .doc-controls__controls a[href*="/api/preview"]::after,
+  a[class*="btn"][href*="/api/preview"]::after {
+    content: "预览草稿";
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  :root[data-payload-language="en"] .doc-controls__controls a[href*="/api/preview"]::after,
+  :root[data-payload-language="en"] a[class*="btn"][href*="/api/preview"]::after {
+    content: "Preview draft";
+  }
+
+  :root[data-payload-language="ja"] .doc-controls__controls a[href*="/api/preview"]::after,
+  :root[data-payload-language="ja"] a[class*="btn"][href*="/api/preview"]::after {
+    content: "下書きプレビュー";
+  }
+
+  .media-folder-quick-filter-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .media-folder-quick-filter-actions__label {
+    font-size: 12px;
+    color: var(--theme-elevation-700);
+    white-space: nowrap;
+  }
+
+  .media-folder-quick-filter-actions__select {
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid var(--theme-elevation-150);
+    background: white;
+    font-size: 12px;
+    min-width: 180px;
+  }
+
+  .media-folder-quick-filter-actions__hint {
+    font-size: 12px;
+    color: var(--theme-elevation-500);
+    white-space: nowrap;
+  }
+
+  .media-folder-quick-filter-actions__error {
+    font-size: 12px;
+    color: var(--theme-error-500);
+    white-space: nowrap;
+  }
+
+  /* Elevate the Locale Selector dropdown to look like a modern clean pill */
+  .localizer-button {
+    background-color: transparent !important;
+    border: 1px solid var(--theme-elevation-150) !important;
+    padding: 6px 14px !important;
+    border-radius: var(--style-radius-m) !important;
+    transition: all 0.2s ease !important;
+
+    &:hover {
+      background-color: var(--theme-elevation-50) !important;
+      border-color: var(--theme-elevation-250) !important;
+    }
+
+    /* 隐藏冗长的 "语言环境: " 标签文本，仅保留当前语言和箭头 */
+    &__label {
+      display: none !important;
+    }
+
+    /* 让选中的文本显示更优雅 */
+    button {
+      font-weight: 500 !important;
+      color: var(--theme-elevation-800) !important;
+      font-size: 14px !important;
+    }
+
+    &__chevron {
+      margin-left: 6px;
+      opacity: 0.6;
+    }
+  }
+
+  /* 增强列表项选中状态的提示面板 UI */
+  .list-selection {
+    background-color: var(--theme-elevation-50) !important;
+    border: 1px solid var(--theme-elevation-200) !important;
+    padding: 6px 16px !important;
+    border-radius: var(--style-radius-m) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+
+    /* 保留第一个 span（数量提示），只隐藏后面的分隔符破折号 */
+    & > span:not(:first-child) {
+      display: none !important;
+    }
+
+    /* 数量提示文本调整样式 */
+    & > span:first-child {
+      font-size: 14px;
+      color: var(--theme-elevation-800) !important;
+      font-weight: 500;
+    }
+
+    &__actions {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      margin-left: 8px !important;
+      padding-left: 12px !important;
+      border-left: 1px solid var(--theme-elevation-150) !important;
+    }
+
+    &__button {
+      background-color: var(--theme-elevation-100) !important;
+      padding: 4px 12px !important;
+      border-radius: var(--style-radius-s) !important;
+      font-weight: 500 !important;
+      transition: all 0.2s ease !important;
+      margin: 0 !important;
+
+      &:hover {
+        background-color: var(--theme-elevation-200) !important;
+      }
+    }
+  }
+}

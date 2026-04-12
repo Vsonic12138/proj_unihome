@@ -1,0 +1,56 @@
+/*
+ * Payload CMS Admin 自定义样式
+ * 作用：让草稿预览按钮更加醒目可见
+ */
+
+/*
+ * 定位 Payload v3 草稿预览按钮
+ * 该按钮是一个带有 /api/preview 链接的 <a> 元素
+ * 原始样式仅是一个小方框图标，非常不显眼
+ */
+
+/* 拉伸按钮并加上背景色 */
+.doc-controls__controls a[href*="/api/preview"],
+a[class*="btn"][href*="/api/preview"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 0 14px !important;
+  min-width: 0 !important;
+  width: auto !important;
+  background-color: #0f766e !important;
+  border-color: #0f766e !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.01em !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  transition: background-color 0.2s, box-shadow 0.2s !important;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.35) !important;
+}
+
+.doc-controls__controls a[href*="/api/preview"]:hover,
+a[class*="btn"][href*="/api/preview"]:hover {
+  background-color: #0d9488 !important;
+  border-color: #0d9488 !important;
+  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.45) !important;
+}
+
+/* 追加「预览草稿」文字标签 */
+.doc-controls__controls a[href*="/api/preview"]::after,
+a[class*="btn"][href*="/api/preview"]::after {
+  content: "Preview";
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 保留原有 SVG 箭头图标并给它设定固定尺寸 */
+.doc-controls__controls a[href*="/api/preview"] svg,
+a[class*="btn"][href*="/api/preview"] svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0;
+}

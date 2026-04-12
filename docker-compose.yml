@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: proj_unihome_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: proj_unihome
+      POSTGRES_USER: proj_unihome
+      POSTGRES_PASSWORD: proj_unihome_password
+    volumes:
+      # 使用 Docker 命名卷持久化数据：关机/WSL2 停止不会丢失
+      # 注意：不要执行 `docker compose down -v`，否则会删除该卷数据
+      - proj_unihome_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  proj_unihome_postgres_data:

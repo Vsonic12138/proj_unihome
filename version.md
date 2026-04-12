@@ -67,6 +67,79 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.21.0 feat(cms): 接入 Payload CMS 基础设施与后台管理能力
+
+类型: feat
+
+范围: cms
+
+说明:
+本次提交聚焦于项目的 CMS 基础设施接入，正式将 Payload CMS 引入当前官网工程，补齐数据库、内容模型、后台管理入口、API 路由、类型产物与内容运维脚本，为后续页面改造成“由 CMS 驱动”建立底座。
+
+实现细节:
+
+1. **接入 Payload CMS 核心配置**
+   - 新增 `payload.config.ts`，定义 CMS 主配置入口。
+   - 新增 `src/payload/`，集中管理 collections、globals、blocks 与后台自定义逻辑。
+   - 新增 `src/payload-types.ts`，提供内容结构类型产物。
+
+2. **补齐数据库与运行支撑**
+   - 新增 `src/migrations/`，纳入数据库 schema 迁移记录。
+   - 新增 `docker-compose.yml`，补齐本地数据库运行支撑。
+   - 新增 `.env.example`，明确本地运行所需环境变量模板。
+
+3. **接通 Next.js 与 Payload 集成入口**
+   - 新增 `src/app/(payload)/` 作为后台挂载入口。
+   - 新增 `src/app/api/` 中的相关接口路由，支撑预览与 CMS 交互流程。
+   - 新增 `src/lib/payload.ts`，统一前台读取 Payload 数据的接入层。
+
+4. **补充内容运维与恢复工具**
+   - 新增 `scripts/payload/` 下的备份、导出、恢复、发布、同步与填充脚本。
+   - 支持后续进行 CMS 快照导出、内容恢复、批量发布与多语言同步。
+
+5. **同步构建与配置文件**
+   - 更新 `package.json`、`package-lock.json`、`next.config.mjs`、`tsconfig.json`。
+   - 新增 `postcss.config.cjs` 并删除旧的 `postcss.config.js`。
+
+文件变更:
+修改文件:
+
+- `package.json` (引入 Payload CMS 相关依赖与脚本)
+- `package-lock.json` (同步依赖锁文件)
+- `next.config.mjs` (同步 Next.js 与 Payload 集成配置)
+- `tsconfig.json` (补充 CMS 接入后的类型与路径配置)
+
+新增文件 / 目录:
+
+- `/payload.config.ts`
+- `/docker-compose.yml`
+- `/.env.example`
+- `/src/app/(payload)/`
+- `/src/app/api/`
+- `/src/lib/payload.ts`
+- `/src/migrations/`
+- `/src/payload/`
+- `/src/payload-types.ts`
+- `/scripts/payload/`
+- `/postcss.config.cjs`
+
+删除文件:
+
+- `/postcss.config.js` (由 `.cjs` 版本替代)
+
+改进效果:
+
+- 官网项目具备独立的 CMS 建模、录入、预览、发布与恢复能力。
+- 为后续页面内容改造、多语言同步与内容运营提供统一底座。
+- 降低手工维护页面静态内容的成本。
+
+影响范围:
+
+- 影响本地开发环境、依赖安装、数据库启动与内容管理流程。
+- 为后续页面与组件的 CMS 化改造提供前置依赖。
+
+---
+
 V1.20.8 chore(config): 补充本地临时文件与 CMS 备份忽略规则
 
 类型: chore
