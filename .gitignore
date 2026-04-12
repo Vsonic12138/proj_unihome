@@ -75,3 +75,18 @@ Thumbs.db
 CLAUDE.md
 AGENT.md
 .roo
+.codex/
+
+# Payload CMS 运行时上传目录
+/media/
+
+# 数据库备份（建议仅本地保存，不提交仓库）
+/backups/*.dump
+/backups/*.sql
+/backups/*.log
+/backups/*.json
+/backups/*.tar.gz
+/backups/*.zip
+
+# 本地临时检查文件
+/backup*_list.txt
