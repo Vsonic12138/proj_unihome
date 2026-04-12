@@ -67,6 +67,55 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.23.2 chore(assets): 补充产品展示资源并移除旧版 favicon
+
+类型: chore
+
+范围: assets
+
+说明:
+本次提交聚焦静态资源整理，补充产品页所需的图片素材，并移除旧版 `favicon.ico`。这样可以让产品详情与相关展示模块使用新的资源组织方式，同时清理已被新图标资源替代的旧文件。
+
+实现细节:
+
+1. **补充产品展示图片资源**
+   - 新增 `GX-MAT-09S` 相关底盘、机械臂、复合机器人与控制板图片。
+   - 新增 `RAI-P4` 相关展示图片。
+
+2. **移除旧版站点图标**
+   - 删除 `public/favicon.ico`。
+   - 与前面已接入的新 SVG 图标方案保持一致，减少重复资源。
+
+文件变更:
+修改文件:
+
+- `/version.md`
+
+新增文件 / 目录:
+
+- `/public/images/products/gx-mat-09s/arms/`
+- `/public/images/products/gx-mat-09s/chassis/`
+- `/public/images/products/gx-mat-09s/composite/`
+- `/public/images/products/gx-mat-09s/controller/motherboard.png`
+- `/public/images/products/rai-p4/rai-p4-comprehensive-training-display.png`
+
+删除文件:
+
+- `/public/favicon.ico`
+
+改进效果:
+
+- 产品页展示素材更完整，支撑前台图文呈现。
+- 静态资源结构更贴近当前产品内容模型。
+- 清理与新图标方案重复的旧 favicon 资源。
+
+影响范围:
+
+- 影响产品页相关图片展示与站点图标资源文件集合。
+- 不影响业务逻辑与 CMS 数据结构。
+
+---
+
 V1.23.1 chore(config): 整理开发文档与变更日志辅助脚本
 
 类型: chore
