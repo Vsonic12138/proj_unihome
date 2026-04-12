@@ -11,7 +11,7 @@
           "description": "以启发、探索、创新为核心，覆盖入门搭建到科研提升的全链路课程与项目实践。",
           "items": [
             {
-              "slug": "ubot-mr20",
+              "slug": "ubot-mr40",
               "name": "具身机器人创新设计套装（四十合一）Ubot MR40",
               "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
@@ -105,7 +105,7 @@
       "comingSoon": "内容即将更新"
     },
     "details": {
-      "ubot-mr20": {
+      "ubot-mr40": {
         "name": "具身机器人创新设计套装（四十合一）Ubot MR40",
         "subtitle": "具身智能机器人创新设计套件（四十合一）",
         "model": "Ubot MR40",

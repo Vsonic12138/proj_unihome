@@ -11,12 +11,12 @@ async function patchUbotHighlights() {
   const enData = JSON.parse(fs.readFileSync(path.resolve('./messages/en/products.json'), 'utf-8'));
   const jaData = JSON.parse(fs.readFileSync(path.resolve('./messages/ja/products.json'), 'utf-8'));
 
-  const jsonKey = 'ubot-mr20';
+  const jsonKey = 'ubot-mr40';
   const slug = 'ubot-mr40';
 
-  const zhHighlights = zhData.products.details[jsonKey].highlights;
-  const enHighlights = enData.products.details[jsonKey].highlights;
-  const jaHighlights = jaData.products.details[jsonKey].highlights;
+  const zhHighlights = zhData.products.details[jsonKey]?.highlights;
+  const enHighlights = enData.products.details[jsonKey]?.highlights;
+  const jaHighlights = jaData.products.details[jsonKey]?.highlights;
   
   if (!zhHighlights) {
       console.log('No highlights found in JSON.');

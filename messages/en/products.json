@@ -11,7 +11,7 @@
           "description": "Modular kits for inspirational learning through advanced curriculum design, spanning entry projects to research-grade builds.",
           "items": [
             {
-              "slug": "ubot-mr20",
+              "slug": "ubot-mr40",
               "name": "Embodied Robot Innovation Design Kit (40-in-1) Ubot MR40",
               "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
@@ -105,7 +105,7 @@
       "comingSoon": "Coming soon"
     },
     "details": {
-      "ubot-mr20": {
+      "ubot-mr40": {
         "name": "Embodied Robot Innovation Design Kit (40-in-1) Ubot MR40",
         "subtitle": "Embodied AI Robot Innovation Design Kit (40-in-1)",
         "model": "Ubot MR40",

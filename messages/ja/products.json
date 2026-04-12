@@ -11,7 +11,7 @@
           "description": "入門啓発から研究強化まで、モジュール構成とカリキュラム設計に特化した学習キット。",
           "items": [
             {
-              "slug": "ubot-mr20",
+              "slug": "ubot-mr40",
               "name": "エンボディド・ロボット イノベーションデザインキット (40-in-1) Ubot MR40",
               "model": "Ubot MR40",
               "image": "/images/products/ubot-mr20/ubot-mr20-hero.jpg",
@@ -105,7 +105,7 @@
       "comingSoon": "近日公開"
     },
     "details": {
-      "ubot-mr20": {
+      "ubot-mr40": {
         "name": "エンボディド・ロボット イノベーションデザインキット (40-in-1) Ubot MR40",
         "subtitle": "エンボディドAIロボット イノベーションデザインキット (40-in-1)",
         "model": "Ubot MR40",

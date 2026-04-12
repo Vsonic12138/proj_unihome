@@ -67,6 +67,63 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.23.3 fix(products): 修复 MR40 样机案例展示并统一多语言产品标识
+
+类型: fix
+
+范围: products
+
+说明:
+本次提交聚焦 `Ubot MR40` 产品内容的名称统一与 CMS 数据回填。针对产品详情页“样机案例”缺少可展示图片分组的问题，补充专用脚本以按中文、英文、日文三种语言将案例分组写回 CMS；同时将消息文件中残留的旧标识 `ubot-mr20` 统一调整为 `ubot-mr40`，减少后续维护时的命名混淆。
+
+实现细节:
+
+1. **统一三语产品标识**
+   - 将 `messages/{zh,en,ja}/products.json` 中 MR40 的产品卡片 `slug` 从 `ubot-mr20` 调整为 `ubot-mr40`。
+   - 将三语产品详情数据键名从 `ubot-mr20` 调整为 `ubot-mr40`。
+   - 将 `messages/{zh,en,ja}/home.json` 首页精选产品中的旧产品标识同步改为 `ubot-mr40`。
+
+2. **补充 MR40 样机案例回填脚本**
+   - 新增 `scripts/payload/fill-ubot-mr40-sample-cases.ts`。
+   - 该脚本会读取三语消息文件中的 MR40 样机案例分组，并将 `modules / chassis / arms / compositeRobots` 映射为 CMS 可直接消费的 `sampleCases.sections`。
+
+3. **同步辅助脚本命名**
+   - 调整 `scripts/payload/patch-ubot-highlights.ts`，使其读取 `ubot-mr40` 键名，避免继续依赖旧命名。
+
+4. **同步版本记录**
+   - 更新 `package.json`、`package-lock.json` 与 `version.md` 版本号到 `1.23.3`。
+
+文件变更:
+修改文件:
+
+- `/messages/zh/home.json`
+- `/messages/en/home.json`
+- `/messages/ja/home.json`
+- `/messages/zh/products.json`
+- `/messages/en/products.json`
+- `/messages/ja/products.json`
+- `/scripts/payload/patch-ubot-highlights.ts`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+新增文件 / 目录:
+
+- `/scripts/payload/fill-ubot-mr40-sample-cases.ts`
+
+改进效果:
+
+- `Ubot MR40` 的三语产品标识在消息文件与辅助脚本中保持一致。
+- MR40 详情页“样机案例”具备写回 CMS 所需的标准化数据回填脚本。
+- 降低后续继续混用 `ubot-mr20` 旧命名的风险。
+
+影响范围:
+
+- 影响 MR40 相关的三语产品消息数据、首页精选产品配置与 CMS 内容回填脚本。
+- 不涉及新的前端布局改造，仅修正现有内容标识与数据准备方式。
+
+---
+
 V1.23.2 chore(assets): 补充产品展示资源并移除旧版 favicon
 
 类型: chore
