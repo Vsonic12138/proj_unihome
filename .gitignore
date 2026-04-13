@@ -80,6 +80,9 @@ AGENT.md
 # Payload CMS 运行时上传目录
 /media/
 
+# Docker 生产数据库持久化目录
+/postgres-data/
+
 # 数据库备份（建议仅本地保存，不提交仓库）
 /backups/*.dump
 /backups/*.sql
@@ -90,3 +93,8 @@ AGENT.md
 
 # 本地临时检查文件
 /backup*_list.txt
+
+# 打包与部署产物
+/deploy-pkg/
+*.tar.gz
+

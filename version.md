@@ -67,6 +67,48 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.1 chore(scripts): 新增一键部署打包脚本与工作流规范说明
+
+类型: chore
+
+范围: scripts, config
+
+说明:
+本次提交主要补充自动化部署的构建脚本，完善了 `.gitignore` 的打包产物忽略规则，并新增了供 AI Agent 与开发人员参考的版本更新工作流规范。
+
+实现细节:
+
+1. **新增自动化打包脚本**
+   - 新增 `scripts/payload/create-deploy-pkg.sh`，用于一键构建并提取包含静态资源、生产依赖以及容器编排文件的部署包。
+2. **沉淀规范与工作流**
+   - 新增 `.agents/workflows/generate-changelog.md`，规范记录了从递增版本号到编写 `version.md` 日志以及最终提交的完整步骤。
+3. **完善代码库忽略规则**
+   - 更新 `.gitignore`，增加对 `deploy-pkg/` 目录和 `.tar.gz` 打包产物的忽略，避免构建产物污染代码库。
+
+文件变更:
+修改文件:
+
+- `/.gitignore`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+新增文件:
+
+- `/scripts/payload/create-deploy-pkg.sh`
+- `/.agents/workflows/generate-changelog.md`
+
+改进效果:
+
+- 支持一键生成用于分发的生产环境部署压缩包，降低了手动收集产物的出错率。
+- 增强了项目协作与 AI 辅助提交的规范性。
+
+影响范围:
+
+- 影响项目的打包发布准备阶段及协作流规范，不影响线上代码运行。
+
+---
+
 V1.25.0 feat(deploy): 引入 Docker 容器化环境与生产构建配置
 
 类型: feat
