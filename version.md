@@ -67,6 +67,48 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.2 docs(deploy): 补充阿里云、GCP及Docker生产部署操作指南
+
+类型: docs
+
+范围: deploy
+
+说明:
+本次提交主要补充了一系列关于项目服务器部署和环境配置的知识沉淀文档，完善了相关的操作指南。这与代码逻辑无直接关联，纯粹是对运维与部署知识的积累。
+
+实现细节:
+
+1. **部署指南新增**
+   - 新增 `docs/docker-production-deployment.md`，提供关于 Docker 生产环境部署的详细指南。
+   - 新增 `docs/aliyun-ecs-deployment.md`，提供在阿里云 ECS 上部署该项目的步骤指导。
+   - 新增 `docs/gcp-server-migration-playbook.md`，记录了 GCP 服务器迁移的操作手册和策略。
+   - 新增 `docs/cloudflare-subdomain-setup.md`，提供 Cloudflare 子域名配置与绑定的设置指南。
+
+文件变更:
+修改文件:
+
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+新增文件:
+
+- `/docs/docker-production-deployment.md`
+- `/docs/aliyun-ecs-deployment.md`
+- `/docs/gcp-server-migration-playbook.md`
+- `/docs/cloudflare-subdomain-setup.md`
+
+改进效果:
+
+- 完善了项目的部署生态文档。
+- 降低了团队后续在多云平台（阿里云、GCP等）以及使用 Docker 容器化部署时的上手门槛与沟通成本。
+
+影响范围:
+
+- 仅增加了文档资源，不影响任何代码逻辑和构建产物。
+
+---
+
 V1.25.1 chore(scripts): 新增一键部署打包脚本与工作流规范说明
 
 类型: chore
