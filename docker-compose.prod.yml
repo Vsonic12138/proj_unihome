@@ -1,0 +1,45 @@
+services:
+  app:
+    image: ${APP_IMAGE:-proj-unihome-app:local}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://localhost:3000}
+        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
+        PREVIEW_SECRET: ${PREVIEW_SECRET}
+        DATABASE_URI: ${DATABASE_URI}
+        PAYLOAD_SCHEMA_PUSH: ${PAYLOAD_SCHEMA_PUSH:-false}
+    container_name: proj_unihome_app
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      DATABASE_URL: ${DATABASE_URI}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3005:3000"
+    volumes:
+      - ./media:/app/media
+
+  postgres:
+    image: postgres:16
+    container_name: proj_unihome_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-proj_unihome}
+      POSTGRES_USER: ${POSTGRES_USER:-proj_unihome}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-proj_unihome} -d ${POSTGRES_DB:-proj_unihome}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data

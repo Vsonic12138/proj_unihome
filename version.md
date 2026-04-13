@@ -67,6 +67,58 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.0 feat(deploy): 引入 Docker 容器化环境与生产构建配置
+
+类型: feat
+
+范围: deploy
+
+说明:
+本次提交聚焦项目的容器化与生产环境构建支持，主要引入 Docker 容器编排及 Next.js 独立输出模式 (standalone output)。这为项目提供了标准的生产环境部署能力，确保开发、测试和生产环境的一致性。
+
+实现细节:
+
+1. **引入容器化配置文件**
+   - 新增 `Dockerfile`，定义 Next.js 独立产物构建与运行环境。
+   - 新增 `.dockerignore`，避免非必要文件进入镜像构建上下文。
+   - 新增 `docker-compose.prod.yml`，定义生产环境的多服务编排（如 Web 服务和 Postgres 数据库）。
+   - 新增 `.env.production.example`，提供生产环境的配置参数示例。
+
+2. **支持生产环境图片域名动态配置**
+   - 修改 `next.config.mjs`，在 `images.remotePatterns` 中根据环境变量 `NEXT_PUBLIC_SERVER_URL` 动态注入图片允许域名，适应多环境部署。
+   - 修改 `next.config.mjs`，开启 `output: 'standalone'` 模式，减小容器化构建时的镜像体积。
+
+3. **同步版本记录**
+   - 更新 `package.json`、`package-lock.json` 与 `version.md` 版本号到 `1.25.0`。
+
+文件变更:
+修改文件:
+
+- `/next.config.mjs`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+新增文件:
+
+- `/.dockerignore`
+- `/.env.production.example`
+- `/Dockerfile`
+- `/docker-compose.prod.yml`
+
+改进效果:
+
+- 支持项目直接打包为轻量级 Docker 镜像，方便跨平台部署。
+- 解除了本地开发与生产环境在图片访问域名等方面的硬编码耦合。
+- 提供生产级别的环境变量范例及容器编排范例。
+
+影响范围:
+
+- 影响项目的生产打包方式及服务器部署流程。
+- 不影响本地现有的基于 `npm run dev` 的开发体验。
+
+---
+
 V1.24.0 remove(scripts): 清理一次性 Payload 内容维护脚本
 
 类型: remove

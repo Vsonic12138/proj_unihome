@@ -1,6 +1,6 @@
 {
   "name": "proj_uinhome",
-  "version": "1.24.0",
+  "version": "1.25.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -41,7 +41,8 @@
     "hydrate:pages": "node --import tsx/esm scripts/payload/hydrate-pages-blocks.ts",
     "version:minor": "npm version minor --no-git-tag-version",
     "version:patch": "npm version patch --no-git-tag-version",
-    "changelog": "node scripts/generate-changelog.cjs"
+    "changelog": "node scripts/generate-changelog.cjs",
+    "deploy:pkg": "bash scripts/payload/create-deploy-pkg.sh"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",
