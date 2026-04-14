@@ -1,15 +1,6 @@
 services:
   app:
-    image: ${APP_IMAGE:-proj-unihome-app:local}
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL:-http://localhost:3000}
-        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-        PREVIEW_SECRET: ${PREVIEW_SECRET}
-        DATABASE_URI: ${DATABASE_URI}
-        PAYLOAD_SCHEMA_PUSH: ${PAYLOAD_SCHEMA_PUSH:-false}
+    image: ${APP_IMAGE:-proj-unihome-app:production}
     container_name: proj_unihome_app
     restart: unless-stopped
     env_file:
@@ -43,3 +34,4 @@ services:
       start_period: 15s
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+

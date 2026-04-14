@@ -53,7 +53,7 @@ Payload 已以 Next.js App Router 的推荐结构接入到：
 
 ### 2.2 数据库与迁移策略
 
-- 使用 `docker-compose.yml` 启动 PostgreSQL
+- 使用 `ops/docker/compose.dev.yml` 启动 PostgreSQL（例如：`npm run docker:up:dev:db`）
 - `payload.config.ts` 使用 `@payloadcms/db-postgres`
 - 当前为了避免 drizzle 的交互式 push 提示，已设置 `db.push: false`，并创建了迁移文件：
   - `src/migrations/20260404_084231_init.ts`

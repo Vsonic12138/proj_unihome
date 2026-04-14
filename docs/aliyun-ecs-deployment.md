@@ -134,10 +134,10 @@ nginx -v
 
 ```bash
 cd /path/to/proj_unihome
-npm run deploy:pkg
+npm run deploy:bundle
 ```
 
-该脚本（`scripts/payload/create-deploy-pkg.sh`）将自动完成以下工作：
+该命令会调用 `ops/deploy/create-deploy-bundle.sh`，自动完成以下工作：
 
 1. 生成高强度随机密钥、数据库密码，写入 `.env.production`
 2. 执行 `npm run backup:all`，备份最新数据库 dump 和 media
@@ -220,7 +220,7 @@ cd /opt/proj_unihome
 tar -xzf proj-unihome-deploy-bundle.tar.gz
 cd deploy-pkg
 ls
-# 应看到：docker-compose.prod.yml  .env.production  backups/  media_backup.tar.gz  proj-unihome-app.tar.gz
+# 应看到：compose.prod.yml  .env.production  deploy.sh  backups/  media_backup.tar.gz  proj-unihome-app.tar.gz
 ```
 
 ### 5.2 配置正式域名
@@ -244,58 +244,38 @@ NEXT_PUBLIC_SERVER_URL=https://yourdomain.com
 
 ### 5.3 恢复媒体文件
 
+如果你使用的是一键脚本，媒体恢复会在 `init` 中自动处理（仅当 `media/` 为空时才会解压）。
+如需手动恢复，可执行：
+
 ```bash
 tar -xzf media_backup.tar.gz -C .
-# 确认媒体目录存在
 ls media/
 ```
 
 ### 5.4 启动 PostgreSQL 并恢复数据
 
+推荐使用一键初始化（会自动启动 Postgres、等待健康、并恢复 dump）：
+
 ```bash
-# 启动数据库容器（等待健康检查通过）
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d postgres
-
-# 等待 postgres 完全就绪（约 15-30 秒）
-docker compose -f docker-compose.prod.yml --env-file .env.production ps
-
-# 查看数据库备份文件名
-ls backups/
-
-# 将 dump 文件复制进容器并恢复（将 xxx 替换为真实时间戳）
-docker cp backups/db_backup_xxx.dump proj_unihome_postgres:/tmp/restore.dump
-
-docker exec proj_unihome_postgres pg_restore \
-  -U proj_unihome \
-  -d proj_unihome \
-  --clean \
-  --if-exists \
-  --no-owner \
-  --no-privileges \
-  /tmp/restore.dump
+bash deploy.sh init
 ```
 
 ### 5.5 载入镜像并启动应用
 
+常规更新（最快路径，仅更新 app 镜像并重启 app 容器）：
+
 ```bash
-# 载入预构建的生产镜像
-docker load < proj-unihome-app.tar.gz
-
-# 确认镜像已加载
-docker images | grep proj-unihome-app
-
-# 启动应用容器
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
+bash deploy.sh update
 ```
 
 ### 5.6 验证容器状态
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production ps
+bash deploy.sh ps
 # 两个容器均应为 Up / healthy 状态
 
 # 检查应用日志，确认无报错
-docker compose -f docker-compose.prod.yml --env-file .env.production logs --tail=50 app
+bash deploy.sh logs app
 ```
 
 此时应用已在 `127.0.0.1:3005` 监听，用以下命令快速验证：
@@ -489,7 +469,7 @@ crontab -l
 
 使用 [`isaced/postgres-backup-oss`](https://github.com/isaced/postgres-backup-oss) 镜像，将备份自动上传到阿里云 OSS，更安全可靠：
 
-在 `docker-compose.prod.yml` 的 `services` 下追加：
+在 `compose.prod.yml` 的 `services` 下追加：
 
 ```yaml
   backup:
@@ -562,19 +542,19 @@ OSS_ACCESS_KEY_SECRET=your-ram-access-key-secret
 
 ```bash
 # 查看容器运行状态
-docker compose -f docker-compose.prod.yml --env-file .env.production ps
+bash deploy.sh ps
 
 # 查看应用日志（实时跟踪）
-docker compose -f docker-compose.prod.yml --env-file .env.production logs -f app
+bash deploy.sh logs app
 
 # 查看数据库日志
-docker compose -f docker-compose.prod.yml --env-file .env.production logs -f postgres
+bash deploy.sh logs postgres
 
 # 重启应用（更换镜像后执行）
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
+bash deploy.sh update
 
 # 停止所有服务
-docker compose -f docker-compose.prod.yml --env-file .env.production down
+docker compose --project-directory . -f compose.prod.yml --env-file .env.production down
 # ⚠️ 切勿加 -v 参数，否则数据库卷数据将被删除
 
 # 进入应用容器 shell
@@ -604,7 +584,7 @@ docker system prune -f
 
 ```bash
 # 本地：重新打包（包含最新代码、最新 DB 数据）
-npm run deploy:pkg
+npm run deploy:bundle
 
 # 上传新的部署包到 ECS（覆盖旧文件）
 scp proj-unihome-deploy-bundle.tar.gz your-user@your-ecs-ip:/opt/proj_unihome/
@@ -614,8 +594,7 @@ ssh your-user@your-ecs-ip
 cd /opt/proj_unihome
 tar -xzf proj-unihome-deploy-bundle.tar.gz
 cd deploy-pkg
-docker load < proj-unihome-app.tar.gz
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
+bash deploy.sh update
 ```
 
 > **注意**：更新部署时不需要重跑数据库恢复步骤；只需替换 app 镜像即可，数据库数据由持久化卷保留。

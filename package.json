@@ -1,6 +1,6 @@
 {
   "name": "proj_uinhome",
-  "version": "1.25.3",
+  "version": "1.25.4",
   "private": true,
   "type": "module",
   "scripts": {
@@ -42,7 +42,10 @@
     "version:minor": "npm version minor --no-git-tag-version",
     "version:patch": "npm version patch --no-git-tag-version",
     "changelog": "node scripts/generate-changelog.cjs",
-    "deploy:pkg": "bash scripts/payload/create-deploy-pkg.sh"
+    "docker:build": "docker build -f ops/docker/Dockerfile -t proj-unihome-app:local .",
+    "docker:up:dev:db": "docker compose --project-directory . -f ops/docker/compose.dev.yml up -d",
+    "docker:up:prod": "docker compose --project-directory . -f ops/docker/compose.prod.yml --env-file .env.production up -d",
+    "deploy:bundle": "bash ops/deploy/create-deploy-bundle.sh"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",

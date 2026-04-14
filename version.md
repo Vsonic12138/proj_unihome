@@ -67,6 +67,51 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.4 chore(deploy): Docker 与部署流程迁移至 ops 并提供一键 init/update
+
+类型: chore
+
+范围: deploy, config, docs
+
+说明:
+本次提交对 Docker 与部署相关文件进行结构性整理：将 Dockerfile/Compose/生产 env 示例统一迁移到 `ops/` 下，并将“本地打包部署包 + 服务器解压部署”的流程自动化为可重复执行的一键脚本（`deploy.sh init/update`），以降低部署与更新的手工出错概率。
+
+实现细节:
+
+1. **目录结构整理（Breaking Change）**
+   - 将 `Dockerfile` 迁移到 `ops/docker/Dockerfile`
+   - 将 `docker-compose*.yml` 迁移并改名为 `ops/docker/compose.*.yml`
+   - 将 `.env.production.example` 迁移到 `ops/env/.env.production.example`
+2. **部署包自动化**
+   - 新增 `ops/deploy/create-deploy-bundle.sh`：本地一键生成 `proj-unihome-deploy-bundle.tar.gz`
+   - 新增 `ops/deploy/deploy.sh`：在服务器端一键执行 `check/init/update`
+   - 为部署包提供 `compose.prod.yml` 模板与 README 模板
+3. **命令与文档统一**
+   - 调整 `package.json` scripts，新增 `deploy:bundle`、`docker:*` 入口
+   - 更新部署相关文档，替换旧的分步命令为 `deploy.sh init/update`，并同步新路径
+
+文件变更:
+修改/移动/新增文件（节选）:
+
+- `/ops/docker/Dockerfile`
+- `/ops/docker/compose.prod.yml`
+- `/ops/docker/compose.dev.yml`
+- `/ops/env/.env.production.example`
+- `/ops/deploy/create-deploy-bundle.sh`
+- `/ops/deploy/deploy.sh`
+- `/docs/docker-production-deployment.md`
+
+改进效果:
+
+- Docker/部署文件集中，仓库根目录更干净，维护成本更低
+- 首次部署与常规更新流程可一键执行，减少人工操作与误差
+
+影响范围:
+
+- 仅影响部署相关文件路径与脚本入口（属于 breaking change），不改变线上业务逻辑
+
+---
+
 V1.25.3 chore(config): 完善仓库上手说明并收紧 Docker/Git 忽略规则
 
 类型: chore

@@ -10,7 +10,7 @@
 
 ## 核心配置参数
 
-我们刚刚通过部署包上线的官网应用，在 `docker-compose.prod.yml` 中映射在了本机的 `3005` 端口：
+我们刚刚通过部署包上线的官网应用，在 `compose.prod.yml` 中映射在了本机的 `3005` 端口：
 ```yaml
 ports:
   - "127.0.0.1:3005:3000"
@@ -49,5 +49,5 @@ ports:
    **将 `NEXT_PUBLIC_SERVER_URL` 修改为你刚才配好的 `https://unihome.vsonic12138.shop`**。
    保存后重启应用即可：
    ```bash
-   docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
+   bash deploy.sh update
    ```

@@ -10,10 +10,10 @@
 
 ## 第一阶段：本地一键打包 (WSL 环境)
 
-在你的 WSL 终端中（需处于项目根目录下），直接执行一件打包命令，它会调用 `scripts/payload/create-deploy-pkg.sh` 梳理所有上下文并完成 Docker 本地构建：
+在你的 WSL 终端中（需处于项目根目录下），直接执行一键打包命令，它会调用 `ops/deploy/create-deploy-bundle.sh` 梳理所有上下文并完成 Docker 本地构建：
 
 ```bash
-npm run deploy:pkg
+npm run deploy:bundle
 ```
 
 *(等待几分钟，它会在当前目录产出一个名为 `proj-unihome-deploy-bundle.tar.gz` 的核心部署包。该包内已经包含了安全 .env 文件、生产镜像、最新的数据库 dump、以及 CMS 用户上传的媒体文件压缩包。)*
@@ -98,7 +98,7 @@ gcloud compute ssh vsonic12138@bigyellow-free-chicken --zone=us-central1-c --tun
 
 ## 第五阶段：GCP 云端服务部署上线
 
-完成解压后，你当前所处目录为 `deploy-pkg`，请严格遵照以下顺序拉起微服务架构：
+完成解压后，你当前所处目录为 `deploy-pkg`，推荐使用一键脚本完成首次部署或后续更新。
 
 ### 1. 配置最终公网域名
 修改自动生成的 `.env.production`，将默认的 Server URL 改为你打算对外绑定的真实前端正式域名（例如 `https://xxx.xxx`，注意末尾不要加 `/` 斜杠）。暂时没有的话可以先留回环 IP：
@@ -111,42 +111,19 @@ nano .env.production
 * **防止图片死链/红叉**：使用 Payload CMS 上传图片时，接口经常会将图片的绝对路径发送给前端访客。如果不改该变量或留着 localhost，访客的手机/浏览器就会尝试读取自己本地设备的 localhost，导致图片全部裂开无法加载。
 * **保障 SEO 及收录分享**：Next.js 后台生成网站地图 (sitemap) 以及主流社交卡片分享图 (OG Image) 时，强依赖通过此环境变量拼接生成合法的互联网连接。
 
-### 2. 挂载就绪旧的数据池
-解压并复原在本地打包的 Payload 媒体文件夹以持久化静态图：
+### 2. 一键首次部署（init）
+
 ```bash
-tar -xzf media_backup.tar.gz -C .
+bash deploy.sh init
 ```
 
-### 3. 启动底层数据库
-先让 Postgres 数据库容器活过来：
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d postgres
-```
+`deploy.sh init` 会自动执行以下动作：
 
-### 4. 导入 CMS 的数据库快照 (Dump 还原)
-首先列出自动打包拿过来的 dump 备份文件，找到带有时间戳的那个包名字 (比如 `db_backup_2026xxxx.dump`)：
-```bash
-ls backups/
-```
-将其推入刚启动的 postgres 容器内，然后执行硬覆盖还原：
-```bash
-# 复制入库（将你的 xxx 替换掉真实的后缀）
-docker cp backups/db_backup_xxx.dump proj_unihome_postgres:/tmp/restore.dump
-
-# 执行清理式强还原（强制替换当前空库数据）
-docker exec proj_unihome_postgres pg_restore -U proj_unihome -d proj_unihome --clean --if-exists --no-owner /tmp/restore.dump
-```
-
-### 5. 载入引擎镜像并启动 Next.js 核心
-读取并安装从本地打好传上来的静态镜像：
-```bash
-docker load < proj-unihome-app.tar.gz
-```
-
-启动包含整个官网前台、以及 `/admin` 后台的业务应用层：
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
-```
+- 解压媒体（仅当包内存在且 `media/` 为空时）
+- 导入镜像（gzip -> docker load）
+- 启动 Postgres 并等待健康检查通过
+- 如存在 dump 则自动执行 `pg_restore`
+- 启动 app
 
 ---
 
@@ -159,7 +136,7 @@ docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
    ```
 2. 查询启动日志是否有 Fatal 错误（特别是检查应用层有没有报数据库连接失败）：
    ```bash
-   docker compose -f docker-compose.prod.yml logs -f app
+   bash deploy.sh logs app
    ```
 
 3. 只要无明显错误，容器便会固定监听本机 `127.0.0.1:3005`。在此基础上，你可以利用外层的 Nginx / Caddy 设施，把域名的 `80/443` 流量打向 `3005` 进行最终交付。

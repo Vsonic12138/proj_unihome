@@ -27,7 +27,7 @@
 
 ## 2. 新增文件说明
 
-### `Dockerfile`
+### `ops/docker/Dockerfile`
 
 职责：
 
@@ -48,7 +48,7 @@
 - 排除 `node_modules`、`.next`、`media`、`backups` 等不应进入镜像上下文的内容
 - 减少构建耗时和上传体积
 
-### `docker-compose.prod.yml`
+### `ops/docker/compose.prod.yml`
 
 职责：
 
@@ -62,7 +62,7 @@
 - `app` 通过 Docker 内部网络访问 `postgres`
 - 启用了 `healthcheck`，避免数据库未就绪时应用抢先启动
 
-### `.env.production.example`
+### `ops/env/.env.production.example`
 
 职责：
 
@@ -70,21 +70,27 @@
 - 明确数据库地址、密钥和正式域名的填写方式
 - 支持通过 `APP_IMAGE` 指定预构建镜像标签
 
+### `ops/deploy/create-deploy-bundle.sh` 与 `deploy-pkg/deploy.sh`
+
+职责：
+
+- `create-deploy-bundle.sh`：在本地一键生成 `proj-unihome-deploy-bundle.tar.gz`（包含镜像导出包、db dump、media、compose 与一键部署脚本）
+- `deploy.sh`：服务器端一键 `init/update/check`，把“首次部署/常规更新”的手工步骤固化成可重复命令
+
 ## 3. 启动前准备
 
-服务器目录建议如下：
+服务器目录建议如下（推荐仅存放部署包与运行数据，不必克隆仓库源码）：
 
 ```text
 /opt/proj_unihome/
-  ├─ docker-compose.prod.yml
-  ├─ .env.production
+  ├─ proj-unihome-deploy-bundle.tar.gz
+  ├─ deploy-pkg/
   ├─ media/
   ├─ postgres-data/
   ├─ backups/
-  └─ repo/               # 仓库源码目录
 ```
 
-建议将仓库克隆到 `repo/` 后，在该目录执行 Compose。
+`deploy-pkg/` 内包含 `compose.prod.yml`、`.env.production`、`deploy.sh` 以及镜像与备份产物。
 
 ## 4. 推荐镜像构建方式
 
@@ -96,6 +102,7 @@
 
 ```bash
 docker build \
+  -f ops/docker/Dockerfile \
   --build-arg NEXT_PUBLIC_SERVER_URL=https://yourdomain.com \
   --build-arg PAYLOAD_SECRET="$PAYLOAD_SECRET" \
   --build-arg PREVIEW_SECRET="$PREVIEW_SECRET" \
@@ -113,7 +120,7 @@ docker save proj-unihome-app:local | gzip > proj-unihome-app.tar.gz
 服务器上传并加载：
 
 ```bash
-docker load < proj-unihome-app.tar.gz
+gzip -dc proj-unihome-app.tar.gz | docker load
 ```
 
 ### 4.2 次选方案：在服务器构建镜像
@@ -128,106 +135,69 @@ docker load < proj-unihome-app.tar.gz
 
 ## 5. 首次启动流程
 
+推荐方式：使用本地一键部署包（最稳妥，且把服务器端操作简化为一条命令）。
+
 ### 5.1 准备环境变量
 
-以模板为基础创建生产文件：
+在本地（WSL）生成部署包时会自动生成 `deploy-pkg/.env.production`，你需要在服务器上修改其中的 `NEXT_PUBLIC_SERVER_URL` 为真实域名或公网 IP。
+
+### 5.2 一键首次部署
 
 ```bash
-cp .env.production.example .env.production
+tar -xzf proj-unihome-deploy-bundle.tar.gz
+cd deploy-pkg
+nano .env.production
+bash deploy.sh init
 ```
 
-然后至少修改以下值：
+`deploy.sh init` 会自动：
 
-```env
-NEXT_PUBLIC_SERVER_URL=https://yourdomain.com
-PAYLOAD_SECRET=强随机字符串
-PREVIEW_SECRET=强随机字符串
-POSTGRES_PASSWORD=强密码
-DATABASE_URI=postgresql://proj_unihome:强密码@postgres:5432/proj_unihome
-```
+- 解压媒体（仅当包内存在且 `media/` 为空时）
+- 导入镜像（gzip -> docker load）
+- 启动 Postgres 并等待健康检查通过
+- 如存在 dump 则自动执行 `pg_restore`
+- 启动 app
 
-### 5.2 启动数据库
+### 5.3 常规更新（最快路径）
+
+当你生成并上传了新的部署包后，在服务器端执行：
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d postgres
+tar -xzf proj-unihome-deploy-bundle.tar.gz
+cd deploy-pkg
+bash deploy.sh update
 ```
 
-### 5.3 恢复数据库
-
-本项目备份脚本使用的是 `pg_dump -Fc` custom format，因此恢复时建议使用如下方式：
-
-```bash
-docker cp ./backups/db_backup_xxx.dump proj_unihome_postgres:/tmp/restore.dump
-
-docker exec proj_unihome_postgres pg_restore \
-  -U proj_unihome \
-  -d proj_unihome \
-  --clean \
-  --if-exists \
-  --no-owner \
-  --no-privileges \
-  /tmp/restore.dump
-```
-
-### 5.4 恢复媒体文件
-
-如果你本地打包了 `media_backup.tar.gz`，可以在服务器上执行：
-
-```bash
-mkdir -p media
-tar -xzf media_backup.tar.gz -C .
-```
-
-确认最终媒体目录为：
-
-```text
-./media/...
-```
-
-### 5.5 启动应用
-
-如果你已经通过 `docker load` 导入了预构建镜像，可以直接启动：
-
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d app
-```
-
-如果你确定服务器构建环境可用，也可以执行：
-
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build app
-```
+默认行为：仅加载新镜像并重启 `app` 容器，不会恢复数据库或覆盖媒体目录。
 
 ## 6. 常用运维命令
 
 查看服务状态：
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production ps
+cd /opt/proj_unihome/deploy-pkg
+bash deploy.sh ps
 ```
 
 查看应用日志：
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production logs -f app
+cd /opt/proj_unihome/deploy-pkg
+bash deploy.sh logs app
 ```
 
 查看数据库日志：
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production logs -f postgres
-```
-
-重建应用镜像并启动：
-
-```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build app
+cd /opt/proj_unihome/deploy-pkg
+bash deploy.sh logs postgres
 ```
 
 停止服务：
 
 ```bash
-docker compose -f docker-compose.prod.yml --env-file .env.production down
+cd /opt/proj_unihome/deploy-pkg
+docker compose --project-directory . -f compose.prod.yml --env-file .env.production down
 ```
 
 注意：
