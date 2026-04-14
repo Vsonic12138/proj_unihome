@@ -67,6 +67,48 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.3 chore(config): 完善仓库上手说明并收紧 Docker/Git 忽略规则
+
+类型: chore
+
+范围: config, workflows
+
+说明:
+本次提交聚焦协作与工程配置维护：补充 `AGENTS.md` 的 Quickstart 关键信息，强化变更日志工作流对 AI 助手的约束说明，并优化 `.gitignore/.dockerignore` 以避免本地工具与大体积产物进入版本库或 Docker 构建上下文。
+
+实现细节:
+
+1. **仓库协作说明补全**
+   - 在 `AGENTS.md` 增加 Quickstart 段落，明确必需环境变量、关键路由约定与 i18n 关键点。
+2. **工作流约束更明确**
+   - 更新 `.agents/workflows/generate-changelog.md`，明确 AI 仅可执行 `git add`，并补充“拆分提交与版本号”的推荐策略。
+3. **忽略规则收紧**
+   - 更新 `.gitignore`，忽略本地 AI/工具目录（例如 `.codex`、`.kilo/`）避免误提交。
+   - 更新 `.dockerignore`，排除本地数据、构建产物和超大打包物（例如 `*.tar.gz`）以缩小 Docker build context。
+
+文件变更:
+修改文件:
+
+- `/.agents/workflows/generate-changelog.md`
+- `/.dockerignore`
+- `/.gitignore`
+- `/AGENTS.md`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+改进效果:
+
+- 新开 AI 会话更容易在不翻大量文件的情况下正确上手仓库。
+- 降低误提交本地工具目录/敏感文件/大体积产物的风险。
+- 加快 Docker 构建（减少 build context 体积），提升缓存稳定性。
+
+影响范围:
+
+- 仅影响文档、忽略规则与构建上下文，不改变业务逻辑与页面行为。
+
+---
+
 V1.25.2 docs(deploy): 补充阿里云、GCP及Docker生产部署操作指南
 
 类型: docs

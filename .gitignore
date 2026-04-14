@@ -75,7 +75,9 @@ Thumbs.db
 CLAUDE.md
 AGENT.md
 .roo
+.codex
 .codex/
+.kilo/
 
 # Payload CMS 运行时上传目录
 /media/
@@ -97,4 +99,3 @@ AGENT.md
 # 打包与部署产物
 /deploy-pkg/
 *.tar.gz
-

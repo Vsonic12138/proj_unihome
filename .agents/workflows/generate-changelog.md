@@ -77,9 +77,11 @@ VX.Y.Z type(scope): 简要描述
 ---
 ```
 
-### 步骤 3: 暂存与提交 (git add & git commit)
+### 步骤 3: 暂存文件 (git add)
 
-确认 `package.json`、`package-lock.json` 和 `version.md` 的版本号完全一致后，将文件加入暂存区并提交。
+确认 `package.json`、`package-lock.json` 和 `version.md` 的版本号完全一致后，将文件加入暂存区。
+
+**⚠️ 关键规则（针对 AI 助手）：仅执行 `git add`，绝对不要自动执行 `git commit`。** 必须将最终的提交流程留给开发人员手动执行和确认。
 
 1. **暂存文件**：
    将你的业务代码文件以及三个版本控制相关文件一起添加到暂存区。
@@ -87,8 +89,8 @@ VX.Y.Z type(scope): 简要描述
    git add package.json package-lock.json version.md <其他你修改的文件>
    ```
 
-2. **提交代码**：
-   使用规范的 Commit Message 格式进行提交。格式必须为：`VX.Y.Z type(scope): 简要描述`。
+2. **人工提交代码 (手动执行)**：
+   开发人员在确认暂存区无误后，使用规范的 Commit Message 格式进行提交。格式必须为：`VX.Y.Z type(scope): 简要描述`。
    ```bash
    git commit -m "VX.Y.Z type(scope): 简要描述"
    ```
@@ -96,8 +98,16 @@ VX.Y.Z type(scope): 简要描述
 
 ## 常见场景拆分提交
 
-如果你一次性做了很多不相关的修改，**强烈建议分批次提交**。
-对于每一批次的提交，都需要重复上述的 **1 -> 2 -> 3** 的完整流程。
-例如：
-1. 第一批次：提交基础设施配置 -> 走一次版本递增 + 补充日志 + git add & commit。
-2. 第二批次：提交文档说明 -> 再走一次版本递增 + 补充日志 + git add & commit。
+如果你一次性做了很多不相关的修改，**强烈建议分批次提交**（每批次一个清晰主题）。
+
+但请注意：本仓库的 Commit Message 里包含版本号，并且要求与 `package.json` 一致。为了避免版本号在短时间内被“人为拆分”得过碎，建议遵循以下规则：
+
+1. **推荐做法：一个版本号对应一个提交**
+   - 将相关变更合并成一个 commit。
+   - 走一次完整流程：**版本递增 -> 补充 version.md -> git add -> (人工) git commit**。
+
+2. **可选做法：同一版本号允许多个提交（不推荐，但允许）**
+   - 只在第一批次执行一次 **版本递增**，并保持后续提交的 Commit Message 版本号与 `package.json` 一致。
+   - `version.md` 建议在“最后一个合并提交”时一次性补齐，避免日志内容与实际提交内容前后不一致。
+
+无论采用哪种方式，**AI 助手仅执行 `git add`，不得自动执行 `git commit`**，最终提交必须由开发人员手动确认。

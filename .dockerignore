@@ -1,19 +1,53 @@
+# Keep Docker build context minimal. This repo uses a multi-stage build and does
+# `COPY . .` in the builder stage, so large local artifacts should be excluded.
+
+# VCS
 .git
-.gitignore
-.next
-.codex
+
+# Editor / local tooling
 .vscode
+.idea
+.history
+.codex
+.codex/
+.kilo
+.kilo/
+.roo
+
+# Dependencies (installed in image via npm ci)
 node_modules
+
+# Next.js build artifacts (produced in builder stage)
+.next
+out
+dist
+build
+
+# Local runtime data / uploads / backups
 media
+postgres-data
 backups
 coverage
+
+# Logs and caches
 *.log
+*.tsbuildinfo
+.cache
+.eslintcache
+
+# Env files (avoid leaking secrets into build context)
 .env
-.env.local
-.env.development
-.env.development.local
-.env.production
-.env.production.local
+.env.*
+.envrc
+.direnv
+
+# Repo-local deployment bundles (can be hundreds of MB)
+deploy-pkg
+*.tar.gz
+
+# Misc OS noise
+.DS_Store
+Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
