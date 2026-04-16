@@ -9,6 +9,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
+import { buildAlternates } from "@/lib/seo";
 
 type PageParams = {
   params: Promise<{ locale: string }>;
@@ -39,6 +40,7 @@ export async function generateMetadata({
   return {
     title: seoTitle ?? undefined,
     description: seoDescription ?? undefined,
+    alternates: buildAlternates({ locale, pathSuffix: "" }),
   };
 }
 

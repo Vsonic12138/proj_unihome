@@ -7,6 +7,7 @@ import {
   tryGetFAQs,
   toPayloadLocale,
 } from "@/lib/payload";
+import { buildAlternates } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -43,6 +44,7 @@ export async function generateMetadata({
   return {
     title: title ? `${title} | Startup` : undefined,
     description: description ?? undefined,
+    alternates: buildAlternates({ locale, pathSuffix: "/products" }),
   };
 }
 

@@ -5,6 +5,7 @@ import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
 import type { Metadata } from "next";
 import { tryGetGlobals, tryGetPayloadClient, toPayloadLocale } from "@/lib/payload";
+import { buildAlternates } from "@/lib/seo";
 
 type PageParams = {
   params: Promise<{ locale: string }>;
@@ -35,6 +36,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   return {
     title: t("title"),
     description: t("description"),
+    alternates: buildAlternates({ locale, pathSuffix: "/privacy-policy" }),
   };
 }
 

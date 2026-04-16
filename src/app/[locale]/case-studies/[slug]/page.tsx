@@ -11,6 +11,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
+import { buildAlternates } from "@/lib/seo";
 
 type PageParams = {
   params: Promise<{ locale: string; slug: string }>;
@@ -60,6 +61,7 @@ export async function generateMetadata({
   return {
     title: doc.title ? `${doc.title} | ${t("serviceCases")}` : undefined,
     openGraph: coverUrl ? { images: [{ url: coverUrl }] } : undefined,
+    alternates: buildAlternates({ locale, pathSuffix: `/case-studies/${slug}` }),
   };
 }
 

@@ -19,6 +19,7 @@ import {
   tryGetFAQs,
   toPayloadLocale,
 } from "@/lib/payload";
+import { buildAlternates } from "@/lib/seo";
 import type { Metadata } from "next";
 
 type PageParams = {
@@ -77,6 +78,7 @@ export async function generateMetadata({ params }: PageParams): Promise<Metadata
   return {
     title: page.seo?.title ? `${product.name} | ${page.seo.title}` : `${product.name}`,
     description: description ?? undefined,
+    alternates: buildAlternates({ locale, pathSuffix: `/products/${slug}` }),
   };
 }
 

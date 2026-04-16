@@ -67,6 +67,41 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.7 fix(seo): 为关键页面补齐 canonical/hreflang alternates
+
+类型: fix
+
+范围: seo, pages
+
+说明:
+本次提交在多个 `src/app/[locale]/**` 页面中补齐 `alternates`（canonical + hreflang），让搜索引擎能正确识别不同语言版本的对应关系，并统一 canonical 规则，减少重复收录与权重分散的风险。
+
+实现细节:
+1. **页面 generateMetadata 增补**
+   - 为 About / Contact / Products / Case Studies / Developers / Error / Privacy Policy / Home 等页面添加 `alternates: buildAlternates(...)`。
+2. **缺少域名配置时的行为**
+   - 生产环境若未配置 `NEXT_PUBLIC_SERVER_URL`，`alternates` 会退化为相对路径（例如 `/${locale}/about`），避免错误输出 `localhost`。
+
+文件变更:
+修改文件（节选）:
+- `/src/app/[locale]/about/page.tsx`
+- `/src/app/[locale]/contact/page.tsx`
+- `/src/app/[locale]/products/page.tsx`
+- `/src/app/[locale]/products/[slug]/page.tsx`
+- `/src/app/[locale]/case-studies/**/page.tsx`
+- `/src/app/[locale]/developers/**/page.tsx`
+- `/src/app/[locale]/privacy-policy/page.tsx`
+- `/src/app/[locale]/error/page.tsx`
+- `/src/app/[locale]/page.tsx`
+
+改进效果:
+- canonical/hreflang 信息更完整，跨语言 SEO 更稳定。
+
+影响范围:
+- 前台页面 SEO metadata
+
+---
+
 V1.25.6 fix(seo): 强化 SEO 绝对 URL 生成与域名配置校验
 
 类型: fix

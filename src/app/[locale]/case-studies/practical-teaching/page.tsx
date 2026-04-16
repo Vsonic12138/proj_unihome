@@ -7,6 +7,7 @@ import {
   tryGetPayloadClient,
   toPayloadLocale,
 } from "@/lib/payload";
+import { buildAlternates } from "@/lib/seo";
 import type { Metadata } from "next";
 import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
@@ -43,6 +44,7 @@ export async function generateMetadata({
   return {
     title: title ? `${title} | ${t("serviceCases")}` : undefined,
     description: description ?? undefined,
+    alternates: buildAlternates({ locale, pathSuffix: "/case-studies/practical-teaching" }),
   };
 }
 
