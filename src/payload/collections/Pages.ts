@@ -8,6 +8,7 @@ import { HeroBlock } from "../blocks/HeroBlock";
 import { ImageGalleryBlock } from "../blocks/ImageGalleryBlock";
 import { ProductsCatalogBlock } from "../blocks/ProductsCatalogBlock";
 import { RichTextBlock } from "../blocks/RichTextBlock";
+import { getPublicServerUrl } from "../../lib/seo";
 
 export const Pages: CollectionConfig = {
   slug: "pages",
@@ -37,12 +38,14 @@ export const Pages: CollectionConfig = {
       ja: "ページとレイアウト",
     },
     preview: (doc, { locale }) => {
-      const base = process.env.NEXT_PUBLIC_SERVER_URL ?? "http://localhost:3000";
       const secret = process.env.PREVIEW_SECRET;
       const slug = String((doc as any)?.slug ?? "").trim();
       const resolvedLocale = ["zh", "en", "ja"].includes(String(locale)) ? String(locale) : "zh";
 
       if (!secret || !slug) return null;
+
+      const base = getPublicServerUrl();
+      if (!base) return null;
 
       const url = new URL("/api/preview", base);
       url.searchParams.set("secret", secret);

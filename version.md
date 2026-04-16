@@ -67,6 +67,35 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.8 fix(payload): 稳定 Admin 预览链接生成并避免隐式 localhost
+
+类型: fix
+
+范围: payload, admin, preview
+
+说明:
+本次提交修复 Payload Admin 中“预览链接”生成对 `NEXT_PUBLIC_SERVER_URL` 的依赖问题：当域名未配置或配置不合法（例如缺少协议）时，不再回退到 `http://localhost:3000` 或在 `new URL()` 处抛异常，而是安全地返回 `null`（不生成预览入口），从而避免生产环境出现误导性预览链接或后台异常。
+
+实现细节:
+1. **统一使用公共域名解析逻辑**
+   - collections 的 `admin.preview` 改为使用 `getPublicServerUrl()` 生成 base，复用同一套 URL 规范化策略。
+2. **缺配置时明确降级**
+   - 当无法获取有效的公开域名时直接返回 `null`，避免生成指向 `localhost` 的预览链接。
+
+文件变更:
+修改文件:
+- `/src/payload/collections/Pages.ts`
+- `/src/payload/collections/Products.ts`
+- `/src/payload/collections/CaseStudies.ts`
+
+改进效果:
+- 生产环境预览链接更可靠，避免错误域名污染与 URL 解析崩溃。
+
+影响范围:
+- Payload Admin 预览入口（collection preview）
+
+---
+
 V1.25.7 fix(seo): 为关键页面补齐 canonical/hreflang alternates
 
 类型: fix
