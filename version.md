@@ -67,6 +67,44 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.5 docs(docs): 重组 docs 目录并完善部署与运维文档
+
+类型: docs
+
+范围: docs, deploy
+
+说明:
+本次提交对 `docs/` 文档目录进行分层重组并统一命名风格，同时补齐生产部署与运维说明，使“阿里云 ECS 上线与日常更新”具备更强的可复制性与排障可读性。
+
+实现细节:
+
+1. **文档目录重组与索引**
+   - 将文档按 `deploy/infra/containers/cms/legal/plans` 分层归档，并在 `docs/README.md` 提供索引与状态标记（ACTIVE/OPTIONAL/DRAFT/ARCHIVED）。
+2. **部署手册可复制化**
+   - 为关键命令块补充“命令说明”，并尽量保持命令块本身可直接复制执行。
+   - 对 `init/update` 的职责边界进行明确说明，降低误操作概率。
+3. **内容审查与去过时**
+   - 修正明显会导致照抄失败的示例（例如连接串拼写、旧路径引用）。
+   - 将 GCP 相关文档标记为归档（ARCHIVED），避免被当作默认路径执行。
+
+文件变更:
+新增/移动/修改文件（节选）:
+- `/docs/README.md`（索引与状态标记）
+- `/docs/deploy/aliyun-ecs.md`（ECS 部署手册，命令说明与可复制化）
+- `/docs/deploy/docker-production.md`（生产部署结构与 init/update 解释）
+- `/docs/infra/database.md`（数据库连接与备份说明）
+- `/docs/containers/docker.md`（Docker 环境说明）
+
+改进效果:
+- 文档结构更清晰，新成员或新 AI 会话更容易定位“应该看哪篇”。
+- 部署命令的含义更明确，复制执行更顺畅，排障成本更低。
+
+影响范围:
+- 仅影响文档结构与内容；不影响业务代码运行逻辑。
+- 文档路径发生变化（旧文档文件名已迁移到新的 `docs/**` 结构下）。
+
+---
+
 V1.25.4 chore(deploy): Docker 与部署流程迁移至 ops 并提供一键 init/update
 
 类型: chore

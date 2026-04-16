@@ -1,8 +1,12 @@
-# 数据库使用指南
+# 数据库使用指南（PostgreSQL）
+
+状态：`ACTIVE`（最近审查：2026-04-15）
 
 ## 架构总结
 
-项目数据库 **唯一且完整地运行在 Docker Desktop 容器中**，没有任何 WSL2 本机数据库服务。
+本项目使用 **PostgreSQL**（Payload `@payloadcms/db-postgres`）。应用层并不强制要求 Docker Desktop；只要提供可连接的 `DATABASE_URI`/`DATABASE_URL` 即可连接任意 Postgres（本机安装、Docker 容器、远程云数据库均可）。
+
+不过，仓库内的部分脚本（尤其是备份与部署包生成）默认以“Docker 容器方式”操作数据库，因此推荐本地开发使用 Docker 方式启动 Postgres。
 
 ```text
 [Next.js / Payload CMS]  (WSL2 进程)
@@ -23,6 +27,26 @@
 | 数据持久化卷 | `proj_unihome_postgres_data` |
 
 > WSL2 本机仅安装了 `postgresql-client`（psql 命令行工具），**没有**本机 PostgreSQL Server 运行。
+
+## 本地推荐方式：Docker 启动 Postgres
+
+本仓库提供 `ops/docker/compose.dev.yml` 作为本地开发数据库启动方式：
+
+```bash
+npm run docker:up:dev:db
+```
+
+这会启动固定容器名 `proj_unihome_postgres`，并与 `npm run backup:all` 等脚本默认配置一致。
+
+## 生产/远程数据库是否支持？
+
+支持。只要在运行环境中设置：
+
+- `DATABASE_URI` 或 `DATABASE_URL`
+
+Payload 即可连接对应 Postgres。
+
+注意：`npm run backup:all` 脚本当前实现依赖 `docker exec` 进入容器执行 `pg_dump`，若使用远程数据库，需要将备份流程改为使用本机/CI 的 `pg_dump` 直连方式（或另写脚本）。
 
 ---
 
@@ -162,9 +186,16 @@ Payload CMS 将 Collection 和嵌套数组展开为多张关系表，命名规�
 
 不会，只要 Docker volume `proj_unihome_postgres_data` 不被手动删除。数据独立于容器生命周期，重启容器/Docker Desktop 均不影响数据。
 
-手动备份数据库：
+推荐备份方式：
+
 ```bash
-docker exec proj_unihome_postgres pg_dump \
-  -U proj_unihome proj_unihome \
-  > backups/db_backup_$(date +%Y%m%d_%H%M%S).dump
+npm run backup:all
+```
+
+手动备份数据库（容器化 Postgres 场景，导出为压缩后的自定义格式 dump）：
+
+```bash
+mkdir -p backups
+docker exec proj_unihome_postgres pg_dump -U proj_unihome -d proj_unihome -Fc \
+  | gzip > backups/db_backup_$(date +%Y%m%d_%H%M%S).dump.gz
 ```

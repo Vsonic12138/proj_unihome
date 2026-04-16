@@ -1,6 +1,8 @@
-# 产品页面深度重构规划
+# 产品页重构计划
 
 消除 CMS Schema 与前端之间的字段错位、硬编码特判、死代码和反模式，建立统一的数据驱动渲染架构。
+
+状态：`DRAFT`（最近审查：2026-04-15）
 
 ---
 
@@ -66,7 +68,7 @@
 
 #### 具体变更
 
-##### [MODIFY] [Products.ts](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/payload/collections/Products.ts)
+##### [MODIFY] `src/payload/collections/Products.ts`
 
 ```text
 sampleCases: group → json (localized)
@@ -76,7 +78,7 @@ sampleCases: group → json (localized)
 - 将 `sampleCases` 改为 `type: "json", localized: true`
 - 同时删除 `specs`、`gallery`、`resources` 废弃字段
 
-##### [MODIFY] [page.tsx](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/app/[locale]/products/[slug]/page.tsx)
+##### [MODIFY] `src/app/[locale]/products/[slug]/page.tsx`
 
 1. **删除所有 slug 硬编码特判**（B1, B2, B3）
 2. **删除 `sampleCustomSections` 分支判断**（B4），统一走 sections 渲染
@@ -105,7 +107,7 @@ sampleCases: group → json (localized)
 
 ##### [MODIFY] `messages/{zh,en,ja}/products.json` — ubot-mr20 experiments 部分
 
-##### [MODIFY] [page.tsx](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/app/[locale]/products/[slug]/page.tsx) L586-719
+##### [MODIFY] `src/app/[locale]/products/[slug]/page.tsx`（旧 experiments 分支）
 
 删除整个旧格式分支。
 
@@ -122,7 +124,7 @@ sampleCases: group → json (localized)
 - 从 JSON 数据中移除所有 `*ClassName`、`showCaptions` 字段
 - 如有个别产品确实需要差异化排版，通过 CMS 中的 `displayHints` JSON 字段（单独一个可选字段）传递，而非混入内容数据
 
-##### [MODIFY] [page.tsx](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/app/[locale]/products/[slug]/page.tsx)
+##### [MODIFY] `src/app/[locale]/products/[slug]/page.tsx`
 
 - 移除 L196-219 中全部 `sampleCases?.xxxClassName` / `softwareConfig?.xxxClassName` 的读取
 - 替换为统一的常量或可从 CMS 可选字段 `displayHints` 读取
@@ -137,7 +139,7 @@ sampleCases: group → json (localized)
 
 **方案：优先返回原始尺寸 URL，裁剪版仅在明确请求时使用**
 
-##### [MODIFY] [payload.ts](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/lib/payload.ts) L41-52
+##### [MODIFY] `src/lib/payload.ts`
 
 ```typescript
 export function resolveMediaURL(media: MediaLike): string | null {
@@ -163,7 +165,7 @@ export function resolveMediaURL(media: MediaLike): string | null {
 
 ### 阶段五：清理 CMS Schema 废弃字段
 
-##### [MODIFY] [Products.ts](file:///home/vsonic12138/workspace/Uni_Proj/proj_unihome/src/payload/collections/Products.ts)
+##### [MODIFY] `src/payload/collections/Products.ts`
 
 删除以下字段定义：
 - `details.specs`（C1）

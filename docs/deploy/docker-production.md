@@ -1,12 +1,27 @@
-# Docker 生产部署说明
+# Docker 生产部署指南
 
-本文档说明本项目在生产环境中的容器化部署结构、文件职责以及启动方式。
+本文档用于说明本项目在生产环境中的容器化部署结构、文件职责以及启动方式。
+
+状态：`ACTIVE`（最近审查：2026-04-15）
 
 注意：
 
 - 本项目在 `next build` 阶段会读取 Payload/PostgreSQL 数据
 - 因此 Docker 镜像构建阶段必须能访问数据库
 - 生产环境最稳妥的方案是：本地预构建镜像，再上传到服务器运行
+
+## 最短路径（推荐）
+
+如果不想看细节，只想快速上线：
+
+1. 本地生成首次部署包（包含 db/media，可用于首次上线或灾备）：`npm run deploy:bundle:init`
+2. 把 `proj-unihome-deploy-bundle.tar.gz` 上传到服务器 `/opt/proj_unihome/`
+3. 服务器端解压并切换 `deploy/` 目录，然后执行：`bash deploy.sh init`
+4. 后续更新使用轻量更新包（不打包 db/media，不旋转密钥）：`npm run deploy:bundle:update`，服务器执行：`bash deploy.sh update`
+
+说明：部署包解压后目录名与压缩包同名，即 `proj-unihome-deploy-bundle/`。
+
+补充：`init` 部署包会额外携带 `postgres-16.tar.gz`（PostgreSQL 镜像）。这样即使服务器无法访问 Docker Hub，也可以完成首次 `init`（不会再在服务器上拉取 `postgres:16`）。
 
 ## 1. 部署架构
 
@@ -70,7 +85,7 @@
 - 明确数据库地址、密钥和正式域名的填写方式
 - 支持通过 `APP_IMAGE` 指定预构建镜像标签
 
-### `ops/deploy/create-deploy-bundle.sh` 与 `deploy-pkg/deploy.sh`
+### `ops/deploy/create-deploy-bundle.sh` 与 `deploy/deploy.sh`
 
 职责：
 
@@ -84,19 +99,24 @@
 ```text
 /opt/proj_unihome/
   ├─ proj-unihome-deploy-bundle.tar.gz
-  ├─ deploy-pkg/
   ├─ media/
   ├─ postgres-data/
   ├─ backups/
+  ├─ shared/
+  ├─ deploy/
 ```
 
-`deploy-pkg/` 内包含 `compose.prod.yml`、`.env.production`、`deploy.sh` 以及镜像与备份产物。
+说明：
+
+- `shared/.env.production` 固化生产密钥与数据库口令，避免更新时被覆盖（强烈推荐）
+- `media/` 与 `postgres-data/` 为持久化目录
+- `deploy/` 为可替换目录，内含 `compose.prod.yml`、`deploy.sh` 与镜像文件
 
 ## 4. 推荐镜像构建方式
 
 ### 4.1 推荐方案：本地预构建，再传到服务器
 
-由于本项目构建阶段依赖数据库，推荐在你本地已有数据库和源码的环境中构建镜像。
+由于本项目构建阶段依赖数据库，推荐在本地已有数据库和源码的环境中构建镜像。
 
 示例：
 
@@ -129,7 +149,7 @@ gzip -dc proj-unihome-app.tar.gz | docker load
 
 - 服务器上的构建环境能访问 PostgreSQL
 - `.env.production` 已正确配置
-- 你明确知道构建阶段会访问数据库
+- 明确知道构建阶段会访问数据库
 
 如果服务器构建失败，优先切换到“本地预构建镜像”方案，不要反复在生产机试错。
 
@@ -139,14 +159,21 @@ gzip -dc proj-unihome-app.tar.gz | docker load
 
 ### 5.1 准备环境变量
 
-在本地（WSL）生成部署包时会自动生成 `deploy-pkg/.env.production`，你需要在服务器上修改其中的 `NEXT_PUBLIC_SERVER_URL` 为真实域名或公网 IP。
+在首次部署时，需要在服务器上准备 `shared/.env.production` 并设置 `NEXT_PUBLIC_SERVER_URL` 为真实域名或公网 IP。
+
+注意：
+- `deploy:bundle:init` 生成的部署包通常会包含一份 `.env.production`（用于首次落地的起点），但后续 `deploy:bundle:update` 可能不会再打包它。
+- 因此生产环境请始终以 `/opt/proj_unihome/shared/.env.production` 为准，不要依赖每次部署包里是否带 `.env.production`。
 
 ### 5.2 一键首次部署
 
 ```bash
 tar -xzf proj-unihome-deploy-bundle.tar.gz
-cd deploy-pkg
-nano .env.production
+mkdir -p shared
+rm -rf deploy || true
+mv proj-unihome-deploy-bundle deploy
+test -f shared/.env.production || cp deploy/.env.production shared/.env.production
+cd deploy
 bash deploy.sh init
 ```
 
@@ -160,11 +187,13 @@ bash deploy.sh init
 
 ### 5.3 常规更新（最快路径）
 
-当你生成并上传了新的部署包后，在服务器端执行：
+当生成并上传了新的部署包后，在服务器端执行：
 
 ```bash
 tar -xzf proj-unihome-deploy-bundle.tar.gz
-cd deploy-pkg
+rm -rf deploy || true
+mv proj-unihome-deploy-bundle deploy
+cd deploy
 bash deploy.sh update
 ```
 
@@ -175,29 +204,29 @@ bash deploy.sh update
 查看服务状态：
 
 ```bash
-cd /opt/proj_unihome/deploy-pkg
+cd /opt/proj_unihome/deploy
 bash deploy.sh ps
 ```
 
 查看应用日志：
 
 ```bash
-cd /opt/proj_unihome/deploy-pkg
+cd /opt/proj_unihome/deploy
 bash deploy.sh logs app
 ```
 
 查看数据库日志：
 
 ```bash
-cd /opt/proj_unihome/deploy-pkg
+cd /opt/proj_unihome/deploy
 bash deploy.sh logs postgres
 ```
 
 停止服务：
 
 ```bash
-cd /opt/proj_unihome/deploy-pkg
-docker compose --project-directory . -f compose.prod.yml --env-file .env.production down
+cd /opt/proj_unihome/deploy
+docker compose --project-directory . -f compose.prod.yml --env-file ../shared/.env.production down
 ```
 
 注意：

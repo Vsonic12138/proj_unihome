@@ -1,6 +1,8 @@
-# Payload CMS v3 官网内容架构重构 - 当前进度记录
+# Payload CMS v3 重构进度记录
 
 更新时间：2026-04-04
+
+状态：`ACTIVE`（最近审查：2026-04-15）
 
 本文件用于记录“官网内容架构完全重构（Payload CMS v3）”在本仓库内的**真实落地状态**、可运行方式、以及下一步待办。
 
@@ -134,7 +136,7 @@ Payload 已以 Next.js App Router 的推荐结构接入到：
 
 ```bash
 PAYLOAD_SECRET=dev-secret \
-DATABASE_URI='postgresql://proj_uinhome:proj_uinhome_password@localhost:5432/proj_uinhome?sslmode=disable' \
+DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 NEXT_PUBLIC_SERVER_URL='http://localhost:3000' \
 npm run seed:payload:images
 ```
@@ -172,7 +174,7 @@ npm run seed:payload:images
 
 ```bash
 PAYLOAD_SECRET=dev-secret \
-DATABASE_URI='postgresql://proj_uinhome:proj_uinhome_password@localhost:5432/proj_uinhome?sslmode=disable' \
+DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 NEXT_PUBLIC_SERVER_URL='http://localhost:3000' \
 npm run seed:payload
 ```
@@ -199,7 +201,7 @@ docker compose up -d postgres
 
 ```bash
 PAYLOAD_SECRET=dev-secret \
-DATABASE_URI='postgresql://proj_uinhome:proj_uinhome_password@localhost:5432/proj_uinhome?sslmode=disable' \
+DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 npx payload migrate:fresh --forceAcceptWarning
 ```
 
@@ -214,7 +216,7 @@ npm run seed:payload
 
 ```bash
 PAYLOAD_SECRET=dev-secret \
-DATABASE_URI='postgresql://proj_uinhome:proj_uinhome_password@localhost:5432/proj_uinhome?sslmode=disable' \
+DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 NEXT_PUBLIC_SERVER_URL='http://localhost:3000' \
 npm run dev
 ```
