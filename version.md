@@ -67,6 +67,61 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.6 fix(seo): 强化 SEO 绝对 URL 生成与域名配置校验
+
+类型: fix
+
+范围: seo, metadata, deploy
+
+说明:
+本次提交修复了 `NEXT_PUBLIC_SERVER_URL` 配置不规范或缺失时可能导致的两个高影响问题：一是 metadata 生成阶段 `new URL()` 抛异常导致页面 500；二是生产环境在未配置域名时会对外产出指向 `localhost` 的 canonical/sitemap 等 SEO 信息。改动后在页面层面尽量“不中断渲染”，而在 `sitemap.xml` / `robots.txt` 层面选择“生产环境缺配置就明确失败”，避免静默发布错误域名。
+
+实现细节:
+
+1. **统一域名解析与错误信息**
+   - 新增 `src/lib/seo.ts`：集中处理 `NEXT_PUBLIC_SERVER_URL` 的解析与规范化（支持无协议域名自动补 `https://`）。
+   - 生产环境对 `robots/sitemap` 采用强校验策略：缺失或非法直接抛错，并输出英文的可排查错误信息（包含 `NODE_ENV`、原始值与修复建议）。
+2. **页面 metadata 防崩溃与默认 SEO 信息**
+   - `src/app/[locale]/layout.tsx` 使用统一的 `getPublicServerUrl()` 生成 `metadataBase`，避免因非法 URL 导致 500。
+   - 补齐默认 OpenGraph/Twitter/Icons 的生成逻辑，并提供默认 OG 图（`/images/og-default.jpeg`）。
+3. **新增 SEO 入口文件**
+   - 新增 `src/app/robots.ts`、`src/app/sitemap.ts`、`src/app/manifest.ts` 以支持 robots/sitemap/manifest 输出（并保持内容从 CMS 全局配置读取）。
+4. **页面级 canonical/hreflang**
+   - 各主要页面 `generateMetadata` 增加 `alternates`（canonical + hreflang），在生产域名缺失时退化为相对路径，避免错误指向 `localhost`。
+5. **部署配置防误注入 localhost**
+   - `ops/docker/Dockerfile` 与 `ops/docker/compose.prod.yml` 移除 `NEXT_PUBLIC_SERVER_URL` 的默认 `localhost`，避免生产环境“看似配置了但实际是默认值”。
+6. **CMS Admin 预览链接更稳健**
+   - Payload collection 的 `admin.preview` 统一使用 `getPublicServerUrl()` 构建预览 URL，避免因域名配置不合法导致后台预览链接报错。
+
+文件变更:
+
+新增文件:
+- `/src/lib/seo.ts`
+- `/src/app/robots.ts`
+- `/src/app/sitemap.ts`
+- `/src/app/manifest.ts`
+- `/public/images/og-default.jpeg`
+
+修改文件（节选）:
+- `/src/app/[locale]/layout.tsx`
+- `/src/app/[locale]/**/page.tsx`（多处 `alternates`）
+- `/src/payload/collections/Pages.ts`
+- `/src/payload/collections/Products.ts`
+- `/src/payload/collections/CaseStudies.ts`
+- `/ops/docker/Dockerfile`
+- `/ops/docker/compose.prod.yml`
+
+改进效果:
+- 生产环境域名配置缺失/错误时不再静默产出 `localhost` 的 SEO 链接，问题可被立即发现与修复。
+- 避免 metadata 阶段因 URL 解析异常导致页面 500。
+
+影响范围:
+- SEO（canonical/hreflang/sitemap/robots/OG metadata）
+- Payload Admin 预览链接
+- Docker 生产构建参数
+
+---
+
 V1.25.5 docs(docs): 重组 docs 目录并完善部署与运维文档
 
 类型: docs

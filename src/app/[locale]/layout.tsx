@@ -1,5 +1,7 @@
 import "../../styles/index.css";
 
+export const dynamic = "force-dynamic";
+
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -16,6 +18,7 @@ import {
   tryGetPayloadClient,
   toPayloadLocale,
 } from "@/lib/payload";
+import { getPublicServerUrl } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -41,8 +44,13 @@ export async function generateMetadata({
   const payload = await tryGetPayloadClient();
   const payloadLocale = toPayloadLocale(locale);
 
+  // Parse server URL for absolute path generation in metadata (OG Images, Sitemaps)
+  const serverUrl = getPublicServerUrl();
+  const metadataBase = serverUrl ? new URL(serverUrl) : undefined;
+
   if (!payload) {
     return {
+      ...(metadataBase ? { metadataBase } : {}),
       icons: {
         icon: "/icon.svg",
       },
@@ -57,10 +65,45 @@ export async function generateMetadata({
 
   const favicon =
     resolveMediaURL(globals?.siteSettings?.frontendBranding?.favicon) ?? "/icon.svg";
+  
+  const companyName = globals?.siteSettings?.companyName || "UniTech";
+  const seoConfig = globals?.siteSettings?.seoDefaults;
+  
+  const seoTitle = seoConfig?.title || companyName;
+  const seoDesc = seoConfig?.description || "";
+  const seoImage = resolveMediaURL(seoConfig?.image) ?? "/images/og-default.jpeg";
 
   return {
+    ...(metadataBase ? { metadataBase } : {}),
+    title: {
+      default: seoTitle,
+      template: `%s | ${seoTitle}`,
+    },
+    description: seoDesc,
+    openGraph: {
+      title: seoTitle,
+      description: seoDesc,
+      ...(serverUrl ? { url: serverUrl } : {}),
+      siteName: companyName,
+      images: [
+        {
+          url: seoImage,
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoTitle,
+      description: seoDesc,
+      images: [seoImage],
+    },
     icons: {
       icon: favicon,
+      apple: favicon, // fallback apple icon
     },
   };
 }
