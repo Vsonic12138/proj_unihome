@@ -97,5 +97,6 @@ AGENT.md
 /backup*_list.txt
 
 # 打包与部署产物
-/deploy-pkg/
+/deploy-pkg/ # legacy
+/proj-unihome-deploy-bundle/
 *.tar.gz

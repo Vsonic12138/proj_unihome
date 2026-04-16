@@ -45,7 +45,12 @@
     "docker:build": "docker build -f ops/docker/Dockerfile -t proj-unihome-app:local .",
     "docker:up:dev:db": "docker compose --project-directory . -f ops/docker/compose.dev.yml up -d",
     "docker:up:prod": "docker compose --project-directory . -f ops/docker/compose.prod.yml --env-file .env.production up -d",
-    "deploy:bundle": "bash ops/deploy/create-deploy-bundle.sh"
+    "deploy:bundle": "bash ops/deploy/create-deploy-bundle.sh --profile init",
+    "deploy:bundle:init": "bash ops/deploy/create-deploy-bundle.sh --profile init",
+    "deploy:bundle:update": "bash ops/deploy/create-deploy-bundle.sh --profile update",
+    "deploy:aliyun:bootstrap": "bash ops/deploy/remote/aliyun-bootstrap.sh --host aliyun",
+    "deploy:aliyun:init": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode init",
+    "deploy:aliyun:update": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode update"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",

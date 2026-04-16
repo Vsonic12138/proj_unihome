@@ -6,7 +6,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 COMPOSE_FILE="$SCRIPT_DIR/compose.prod.yml"
-ENV_FILE="$SCRIPT_DIR/.env.production"
+BASE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+ENV_FILE="$BASE_DIR/shared/.env.production"
 
 log() {
   echo "==> $*"
@@ -51,10 +52,13 @@ check_next_public_server_url() {
   local url
   url="$(get_env_value NEXT_PUBLIC_SERVER_URL "")"
   if [ -z "$url" ]; then
-    die "NEXT_PUBLIC_SERVER_URL 未设置，请先编辑 .env.production"
+    die "NEXT_PUBLIC_SERVER_URL 未设置，请先编辑 ../shared/.env.production"
   fi
   if [ "$url" = "http://localhost:3005" ] || [ "$url" = "http://localhost:3000" ]; then
     die "NEXT_PUBLIC_SERVER_URL 仍为默认值 ($url)，请改为真实域名或公网 IP"
+  fi
+  if [ "$url" = "http://YOUR_DOMAIN_OR_IP" ] || [ "$url" = "https://YOUR_DOMAIN_OR_IP" ]; then
+    die "NEXT_PUBLIC_SERVER_URL 仍为占位符 ($url)，请改为真实域名或公网 IP"
   fi
 }
 
@@ -95,6 +99,17 @@ load_image() {
   gzip -dc "$image_tar_gz" | docker load
 }
 
+load_postgres_image_if_present() {
+  # Optional: allow init to run without pulling postgres from Docker Hub.
+  local pg_tar_gz="$SCRIPT_DIR/postgres-16.tar.gz"
+  if [ ! -f "$pg_tar_gz" ]; then
+    return 0
+  fi
+  need_cmd gzip
+  log "导入 PostgreSQL 镜像（gzip -> docker load）..."
+  gzip -dc "$pg_tar_gz" | docker load
+}
+
 restore_db_if_present() {
   local dump
   dump="$(ls -t "$SCRIPT_DIR"/backups/db_backup_*.dump 2>/dev/null | head -n 1 || true)"
@@ -128,14 +143,14 @@ restore_media_if_present() {
     return 0
   fi
 
-  mkdir -p "$SCRIPT_DIR/media"
-  if [ -n "$(ls -A "$SCRIPT_DIR/media" 2>/dev/null || true)" ]; then
+  mkdir -p "$BASE_DIR/media"
+  if [ -n "$(ls -A "$BASE_DIR/media" 2>/dev/null || true)" ]; then
     warn "media/ 非空，跳过解压（如需强制覆盖，请手动处理）"
     return 0
   fi
 
   log "恢复媒体文件..."
-  tar -xzf "$media_tar" -C "$SCRIPT_DIR"
+  tar -xzf "$media_tar" -C "$BASE_DIR"
   log "媒体恢复完成"
 }
 
@@ -156,9 +171,10 @@ cmd_check() {
 
 cmd_init() {
   cmd_check
-  mkdir -p "$SCRIPT_DIR/media" "$SCRIPT_DIR/postgres-data" "$SCRIPT_DIR/backups"
+  mkdir -p "$BASE_DIR/media" "$BASE_DIR/postgres-data" "$BASE_DIR/backups"
 
   restore_media_if_present
+  load_postgres_image_if_present
   load_image
 
   log "启动 Postgres..."
@@ -198,6 +214,10 @@ Usage:
   bash deploy.sh update
   bash deploy.sh ps
   bash deploy.sh logs [app|postgres]
+
+Notes:
+  - This script expects shared env at ../shared/.env.production
+  - Persistent data lives at ../media and ../postgres-data
 EOF
 }
 
@@ -215,4 +235,3 @@ main() {
 }
 
 main "$@"
-

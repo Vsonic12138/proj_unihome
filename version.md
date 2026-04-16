@@ -99,7 +99,7 @@ V1.25.4 chore(deploy): Docker 与部署流程迁移至 ops 并提供一键 init/
 - `/ops/env/.env.production.example`
 - `/ops/deploy/create-deploy-bundle.sh`
 - `/ops/deploy/deploy.sh`
-- `/docs/docker-production-deployment.md`
+- `/docs/deploy/docker-production.md`
 
 改进效果:
 
@@ -166,10 +166,10 @@ V1.25.2 docs(deploy): 补充阿里云、GCP及Docker生产部署操作指南
 实现细节:
 
 1. **部署指南新增**
-   - 新增 `docs/docker-production-deployment.md`，提供关于 Docker 生产环境部署的详细指南。
-   - 新增 `docs/aliyun-ecs-deployment.md`，提供在阿里云 ECS 上部署该项目的步骤指导。
-   - 新增 `docs/gcp-server-migration-playbook.md`，记录了 GCP 服务器迁移的操作手册和策略。
-   - 新增 `docs/cloudflare-subdomain-setup.md`，提供 Cloudflare 子域名配置与绑定的设置指南。
+   - 新增 `docs/deploy/docker-production.md`，提供关于 Docker 生产环境部署的详细指南。
+   - 新增 `docs/deploy/aliyun-ecs.md`，提供在阿里云 ECS 上部署该项目的步骤指导。
+   - 新增 `docs/deploy/gcp-migration.md`，记录了 GCP 服务器迁移的操作手册和策略。
+   - 新增 `docs/deploy/cloudflare-tunnel.md`，提供 Cloudflare 子域名配置与绑定的设置指南。
 
 文件变更:
 修改文件:
@@ -180,10 +180,10 @@ V1.25.2 docs(deploy): 补充阿里云、GCP及Docker生产部署操作指南
 
 新增文件:
 
-- `/docs/docker-production-deployment.md`
-- `/docs/aliyun-ecs-deployment.md`
-- `/docs/gcp-server-migration-playbook.md`
-- `/docs/cloudflare-subdomain-setup.md`
+- `/docs/deploy/docker-production.md`
+- `/docs/deploy/aliyun-ecs.md`
+- `/docs/deploy/gcp-migration.md`
+- `/docs/deploy/cloudflare-tunnel.md`
 
 改进效果:
 
@@ -208,11 +208,11 @@ V1.25.1 chore(scripts): 新增一键部署打包脚本与工作流规范说明
 实现细节:
 
 1. **新增自动化打包脚本**
-   - 新增 `scripts/payload/create-deploy-pkg.sh`，用于一键构建并提取包含静态资源、生产依赖以及容器编排文件的部署包。
+   - 新增部署包生成脚本（当前入口在 `ops/deploy/create-deploy-bundle.sh`），用于一键构建并提取包含生产镜像、编排文件与可选快照的部署包。
 2. **沉淀规范与工作流**
    - 新增 `.agents/workflows/generate-changelog.md`，规范记录了从递增版本号到编写 `version.md` 日志以及最终提交的完整步骤。
 3. **完善代码库忽略规则**
-   - 更新 `.gitignore`，增加对 `deploy-pkg/` 目录和 `.tar.gz` 打包产物的忽略，避免构建产物污染代码库。
+   - 更新 `.gitignore`，增加对部署包中间目录（当前为 `proj-unihome-deploy-bundle/`，旧名 `deploy-pkg/`）与 `.tar.gz` 打包产物的忽略，避免构建产物污染代码库。
 
 文件变更:
 修改文件:
@@ -224,7 +224,7 @@ V1.25.1 chore(scripts): 新增一键部署打包脚本与工作流规范说明
 
 新增文件:
 
-- `/scripts/payload/create-deploy-pkg.sh`
+- `/ops/deploy/create-deploy-bundle.sh`
 - `/.agents/workflows/generate-changelog.md`
 
 改进效果:

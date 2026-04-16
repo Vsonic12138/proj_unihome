@@ -1,6 +1,14 @@
 # 北京有你同创科技公司官网
 
-北京有你同创科技公司官方网站，基于 **Next.js App Router + Tailwind CSS v4 + TypeScript** 构建。项目内置中/英/日三种语言的完整内容与路由结构，并在保持视觉设计一致的基础上，强化了 SEO、无障碍体验以及组件可维护性。
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![Payload CMS](https://img.shields.io/badge/Payload_CMS-v3-111827)](https://payloadcms.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Docker](https://img.shields.io/badge/Docker-required-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D%2018.17.0-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+
+北京有你同创科技公司官方网站，基于 **Next.js 15 App Router + Tailwind CSS v4 + TypeScript** 构建，并集成 **Payload CMS v3**（`/admin`）与 **PostgreSQL**。
 
 > 官网链接：待补充
 
@@ -8,124 +16,75 @@
 
 ---
 
-## ✨ 功能亮点
+## 快速开始
 
-- **多语言路由体系**：通过 `src/middleware.ts` 自动识别语言，所有页面位于 `/[locale]` 路径下，可直接生成静态页面。
-- **next-intl 国际化方案**：采用 `next-intl` + `middleware` + `/[locale]` 路由前缀，支持静态渲染与语言 Cookie。
-- **JSON 文案管理**：多语言内容按模块拆分到 `messages/{locale}/*.json`，结构清晰易维护。
-- **组件级国际化支持**：导航栏、页脚、表单、弹窗、博客等模块全部支持动态文案与辅助标签（ARIA label）。
-- **深色模式与主题切换**：延续原有 UI，并优化 `ThemeToggler` 的水合表现。
-- **无障碍优化**：回到顶部按钮等交互改造为可聚焦按钮，完全支持键盘操作。
-- **前后端分离部署友好**：纯前端静态站点，可直接部署到 Vercel、Netlify、静态主机或任何 CDN。
-
----
-
-## 🛠 技术栈
-
-| 分类       | 技术/工具                        |
-| ---------- | -------------------------------- |
-| 前端框架   | Next.js 15（App Router）         |
-| 语言       | TypeScript 5                     |
-| UI / 样式  | Tailwind CSS v4、CSS Modules     |
-| 状态管理   | React Hooks                      |
-| 主题切换   | next-themes                      |
-| 国际化     | next-intl                        |
-| 代码质量   | ESLint、Prettier                 |
-
----
-
-## 🚀 快速开始
-
-> 请确保 Node.js ≥ 18.17.0（Next.js 15 官方要求）。以下命令默认使用 `npm`，也可根据习惯改用 `pnpm` / `yarn`。
+请确保 Node.js ≥ 18.17.0（Next.js 15 官方要求）。以下命令默认使用 `npm`。
 
 ```bash
-# 1. 安装依赖
 npm install
+```
 
-# 2. 启动本地开发服务
+启动本地数据库（PostgreSQL，Docker）：
+
+```bash
+npm run docker:up:dev:db
+```
+
+启动开发服务：
+
+```bash
 npm run dev
-
-# 3. 访问地址
-# 浏览器打开 http://localhost:3000
 ```
 
-生产构建与预览：
+访问：
+
+- 前台：`http://localhost:3000`
+- CMS 管理后台：`http://localhost:3000/admin`
+
+---
+
+## 部署与运维
+
+部署与运维相关内容已统一整理在 `ops/` 与 `docs/`：
+
+- `ops/README.md`：部署包生成与服务器端一键 `init/update`
+- `docs/README.md`：详细文档索引（部署、数据库、容器、CMS、合规、方案）
+
+常用命令：
 
 ```bash
-npm run build   # 生成产物
-npm run start   # 以生产模式启动本地服务
-```
-
-代码规范检查：
-
-```bash
-npm run lint
+npm run deploy:bundle
 ```
 
 ---
 
-## 🌐 国际化指南
+## 核心架构
 
-- **语言列表**：`src/i18n/routing.ts` 中的 `locales` 与 `defaultLocale`。
-- **文案文件**：位于 `messages/{en,zh,ja}/*.json`，按页面与组件模块拆分。
-- **请求配置**：`src/i18n/request.ts` 负责加载对应语言的 JSON 文案。
-- **路由结构**：所有页面在 `src/app/[locale]/` 下注册，`generateStaticParams` 会自动针对每种语言生成静态路径。
-- **语言切换**：`src/components/Header/LocaleSwitcher.tsx` 提供下拉切换，并将用户选择写入 Cookie（名称 `proj_uinhome-language`）。
-- **新增语言步骤**：
-  1. 在 `src/i18n/routing.ts` 中添加语言代码；
-  2. 在 `messages/{locale}` 下新增并补齐 JSON 文案；
-  3. 更新 `LocaleSwitcher` 选项；
-  4. 视需要补充新的页面静态资源或文案。
+本项目是一个一体化应用：
 
----
+- Next.js 15 App Router 提供前台路由与服务端渲染
+- Payload CMS v3 运行在同一个 Next.js 服务中
+  - 管理后台：`/admin`
+  - API：`/api/*`
+- 数据库使用 PostgreSQL（Payload 使用 `@payloadcms/db-postgres` 连接）
+- 多语言使用 next-intl，前台路由采用 `/{locale}/...` 前缀（由 `src/middleware.ts` 处理）
 
-## 📁 主要目录结构
+生产交付推荐使用“部署包”方式：
 
-```
-├─ src/
-│  ├─ app/
-│  │  ├─ [locale]/             # 多语言路由
-│  │  ├─ about/                # 内容组件（无路由）
-│  │  ├─ blog/                 # 博客内容组件
-│  │  ├─ contact/              # 联系我们内容组件
-│  │  ├─ error/                # 404/错误页内容组件
-│  │  ├─ signin/ signup/       # 认证页面内容组件
-│  │  └─ providers.tsx         # 全局 Provider（主题等）
-│  ├─ components/              # 通用组件
-│  ├─ i18n/                    # 国际化配置
-│  ├─ styles/                  # 全局样式
-│  └─ middleware.ts            # 语言重定向
-├─ messages/                   # 国际化文案（JSON）
-├─ public/                     # 静态资源
-├─ .gitignore
-├─ package.json
-├─ README.md
-└─ version.md
-```
+- 本地生成 bundle：`npm run deploy:bundle:init`（首次）或 `npm run deploy:bundle:update`（常规更新）
+- 服务器端执行一键 `init/update`，并将 `shared/.env.production`、`media/`、`postgres-data/` 固化为持久化目录（详见 `ops/README.md`）
 
 ---
 
-## ⚙️ 常用配置说明
+## 目录说明
 
-- **环境变量**：默认无需额外配置。如需注入分析工具或 API 地址，可在根目录创建 `.env.local` 并通过 `process.env` 读取。
-- **Tailwind 配置**：使用 v4 原生 `tailwind.config`。如需扩展设计系统，可在 `src/styles/index.css` 或 `postcss` 管道中调整。
-- **多语言 SEO**：Next.js 会基于 `[locale]` 生成静态路由。若部署到自定义域名，建议在 `next.config.mjs` 中添加 `<link rel="alternate" hrefLang>` 等高级配置。
-
----
-
-## 👩‍💻 开发规范
-
-1. **TypeScript**：所有新组件优先使用 TS/TSX，并补全类型定义。
-2. **组件拆分**：与语言相关的展示逻辑统一接收词典 `props`，避免硬编码文案。
-3. **无障碍**：交互组件必须包含合适的 ARIA 属性与键盘支持。
-4. **提交日志**：按照 `version.md` 维护语义化版本与 commit 信息。
-
----
-
-## 📦 部署建议
-
-- **Vercel（推荐）**：直接使用 Vercel Dashboard 导入仓库即可，支持按语言的静态导出与动态路由。
-- **Netlify / 静态空间**：执行 `npm run build` 后，上传 `.next` 产物并配置 Node 运行时或使用 `next export`（如后续提供 CSR 版本）。
-- **自托管**：通过 Docker/Nginx 部署时，记得转发所有未知路由到 Next.js 应用，以便国际化中间件生效。
-
----
+- `src/`：应用主代码
+- `src/app/`：Next.js App Router（包含前台路由，以及 Payload 的 `/admin`、`/api` 路由组）
+- `src/components/`：通用 UI 组件
+- `src/payload/`：Payload 内容模型与后台定制（collections/globals/blocks/admin）
+- `src/i18n/`：next-intl 配置与加载逻辑
+- `messages/`：国际化 JSON 文案（按语言拆分）
+- `public/`：静态资源（不经 Payload 管理的资源）
+- `scripts/payload/`：CMS 运维脚本（备份、发布、修复、迁移、seed 等）
+- `ops/`：部署与运维自动化（Docker、部署包、阿里云一键脚本等）
+- `docs/`：详细文档与手册（以 `docs/README.md` 为索引入口）

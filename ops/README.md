@@ -1,6 +1,6 @@
 # ops 目录说明（部署与运维）
 
-本目录用于集中管理本项目的 **Docker/部署/运维自动化**。业务代码仍在 `src/`，这里只放“如何构建、如何打包、如何上线、如何更新”相关的工具与规范。
+本目录用于集中管理本项目的 **Docker/部署/运维自动化**。业务代码仍在 `src/`，这里存放“如何构建、如何打包、如何上线、如何更新”相关的工具与规范。
 
 ## 目录结构
 
@@ -18,7 +18,7 @@
 ### `ops/env/`
 
 - `.env.production.example`
-  - 生产环境 `.env.production` 模板（供你在服务器上手工维护使用）
+  - 生产环境 `.env.production` 模板（供在服务器上手工维护使用）
 
 ### `ops/deploy/`
 
@@ -26,14 +26,14 @@
   - **本地一键生成部署包**：`proj-unihome-deploy-bundle.tar.gz`
   - 默认生成“全量包”：包含镜像导出包、db dump、CMS 快照、media 备份、以及服务器端一键脚本
 - `deploy.sh`
-  - **服务器端一键部署脚本**（会被复制进 `deploy-pkg/`）
+  - **服务器端一键部署脚本**（会被复制进 `proj-unihome-deploy-bundle/`）
   - 支持 `check/init/update/ps/logs`：
     - `init`：首次部署（自动启动 postgres、恢复 dump、启动 app）
     - `update`：常规更新（仅加载新镜像并重启 app，不动 db/media）
 - `templates/compose.prod.yml`
   - 部署包内使用的 compose 模板（不含 build，默认只 `docker load` 后运行）
 - `README.md`
-  - 部署包内 README 模板（会被复制进 `deploy-pkg/README.md`）
+  - 部署包内 README 模板（会被复制进 `proj-unihome-deploy-bundle/README.md`）
 
 ## 常用命令（推荐以 npm scripts 为唯一入口）
 
@@ -52,7 +52,7 @@ npm run docker:build
 生成部署包（推荐的生产交付方式）：
 
 ```bash
-npm run deploy:bundle
+npm run deploy:bundle:init
 ```
 
 ## 部署包工作流（生产推荐）
@@ -60,35 +60,29 @@ npm run deploy:bundle
 ### 1) 本地生成部署包（WSL/开发机）
 
 ```bash
-npm run deploy:bundle
+npm run deploy:bundle:init
 ```
 
 产物：
 - 根目录生成 `proj-unihome-deploy-bundle.tar.gz`
-- 生成中间目录 `deploy-pkg/`（已在 `.gitignore/.dockerignore` 忽略，不会进仓库）
+- 生成中间目录 `proj-unihome-deploy-bundle/`（已在 `.gitignore/.dockerignore` 忽略，不会进仓库）
 
 ### 2) 上传到服务器并首次部署
 
-在服务器目录（建议 `/opt/proj_unihome`）：
+推荐方式：使用一键远程脚本（在本地执行）：
 
 ```bash
-tar -xzf proj-unihome-deploy-bundle.tar.gz
-cd deploy-pkg
-
-# 必须修改为真实域名或公网 IP，否则图片/SEO 会异常
-nano .env.production
-
-bash deploy.sh init
+npm run deploy:aliyun:bootstrap
+npm run deploy:aliyun:init
 ```
 
 ### 3) 常规更新（最快路径）
 
-你再次生成并上传新的 `proj-unihome-deploy-bundle.tar.gz` 后：
+常规更新推荐生成 update 包并一键更新（不会覆盖服务器 db/media）：
 
 ```bash
-tar -xzf proj-unihome-deploy-bundle.tar.gz
-cd deploy-pkg
-bash deploy.sh update
+npm run deploy:bundle:update
+npm run deploy:aliyun:update
 ```
 
 说明：`update` 默认只更新 app，不会恢复数据库，也不会覆盖 `media/`。
@@ -104,15 +98,14 @@ bash deploy.sh update
    ```
 2. 生成部署包
    ```bash
-   npm run deploy:bundle
+   npm run deploy:bundle:init
    ```
 3. 在本机模拟服务器首次部署（注意会占用 `127.0.0.1:3005`）
    ```bash
-   cd deploy-pkg
+   cd proj-unihome-deploy-bundle
    # 临时把 NEXT_PUBLIC_SERVER_URL 改成可用值
    sed -i 's#^NEXT_PUBLIC_SERVER_URL=.*#NEXT_PUBLIC_SERVER_URL=http://127.0.0.1:3005#' .env.production
    bash deploy.sh init
    curl -I http://127.0.0.1:3005/
    bash deploy.sh update
    ```
-

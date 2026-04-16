@@ -43,6 +43,7 @@ coverage
 
 # Repo-local deployment bundles (can be hundreds of MB)
 deploy-pkg
+proj-unihome-deploy-bundle
 *.tar.gz
 
 # Misc OS noise
