@@ -39,6 +39,28 @@ const nextConfig = {
   images: {
     remotePatterns: buildRemotePatterns(),
   },
+  async headers() {
+    return [
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+        ],
+      },
+      {
+        source: "/admin/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store",
+          },
+        ],
+      },
+    ];
+  },
   // 生产环境禁用 source map，防止源码泄露
   productionBrowserSourceMaps: false,
 };

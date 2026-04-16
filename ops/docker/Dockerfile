@@ -10,7 +10,7 @@ RUN npm ci
 
 FROM base AS builder
 
-ARG NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+ARG NEXT_PUBLIC_SERVER_URL
 ARG PAYLOAD_SECRET=build-secret
 ARG PREVIEW_SECRET=build-preview-secret
 ARG DATABASE_URI=postgresql://proj_unihome:proj_unihome_password@127.0.0.1:5432/proj_unihome

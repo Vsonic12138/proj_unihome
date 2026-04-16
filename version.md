@@ -67,6 +67,38 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.25.9 chore(deploy): 收紧生产构建域名注入并禁用敏感路由缓存
+
+类型: chore
+
+范围: deploy, config
+
+说明:
+本次提交聚焦部署与运行时配置一致性：移除 Docker 生产构建中 `NEXT_PUBLIC_SERVER_URL` 的 `localhost` 默认值，避免生产环境在漏配域名时“静默注入错误域名”；同时为 `/api/*` 与 `/admin/*` 增加 `no-store` 响应头，降低后台与接口在代理/CDN 场景下被错误缓存的风险。
+
+实现细节:
+1. **Docker 构建参数收紧**
+   - `ops/docker/Dockerfile` 取消 `ARG NEXT_PUBLIC_SERVER_URL` 的默认 `http://localhost:3000`。
+   - `ops/docker/compose.prod.yml` 构建参数改为必须显式传入 `NEXT_PUBLIC_SERVER_URL`，不再提供默认值。
+2. **路由缓存策略**
+   - `next.config.mjs` 为 `/api/:path*` 与 `/admin/:path*` 添加 `Cache-Control: no-store`。
+
+文件变更:
+修改文件:
+- `/ops/docker/Dockerfile`
+- `/ops/docker/compose.prod.yml`
+- `/next.config.mjs`
+
+改进效果:
+- 生产环境域名漏配更易被发现，避免默认回退导致的隐性错误。
+- 减少 API/Admin 在中间层被意外缓存带来的数据不一致问题。
+
+影响范围:
+- Docker 生产构建参数
+- Next.js headers 配置（API/Admin）
+
+---
+
 V1.25.8 fix(payload): 稳定 Admin 预览链接生成并避免隐式 localhost
 
 类型: fix
