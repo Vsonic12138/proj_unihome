@@ -66,6 +66,19 @@ remote() {
   ssh "$HOST" "$@"
 }
 
+resolve_remote_origin() {
+  remote "set -euo pipefail
+    env_file=\"$SERVER_DIR/shared/.env.production\"
+    if [ ! -f \"\$env_file\" ]; then
+      exit 0
+    fi
+    current_origin=\$(grep -E '^NEXT_PUBLIC_SERVER_URL=' \"\$env_file\" | tail -n 1 | cut -d '=' -f2- || true)
+    if [ -n \"\$current_origin\" ]; then
+      printf '%s' \"\$current_origin\"
+    fi
+  " || true
+}
+
 main() {
   parse_args "$@"
 
@@ -81,11 +94,26 @@ main() {
     fi
   fi
 
+  if [ "$MODE" = "update" ] && [ -z "$ORIGIN" ]; then
+    ORIGIN="$(resolve_remote_origin)"
+    if [ -n "$ORIGIN" ]; then
+      echo "[info] Reuse remote NEXT_PUBLIC_SERVER_URL=$ORIGIN for build"
+    fi
+  fi
+
   echo "==> Build bundle (mode=$MODE)"
   if [ "$MODE" = "init" ]; then
-    npm run deploy:bundle:init
+    if [ -n "$ORIGIN" ]; then
+      npm run deploy:bundle:init -- --origin "$ORIGIN"
+    else
+      npm run deploy:bundle:init
+    fi
   else
-    npm run deploy:bundle:update
+    [ -n "$ORIGIN" ] || {
+      echo "[error] update 模式无法确定构建所需的 NEXT_PUBLIC_SERVER_URL，请通过 --domain 或 --origin 显式传入，或确保服务器 shared/.env.production 已配置该值" >&2
+      exit 1
+    }
+    npm run deploy:bundle:update -- --origin "$ORIGIN"
   fi
 
   echo "==> Upload bundle to $HOST:$SERVER_DIR/$BUNDLE_NAME"

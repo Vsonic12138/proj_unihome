@@ -12,6 +12,7 @@ BUNDLE_NAME="proj-unihome-deploy-bundle.tar.gz"
 IMAGE_TAG_DEFAULT="proj-unihome-app:production"
 PROFILE="init"
 POSTGRES_IMAGE_DEFAULT="postgres:16"
+BUILD_ORIGIN=""
 
 log() {
   echo "==> $*"
@@ -33,7 +34,7 @@ need_cmd() {
 usage() {
   cat <<'EOF'
 Usage:
-  bash ops/deploy/create-deploy-bundle.sh [--profile init|update]
+  bash ops/deploy/create-deploy-bundle.sh [--profile init|update] [--origin <origin>]
 
 Profiles:
   init   Full bundle for first-time deploy / disaster recovery. Includes db dump and media backup.
@@ -46,6 +47,10 @@ parse_args() {
     case "$1" in
       --profile)
         PROFILE="${2:-}"
+        shift 2
+        ;;
+      --origin)
+        BUILD_ORIGIN="${2:-}"
         shift 2
         ;;
       --help|-h)
@@ -64,6 +69,47 @@ parse_args() {
       die "无效 profile: $PROFILE（仅支持 init 或 update）"
       ;;
   esac
+}
+
+validate_origin() {
+  local origin="$1"
+
+  [ -n "$origin" ] || die "NEXT_PUBLIC_SERVER_URL 构建值为空，请通过 --origin 传入真实域名"
+  case "$origin" in
+    http://YOUR_DOMAIN_OR_IP|https://YOUR_DOMAIN_OR_IP|http://localhost:3000|http://localhost:3005|https://localhost:3000|https://localhost:3005)
+      die "NEXT_PUBLIC_SERVER_URL 仍为占位值或 localhost：$origin"
+      ;;
+  esac
+
+  case "$origin" in
+    http://*|https://*) ;;
+    *)
+      die "NEXT_PUBLIC_SERVER_URL 必须包含协议头（http:// 或 https://）：$origin"
+      ;;
+  esac
+}
+
+preflight_checks() {
+  log "[preflight] 检查本地构建前置条件"
+
+  docker info >/dev/null 2>&1 || die "Docker daemon 未就绪，请确认 Docker Desktop 已启动"
+
+  local source_env="$ROOT_DIR/.env"
+  [ -f "$source_env" ] || die "未找到 $source_env（用于读取 DATABASE_URI 供构建期使用）"
+
+  local source_db_uri
+  source_db_uri="$(get_env_value "$source_env" "DATABASE_URI")"
+  [ -n "$source_db_uri" ] || die "未从 .env 读取到 DATABASE_URI=..."
+
+  if [[ "$source_db_uri" == *"localhost"* ]] || [[ "$source_db_uri" == *"127.0.0.1"* ]]; then
+    if ! docker ps --format '{{.Ports}}' | grep -q '0.0.0.0:5432->5432/tcp'; then
+      die "检测到 DATABASE_URI 指向本地 5432，但本地 Postgres 容器似乎未运行"
+    fi
+  fi
+
+  if [ "$PROFILE" = "update" ]; then
+    validate_origin "$BUILD_ORIGIN"
+  fi
 }
 
 gen_token() {
@@ -184,11 +230,8 @@ build_image() {
   log "[4/7] 本地构建生产镜像（build 阶段需要可访问 DB）"
 
   local source_env="$ROOT_DIR/.env"
-  [ -f "$source_env" ] || die "未找到 $source_env（用于读取 DATABASE_URI 供构建期使用）"
-
   local source_db_uri
   source_db_uri="$(get_env_value "$source_env" "DATABASE_URI")"
-  [ -n "$source_db_uri" ] || die "未从 .env 读取到 DATABASE_URI=..."
 
   # Docker build 在隔离网络里：WSL/Windows 场景需要 host.docker.internal 访问宿主机 DB
   local build_db_uri
@@ -208,9 +251,16 @@ build_image() {
     preview_secret="build-preview-secret"
   fi
 
+  local build_origin
+  if [ "$PROFILE" = "init" ]; then
+    build_origin="http://localhost:3005"
+  else
+    build_origin="$BUILD_ORIGIN"
+  fi
+
   docker build \
     -f ops/docker/Dockerfile \
-    --build-arg NEXT_PUBLIC_SERVER_URL=http://localhost:3005 \
+    --build-arg NEXT_PUBLIC_SERVER_URL="$build_origin" \
     --build-arg PAYLOAD_SECRET="$payload_secret" \
     --build-arg PREVIEW_SECRET="$preview_secret" \
     --build-arg DATABASE_URI="$build_db_uri" \
@@ -321,6 +371,7 @@ main() {
   need_cmd docker
   need_cmd tar
   need_cmd git
+  preflight_checks
 
   prepare_pkg_dir
   if [ "$PROFILE" = "init" ]; then

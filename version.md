@@ -67,6 +67,40 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.3 chore(deploy): update 构建加入 preflight 并复用远端真实域名
+
+类型: chore
+
+范围: deploy, scripts
+
+说明:
+本次提交增强阿里云一键更新发布链路，避免 update 构建阶段继续使用 `localhost` 作为 `NEXT_PUBLIC_SERVER_URL`，并在本地构建前增加必要的前置校验，减少部署包构建过程中途失败的概率。
+
+实现细节:
+1. **update 构建复用远端 origin**
+   - `deploy:aliyun:update` 在未显式传入 `--origin/--domain` 时，优先从服务器 `shared/.env.production` 读取 `NEXT_PUBLIC_SERVER_URL` 并用于本地构建。
+   - 避免 update 镜像构建阶段使用 `http://localhost:3005` 造成 SEO 相关产物被错误域名烘焙。
+2. **构建前 preflight 校验**
+   - 检查 Docker daemon 是否可用。
+   - 检查本地 `.env` 存在且包含 `DATABASE_URI`。
+   - 若 `DATABASE_URI` 指向本地 `5432`，检测本地 Postgres 容器是否运行。
+   - update 模式强校验构建 `origin` 必须为合法 URL，禁止占位值/localhost。
+
+文件变更:
+修改文件:
+- `/ops/deploy/create-deploy-bundle.sh`
+- `/ops/deploy/remote/aliyun-deploy.sh`
+
+改进效果:
+- update 构建更符合生产配置，减少因域名/环境误用导致的隐性线上问题。
+- 本地构建前快速失败，避免耗时步骤后才报错。
+
+影响范围:
+- `npm run deploy:aliyun:update`
+- `npm run deploy:bundle:update`
+
+---
+
 V1.26.2 fix(deps): 同步 lockfile 以修复 Docker 构建 npm ci 失败
 
 类型: fix
