@@ -18,6 +18,12 @@ type NotificationResult =
   | { sent: true; provider: "webhook" | "smtp" | "resend" }
   | { sent: false; provider: "none" | "webhook" | "smtp" | "resend"; error: string };
 
+function getReplyTo(email?: string | null) {
+  if (!email) return undefined;
+  const trimmedEmail = email.trim();
+  return trimmedEmail.length > 0 ? trimmedEmail : undefined;
+}
+
 function redact(value: string) {
   if (!value) return value;
   if (value.length <= 6) return "***";
@@ -82,6 +88,7 @@ async function sendViaWebhook(args: TicketNotificationArgs): Promise<Notificatio
         type: "ticket.submitted",
         requestId: args.requestId,
         ticketId: args.ticketId,
+        replyTo: getReplyTo(args.email) ?? null,
         payload: {
           name: args.name,
           email: args.email ?? null,
@@ -125,6 +132,7 @@ async function sendViaResend(args: TicketNotificationArgs): Promise<Notification
 
   try {
     const subject = `[Ticket] ${args.name} - ${args.intention}`;
+    const replyTo = getReplyTo(args.email);
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -137,6 +145,7 @@ async function sendViaResend(args: TicketNotificationArgs): Promise<Notification
         subject,
         text: buildText(args),
         html: buildHtml(args),
+        ...(replyTo ? { reply_to: replyTo } : {}),
       }),
       cache: "no-store",
     });
@@ -184,6 +193,7 @@ async function sendViaSmtp(args: TicketNotificationArgs): Promise<NotificationRe
   const secure = process.env.SMTP_SECURE === "true";
   const user = process.env.SMTP_USER?.trim();
   const pass = process.env.SMTP_PASS?.trim();
+  const replyTo = getReplyTo(args.email);
 
   try {
     const transport = nodemailer.createTransport({
@@ -199,6 +209,7 @@ async function sendViaSmtp(args: TicketNotificationArgs): Promise<NotificationRe
       subject: `[Ticket] ${args.name} - ${args.intention}`,
       text: buildText(args),
       html: buildHtml(args),
+      ...(replyTo ? { replyTo } : {}),
     });
 
     return { sent: true, provider: "smtp" };

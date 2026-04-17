@@ -16,6 +16,7 @@
 |------|------|------|
 | `deploy/docker-production.md` | `ACTIVE` | 通用 Docker 生产部署结构与部署包 init/update 概念 |
 | `deploy/aliyun-ecs.md` | `ACTIVE` | 阿里云 ECS 一键 bootstrap + 发布（推荐路径） |
+| `deploy/aliyun-direct-mail.md` | `ACTIVE` | 阿里云 Direct Mail（SMTP）接入官网工单通知邮件 |
 | `deploy/cloudflare-tunnel.md` | `OPTIONAL` | 仅在使用 Cloudflare Tunnel 暴露服务时需要 |
 | `deploy/gcp-migration.md` | `ARCHIVED` | 历史 GCP 迁移记录，含大量环境特定内容，已不再维护 |
 

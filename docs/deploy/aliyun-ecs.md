@@ -347,9 +347,9 @@ TURNSTILE_SECRET_KEY=0x4AAAA...
 TICKET_EMAIL_WEBHOOK_URL=https://your-webhook.example.com/ticket-email
 TICKET_EMAIL_WEBHOOK_SECRET=replace-with-a-long-random-secret
 
-# 方案 B：正式 SMTP 发信
-# SMTP_HOST=smtp.example.com
-# SMTP_PORT=587
+# 方案 B：正式 SMTP 发信（如阿里云 Direct Mail）
+# SMTP_HOST=smtpdm.aliyun.com
+# SMTP_PORT=80
 # SMTP_SECURE=false
 # SMTP_USER=your-smtp-user
 # SMTP_PASS=your-smtp-password
@@ -412,7 +412,23 @@ Webhook 侧建议至少实现：
 
 Webhook 请求体格式详见 [ticket-submission.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/cms/ticket-submission.md)。
 
-### 5.5 恢复媒体文件
+### 5.5 使用阿里云 Direct Mail（推荐 SMTP 方案）
+
+如果你计划直接使用阿里云官方邮件服务上线工单通知，而不是自建 Webhook，请优先参考：
+
+- [aliyun-direct-mail.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/deploy/aliyun-direct-mail.md)
+
+该文档已经整理了官方可确认的信息，包括：
+
+1. 开通 Direct Mail
+2. 配置发信域名与 DNS
+3. 创建 Triggered Emails 类型发件地址
+4. 设置 SMTP 密码
+5. 选择官方 SMTP 地址与端口
+6. 配置 IP 白名单
+7. 将 SMTP 参数写入 `shared/.env.production`
+
+### 5.6 恢复媒体文件
 
 如果使用一键脚本，媒体恢复会在 `init` 中自动处理（仅当 `media/` 为空时才会解压）。
 如需手动恢复，可执行：
@@ -425,7 +441,7 @@ tar -xzf media_backup.tar.gz -C ..
 ls ../media/
 ```
 
-### 5.6 启动 PostgreSQL 并恢复数据
+### 5.7 启动 PostgreSQL 并恢复数据
 
 推荐使用一键初始化（会自动启动 Postgres、等待健康、并恢复 dump）：
 
@@ -434,7 +450,7 @@ ls ../media/
 bash deploy.sh init
 ```
 
-### 5.7 载入镜像并启动应用
+### 5.8 载入镜像并启动应用
 
 常规更新（最快路径，仅更新 app 镜像并重启 app 容器）：
 
@@ -443,7 +459,7 @@ bash deploy.sh init
 bash deploy.sh update
 ```
 
-### 5.8 验证容器状态
+### 5.9 验证容器状态
 
 ```bash
 # 查看 app/postgres 容器状态

@@ -67,6 +67,44 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.4 fix(mail): 通知邮件补齐 Reply-To 并新增 Direct Mail 上线文档
+
+类型: fix
+
+范围: mail, docs, deploy
+
+说明:
+本次提交优化工单通知邮件的客服回复体验：当用户在表单中填写邮箱时，通知邮件将携带 `Reply-To` 指向用户邮箱，客服可直接点击“回复”与用户沟通。同时补充阿里云 Direct Mail（SMTP）正式上线指南，并更新部署与环境变量模板示例，便于按官方推荐方式配置生产发信。
+
+实现细节:
+1. **邮件 Reply-To**
+   - 当工单包含用户邮箱时，SMTP/Resend/Webhook 三种通道统一设置/透传 `replyTo`。
+   - 保持 `From` 为系统正式发件地址，避免破坏 SMTP/DM 的鉴权与送达率。
+2. **Direct Mail 文档与示例**
+   - 新增 Direct Mail 上线指南，覆盖域名 DNS 校验、发件地址、SMTP 密码、端点与端口选择、IP 白名单等关键步骤。
+   - 更新阿里云 ECS 部署文档与生产 `.env` 模板中的 SMTP 示例为 Direct Mail 推荐写法。
+   - 更新 docs 索引入口。
+
+文件变更:
+新增文件:
+- `/docs/deploy/aliyun-direct-mail.md`
+
+修改文件:
+- `/src/lib/tickets/notification.ts`
+- `/docs/README.md`
+- `/docs/deploy/aliyun-ecs.md`
+- `/ops/env/.env.production.example`
+
+改进效果:
+- 客服团队可通过邮件客户端直接回复用户邮箱，沟通链路更顺畅。
+- Direct Mail 正式上线步骤更清晰，减少配置踩坑。
+
+影响范围:
+- 工单通知邮件发送与回复行为
+- 部署文档与生产环境变量模板
+
+---
+
 V1.26.3 chore(deploy): update 构建加入 preflight 并复用远端真实域名
 
 类型: chore
