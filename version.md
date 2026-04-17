@@ -67,6 +67,34 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.2 fix(deps): 同步 lockfile 以修复 Docker 构建 npm ci 失败
+
+类型: fix
+
+范围: deps, deploy
+
+说明:
+本次提交修复 Docker 构建阶段 `npm ci` 因 `package.json` 与 `package-lock.json` 不一致而失败的问题（报错提示缺少 `@swc/helpers@0.5.21`）。通过显式同步依赖版本，确保在服务器与 CI 环境中可稳定执行 `npm ci`。
+
+实现细节:
+1. **依赖同步**
+   - 显式加入并锁定 `@swc/helpers` 版本，满足 `next-intl` 的依赖约束。
+2. **构建稳定性**
+   - 修复 `npm ci` 的一致性校验失败，避免部署包构建在 `RUN npm ci` 阶段中断。
+
+文件变更:
+修改文件:
+- `/package.json`
+- `/package-lock.json`
+
+改进效果:
+- 服务器构建镜像时可稳定通过 `npm ci`，减少部署失败率。
+
+影响范围:
+- 依赖解析与 Docker 构建链路
+
+---
+
 V1.26.1 chore(dev): 增加 Mailpit 本地测试编排与邮件配置模板
 
 类型: chore
