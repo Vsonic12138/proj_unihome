@@ -14,5 +14,13 @@ services:
       # 注意：不要执行 `docker compose down -v`，否则会删除该卷数据
       - proj_unihome_postgres_data:/var/lib/postgresql/data
 
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: proj_unihome_mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
 volumes:
   proj_unihome_postgres_data:

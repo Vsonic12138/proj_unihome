@@ -26,12 +26,20 @@
 | `containers/docker.md` | `ACTIVE` | Docker/Docker Desktop 说明（本地开发与部署包构建依赖） |
 | `infra/database.md` | `ACTIVE` | PostgreSQL 使用指南（连接方式、脚本约束、备份建议） |
 
+## 环境变量模板
+
+| 文件 | 状态 | 说明 |
+|------|------|------|
+| `../ops/env/.env.local.mailpit.example` | `ACTIVE` | 本地开发示例：Postgres + Mailpit SMTP |
+| `../ops/env/.env.production.example` | `ACTIVE` | 生产环境示例：域名、Turnstile、正式邮件通知 |
+
 ## CMS（Payload）
 
 | 文档 | 状态 | 说明 |
 |------|------|------|
 | `cms/rebuild-status.md` | `ACTIVE` | Payload CMS v3 重构落地状态（偏“事实记录”） |
 | `cms/todo.md` | `ACTIVE` | Payload CMS 后续待办（勾选推进） |
+| `cms/ticket-submission.md` | `ACTIVE` | 官网工单提交流程、邮件 Webhook 与防刷策略说明 |
 
 ## 合规
 

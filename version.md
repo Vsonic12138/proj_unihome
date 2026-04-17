@@ -67,6 +67,50 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.1 chore(dev): 增加 Mailpit 本地测试编排与邮件配置模板
+
+类型: chore
+
+范围: dev, docs, env
+
+说明:
+本次提交聚焦本地测试与部署配置整理：补充 Mailpit 本地邮件测试编排、拆分本地与生产环境变量模板，并完善工单提交通知、防刷和阿里云部署相关文档，帮助开发环境与生产环境配置边界更清晰，避免将测试参数误带到线上。
+
+实现细节:
+1. **补充本地 Mailpit 测试编排**
+   - `ops/docker/compose.dev.yml` 新增 `mailpit` 服务，用于本地 SMTP 测试与邮件可视化查看。
+2. **拆分环境变量模板**
+   - 新增本地开发模板 `ops/env/.env.local.mailpit.example`，明确本地 Postgres + Mailpit 配置。
+   - 更新 `ops/env/.env.production.example`，补充 Turnstile、Webhook、SMTP、Resend 三种生产邮件通知方案示例。
+   - 更新根目录 `.env.example`，补充工单通知与验证码相关参数占位。
+3. **完善文档说明**
+   - 新增工单提交通知与防刷说明文档。
+   - 更新文档索引与阿里云部署手册，明确本地测试和生产配置边界，以及上线所需的环境变量。
+
+文件变更:
+新增文件:
+- `/docs/cms/ticket-submission.md`
+- `/ops/env/.env.local.mailpit.example`
+
+修改文件:
+- `/.env.example`
+- `/docs/README.md`
+- `/docs/deploy/aliyun-ecs.md`
+- `/ops/docker/compose.dev.yml`
+- `/ops/env/.env.production.example`
+
+改进效果:
+- 本地测试邮件链路更易搭建，开发时可直接用 Mailpit 验证工单通知。
+- 生产环境变量模板更完整，降低测试配置误带到线上环境的风险。
+- 工单、防刷、部署三部分的文档入口更集中，便于后续维护与交接。
+
+影响范围:
+- 本地开发容器编排
+- 环境变量模板
+- 工单与部署文档
+
+---
+
 V1.26.0 feat(tickets): 新增公开工单提交流程与防刷能力
 
 类型: feat

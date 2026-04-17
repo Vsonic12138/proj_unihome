@@ -337,12 +337,82 @@ nano ../shared/.env.production
 # 改为真实域名（如备案尚未完成，可先用 http://ECS公网IP）
 NEXT_PUBLIC_SERVER_URL=https://yourdomain.com
 
+# Cloudflare Turnstile 验证码
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAA...
+TURNSTILE_SECRET_KEY=0x4AAAA...
+
+# 工单邮件通知：三选一，生产环境不要混用
+
+# 方案 A（推荐）：Webhook 邮件转发
+TICKET_EMAIL_WEBHOOK_URL=https://your-webhook.example.com/ticket-email
+TICKET_EMAIL_WEBHOOK_SECRET=replace-with-a-long-random-secret
+
+# 方案 B：正式 SMTP 发信
+# SMTP_HOST=smtp.example.com
+# SMTP_PORT=587
+# SMTP_SECURE=false
+# SMTP_USER=your-smtp-user
+# SMTP_PASS=your-smtp-password
+# TICKET_EMAIL_TO=ops@example.com
+# TICKET_EMAIL_FROM=UniHome <noreply@example.com>
+
+# 方案 C：Resend API
+# RESEND_API_KEY=re_xxxxxxxxx
+# TICKET_EMAIL_TO=ops@example.com
+# TICKET_EMAIL_FROM=UniHome <noreply@example.com>
+
 # 其他密钥已由打包脚本自动生成，无需修改
 ```
 
 > **为什么要填真实域名**：Payload CMS 上传图片时会将绝对路径发给前端；若不改，图片全部裂开无法加载，Next.js sitemap 和 OG 图片也会失效。
+>
+> **为什么要补工单相关配置**：
+> - `TICKET_EMAIL_WEBHOOK_URL` 用于将官网工单自动转发到你的邮件服务
+> - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` 与 `TURNSTILE_SECRET_KEY` 用于启用验证码，阻止脚本刷单
 
-### 5.3 恢复媒体文件
+如果你暂时还没有邮件 Webhook 服务，可先只完成 Turnstile 配置；此时工单仍会写入 CMS，但不会发送邮件通知。
+生产环境不要保留本地测试用的 `Mailpit` 参数，例如 `SMTP_HOST=127.0.0.1`、`SMTP_PORT=1025`。
+
+### 5.3 配置 Turnstile（推荐生产环境必做）
+
+工单接口已接入 Cloudflare Turnstile。生产环境建议在上线前先完成以下配置：
+
+1. 登录 Cloudflare 控制台
+2. 进入 `Turnstile`
+3. 新建一个 Site
+4. 将站点域名加入允许列表
+5. 复制生成的 `Site Key` 和 `Secret Key`
+6. 分别写入 `shared/.env.production`：
+
+```env
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=0x4AAAA...
+TURNSTILE_SECRET_KEY=0x4AAAA...
+```
+
+如果当前只是临时用公网 IP 验证，可先创建一个测试站点并把该 IP 对应访问域名或临时域名加入允许范围；正式域名上线后再切换为正式 Key。
+
+### 5.4 配置工单邮件 Webhook（推荐）
+
+工单在写入 CMS 成功后，会向 `TICKET_EMAIL_WEBHOOK_URL` 发送一个 `POST` 请求。你需要准备一个可用的 Webhook 地址，负责接收 JSON 并转发邮件。
+
+在 `shared/.env.production` 中补充：
+
+```env
+TICKET_EMAIL_WEBHOOK_URL=https://your-webhook.example.com/ticket-email
+TICKET_EMAIL_WEBHOOK_SECRET=replace-with-a-long-random-secret
+```
+
+Webhook 侧建议至少实现：
+
+1. 校验 `Authorization: Bearer <secret>`
+2. 解析 JSON 请求体
+3. 发送邮件给运营或客服邮箱
+4. 成功时返回 `200`
+5. 失败时返回非 `2xx`，方便站点日志记录错误
+
+Webhook 请求体格式详见 [ticket-submission.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/cms/ticket-submission.md)。
+
+### 5.5 恢复媒体文件
 
 如果使用一键脚本，媒体恢复会在 `init` 中自动处理（仅当 `media/` 为空时才会解压）。
 如需手动恢复，可执行：
@@ -355,7 +425,7 @@ tar -xzf media_backup.tar.gz -C ..
 ls ../media/
 ```
 
-### 5.4 启动 PostgreSQL 并恢复数据
+### 5.6 启动 PostgreSQL 并恢复数据
 
 推荐使用一键初始化（会自动启动 Postgres、等待健康、并恢复 dump）：
 
@@ -364,7 +434,7 @@ ls ../media/
 bash deploy.sh init
 ```
 
-### 5.5 载入镜像并启动应用
+### 5.7 载入镜像并启动应用
 
 常规更新（最快路径，仅更新 app 镜像并重启 app 容器）：
 
@@ -373,7 +443,7 @@ bash deploy.sh init
 bash deploy.sh update
 ```
 
-### 5.6 验证容器状态
+### 5.8 验证容器状态
 
 ```bash
 # 查看 app/postgres 容器状态
@@ -390,6 +460,13 @@ bash deploy.sh logs app
 curl -I http://127.0.0.1:3005
 # 应返回 HTTP 200 或重定向响应
 ```
+
+首次启用工单邮件与验证码后，建议额外做一次人工验证：
+
+1. 打开官网联系页，确认表单下方出现 Turnstile 验证框
+2. 正常提交一条测试工单，确认 CMS 中出现记录
+3. 确认你的 Webhook 服务收到请求并成功发出邮件
+4. 刷新页面后重复快速提交，确认频率限制或重复提交提示生效
 
 ---
 
