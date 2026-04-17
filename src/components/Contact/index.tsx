@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import TurnstileWidget from "@/components/TurnstileWidget";
+import { useEffect, useState } from "react";
 
 type ContactProps = {
   copy: any;
@@ -9,13 +10,25 @@ type ContactProps = {
 const Contact = ({ copy }: ContactProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [requestId, setRequestId] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [formStartedAt, setFormStartedAt] = useState<number>(() => Date.now());
+  const [captchaResetKey, setCaptchaResetKey] = useState(0);
   const form = copy?.form ?? {};
   const submitLabel = form.submit ?? form.submitLabel;
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
+  useEffect(() => {
+    setFormStartedAt(Date.now());
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("idle");
+    setRequestId(null);
+    setErrorMessage(null);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -25,10 +38,14 @@ const Contact = ({ copy }: ContactProps) => {
       phone: formData.get("phone"),
       intention: formData.get("intention"),
       message: formData.get("message"),
+      // anti-spam extras
+      website: formData.get("website"),
+      formStartedAt,
+      captchaToken,
     };
 
     try {
-      const res = await fetch("/api/tickets", {
+      const res = await fetch("/api/public/tickets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,13 +54,25 @@ const Contact = ({ copy }: ContactProps) => {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to submit ticket");
+        const payload = await res.json().catch(() => null);
+        const rid = payload?.requestId ? String(payload.requestId) : null;
+        if (rid) setRequestId(rid);
+        throw new Error(payload?.error || "Failed to submit ticket");
       }
+
+      const payload = await res.json().catch(() => null);
+      const rid = payload?.requestId ? String(payload.requestId) : null;
+      if (rid) setRequestId(rid);
+      setErrorMessage(payload?.warning ? String(payload.warning) : null);
 
       setSubmitStatus("success");
       form.reset();
+      setCaptchaToken(null);
+      setCaptchaResetKey((value) => value + 1);
+      setFormStartedAt(Date.now());
     } catch (error) {
       console.error("Ticket submission error:", error);
+      setErrorMessage(error instanceof Error ? error.message : "Failed to submit ticket");
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -73,20 +102,33 @@ const Contact = ({ copy }: ContactProps) => {
                     submitLabel === "送信" ? "送信しました！まもなくご連絡いたします。" :
                     "提交成功！我们会尽快与您联系。"
                   )}
+                  {errorMessage ? <div className="mt-2 text-xs opacity-80">{errorMessage}</div> : null}
+                  {requestId ? <div className="mt-2 text-xs opacity-80">Request ID: {requestId}</div> : null}
                 </div>
               )}
               {submitStatus === "error" && (
                 <div className="mb-8 rounded bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-900/30 dark:text-red-400">
-                  {form.submitErrorMessage ?? (
+                  {errorMessage ?? form.submitErrorMessage ?? (
                     submitLabel === "Submit Ticket" ? "Submission failed, please try again later." :
                     submitLabel === "送信" ? "送信に失敗しました。後でもう一度お試しください。" :
                     "提交失败，请稍后重试。"
                   )}
+                  {requestId ? (
+                    <div className="mt-2 text-xs opacity-80">Request ID: {requestId}</div>
+                  ) : null}
                 </div>
               )}
 
               <form onSubmit={handleSubmit}>
                 <div className="-mx-4 flex flex-wrap">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
                   <div className="w-full px-4 md:w-1/2">
                     <div className="mb-8">
                       <label
@@ -184,6 +226,13 @@ const Contact = ({ copy }: ContactProps) => {
                         className="border-stroke w-full resize-none rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-transparent dark:bg-[#2d2520] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                       ></textarea>
                     </div>
+                  </div>
+                  <div className="w-full px-4">
+                    <TurnstileWidget
+                      siteKey={turnstileSiteKey}
+                      onTokenChange={setCaptchaToken}
+                      resetKey={captchaResetKey}
+                    />
                   </div>
                   <div className="w-full px-4">
                     <button

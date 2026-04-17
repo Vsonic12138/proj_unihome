@@ -24,7 +24,9 @@ export const Tickets: CollectionConfig = {
     defaultColumns: ['name', 'phone', 'intention', 'status', 'createdAt'],
   },
   access: {
-    create: () => true, // Allow anyone to submit
+    // Only allow authenticated users to create via the default Payload REST API.
+    // Public submissions must go through `POST /api/public/tickets` where we apply anti-spam protections.
+    create: ({ req: { user } }) => Boolean(user),
     read: ({ req: { user } }) => Boolean(user), // Admins only
     update: ({ req: { user } }) => Boolean(user),
     delete: ({ req: { user } }) => Boolean(user),

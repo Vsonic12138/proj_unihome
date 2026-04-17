@@ -67,6 +67,53 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.0 feat(tickets): 新增公开工单提交流程与防刷能力
+
+类型: feat
+
+范围: tickets, api, contact
+
+说明:
+本次提交为官网联系表单建立独立的公开工单提交链路，不再直接依赖 Payload 默认匿名创建接口。新流程统一接入服务端参数校验、验证码校验、防刷限制、重复提交检测和请求编号反馈，既保证工单仍可进入 CMS，又提升了对恶意刷单和重复提交的防护能力。
+
+实现细节:
+1. **新增公开工单接口**
+   - 新增 `POST /api/public/tickets`，统一处理工单提交。
+   - 服务端负责校验必填字段、生成 `requestId`、写入 Payload `tickets` collection，并返回标准化错误码与错误信息。
+2. **补充防刷与验证码能力**
+   - 新增工单防刷模块，加入 IP 限频、重复内容检测、蜜罐字段与提交耗时校验。
+   - 新增 Turnstile 校验逻辑，生产环境可通过验证码阻止自动化脚本提交。
+3. **调整前端提交流程**
+   - 联系表单改为调用新的公开接口，不再直接请求默认 `/api/tickets`。
+   - 前端支持显示详细失败原因、`requestId`，并集成 Turnstile 组件。
+4. **收紧 Payload 默认创建权限**
+   - `tickets` collection 不再允许匿名直接创建。
+   - 所有公开工单必须经过新接口，避免绕过服务端防刷规则。
+
+文件变更:
+新增文件:
+- `/src/app/api/public/tickets/route.ts`
+- `/src/lib/tickets/spamProtection.ts`
+- `/src/lib/tickets/notification.ts`
+- `/src/lib/tickets/turnstile.ts`
+- `/src/components/TurnstileWidget/index.tsx`
+
+修改文件:
+- `/src/components/Contact/index.tsx`
+- `/src/payload/collections/Tickets.ts`
+
+改进效果:
+- 工单提交入口收口到统一服务端逻辑，降低匿名直连 API 被滥用的风险。
+- 提交失败时可返回明确错误信息和请求编号，便于后续排查。
+- 为后续接入正式邮件通知、Webhook 或 Redis 限流保留了扩展基础。
+
+影响范围:
+- 官网联系表单提交链路
+- Payload `tickets` collection 创建权限
+- 工单接口错误反馈与基础防刷机制
+
+---
+
 V1.25.9 chore(deploy): 收紧生产构建域名注入并禁用敏感路由缓存
 
 类型: chore
