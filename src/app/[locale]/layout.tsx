@@ -9,7 +9,6 @@ import FloatingContact from "@/components/Common/FloatingContact";
 import CookieConsent from "@/components/Common/CookieConsent";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { locales } from '@/i18n/routing';
 import { Providers } from "@/app/providers";
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
@@ -19,10 +18,6 @@ import {
   toPayloadLocale,
 } from "@/lib/payload";
 import { getPublicServerUrl } from "@/lib/seo";
-
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
 
 function resolveMediaURL(media: any): string | null {
   if (!media) return null;

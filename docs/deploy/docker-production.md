@@ -6,8 +6,8 @@
 
 注意：
 
-- 本项目在 `next build` 阶段会读取 Payload/PostgreSQL 数据
-- 因此 Docker 镜像构建阶段必须能访问数据库
+- 本项目在 `next build` 阶段会编译 Payload 相关页面与路由
+- 生产 Docker 构建现已改为使用占位环境变量，并通过 `BUILD_SKIP_PAYLOAD=true` 跳过构建期 Payload 初始化
 - 生产环境最稳妥的方案是：本地预构建镜像，再上传到服务器运行
 
 ## 最短路径（推荐）
@@ -54,7 +54,8 @@
 
 - 运行镜像时不再依赖宿主机 Node.js
 - `media/` 不打进镜像，而是由宿主机目录挂载
-- 构建阶段会读取 `PAYLOAD_SECRET`、`PREVIEW_SECRET`、`DATABASE_URI`
+- 构建阶段只使用占位值 `PAYLOAD_SECRET`、`PREVIEW_SECRET`、`DATABASE_URI`
+- 运行时真实密钥与数据库连接仍通过 `shared/.env.production` 注入
 
 ### `.dockerignore`
 
@@ -116,7 +117,7 @@
 
 ### 4.1 推荐方案：本地预构建，再传到服务器
 
-由于本项目构建阶段依赖数据库，推荐在本地已有数据库和源码的环境中构建镜像。
+当前推荐在本地预构建镜像后再上传服务器，但构建阶段已经不再依赖真实数据库连接。
 
 示例：
 
@@ -124,10 +125,9 @@
 docker build \
   -f ops/docker/Dockerfile \
   --build-arg NEXT_PUBLIC_SERVER_URL=https://yourdomain.com \
-  --build-arg PAYLOAD_SECRET="$PAYLOAD_SECRET" \
-  --build-arg PREVIEW_SECRET="$PREVIEW_SECRET" \
-  --build-arg DATABASE_URI="$DATABASE_URI" \
+  --build-arg DATABASE_URI=postgresql://build:build@127.0.0.1:5432/build \
   --build-arg PAYLOAD_SCHEMA_PUSH=false \
+  --build-arg BUILD_SKIP_PAYLOAD=true \
   -t proj-unihome-app:local .
 ```
 
@@ -147,9 +147,8 @@ gzip -dc proj-unihome-app.tar.gz | docker load
 
 仅在以下条件同时满足时使用：
 
-- 服务器上的构建环境能访问 PostgreSQL
 - `.env.production` 已正确配置
-- 明确知道构建阶段会访问数据库
+- 明确知道服务器构建会比本地预构建更慢、更难排障
 
 如果服务器构建失败，优先切换到“本地预构建镜像”方案，不要反复在生产机试错。
 
@@ -222,6 +221,20 @@ cd /opt/proj_unihome/deploy
 bash deploy.sh logs postgres
 ```
 
+执行生产备份：
+
+```bash
+cd /opt/proj_unihome/deploy
+bash backup.sh run
+```
+
+如需同时打包 `media/`：
+
+```bash
+cd /opt/proj_unihome/deploy
+INCLUDE_MEDIA=true bash backup.sh run
+```
+
 停止服务：
 
 ```bash
@@ -257,3 +270,4 @@ docker compose --project-directory . -f compose.prod.yml --env-file ../shared/.e
 - `/api/preview` 预览可用
 - 新上传图片能写入 `media/`
 - 重启容器后数据仍然存在
+- `bash backup.sh run` 可以生成最新数据库备份

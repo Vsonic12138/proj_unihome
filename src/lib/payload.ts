@@ -58,7 +58,15 @@ if (!cached) {
   cached = (global as any).payload = { client: null, promise: null };
 }
 
+function shouldSkipPayloadInit(): boolean {
+  return process.env.BUILD_SKIP_PAYLOAD === "true";
+}
+
 export async function tryGetPayloadClient(): Promise<Payload | null> {
+  if (shouldSkipPayloadInit()) {
+    return null;
+  }
+
   const hasConfig =
     Boolean(process.env.PAYLOAD_SECRET) &&
     Boolean(process.env.DATABASE_URI ?? process.env.DATABASE_URL);

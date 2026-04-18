@@ -8,7 +8,7 @@
 
 - `Dockerfile`
   - 生产镜像构建文件（多阶段构建 + Next.js `standalone` 输出）
-  - 注意：本项目在 `next build` 阶段会读取数据库，因此 `docker build` 阶段需要能访问 Postgres
+  - 注意：构建阶段使用占位数据库连接与 `BUILD_SKIP_PAYLOAD=true`，不再要求真实 Postgres 可访问
 - `compose.dev.yml`
   - 仅用于本地开发时快速启动 Postgres（容器名固定为 `proj_unihome_postgres`）
 - `compose.prod.yml`
@@ -30,6 +30,9 @@
   - 支持 `check/init/update/ps/logs`：
     - `init`：首次部署（自动启动 postgres、恢复 dump、启动 app）
     - `update`：常规更新（仅加载新镜像并重启 app，不动 db/media）
+- `backup.sh`
+  - **服务器端标准备份入口**（会被复制进 `proj-unihome-deploy-bundle/`）
+  - 支持 `check/run`，可被 cron 或 systemd timer 直接调用
 - `templates/compose.prod.yml`
   - 部署包内使用的 compose 模板（不含 build，默认只 `docker load` 后运行）
 - `README.md`
@@ -107,5 +110,6 @@ npm run deploy:aliyun:update
    sed -i 's#^NEXT_PUBLIC_SERVER_URL=.*#NEXT_PUBLIC_SERVER_URL=http://127.0.0.1:3005#' .env.production
    bash deploy.sh init
    curl -I http://127.0.0.1:3005/
+   bash backup.sh check
    bash deploy.sh update
    ```

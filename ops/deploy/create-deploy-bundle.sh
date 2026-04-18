@@ -94,19 +94,6 @@ preflight_checks() {
 
   docker info >/dev/null 2>&1 || die "Docker daemon 未就绪，请确认 Docker Desktop 已启动"
 
-  local source_env="$ROOT_DIR/.env"
-  [ -f "$source_env" ] || die "未找到 $source_env（用于读取 DATABASE_URI 供构建期使用）"
-
-  local source_db_uri
-  source_db_uri="$(get_env_value "$source_env" "DATABASE_URI")"
-  [ -n "$source_db_uri" ] || die "未从 .env 读取到 DATABASE_URI=..."
-
-  if [[ "$source_db_uri" == *"localhost"* ]] || [[ "$source_db_uri" == *"127.0.0.1"* ]]; then
-    if ! docker ps --format '{{.Ports}}' | grep -q '0.0.0.0:5432->5432/tcp'; then
-      die "检测到 DATABASE_URI 指向本地 5432，但本地 Postgres 容器似乎未运行"
-    fi
-  fi
-
   if [ "$PROFILE" = "update" ]; then
     validate_origin "$BUILD_ORIGIN"
   fi
@@ -227,29 +214,10 @@ backup_db_and_media() {
 }
 
 build_image() {
-  log "[4/7] 本地构建生产镜像（build 阶段需要可访问 DB）"
+  log "[4/7] 本地构建生产镜像（build 阶段不再依赖真实 DB）"
 
-  local source_env="$ROOT_DIR/.env"
-  local source_db_uri
-  source_db_uri="$(get_env_value "$source_env" "DATABASE_URI")"
-
-  # Docker build 在隔离网络里：WSL/Windows 场景需要 host.docker.internal 访问宿主机 DB
-  local build_db_uri
-  build_db_uri="${source_db_uri//localhost/host.docker.internal}"
-  build_db_uri="${build_db_uri//127.0.0.1/host.docker.internal}"
-
-  echo "[info] 构建期数据库 URI: $build_db_uri"
+  local build_db_uri="postgresql://build:build@127.0.0.1:5432/build"
   echo "[info] 正在构建镜像，这一步可能需要几分钟..."
-
-  local payload_secret preview_secret
-  if [ "$PROFILE" = "init" ]; then
-    payload_secret="$(get_env_value "$PKG_DIR/.env.production" "PAYLOAD_SECRET")"
-    preview_secret="$(get_env_value "$PKG_DIR/.env.production" "PREVIEW_SECRET")"
-  else
-    # For update bundles, secrets are not rotated. Use build-time placeholders.
-    payload_secret="build-secret"
-    preview_secret="build-preview-secret"
-  fi
 
   local build_origin
   if [ "$PROFILE" = "init" ]; then
@@ -261,10 +229,9 @@ build_image() {
   docker build \
     -f ops/docker/Dockerfile \
     --build-arg NEXT_PUBLIC_SERVER_URL="$build_origin" \
-    --build-arg PAYLOAD_SECRET="$payload_secret" \
-    --build-arg PREVIEW_SECRET="$preview_secret" \
     --build-arg DATABASE_URI="$build_db_uri" \
     --build-arg PAYLOAD_SCHEMA_PUSH=false \
+    --build-arg BUILD_SKIP_PAYLOAD=true \
     -t "$IMAGE_TAG_DEFAULT" \
     .
 }
@@ -293,8 +260,10 @@ assemble_pkg() {
 
   cp ops/deploy/templates/compose.prod.yml "$PKG_DIR/compose.prod.yml"
   cp ops/deploy/deploy.sh "$PKG_DIR/deploy.sh"
+  cp ops/deploy/backup.sh "$PKG_DIR/backup.sh"
   cp ops/deploy/README.md "$PKG_DIR/README.md"
   chmod +x "$PKG_DIR/deploy.sh"
+  chmod +x "$PKG_DIR/backup.sh"
 
   if [ "$PROFILE" = "update" ]; then
     # Include a template for first-time creation / reference, but do NOT rotate secrets.
@@ -332,6 +301,7 @@ EOF
     ".env.production.example" \
     "compose.prod.yml" \
     "deploy.sh" \
+    "backup.sh" \
     "README.md" \
     "RELEASE.json" \
     "proj-unihome-app.tar.gz" \

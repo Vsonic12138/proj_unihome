@@ -30,6 +30,20 @@ npm run docker:up:dev:db
 
 `npm run backup:all` 会通过 `docker exec` 进入 Postgres 容器执行 `pg_dump` 并导出备份。
 
+生产部署包还会附带一个面向服务器使用的标准备份入口：
+
+```bash
+cd /opt/proj_unihome/deploy
+bash backup.sh run
+```
+
+如需同时打包媒体目录：
+
+```bash
+cd /opt/proj_unihome/deploy
+INCLUDE_MEDIA=true bash backup.sh run
+```
+
 结论：如果不使用容器化 Postgres（改为本机/远程 Postgres），应用仍可运行，但备份脚本需要调整为“直连 pg_dump”方式。
 
 ### 3) 部署包生成

@@ -1,4 +1,3 @@
-import { locales } from '@/i18n/routing';
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,35 +14,17 @@ import {
   tryGetPayloadClient,
   tryGetPageBySlug,
   tryGetProductBySlug,
-  tryGetProductSlugs,
   tryGetFAQs,
   toPayloadLocale,
 } from "@/lib/payload";
 import { buildAlternates } from "@/lib/seo";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 type PageParams = {
   params: Promise<{ locale: string; slug: string }>;
 };
-
-export async function generateStaticParams() {
-  const params: { locale: string; slug: string }[] = [];
-  const payload = await tryGetPayloadClient();
-  if (payload) {
-    const slugs = await tryGetProductSlugs({
-      payload,
-      locale: "zh",
-    });
-    for (const locale of locales) {
-      slugs.forEach((slug) => params.push({ locale, slug }));
-    }
-    if (params.length > 0) {
-      return params;
-    }
-  }
-
-  return params;
-}
 
 export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
   const { locale, slug } = await params;

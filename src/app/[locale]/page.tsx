@@ -11,6 +11,8 @@ import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
 import { buildAlternates } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 type PageParams = {
   params: Promise<{ locale: string }>;
 };

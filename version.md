@@ -67,6 +67,78 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.26.5 fix(deploy): 解耦生产构建数据库依赖并收紧运行镜像
+
+类型: fix
+
+范围: deploy, docker, payload, pages, docs
+
+说明:
+本次提交聚焦修复生产部署链路中的三个核心问题：构建阶段依赖真实数据库、运行镜像手工携带源码、以及缺少服务器侧标准备份入口。调整后，生产镜像可在无真实数据库连接的情况下完成构建，CMS 驱动页面统一转为运行时动态取数，运行镜像也收敛为以 Next standalone 产物为主，同时新增面向服务器的标准化备份脚本。
+
+实现细节:
+1. **构建阶段跳过 Payload 初始化**
+   - `src/lib/payload.ts` 增加 `BUILD_SKIP_PAYLOAD` 判定，构建期直接跳过 `tryGetPayloadClient()` 初始化。
+   - `ops/deploy/create-deploy-bundle.sh` 与 `ops/docker/compose.prod.yml` 改为只传占位数据库连接和 `BUILD_SKIP_PAYLOAD=true`，不再要求构建时连接真实 PostgreSQL。
+2. **CMS 页面改为运行时动态获取**
+   - CMS 驱动页面统一声明为动态路由，移除会把内容锁进构建产物的静态参数生成逻辑。
+   - 保证生产镜像虽然不在构建时连库，但运行期仍会按请求读取最新 CMS 内容。
+3. **运行镜像收紧**
+   - `ops/docker/Dockerfile` 不再手工复制 `src/`、`messages/`、`payload.config.ts`。
+   - 运行镜像只保留 `public`、`.next/standalone`、`.next/static`，并显式删除 traced 进去的 `/app/.env` 与 `/app/src`。
+4. **新增服务器备份入口**
+   - 新增 `ops/deploy/backup.sh`，支持数据库备份、可选 media 打包以及保留期清理。
+   - 同步更新容器与部署文档，补充服务器侧备份使用方式。
+
+文件变更:
+新增文件:
+- `/ops/deploy/backup.sh`
+
+修改文件:
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+- `/src/lib/payload.ts`
+- `/src/app/[locale]/layout.tsx`
+- `/src/app/[locale]/page.tsx`
+- `/src/app/[locale]/about/page.tsx`
+- `/src/app/[locale]/case-studies/page.tsx`
+- `/src/app/[locale]/case-studies/[slug]/page.tsx`
+- `/src/app/[locale]/case-studies/innovation-competition/page.tsx`
+- `/src/app/[locale]/case-studies/practical-teaching/page.tsx`
+- `/src/app/[locale]/case-studies/sci-tech-innovation/page.tsx`
+- `/src/app/[locale]/case-studies/training-base/page.tsx`
+- `/src/app/[locale]/contact/page.tsx`
+- `/src/app/[locale]/custom-solutions/page.tsx`
+- `/src/app/[locale]/developers/page.tsx`
+- `/src/app/[locale]/developers/knowledge-base/page.tsx`
+- `/src/app/[locale]/developers/open-source/page.tsx`
+- `/src/app/[locale]/error/page.tsx`
+- `/src/app/[locale]/privacy-policy/page.tsx`
+- `/src/app/[locale]/products/page.tsx`
+- `/src/app/[locale]/products/[slug]/page.tsx`
+- `/ops/docker/Dockerfile`
+- `/ops/docker/compose.prod.yml`
+- `/ops/deploy/create-deploy-bundle.sh`
+- `/ops/README.md`
+- `/ops/deploy/README.md`
+- `/docs/containers/docker.md`
+- `/docs/deploy/docker-production.md`
+
+改进效果:
+- 生产镜像构建不再要求真实数据库可访问。
+- CMS 内容改为运行时动态读取，避免构建产物烘焙旧数据或空页面。
+- 运行镜像依赖边界更清晰，减少源码随镜像分发。
+- 服务器具备标准备份入口，便于接入 cron 或 systemd timer。
+
+影响范围:
+- Docker 构建链路
+- 生产部署包生成
+- CMS 驱动页面渲染策略
+- 服务器备份流程
+
+---
+
 V1.26.4 fix(mail): 通知邮件补齐 Reply-To 并新增 Direct Mail 上线文档
 
 类型: fix

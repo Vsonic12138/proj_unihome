@@ -7,6 +7,8 @@ import type { Metadata } from "next";
 import { tryGetGlobals, tryGetPayloadClient, toPayloadLocale } from "@/lib/payload";
 import { buildAlternates } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 type PageParams = {
   params: Promise<{ locale: string }>;
 };

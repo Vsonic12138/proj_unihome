@@ -12,6 +12,7 @@
 - `media_backup.tar.gz`: Payload 媒体目录备份（可选）
 - `backups/`: 数据库 dump 与 CMS 快照（可选）
 - `deploy.sh`: 服务器端一键部署脚本
+- `backup.sh`: 服务器端标准备份脚本
 
 ## 首次部署（init）
 
@@ -33,3 +34,28 @@ bash deploy.sh update
 ```
 
 默认行为：仅加载新镜像并重启 `app` 容器，不会恢复数据库或覆盖媒体目录。
+
+## 备份
+
+执行数据库备份：
+
+```bash
+bash backup.sh run
+```
+
+同时备份 `media/`：
+
+```bash
+INCLUDE_MEDIA=true bash backup.sh run
+```
+
+默认保留策略：
+
+- 数据库备份保留 `7` 天
+- 媒体备份保留 `28` 天
+
+可通过环境变量覆盖：
+
+```bash
+DB_RETENTION_DAYS=14 MEDIA_RETENTION_DAYS=56 INCLUDE_MEDIA=true bash backup.sh run
+```

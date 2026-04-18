@@ -6,10 +6,9 @@ services:
       dockerfile: ops/docker/Dockerfile
       args:
         NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
-        PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-        PREVIEW_SECRET: ${PREVIEW_SECRET}
-        DATABASE_URI: ${DATABASE_URI}
+        DATABASE_URI: postgresql://build:build@127.0.0.1:5432/build
         PAYLOAD_SCHEMA_PUSH: ${PAYLOAD_SCHEMA_PUSH:-false}
+        BUILD_SKIP_PAYLOAD: "true"
     container_name: proj_unihome_app
     restart: unless-stopped
     env_file:

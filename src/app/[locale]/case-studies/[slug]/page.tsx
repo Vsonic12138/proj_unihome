@@ -13,6 +13,8 @@ import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
 import { buildAlternates } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 type PageParams = {
   params: Promise<{ locale: string; slug: string }>;
 };
@@ -63,10 +65,6 @@ export async function generateMetadata({
     openGraph: coverUrl ? { images: [{ url: coverUrl }] } : undefined,
     alternates: buildAlternates({ locale, pathSuffix: `/case-studies/${slug}` }),
   };
-}
-
-export async function generateStaticParams() {
-  return [];
 }
 
 const CaseStudyDetailPage = async ({ params }: PageParams) => {
