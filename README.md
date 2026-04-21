@@ -85,6 +85,6 @@ npm run deploy:bundle
 - `src/i18n/`：next-intl 配置与加载逻辑
 - `messages/`：国际化 JSON 文案（按语言拆分）
 - `public/`：静态资源（不经 Payload 管理的资源）
-- `scripts/payload/`：CMS 运维脚本（备份、发布、修复、迁移、seed 等）
+- `scripts/payload/`：CMS 脚本体系（`checks/`、`seed/`、`ops/`、`migrations/`、`dev/`、`archive/`）
 - `ops/`：部署与运维自动化（Docker、部署包、阿里云一键脚本等）
 - `docs/`：详细文档与手册（以 `docs/README.md` 为索引入口）

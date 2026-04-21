@@ -93,7 +93,7 @@ sampleCases: group → json (localized)
 
 ##### 数据迁移脚本
 
-- 编写 `scripts/payload/migrate-sample-cases.ts`，将数据库中 ubot-mr20、gx-mat-09s 的结构化数组数据转换为 sections JSON 格式
+- 编写 `scripts/payload/archive/migrate-sample-cases.ts`，将数据库中 ubot-mr20、gx-mat-09s 的结构化数组数据转换为 sections JSON 格式
 
 ---
 

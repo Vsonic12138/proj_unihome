@@ -62,7 +62,7 @@
 
 当前仓库已有：
 
-- `npm run backup:all`
+- `npm run cms:backup:local`
 - DB dump / CMS snapshot / media 打包逻辑
 - 部署包可携带备份产物
 
@@ -227,7 +227,7 @@
 
 预期改动点：
 
-- `scripts/payload/` 下新增或重构备份脚本
+- `scripts/payload/ops/` 下新增或重构备份脚本
 - `ops/` 或 `docs/deploy/` 下补充生产备份文档
 
 建议策略：

@@ -36,7 +36,7 @@
 npm run docker:up:dev:db
 ```
 
-这会启动固定容器名 `proj_unihome_postgres`，并与 `npm run backup:all` 等脚本默认配置一致。
+这会启动固定容器名 `proj_unihome_postgres`，并与 `npm run cms:backup:local` 等脚本默认配置一致。
 
 ## 生产/远程数据库是否支持？
 
@@ -46,7 +46,7 @@ npm run docker:up:dev:db
 
 Payload 即可连接对应 Postgres。
 
-注意：`npm run backup:all` 脚本当前实现依赖 `docker exec` 进入容器执行 `pg_dump`，若使用远程数据库，需要将备份流程改为使用本机/CI 的 `pg_dump` 直连方式（或另写脚本）。
+注意：`npm run cms:backup:local` 脚本当前实现依赖 `docker exec` 进入容器执行 `pg_dump`，若使用远程数据库，需要将备份流程改为使用本机/CI 的 `pg_dump` 直连方式（或另写脚本）。
 
 ---
 
@@ -189,7 +189,7 @@ Payload CMS 将 Collection 和嵌套数组展开为多张关系表，命名规�
 推荐备份方式：
 
 ```bash
-npm run backup:all
+npm run cms:backup:local
 ```
 
 手动备份数据库（容器化 Postgres 场景，导出为压缩后的自定义格式 dump）：

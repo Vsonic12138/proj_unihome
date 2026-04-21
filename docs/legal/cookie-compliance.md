@@ -76,7 +76,7 @@ SiteSettings
 
 ### 2.4 默认种子数据
 
-文件：`scripts/payload/seed.ts`
+文件：`scripts/payload/seed/seed.ts`
 
 当前 seed 会写入：
 
@@ -269,8 +269,8 @@ SiteSettings
 | `src/components/Footer/index.tsx` | 页脚隐私链接与 Cookie 设置入口 |
 | `src/lib/cookieConsent.ts` | 同意状态与工具函数 |
 | `src/app/[locale]/privacy-policy/page.tsx` | 隐私页 |
-| `scripts/payload/seed.ts` | Cookie 默认 seed |
-| `scripts/payload/fix-lexical.ts` | `legalText` 兜底修复脚本 |
+| `scripts/payload/seed/seed.ts` | Cookie 默认 seed |
+| `scripts/payload/archive/fix-lexical.ts` | `legalText` 历史兜底修复脚本 |
 
 ---
 

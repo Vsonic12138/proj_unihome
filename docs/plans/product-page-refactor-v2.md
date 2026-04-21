@@ -27,7 +27,7 @@
 
 ## 2. 重构方案与阶段规划
 
-> 说明：执行该计划前，请先做数据库备份（例如 `npm run backup:all`）。
+> 说明：执行该计划前，请先做数据库备份（例如 `npm run cms:backup:local`）。
 
 ### 阶段一：建立统一规格的 `sampleCases` 关系模型
 

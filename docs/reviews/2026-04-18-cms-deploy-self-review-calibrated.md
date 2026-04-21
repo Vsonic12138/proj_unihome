@@ -162,6 +162,10 @@
 
 这个判断基本成立。
 
+补充状态：
+
+> 该问题已在 2026-04-18 完成一轮强治理，当前仓库已不再维持原始混放结构。
+
 当前 `scripts/payload/` 下既有：
 
 - 一次性修复脚本
@@ -184,6 +188,12 @@
 - 把一次性脚本移到 `scripts/payload/archive/` 或 `scripts/payload/one-off/`
 - 把长期保留脚本按 `seed/`, `ops/`, `audit/`, `migrate/` 分类
 - 对保留脚本补一份 README，写清用途、输入、是否可重复执行
+
+当前结果：
+
+- 已重组为 `checks/`、`seed/`、`ops/`、`migrations/data/`、`dev/`、`lib/`、`archive/`
+- 已新增 [scripts/payload/README.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/scripts/payload/README.md)
+- 已下线旧 npm script 入口，统一切到 `cms:*` 命名体系
 
 ---
 
@@ -219,9 +229,13 @@
 
 原判断说得过头了。
 
+补充状态：
+
+> 该问题已在 2026-04-18 完成主流程收口，当前仓库不再默认启用 schema push。
+
 当前仓库确实存在这些事实：
 
-- `payload.config.ts` 默认会根据环境决定是否 `push`
+- `payload.config.ts` 现在仅在 `PAYLOAD_SCHEMA_PUSH=true` 时才会 `push`
 - 生产环境构建里明确设置了 `PAYLOAD_SCHEMA_PUSH=false`
 - 仓库中已经存在 `src/migrations/*`
 - 文档里也记录了迁移文件和使用方式
@@ -236,13 +250,19 @@
 
 更准确的表述应该是：
 
-> 当前数据库 schema 变更策略不够统一，仍处于 `schema push + migration 文件 + 临时修复脚本` 并存状态。虽然不是没有正规迁移，但长期来看风险较高，也容易让团队成员误判变更路径。
+> 原先数据库 schema 变更策略不够统一，处于 `schema push + migration 文件 + 临时修复脚本` 并存状态。当前已完成一轮收口，默认工作流已经切到 migration 主流程，但仍需在后续实践中继续保持纪律。
 
 整改方向：
 
 - 明确约定生产 schema 变更只走 migration
 - 把 `push` 限定为本地开发辅助，而不是默认主路径
 - 补一份“字段变更标准流程”文档
+
+当前结果：
+
+- [payload.config.ts](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/payload.config.ts) 已改为只有 `PAYLOAD_SCHEMA_PUSH=true` 才允许 push
+- [package.json](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/package.json) 已新增 `cms:schema:create`、`cms:schema:migrate`、`cms:schema:status`、`cms:schema:push:dev`
+- [scripts/payload/README.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/scripts/payload/README.md) 已写明标准 schema 变更流程
 
 ---
 
@@ -292,14 +312,14 @@
 我同意这三个优先级，但我会把表述再精确一点：
 
 1. 去掉生产镜像构建对数据库的依赖
-2. 统一 schema 变更路径，收口到 migration 主流程
-3. 清理并归档 `scripts/payload/` 中的一次性脚本，建立脚本分层规则
+2. 从 `deploy.prev` 升级到多版本 release 回滚
+3. 把 HTTPS / certbot 续期流程进一步声明式化
 
 原因：
 
 - 第 1 条会直接改善构建、部署、CI/CD 三条链路
-- 第 2 条会直接降低生产变更风险
-- 第 3 条会直接改善长期维护体验和团队协作成本
+- schema 治理与脚本分层已在当前轮次完成，不再属于最高优先级待办
+- 回滚与 HTTPS 仍是部署体系里更值得继续推进的缺口
 
 ---
 

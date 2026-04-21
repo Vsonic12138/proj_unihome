@@ -52,6 +52,32 @@ npm run deploy:aliyun:update
 
 如果只想把链路跑通，优先使用上面的 3 条命令。本文档后续章节用于排障与解释。
 
+## 已上线服务器的日常更新指引
+
+如果阿里云服务器上已经有一套正在运行的官网，后续请按下面的规则使用：
+
+- `npm run deploy:aliyun:bootstrap`
+  仅用于服务器初始化准备阶段，例如首次装机、重装 ECS 后重新安装 Docker / Nginx / 基础目录。
+- `npm run deploy:aliyun:init`
+  仅用于首次上线、灾备恢复、或你明确要走一次全量初始化时使用。该流程可能涉及 db dump / media 的恢复逻辑，不适合作为日常发版命令。
+- `npm run deploy:aliyun:update`
+  这是已上线服务器的默认发版命令。它会在本地构建 `update` 部署包，上传到 ECS，并在服务器端只更新 app 镜像与 `deploy/` 目录，不触碰数据库、媒体目录和 `shared/.env.production`。
+
+日常判断规则：
+
+- 只改了 CMS 后台内容：
+  不需要重新部署。当前前台页面已经按动态方式读取 CMS 内容，刷新页面即可看到最新内容。
+- 改了前端代码、服务端代码、依赖、Docker、部署脚本：
+  使用 `npm run deploy:aliyun:update`。
+- 重装服务器、首次搭建、需要重建整套运行环境：
+  才使用 `bootstrap` 和 `init`。
+
+一句话记忆：
+
+- 首次上线：`bootstrap + init`
+- 已上线服务器后续发版：`update`
+- 只改 CMS 内容：不部署
+
 ## 第一阶段：购买与初始化 ECS
 
 ### 1.1 推荐机型
@@ -208,7 +234,7 @@ npm run deploy:bundle:init
 该命令会调用 `ops/deploy/create-deploy-bundle.sh`，自动完成以下工作：
 
 1. 生成高强度随机密钥、数据库密码，写入 `.env.production`
-2. 执行 `npm run backup:all`，备份最新数据库 dump 和 media
+2. 执行 `npm run cms:backup:local`，备份最新数据库 dump 和 media
 3. 本地 `docker build` 构建生产镜像（连接本地开发 DB）
 4. `docker save` 导出镜像为 `proj-unihome-app.tar.gz`
 5. 将所有文件打包为 `proj-unihome-deploy-bundle.tar.gz`

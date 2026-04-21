@@ -97,7 +97,7 @@ npm run deploy:aliyun:update
 1. 启动本地 Postgres（或确认它已在运行）
    ```bash
    npm run docker:up:dev:db
-   npm run check:db
+   npm run cms:check:db
    ```
 2. 生成部署包
    ```bash

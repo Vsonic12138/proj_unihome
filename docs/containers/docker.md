@@ -28,7 +28,7 @@ npm run docker:up:dev:db
 
 ### 2) 备份脚本
 
-`npm run backup:all` 会通过 `docker exec` 进入 Postgres 容器执行 `pg_dump` 并导出备份。
+`npm run cms:backup:local` 会通过 `docker exec` 进入 Postgres 容器执行 `pg_dump` 并导出备份。
 
 生产部署包还会附带一个面向服务器使用的标准备份入口：
 
@@ -50,7 +50,7 @@ INCLUDE_MEDIA=true bash backup.sh run
 
 `npm run deploy:bundle` 会：
 
-1. 执行 `npm run backup:all`（依赖 Docker 容器化 Postgres）
+1. 执行 `npm run cms:backup:local`（依赖 Docker 容器化 Postgres）
 2. `docker build` 构建生产镜像
 3. `docker save` 导出镜像并打包为部署包
 

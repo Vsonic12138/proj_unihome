@@ -67,6 +67,35 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.27.1 docs(cms): 同步文档到新 cms 命令与脚本分层
+
+类型: docs
+
+范围: docs, ops, cms
+
+说明:
+本次提交将仓库内文档与运维说明同步到新的 `cms:*` 命令体系与 `scripts/payload/` 分层结构，避免读者继续按旧命令执行。同时补齐问题 2/3 的“已完成”状态说明，保持审查结论、TODO 与仓库现状一致。
+
+实现细节:
+1. **命令与路径同步**
+   - 将文档中的 `backup:all / seed:payload / check:db` 等旧命令替换为 `cms:*` 新命令。
+   - 将脚本路径引用同步到 `scripts/payload/{checks,seed,ops,lib,archive,...}`。
+2. **治理状态收尾**
+   - 在相关 TODO/审查文档中标记问题 2/3 已完成，并补充当前治理结果说明。
+3. **阿里云更新指引补齐**
+   - 在阿里云 ECS 部署手册中补充“已上线服务器的日常更新指引”，明确 `bootstrap/init/update` 使用边界。
+
+文件变更:
+修改文件:
+- `/README.md`
+- `/ops/README.md`
+- `/docs/**`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+---
+
 V1.27.0 refactor(cms): 重构 Payload 脚本体系并统一 schema 流程
 
 类型: refactor

@@ -16,8 +16,8 @@
   - Schema（Collections / Globals / Blocks）已落地（见 `src/payload/*`）
   - 迁移已生成并可运行：`src/migrations/20260404_084231_init.ts`、`20260404_103246.ts`、`20260404_111827.ts`
   - 已编写并跑通自动化迁移脚本（Seed）：
-    - `scripts/payload/seed-images.ts`：`messages/*/*.json` 引用的 `/images/*` 批量导入 `media`
-    - `scripts/payload/seed.ts`：Globals + `pages(slug=home)` blocks + `productSeries/products/faq` 导入
+    - `scripts/payload/seed/seed-images.ts`：`messages/*/*.json` 引用的 `/images/*` 批量导入 `media`
+    - `scripts/payload/seed/seed.ts`：Globals + `pages(slug=home)` blocks + `productSeries/products/faq` 导入
   - Payload Local API 封装与渲染层已落地：
     - `src/lib/payload.ts`
     - `src/components/payload/BlockRenderer.tsx`
@@ -57,7 +57,7 @@ Payload 已以 Next.js App Router 的推荐结构接入到：
 
 - 使用 `ops/docker/compose.dev.yml` 启动 PostgreSQL（例如：`npm run docker:up:dev:db`）
 - `payload.config.ts` 使用 `@payloadcms/db-postgres`
-- 当前为了避免 drizzle 的交互式 push 提示，已设置 `db.push: false`，并创建了迁移文件：
+- 当前 schema 变更默认不做自动 push，团队主流程改为 migration，并已创建迁移文件：
   - `src/migrations/20260404_084231_init.ts`
 
 ### 2.3 关键依赖与版本约束
@@ -122,7 +122,7 @@ Payload 已以 Next.js App Router 的推荐结构接入到：
 
 ### 4.1 图片导入
 
-脚本：`scripts/payload/seed-images.ts`
+脚本：`scripts/payload/seed/seed-images.ts`
 
 功能：
 
@@ -138,7 +138,7 @@ Payload 已以 Next.js App Router 的推荐结构接入到：
 PAYLOAD_SECRET=dev-secret \
 DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 NEXT_PUBLIC_SERVER_URL='http://localhost:3000' \
-npm run seed:payload:images
+npm run cms:seed:images
 ```
 
 说明：
@@ -147,7 +147,7 @@ npm run seed:payload:images
 
 ### 4.2 内容导入（Globals / Home / Products / FAQ）
 
-脚本：`scripts/payload/seed.ts`
+脚本：`scripts/payload/seed/seed.ts`
 
 功能：
 
@@ -168,7 +168,7 @@ npm run seed:payload:images
 富文本处理：
 
 - 当前把原 JSON 中的纯文本（含换行）转换成 Lexical JSON（最基础的段落结构），实现“可编辑富文本”的第一步
-- 转换工具：`scripts/payload/lexical.ts`
+- 转换工具：`scripts/payload/lib/lexical.ts`
 
 命令：
 
@@ -176,7 +176,7 @@ npm run seed:payload:images
 PAYLOAD_SECRET=dev-secret \
 DATABASE_URI='postgresql://proj_unihome:proj_unihome_password@localhost:5432/proj_unihome?sslmode=disable' \
 NEXT_PUBLIC_SERVER_URL='http://localhost:3000' \
-npm run seed:payload
+npm run cms:seed:base
 ```
 
 ---
@@ -208,8 +208,8 @@ npx payload migrate:fresh --forceAcceptWarning
 ### 5.4 导入图片与内容
 
 ```bash
-npm run seed:payload:images
-npm run seed:payload
+npm run cms:seed:images
+npm run cms:seed:base
 ```
 
 ### 5.5 启动开发服务器
