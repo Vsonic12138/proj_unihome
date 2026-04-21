@@ -67,6 +67,58 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.27.0 refactor(cms): 重构 Payload 脚本体系并统一 schema 流程
+
+类型: refactor
+
+范围: cms, scripts, payload
+
+说明:
+本次提交对仓库内的 Payload 运维脚本做了一轮强清理，目标是把原本混放在 `scripts/payload/` 根目录下的检查、导入、发布、迁移、修复、一次性脚本重新分层，并统一 npm 命令命名。同时，数据库 schema 变更策略从“默认可能 push”改为“仅显式允许时 push”，正式收口到 migration 主流程。
+
+实现细节:
+1. **脚本目录重组**
+   - 将长期保留脚本拆分到 `checks/`、`seed/`、`ops/`、`migrations/data/`、`dev/`、`lib/`。
+   - 将历史一次性脚本统一迁入 `scripts/payload/archive/`，不再作为日常入口暴露。
+2. **命令统一命名**
+   - 删除旧的 `check:*`、`seed:*`、`publish:*`、`backup:*` 等入口。
+   - 统一改为 `cms:*` 命名体系，例如 `cms:check:*`、`cms:seed:*`、`cms:publish:*`、`cms:schema:*`。
+3. **schema 流程收口**
+   - `payload.config.ts` 改为仅在 `PAYLOAD_SCHEMA_PUSH=true` 时才允许 push。
+   - 新增 `cms:schema:create`、`cms:schema:migrate`、`cms:schema:status`、`cms:schema:push:dev`，明确 migration 才是默认主流程。
+4. **脚本说明补齐**
+   - 新增 `scripts/payload/README.md`，集中说明目录职责、受支持命令和 schema 变更标准流程。
+
+文件变更:
+新增文件:
+- `/scripts/payload/README.md`
+- `/scripts/payload/checks/*`
+- `/scripts/payload/seed/*`
+- `/scripts/payload/ops/*`
+- `/scripts/payload/migrations/data/*`
+- `/scripts/payload/dev/*`
+- `/scripts/payload/lib/*`
+- `/scripts/payload/archive/*`
+
+修改文件:
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+- `/payload.config.ts`
+- `/ops/deploy/create-deploy-bundle.sh`
+
+改进效果:
+- Payload 脚本体系从“历史脚本堆场”变成结构化目录。
+- 团队只保留一套新的 `cms:*` 命令，不再维护旧兼容层。
+- schema 变更默认走 migration，减少自动 push 带来的误判与风险。
+
+影响范围:
+- CMS 运维脚本
+- schema 变更流程
+- 本地备份/发布命令入口
+
+---
+
 V1.26.7 docs(review): 归档 CMS 与部署自审校准文档
 
 类型: docs

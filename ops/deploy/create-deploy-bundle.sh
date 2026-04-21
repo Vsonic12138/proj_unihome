@@ -187,7 +187,7 @@ EOF
 backup_db_and_media() {
   log "[3/7] 执行最新的数据库与媒体资源备份"
 
-  npm run backup:all
+  npm run cms:backup:local
 
   local latest_dump
   latest_dump="$(ls -t backups/db_backup_*.dump 2>/dev/null | head -n 1 || true)"

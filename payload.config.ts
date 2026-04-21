@@ -34,7 +34,7 @@ function requiredEnv(name: string): string {
 }
 
 function shouldPushSchema(): boolean {
-  return process.env.PAYLOAD_SCHEMA_PUSH !== "false";
+  return process.env.PAYLOAD_SCHEMA_PUSH === "true";
 }
 
 export default buildConfig({
