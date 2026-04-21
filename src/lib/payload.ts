@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { Payload } from "payload";
+import net from "node:net";
 
 export type PayloadLocale = "zh" | "en" | "ja";
 
@@ -55,11 +56,70 @@ export function resolveMediaURL(media: MediaLike): string | null {
 
 let cached = (global as any).payload;
 if (!cached) {
-  cached = (global as any).payload = { client: null, promise: null };
+  cached = (global as any).payload = {
+    client: null,
+    promise: null,
+    warnedDbUnavailable: false,
+  };
 }
 
 function shouldSkipPayloadInit(): boolean {
   return process.env.BUILD_SKIP_PAYLOAD === "true";
+}
+
+type DbReachableResult = { ok: true } | { ok: false; reason: string };
+
+async function checkDbReachable(
+  connectionString: string,
+  timeoutMs = 800,
+): Promise<DbReachableResult> {
+  let url: URL;
+  try {
+    url = new URL(connectionString);
+  } catch {
+    return { ok: false, reason: "Invalid DATABASE_URI/DATABASE_URL." };
+  }
+
+  if (url.protocol !== "postgresql:" && url.protocol !== "postgres:") {
+    return { ok: false, reason: `Unsupported protocol: ${url.protocol}` };
+  }
+
+  // Only preflight for typical local Docker/WSL setups; remote DBs may block raw TCP checks.
+  const host = url.hostname;
+  const port = Number(url.port || "5432");
+  const isLocalHost =
+    host === "127.0.0.1" ||
+    host === "localhost" ||
+    host === "::1" ||
+    host === "0.0.0.0";
+
+  if (!isLocalHost) {
+    return { ok: true };
+  }
+
+  return await new Promise<DbReachableResult>((resolve) => {
+    const socket = net.createConnection({ host, port });
+    const done = (result: DbReachableResult) => {
+      socket.removeAllListeners();
+      socket.destroy();
+      resolve(result);
+    };
+
+    socket.setTimeout(timeoutMs);
+    socket.once("connect", () => done({ ok: true }));
+    socket.once("timeout", () =>
+      done({
+        ok: false,
+        reason: `Timeout connecting to ${host}:${port} (is Postgres running?).`,
+      }),
+    );
+    socket.once("error", (err: any) =>
+      done({
+        ok: false,
+        reason: `Cannot connect to ${host}:${port}: ${String(err?.message ?? err)}`,
+      }),
+    );
+  });
 }
 
 export async function tryGetPayloadClient(): Promise<Payload | null> {
@@ -72,6 +132,29 @@ export async function tryGetPayloadClient(): Promise<Payload | null> {
     Boolean(process.env.DATABASE_URI ?? process.env.DATABASE_URL);
 
   if (!hasConfig) {
+    return null;
+  }
+
+  const connectionString = process.env.DATABASE_URI ?? process.env.DATABASE_URL!;
+  const reachable = await checkDbReachable(connectionString);
+  if (reachable.ok === false) {
+    // Avoid noisy repeated Payload init failures in dev when Docker Desktop/Postgres isn't running.
+    if (!cached.warnedDbUnavailable) {
+      cached.warnedDbUnavailable = true;
+      // eslint-disable-next-line no-console
+      console.warn(
+        [
+          "[payload] Postgres 不可达，已跳过 Payload 初始化（因此 CMS 数据将不可用）。",
+          `原因：${reachable.reason}`,
+          "",
+          "如果你使用本项目内置的 Docker Postgres（推荐）：",
+          "  docker compose -f ops/docker/compose.dev.yml up -d postgres",
+          "",
+          "如果你就是想在无数据库环境下跑前台（不推荐）：",
+          "  BUILD_SKIP_PAYLOAD=true npm run dev",
+        ].join("\n"),
+      );
+    }
     return null;
   }
 

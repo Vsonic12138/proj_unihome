@@ -67,6 +67,40 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.28.1 fix(dev): 降噪 Payload 初始化并支持可配置本地 Postgres 端口
+
+类型: fix
+
+范围: dev, docker, payload
+
+说明:
+本次提交主要解决本地开发中 “Docker/Postgres 未启动或端口受限” 导致的成屏报错与排查成本过高的问题：在数据库不可达时给出一次性明确提示并跳过 Payload 初始化；同时将 dev compose 的 Postgres 端口映射改为可配置，以适配 Win/WSL 下 5432 端口被系统策略限制的情况。
+
+实现细节:
+1. **Payload 初始化预检**
+   - `src/lib/payload.ts` 在初始化 Payload 前对本地 `DATABASE_URI` 做 TCP 可达性检查。
+   - 不可达时只输出一次提示（包含推荐的 docker compose 启动方式）并返回 `null`，避免反复 `unhandledRejection` 噪音。
+2. **dev compose 端口可配置**
+   - `ops/docker/compose.dev.yml` 将端口映射收紧到 `127.0.0.1`，并支持通过 `POSTGRES_HOST_PORT` 覆盖宿主机端口（例如 `15432`）。
+
+文件变更:
+修改文件:
+- `/src/lib/payload.ts`
+- `/ops/docker/compose.dev.yml`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+改进效果:
+- 当 Docker/Postgres 未就绪时，错误提示从“成屏堆栈”收敛为一次性可操作指引。
+- 在 Win/WSL 场景下可通过更换宿主机端口继续开发，不再被 5432 端口策略阻塞。
+
+影响范围:
+- 本地开发体验（dev）
+- 本地 docker 数据库启动方式
+
+---
+
 V1.28.0 feat(legal): 新增备案信息配置并在页脚展示
 
 类型: feat

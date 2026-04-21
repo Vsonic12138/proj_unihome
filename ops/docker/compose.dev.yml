@@ -4,7 +4,12 @@ services:
     container_name: proj_unihome_postgres
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      # 仅绑定到本机回环地址，降低暴露面。
+      #
+      # Windows/WSL 场景下，某些端口可能被系统策略保留（会报 “forbidden by its access permissions”）。
+      # 这时不要死磕 5432，直接换宿主机端口即可，例如：
+      #   POSTGRES_HOST_PORT=15432 docker compose -p proj_unihome -f ops/docker/compose.dev.yml up -d postgres
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-5432}:5432"
     environment:
       POSTGRES_DB: proj_unihome
       POSTGRES_USER: proj_unihome
