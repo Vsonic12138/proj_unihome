@@ -1,29 +1,16 @@
-import Image from "next/image";
 import React from 'react';
 
 export const Icon: React.FC = () => {
   return (
-    <div
+    <img
+      src="/images/logo/unihome-cms-icon-48.png"
+      alt="UniHome CMS"
       style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '32px',
+        display: 'block',
         width: '32px',
-        position: 'relative',
+        height: '32px',
+        objectFit: 'contain',
       }}
-    >
-      <Image
-        src="/images/logo/logo-2.svg"
-        alt="UniHome CMS"
-        fill
-        unoptimized
-        sizes="32px"
-        style={{
-          objectFit: 'contain',
-          display: 'block',
-        }}
-      />
-    </div>
+    />
   );
 };

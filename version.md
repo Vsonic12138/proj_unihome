@@ -67,6 +67,46 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.28.2 fix(ui): 修复 Payload CMS Admin 图标显示不完整问题
+
+类型: fix
+
+范围: ui, payload, admin
+
+说明:
+本次提交修复 Payload CMS 管理后台 `/admin` 中侧边栏图标和登录页 Logo 显示异常的问题。原始图标使用了与容器宽高比不匹配的大尺寸图片，导致图标被裁剪只显示一半。
+
+实现细节:
+1. **分析问题根因**
+   - 原始 `Icon.tsx` 使用 `next/image` 的 `fill` 模式配合 SVG 图标，但 SVG 文件宽高比为 1.28:1（非正方形），放入正方形容器时被裁剪
+   - `Logo.tsx` 同样存在尺寸不匹配问题
+2. **生成专用图标**
+   - 使用 `sharp` 从原始 Logo 图片生成两个专用图标：
+     - `unihome-cms-icon-48.png` (48x48，正方形，白色背景) - 用于 admin 侧边栏小图标
+     - `unihome-cms-icon-128.png` (128x128，正方形，白色背景) - 用于登录页大图标
+3. **更新组件**
+   - `Icon.tsx`: 改用原生 `<img>` 标签，加载 48x48 专用图标，设置固定宽高 32px
+   - `Logo.tsx`: 改用 128x128 专用图标，设置 `maxHeight: 80px`
+
+文件变更:
+修改文件:
+- `/src/payload/admin/Icon.tsx`
+- `/src/payload/admin/Logo.tsx`
+
+新增文件:
+- `/public/images/logo/unihome-cms-icon-48.png`
+- `/public/images/logo/unihome-cms-icon-128.png`
+
+改进效果:
+- `/admin` 侧边栏图标正确显示完整
+- 登录页 Logo 正确显示完整
+- 图标在不同 DPI 屏幕上都能正确呈现
+
+影响范围:
+- Payload CMS Admin UI 显示
+
+---
+
 V1.28.1 fix(dev): 降噪 Payload 初始化并支持可配置本地 Postgres 端口
 
 类型: fix
