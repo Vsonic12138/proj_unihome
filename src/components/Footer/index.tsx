@@ -431,7 +431,43 @@ const Footer = ({ locale, footerData, siteSettings }: FooterProps) => {
             </Link>
             <CookiePreferencesButton />
           </div>
-          <div>{t("footer.copyright", { year, companyName })}</div>
+          <div className="flex flex-col items-center gap-3">
+            <div>{t("footer.copyright", { year, companyName })}</div>
+            {(siteSettings?.icpNumber || siteSettings?.psbNumber) && (
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-body-color/80 dark:text-body-color-dark/70">
+                {siteSettings?.icpNumber && (
+                  <a
+                    href={siteSettings.icpLink || "https://beian.miit.gov.cn/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition"
+                  >
+                    {siteSettings.icpNumber}
+                  </a>
+                )}
+                {siteSettings?.psbNumber && (
+                  <a
+                    href="https://beian.mps.gov.cn/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition flex items-center justify-center gap-1.5"
+                  >
+                    {resolveMediaURL(siteSettings.psbIcon) && (
+                      <Image
+                        src={resolveMediaURL(siteSettings.psbIcon) as string}
+                        alt="PSB Icon"
+                        width={16}
+                        height={16}
+                        className="inline-block object-contain"
+                        unoptimized
+                      />
+                    )}
+                    {siteSettings.psbNumber}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="absolute right-0 top-14 z-[-1]">

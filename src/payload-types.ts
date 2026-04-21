@@ -1273,6 +1273,16 @@ export interface SiteSetting {
     description?: string | null;
     image?: (number | null) | Media;
   };
+  icpNumber?: string | null;
+  /**
+   * Defaults to MIIT website. Keep this default unless special circumstances.
+   */
+  icpLink?: string | null;
+  psbNumber?: string | null;
+  /**
+   * If you have a police badge icon, upload it here. Otherwise, only text will be shown.
+   */
+  psbIcon?: (number | null) | Media;
   cookieConsent?: {
     ariaLabel?: string | null;
     message?: string | null;
@@ -1504,6 +1514,10 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  icpNumber?: T;
+  icpLink?: T;
+  psbNumber?: T;
+  psbIcon?: T;
   cookieConsent?:
     | T
     | {

@@ -67,6 +67,52 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.28.0 feat(legal): 新增备案信息配置并在页脚展示
+
+类型: feat
+
+范围: cms, globals, ui
+
+说明:
+新增 ICP 备案号与公安网备信息配置入口（SiteSettings Global），并在前台页脚按需展示（支持 ICP 自定义链接与公安图标）。
+
+实现细节:
+1. **CMS 配置**
+   - SiteSettings -> 合规与政策：新增 `icpNumber`、`icpLink`、`psbNumber`、`psbIcon` 字段
+2. **前台展示**
+   - Footer 在存在备案信息时追加展示区域，外链使用 `target=_blank` + `rel=noopener noreferrer`
+3. **数据库迁移**
+   - 新增 migration：为 `site_settings` 增加备案相关列，并为 `psbIcon` 建立 media 外键与索引
+4. **类型同步**
+   - `payload-types.ts` 同步新增字段
+
+文件变更:
+新增文件:
+- `/src/migrations/20260421_173200_site_settings_compliance.ts`
+
+修改文件:
+- `/src/payload/globals/SiteSettings.ts`
+- `/src/components/Footer/index.tsx`
+- `/src/payload-types.ts`
+- `/src/migrations/index.ts`
+- `/package.json`
+- `/package-lock.json`
+- `/version.md`
+
+改进效果:
+- 备案信息进入 CMS 配置，运营无需改代码即可更新
+- 前台自动按需展示备案号，满足合规展示要求
+- 支持 ICP 跳转链接与公安网备图标（外链安全属性已补齐）
+- schema 变更通过 migration 落库，可复现、可上线
+
+影响范围:
+- CMS: SiteSettings(Global) 新增合规字段
+- UI: Footer 增加备案展示区块
+- DB: `site_settings` 新增列 + media 外键 + 索引（上线需跑 migrate）
+- Types: `payload-types.ts` 同步新增字段
+
+---
+
 V1.27.1 docs(cms): 同步文档到新 cms 命令与脚本分层
 
 类型: docs

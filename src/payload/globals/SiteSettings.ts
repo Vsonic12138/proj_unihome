@@ -803,6 +803,58 @@ export const SiteSettings: GlobalConfig = {
           },
           fields: [
             {
+              name: "icpNumber",
+              type: "text",
+              label: {
+                zh: "ICP 备案号",
+                en: "ICP Number",
+                ja: "ICP 登録番号",
+              },
+            },
+            {
+              name: "icpLink",
+              type: "text",
+              label: {
+                zh: "ICP 备案链接",
+                en: "ICP Link",
+                ja: "ICP リンク",
+              },
+              defaultValue: "https://beian.miit.gov.cn/",
+              admin: {
+                description: {
+                  zh: "预设跳往工信部首页，除非特殊情况请保留默认值。",
+                  en: "Defaults to MIIT website. Keep this default unless special circumstances.",
+                  ja: "MIITのウェブサイトにデフォルト設定。特別な事情がなければこのままにしてください。",
+                },
+              },
+            },
+            {
+              name: "psbNumber",
+              type: "text",
+              label: {
+                zh: "公安网备号",
+                en: "PSB Number",
+                ja: "公安網備番号",
+              },
+            },
+            {
+              name: "psbIcon",
+              type: "upload",
+              relationTo: "media",
+              label: {
+                zh: "公安网备图标",
+                en: "PSB Icon",
+                ja: "公安網備アイコン",
+              },
+              admin: {
+                description: {
+                  zh: "如果有当地公安要求的警徽备案图标可上传，不传则只显示文本。",
+                  en: "If you have a police badge icon, upload it here. Otherwise, only text will be shown.",
+                  ja: "警察のバッジアイコンがある場合はアップロードしてください。ない場合はテキストのみが表示されます。",
+                },
+              },
+            },
+            {
               name: "cookieConsent",
               type: "group",
               label: {
