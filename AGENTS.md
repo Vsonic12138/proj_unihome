@@ -1,63 +1,240 @@
 # Repository Guidelines
 
-## Quickstart (Minimum Facts For A Fresh AI Session)
-This repo is a combined **Next.js App Router site + Payload CMS v3** app.
+## Quickstart
+This repository is a monolithic website application: localized Next.js frontend, Payload CMS admin, and Payload API run in the same Next.js server.
 
-**Prereqs**
-- Node.js: follow Next.js 15 requirements (README suggests Node >= 18.17.0).
-- Database: Postgres (Payload uses `@payloadcms/db-postgres`).
+- Frontend: Next.js 15 App Router
+- CMS: Payload CMS v3
+- Database: PostgreSQL 16 via `@payloadcms/db-postgres`
+- Language: TypeScript
+- Styling: Tailwind CSS v4
 
-**Required env vars (must be set or the app/CMS will fail to boot)**
-- `PAYLOAD_SECRET`: required by Payload.
-- `DATABASE_URI` (preferred) or `DATABASE_URL`: Postgres connection string.
-- Optional: `PAYLOAD_SCHEMA_PUSH=false` to prevent schema push in scripts/environments where you don’t want migrations/DDL changes.
-- Optional: `NEXT_PUBLIC_SERVER_URL` to allow `next/image` to load `/media/**` from the deployed origin (see `next.config.mjs` remotePatterns).
+Default route surfaces:
 
-**Run**
-- `npm install`
-- `npm run dev` (Next dev server)
-
-**Key route conventions**
+- Frontend pages: `/{locale}/*`
 - Payload Admin: `/admin`
-- Payload API: `/api`
-- next-intl middleware excludes `api|admin|_next|*.*` in `src/middleware.ts`, so don’t expect locale redirects on those paths.
+- Payload API: `/api/*`
 
-**i18n conventions (front-end)**
-- Routing is locale-prefixed and always present: pages live under `src/app/[locale]/...`.
-- Locale cookie name: `proj_uinhome-language` (set by `src/middleware.ts`).
-- next-intl is wired via plugin in `next.config.mjs`, pointing to `./src/i18n/request.ts`.
-- Translation dictionaries are JSON files under `messages/{en,zh,ja}`.
+The frontend always uses locale-prefixed routes. `/admin`, `/api`, `/_next`, and static asset paths are excluded from locale routing by `src/middleware.ts`.
 
-## Project Structure & Module Organization
-This repository is a `Next.js 15` App Router site with `Payload CMS` integration. Application routes live under `src/app`, with localized pages in `src/app/[locale]`. Reusable UI components are in `src/components`, i18n loading logic is in `src/i18n`, and CMS collections, globals, blocks, and admin customizations are under `src/payload`. Translation dictionaries are stored in `messages/{en,zh,ja}`. Static assets belong in `public/`. Operational notes and migration plans live in `docs/`, while CMS utilities and seed scripts live in `scripts/payload/`.
+## Architecture
+- This is not a split frontend/CMS deployment. Frontend pages, Payload admin, and Payload API are served by one Next.js app.
+- Production traffic is typically: Nginx -> `127.0.0.1:3005` -> `proj_unihome_app` -> `proj_unihome_postgres`.
+- i18n is implemented with `next-intl`; active locales are `zh`, `en`, and `ja`.
+- Translation dictionaries live in `messages/{en,zh,ja}` and are also used by some CMS seed scripts.
 
-## Build, Test, and Development Commands
-- `npm install`: install project dependencies.
-- `npm run dev`: start the local Next.js dev server.
-- `npm run build`: create the production build.
-- `npm run start`: run the production build locally.
-- `npm run lint`: run the Next.js ESLint ruleset.
-- `npm run generate:types`: regenerate Payload types after schema changes.
-- `npm run seed:payload` and `npm run publish:all`: seed or publish CMS content when content models change.
+## Repo Map
+- `src/app/`: App Router routes and pages, including localized routes under `src/app/[locale]`
+- `src/components/`: reusable frontend UI components
+- `src/i18n/`: locale config and request wiring
+- `src/payload/`: collections, globals, blocks, admin customizations
+- `messages/`: frontend translation JSON and seed data source
+- `scripts/payload/`: CMS checks, seed, publish, snapshot, migration, and ops scripts
+- `ops/`: Docker, deployment scripts, deployment templates, env examples
+- `docs/`: current project docs
+- `docs/archive/`: archived docs and historical materials
+- `backups/`: generated CMS snapshots and database backups; do not edit unless the task is explicitly backup/restore related
 
-## CMS Ops & Data Scripts (Common Entry Points)
-The repo already includes a set of operational scripts under `scripts/payload/` and exposed via `package.json`:
-- Sanity checks: `npm run check:db`, `npm run check:pages`, `npm run check:home`, `npm run check:products`
-- Seed: `npm run seed:payload`, `npm run seed:payload:images`, `npm run seed:payload:cases`
-- Publish: `npm run publish:all` (also `publish:pages`, `publish:products`, `publish:cases`)
-- Backup/restore snapshots: `npm run export:cms-snapshot`, `npm run restore:cms-snapshot` (and `npm run backup:all`)
-- Fix/migrate helpers: `npm run fix:home`, `npm run fix:lexical`, `npm run fix:products:richtext`, `npm run migrate:*`
+## Required Env
+App and CMS boot require:
 
-Prefer using these scripts before writing one-off fixes: they capture prior migration logic and reduce risk of content drift.
+- `PAYLOAD_SECRET`
+- `DATABASE_URI` or `DATABASE_URL`
 
-## Coding Style & Naming Conventions
-Use TypeScript for all new app code. Follow the existing 2-space indentation and keep imports clean and grouped. Components and CMS schema files use `PascalCase` filenames such as `HeroBlock.ts` or `LocaleSwitcher.tsx`; utility and route-support files use `camelCase` or framework naming like `request.ts` and `page.tsx`. Run `npm run lint` before submitting changes. Formatting is handled by `Prettier` with `prettier-plugin-tailwindcss`, so keep Tailwind classes sortable instead of hand-grouping them.
+Common optional variables:
 
-## Testing Guidelines
-There is no dedicated automated test suite configured in this repository today. At minimum, run `npm run lint` and manually verify affected localized routes, key CMS-backed pages, and any modified API preview flow. If you add automated tests later, place them near the feature or in a clear `tests/` directory and use names ending in `.test.ts` or `.test.tsx`.
+- `NEXT_PUBLIC_SERVER_URL`: important for production `next/image` loading of `/media/**`
+- `PAYLOAD_SCHEMA_PUSH=false`: preferred safeguard for scripts/environments where schema push should not happen implicitly
+- `PREVIEW_SECRET`: used in production deployment setup
 
-## Commit & Pull Request Guidelines
-Recent history follows a versioned Conventional Commit style, for example `V1.20.7 chore(config): ...` and `V1.20.6 style(format): ...`. Keep the `Vx.y.z type(scope): summary` pattern, use imperative summaries, and keep scopes specific. PRs should include a short description, impacted routes or CMS areas, linked issues when available, and screenshots for UI changes. Mention any required content migration, seeding, or publish steps in the PR body.
+Reference templates:
 
-## Configuration & Content Notes
-Check `payload.config.ts`, `next.config.mjs`, and `src/middleware.ts` before changing routing, locales, or CMS behavior. Do not edit generated snapshots in `backups/` unless the task is explicitly about content restore/export.
+- `.env.example`
+- `ops/env/.env.local.mailpit.example`
+- `ops/env/.env.production.example`
+
+## Local Development
+Typical local setup in this repo is WSL2 + Docker Desktop, but the hard requirement is a working Docker Engine with `docker compose`.
+
+Minimum local prerequisites:
+
+- Node.js
+- npm
+- Docker
+- Docker Compose
+
+Recommended startup flow:
+
+```bash
+npm install
+npm run docker:up:dev:db
+npm run dev
+```
+
+Default local endpoints:
+
+- Frontend: `http://localhost:3000`
+- CMS: `http://localhost:3000/admin`
+- API: `http://localhost:3000/api`
+- Mailpit: `http://localhost:8025`
+
+Important local DB note:
+
+- `ops/docker/compose.dev.yml` defines local PostgreSQL and Mailpit containers
+- The repo template exposes PostgreSQL on host `5432`
+- The current local `.env` in this workspace uses `15432`; do not assume `5432` without checking the active env file
+
+## Core Commands
+Primary developer commands:
+
+- `npm run dev`: start local development server
+- `npm run build`: production build
+- `npm run start`: run the built app locally
+- `npm run lint`: primary automated verification command in this repo
+- `npm run generate:types`: regenerate Payload TypeScript types after editing schema/config under `src/payload/**`
+- `npm run docker:up:dev:db`: start local PostgreSQL + Mailpit services
+
+There is currently no dedicated automated test suite configured beyond linting. Minimum verification is `npm run lint` plus manual checks on affected routes, CMS-backed pages, or APIs.
+
+## CMS Ops
+Current major Payload collections:
+
+- `users`
+- `mediaFolders`
+- `media`
+- `pages`
+- `productSeries`
+- `products`
+- `faq`
+- `caseStudies`
+- `tickets`
+
+Current major globals:
+
+- `siteSettings`
+- `navigation`
+- `footer`
+
+Prefer existing scripts in `scripts/payload/` over one-off scripts. They encode existing data flow and reduce content drift risk.
+
+Common CMS commands:
+
+- `npm run cms:check:db`: verify app -> PostgreSQL connectivity
+- `npm run cms:check:pages`: check `pages` collection state
+- `npm run cms:check:home`: verify Chinese home page (`slug: home`) exists
+- `npm run cms:check:products`: check product data availability
+- `npm run cms:seed:base`: seed base content from `messages/*.json` into globals, pages, products, and related CMS structures
+- `npm run cms:seed:images`: seed demo media into `media`
+- `npm run cms:seed:cases`: seed demo case study content
+- `npm run cms:seed:knowledge-base`: seed FAQ and developer knowledge base demo content
+- `npm run cms:publish:all`: publish all draft pages, products, and case studies
+- `npm run cms:publish:pages`: publish draft pages only
+- `npm run cms:publish:products`: publish draft products only
+- `npm run cms:publish:cases`: publish draft case studies only
+- `npm run cms:snapshot:export`: export CMS JSON snapshot into `backups/`
+- `npm run cms:snapshot:restore`: restore CMS content from latest snapshot in `backups/`
+- `npm run cms:backup:local`: create a local database dump and CMS snapshot
+
+Public ticket submission currently goes through:
+
+- `POST /api/public/tickets`
+
+Requests are validated, written into the `tickets` collection, and may trigger email notification depending on environment configuration.
+
+## Database & Backup
+- Database is PostgreSQL in all environments.
+- App boot accepts either `DATABASE_URI` or `DATABASE_URL`.
+- Local dev DB container is `proj_unihome_postgres` using image `postgres:16`.
+- Production app connects to the database via Docker service name `postgres`.
+
+Local backup entry point:
+
+- `npm run cms:backup:local`
+
+Server backup entry points:
+
+```bash
+cd /opt/proj_unihome/deploy
+bash backup.sh run
+INCLUDE_MEDIA=true bash backup.sh run
+```
+
+Restore note:
+
+- In first deployment or recovery scenarios, `bash deploy.sh init` will automatically restore database/media if the expected backup artifacts exist in the deployment bundle.
+
+## Deployment
+Recommended production workflow:
+
+1. Build deploy bundle locally.
+2. Upload bundle to server.
+3. Run server deployment in `init` or `update` mode.
+
+Deployment bundle profiles:
+
+- `init`: first deploy / disaster recovery bundle; may include app image, postgres image, DB dump, CMS snapshot, and media backup
+- `update`: routine update bundle; updates app only and does not restore DB/media
+
+Primary deployment commands:
+
+- `npm run deploy:bundle:init`: build full deployment bundle locally
+- `npm run deploy:bundle:update`: build lightweight update bundle locally
+- `npm run deploy:aliyun:bootstrap`: prepare Aliyun ECS with Docker, Nginx, and server directories
+- `npm run deploy:aliyun:init`: build/upload/deploy full init bundle remotely
+- `npm run deploy:aliyun:update`: build/upload/deploy update bundle remotely
+
+Production server layout convention:
+
+- Root: `/opt/proj_unihome`
+- Key directories: `deploy/`, `shared/`, `media/`, `postgres-data/`, `backups/`
+
+Production env file convention:
+
+- Canonical env file on server: `shared/.env.production`
+
+If the task is only CMS content editing, do not assume a code redeploy is needed.
+
+## High-Risk Files
+Read these together before changing routing, locale behavior, or CMS integration:
+
+- `payload.config.ts`
+- `next.config.mjs`
+- `src/middleware.ts`
+
+Other high-risk areas:
+
+- `src/i18n/**`: request and locale behavior
+- `src/payload/**`: schema and CMS admin behavior; often requires `npm run generate:types`
+- `messages/**`: may affect both frontend copy and CMS seed output
+- `ops/deploy/**`: production packaging and remote deployment behavior
+- `scripts/payload/**`: operational data changes, publication flow, snapshots, migrations
+
+## Coding & Verification
+- Use TypeScript for new app code.
+- Follow existing 2-space indentation.
+- Components and Payload schema files use `PascalCase` filenames.
+- Utility/support files use `camelCase` or framework-conventional names like `page.tsx` and `request.ts`.
+- Tailwind formatting is handled by `prettier-plugin-tailwindcss`; do not hand-group classes against repo formatting behavior.
+- After Payload schema/content-model changes, regenerate types with `npm run generate:types`.
+- Before claiming work is complete, at minimum run `npm run lint` unless the task clearly does not touch runnable code.
+- For frontend/content changes, manually verify affected localized routes and CMS-backed pages.
+
+## Commit Rules
+- Commit style in this repo is versioned Conventional Commits:
+  - `Vx.y.z type(scope): summary`
+  - Example: `V1.26.4 fix(mail): ...`
+- Keep the summary imperative and scope specific.
+- When preparing a release-style commit, the repo convention is to bump `package.json` version with `npm run version:patch` or `npm run version:minor` alongside the commit when appropriate.
+- Do not create or edit backup snapshot files as part of normal feature work.
+
+## Docs Map
+Current docs entry points:
+
+- `docs/README.md`: docs index
+- `docs/overview.md`: architecture and repo structure
+- `docs/development.md`: local development workflow and commands
+- `docs/deployment.md`: production deployment model and commands
+- `docs/database.md`: database connection, backup, and restore notes
+- `docs/cms.md`: Payload structure and CMS operations
+
+Historical materials are under `docs/archive/`.

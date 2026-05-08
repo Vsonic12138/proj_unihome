@@ -436,13 +436,13 @@ Webhook 侧建议至少实现：
 4. 成功时返回 `200`
 5. 失败时返回非 `2xx`，方便站点日志记录错误
 
-Webhook 请求体格式详见 [ticket-submission.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/cms/ticket-submission.md)。
+Webhook 请求体格式详见 [ticket-submission.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/archive/cms/ticket-submission.md)。
 
 ### 5.5 使用阿里云 Direct Mail（推荐 SMTP 方案）
 
 如果你计划直接使用阿里云官方邮件服务上线工单通知，而不是自建 Webhook，请优先参考：
 
-- [aliyun-direct-mail.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/deploy/aliyun-direct-mail.md)
+- [aliyun-direct-mail.md](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/archive/deploy/aliyun-direct-mail.md)
 
 该文档已经整理了官方可确认的信息，包括：
 
@@ -515,6 +515,15 @@ curl -I http://127.0.0.1:3005
 ## 第六阶段：配置 DNS 域名解析（阿里云云解析示例）
 
 在配置 Nginx 与 HTTPS 前，需要将你的域名（例如 `yourdomain.com`）解析到该 ECS 的公网 IP。以阿里云万网为例，具体步骤如下：
+
+### 6.0 域名策略建议（避免 SEO 重复收录）
+
+建议只选择一个“主站域名（canonical）”，另一个入口做 301 跳转：
+
+- 推荐：以 **不带 `www` 的根域**作为主站，例如 `https://unitc.cn`
+- 将 `https://www.unitc.cn` 作为兼容入口，并 **301 跳转**到 `https://unitc.cn`
+
+这样可以避免 `unitc.cn` 与 `www.unitc.cn` 同内容多 URL 的 SEO/统计混乱，也能兼容用户习惯输入 `www` 的访问方式。
 
 1. 登录 [阿里云控制台](https://console.aliyun.com/)。
 2. 在顶部搜索并进入 **“云解析 DNS”** 页面。

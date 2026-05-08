@@ -6,7 +6,7 @@
 
 关联方案：
 
-- [部署链路加固方案（问题 4 / 6 / 8）](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/plans/2026-04-18-deploy-hardening-plan.md)
+- [部署链路加固方案（问题 4 / 6 / 8）](/home/vsonic12138/workspace/Uni_Proj/proj_unihome/docs/archive/plans/2026-04-18-deploy-hardening-plan.md)
 
 ---
 

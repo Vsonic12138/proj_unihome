@@ -67,6 +67,65 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.29.0 refactor(docs): 重构项目文档体系并优化 AI 协作指南
+
+类型: refactor
+
+范围: docs, config, scripts
+
+说明:
+本次提交对项目的文档体系进行了结构化重构，核心目标是解决文档分散、陈旧以及对 AI 代理（Agent）不友好的问题。通过建立专门的“主文档”集，并将历史资料归档，显著提升了开发者和 AI 工具理解仓库架构、执行运维操作的效率。
+
+实现细节:
+1. **建立核心文档体系**
+   - 在 `docs/` 下创建了 5 篇职责明确的主文档：
+     - `overview.md`: 仓库整体架构与路由约定。
+     - `development.md`: 本地环境准备与启动流。
+     - `deployment.md`: 生产部署模型、阿里云脚本入口与备份。
+     - `database.md`: 数据库类型、连接、备份与恢复指引。
+     - `cms.md`: Payload CMS 集合结构与常用运维命令。
+2. **重写 AI 协作指南**
+   - 重写根目录 `AGENTS.md`，将其定位为“AI 首屏加载速查表”，移除背景叙述，保留高密度、可执行的命令、目录、环境与约束信息。
+   - 移除已冗余的 `CLAUDE.md`，统一协作入口。
+3. **历史资料归档与清理**
+   - 创建 `docs/archive/` 目录，将旧的审查方案、专题规划、陈旧的部署说明移入其中。
+   - 清理了根目录及子目录下已过时的 README 片段。
+4. **运维脚本自说明增强**
+   - 为 `ops/deploy/` 下的部署包构建、阿里云部署等核心 Shell 脚本在 `docs/deployment.md` 和 `docs/cms.md` 中补全了实事求是的注释。
+
+文件变更:
+新增文件:
+- `/docs/overview.md`
+- `/docs/development.md`
+- `/docs/deployment.md`
+- `/docs/database.md`
+- `/docs/cms.md`
+- `/docs/archive/` (及其包含的归档文件)
+
+修改文件:
+- `/AGENTS.md`
+- `/README.md`
+- `/docs/README.md`
+- `/package.json`
+- `/version.md`
+- `/ops/deploy/create-deploy-bundle.sh`
+- `/ops/deploy/remote/aliyun-bootstrap.sh`
+
+删除文件:
+- `/CLAUDE.md`
+- `/docs/cms/`, `/docs/deploy/`, `/docs/infra/` 等旧目录
+
+改进效果:
+- AI 代理在新会话启动后能更快、更准地获取环境与脚本信息。
+- 文档与 `package.json` 脚本入口、目录结构保持 100% 同步。
+- 维护路径缩短，历史与当前现状不再混淆。
+
+影响范围:
+- 仓库文档结构与 AI 协作流程
+- 部署脚本相关说明文字
+
+---
+
 V1.28.2 fix(ui): 修复 Payload CMS Admin 图标显示不完整问题
 
 类型: fix

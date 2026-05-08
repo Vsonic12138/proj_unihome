@@ -96,6 +96,19 @@ preflight_checks() {
 
   if [ "$PROFILE" = "update" ]; then
     validate_origin "$BUILD_ORIGIN"
+    return 0
+  fi
+
+  # init profile:
+  # - Allow passing --origin to build a production-correct image on first deploy.
+  # - If origin is not provided, fall back to localhost for convenience, but warn because
+  #   Next.js `images.remotePatterns` is baked at build time and may block absolute /media URLs.
+  if [ -n "$BUILD_ORIGIN" ]; then
+    validate_origin "$BUILD_ORIGIN"
+  else
+    warn "未指定 --origin：将使用 http://localhost:3005 进行构建。"
+    warn "如果你的生产环境会通过绝对 URL（如 https://yourdomain.com/media/xxx）引用媒体，next/image 可能因 allowlist 不匹配而拒绝加载。"
+    warn "建议：首次上线前就用 --origin 指定真实域名/公网 IP；或上线后尽快用 update bundle（带 --origin）重新打包并发布。"
   fi
 }
 
@@ -221,7 +234,7 @@ build_image() {
 
   local build_origin
   if [ "$PROFILE" = "init" ]; then
-    build_origin="http://localhost:3005"
+    build_origin="${BUILD_ORIGIN:-http://localhost:3005}"
   else
     build_origin="$BUILD_ORIGIN"
   fi

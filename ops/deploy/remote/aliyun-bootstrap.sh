@@ -48,10 +48,11 @@ main() {
   echo "==> Bootstrap server: $HOST ($SERVER_DIR)"
 
   # Use a remote heredoc to avoid local `$var` expansion (nginx config contains `$http_upgrade`, `$host`, etc).
-  remote "SERVER_DIR='$SERVER_DIR' INSTALL_CERTBOT='$INSTALL_CERTBOT' bash -s" <<'REMOTE'
+  remote "SERVER_DIR='$SERVER_DIR' INSTALL_CERTBOT='$INSTALL_CERTBOT' DOMAIN='$DOMAIN' bash -s" <<'REMOTE'
     set -euo pipefail
     : "${SERVER_DIR:?}"
     : "${INSTALL_CERTBOT:?}"
+    : "${DOMAIN:=}"
 
     export DEBIAN_FRONTEND=noninteractive
     apt-get update -y
@@ -75,8 +76,51 @@ main() {
       systemctl enable --now nginx
     fi
 
-    # Basic HTTP reverse proxy (server_name _). HTTPS can be enabled later.
-    cat > /etc/nginx/sites-available/proj_unihome <<'EOF'
+    # Basic HTTP reverse proxy (supports optional canonical domain + www redirect). HTTPS can be enabled later.
+    #
+    # - If DOMAIN is provided: canonical is https://DOMAIN, and www.DOMAIN will 301 -> DOMAIN
+    # - If DOMAIN is empty: fallback to server_name _ (works for IP access)
+    if [ -n "$DOMAIN" ]; then
+      cat > /etc/nginx/sites-available/proj_unihome <<EOF
+server {
+    listen 80;
+    server_name www.${DOMAIN};
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
+
+    return 301 http://${DOMAIN}\$request_uri;
+}
+
+server {
+    listen 80;
+    server_name ${DOMAIN};
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/html;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3005;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+        proxy_cache_bypass \$http_upgrade;
+
+        client_max_body_size 100m;
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 120s;
+        proxy_read_timeout 120s;
+    }
+}
+EOF
+    else
+      cat > /etc/nginx/sites-available/proj_unihome <<'EOF'
 server {
     listen 80;
     server_name _;
@@ -99,6 +143,7 @@ server {
     }
 }
 EOF
+    fi
 
     ln -sf /etc/nginx/sites-available/proj_unihome /etc/nginx/sites-enabled/proj_unihome
     rm -f /etc/nginx/sites-enabled/default || true
