@@ -423,13 +423,19 @@ const Footer = ({ locale, footerData, siteSettings }: FooterProps) => {
       <div className="border-t border-body-color/15 py-6 text-center text-sm text-body-color dark:border-white/10 dark:text-body-color-dark">
         <div className="flex flex-col items-center justify-center gap-3">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-            <Link
-              href={`/${currentLocale}/privacy-policy`}
-              className="text-sm text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
-            >
-              {t("footer.legal.privacyPolicy")}
-            </Link>
-            <CookiePreferencesButton />
+            {String(footerData?.legal?.privacyPolicyLabel ?? "").trim() ? (
+              <Link
+                href={`/${currentLocale}/privacy-policy`}
+                className="text-sm text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+              >
+                {String(footerData.legal.privacyPolicyLabel).trim()}
+              </Link>
+            ) : null}
+            {String(footerData?.legal?.cookieSettingsLabel ?? "").trim() ? (
+              <CookiePreferencesButton
+                label={String(footerData.legal.cookieSettingsLabel).trim()}
+              />
+            ) : null}
           </div>
           <div className="flex flex-col items-center gap-3">
             <div>{t("footer.copyright", { year, companyName })}</div>

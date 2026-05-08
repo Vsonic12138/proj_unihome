@@ -1,10 +1,13 @@
 "use client";
 
 import { resetConsent } from "@/lib/cookieConsent";
-import { useTranslations } from "next-intl";
 
-const CookiePreferencesButton = () => {
-  const t = useTranslations("footer.legal");
+type CookiePreferencesButtonProps = {
+  label: string;
+};
+
+const CookiePreferencesButton = ({ label }: CookiePreferencesButtonProps) => {
+  const resolvedLabel = String(label ?? "").trim();
 
   const handleClick = () => {
     resetConsent();
@@ -17,7 +20,7 @@ const CookiePreferencesButton = () => {
       onClick={handleClick}
       className="text-sm text-body-color transition hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
     >
-      {t("cookieSettings")}
+      {resolvedLabel}
     </button>
   );
 };

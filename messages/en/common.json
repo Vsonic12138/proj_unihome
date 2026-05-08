@@ -121,7 +121,7 @@
       "privacyPolicy": "Privacy & Cookie Policy",
       "cookieSettings": "Cookie Settings"
     },
-    "copyright": "© {year} {companyName}. All rights reserved. | ICPxxxxxxxx-x | Public Security Registration: xxxxxxxxxxxx"
+    "copyright": "© {year} {companyName}. All rights reserved."
   },
   "floatingContact": {
     "panelLabel": "Contact Us",

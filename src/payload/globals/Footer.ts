@@ -19,6 +19,39 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
+      name: "legal",
+      type: "group",
+      label: {
+        zh: "法律与合规（页脚底部）",
+        en: "Legal & Compliance (Footer Bottom)",
+        ja: "法務・コンプライアンス（フッター下部）",
+      },
+      fields: [
+        {
+          name: "privacyPolicyLabel",
+          type: "text",
+          label: {
+            zh: "隐私政策入口文案",
+            en: "Privacy Policy Label",
+            ja: "プライバシーポリシー文言",
+          },
+          localized: true,
+          required: true,
+        },
+        {
+          name: "cookieSettingsLabel",
+          type: "text",
+          label: {
+            zh: "Cookie 设置入口文案",
+            en: "Cookie Settings Label",
+            ja: "Cookie 設定文言",
+          },
+          localized: true,
+          required: true,
+        },
+      ],
+    },
+    {
       name: "description",
       type: "richText",
       label: {

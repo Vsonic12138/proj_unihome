@@ -67,6 +67,59 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.30.0 feat(footer): 页脚底部法律标签接入 CMS 国际化管理
+
+类型: feat
+
+范围: footer, cms, i18n
+
+说明:
+本次提交将页脚底部的“隐私政策”和“Cookie 设置”入口文案接入 Payload CMS 国际化管理。此前这两个标签是硬编码或仅依赖静态语言包，重构后允许运营人员在后台直接配置各语言版本的显示文字，并同步补齐了相关的数据迁移逻辑。
+
+实现细节:
+1. **CMS 模型增强**
+   - 在 `Footer` 全局配置中新增 `legal` 分组，包含 `privacyPolicyLabel`（隐私政策标签）和 `cookieSettingsLabel`（Cookie 设置标签）字段。
+   - 字段开启 `localized: true` 以支持多语言配置。
+2. **前端组件适配**
+   - `Footer` 组件：修改渲染逻辑，优先使用 CMS 下发的 `legal` 字段值。若配置为空则不显示对应入口。
+   - `CookiePreferencesButton` 组件：支持通过 props 接收 `label` 文案，提升组件通用性。
+3. **数据迁移与同步**
+   - 生成了新的数据库迁移文件 `src/migrations/20260422_055512.ts` 以更新 `footer` 表结构。
+   - 新增数据迁移脚本 `scripts/payload/migrations/data/migrate-footer-legal-labels.ts`，用于将现有的静态文案初始化到数据库中。
+   - 同步更新了 `src/payload-types.ts` 中的 TypeScript 类型定义。
+4. **消息文件更新**
+   - 同步调整了 `messages/{en,zh,ja}/common.json`，确保基础文案的一致性。
+
+文件变更:
+修改文件:
+- `/src/payload/globals/Footer.ts`
+- `/src/components/Footer/index.tsx`
+- `/src/components/Common/CookiePreferencesButton.tsx`
+- `/src/payload-types.ts`
+- `/src/migrations/index.ts`
+- `/messages/zh/common.json`
+- `/messages/en/common.json`
+- `/messages/ja/common.json`
+- `/package.json`
+- `/version.md`
+
+新增文件:
+- `/src/migrations/20260422_055512.ts`
+- `/src/migrations/20260422_055512.json`
+- `/scripts/payload/migrations/data/migrate-footer-legal-labels.ts`
+
+改进效果:
+- 运营人员可灵活修改页脚底部的合规入口文案，无需代码变更。
+- 增强了多语言环境下的合规文案表现力。
+- 保证了开发环境与生产环境的数据一致性（通过迁移脚本）。
+
+影响范围:
+- 站点页脚底部布局与展示
+- Payload CMS Footer 配置界面
+- 数据库 schema (footer 全局表)
+
+---
+
 V1.29.0 refactor(docs): 重构项目文档体系并优化 AI 协作指南
 
 类型: refactor

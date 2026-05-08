@@ -1342,6 +1342,10 @@ export interface Navigation {
  */
 export interface Footer {
   id: number;
+  legal: {
+    privacyPolicyLabel: string;
+    cookieSettingsLabel: string;
+  };
   description?: {
     root: {
       type: string;
@@ -1561,6 +1565,12 @@ export interface NavigationSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
+  legal?:
+    | T
+    | {
+        privacyPolicyLabel?: T;
+        cookieSettingsLabel?: T;
+      };
   description?: T;
   sections?:
     | T

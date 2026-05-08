@@ -121,7 +121,7 @@
       "privacyPolicy": "プライバシー・Cookie ポリシー",
       "cookieSettings": "Cookie 設定"
     },
-    "copyright": "© {year} {companyName} | ICPxxxxxxxx-x | 公安备案番号：xxxxxxxxxxxxxx"
+    "copyright": "© {year} {companyName}"
   },
   "floatingContact": {
     "panelLabel": "お問い合わせ",
