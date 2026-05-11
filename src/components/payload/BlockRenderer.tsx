@@ -10,6 +10,7 @@ import { resolveMediaURL, tryGetPayloadClient, tryGetProductsCatalog, tryGetGlob
 import Image from "next/image";
 import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
+import { getTranslations } from "next-intl/server";
 
 type BlockRendererProps = {
   locale: string;
@@ -55,6 +56,17 @@ const BlockRenderer = async ({ locale: stringLocale, blocks, productsCatalog: in
   }
 
   const locale = stringLocale;
+  const contactFormMessages = await getTranslations({ locale, namespace: "contact.form" });
+  const contactCaptchaCopy = {
+    captchaLoadingMessage: contactFormMessages("captchaLoadingMessage"),
+    captchaReadyMessage: contactFormMessages("captchaReadyMessage"),
+    captchaExpiredMessage: contactFormMessages("captchaExpiredMessage"),
+    captchaErrorMessage: contactFormMessages("captchaErrorMessage"),
+    captchaLoadingButtonLabel: contactFormMessages("captchaLoadingButtonLabel"),
+    captchaReadyButtonLabel: contactFormMessages("captchaReadyButtonLabel"),
+    captchaExpiredButtonLabel: contactFormMessages("captchaExpiredButtonLabel"),
+    captchaErrorButtonLabel: contactFormMessages("captchaErrorButtonLabel"),
+  };
 
   const renderBlock = async (block: any, index: number) => {
     try {
@@ -367,6 +379,14 @@ const BlockRenderer = async ({ locale: stringLocale, blocks, productsCatalog: in
                 submitLabel: cmsForm.submitLabel,
                 submitSuccessMessage: cmsForm.submitSuccessMessage,
                 submitErrorMessage: cmsForm.submitErrorMessage,
+                captchaLoadingMessage: contactCaptchaCopy.captchaLoadingMessage,
+                captchaReadyMessage: contactCaptchaCopy.captchaReadyMessage,
+                captchaExpiredMessage: contactCaptchaCopy.captchaExpiredMessage,
+                captchaErrorMessage: contactCaptchaCopy.captchaErrorMessage,
+                captchaLoadingButtonLabel: contactCaptchaCopy.captchaLoadingButtonLabel,
+                captchaReadyButtonLabel: contactCaptchaCopy.captchaReadyButtonLabel,
+                captchaExpiredButtonLabel: contactCaptchaCopy.captchaExpiredButtonLabel,
+                captchaErrorButtonLabel: contactCaptchaCopy.captchaErrorButtonLabel,
               },
             }}
           />

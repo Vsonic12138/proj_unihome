@@ -67,6 +67,35 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.32.2 fix(cms): 优化/修复 Payload BlockRenderer 的前台渲染逻辑
+
+类型: fix
+
+范围: cms
+
+说明:
+本次提交主要针对 Payload CMS 动态页面渲染核心组件 `BlockRenderer` 的渲染逻辑进行修复和优化，确保从 CMS 获取的各种 block 类型能够被前端准确、无误地解析和渲染，提升了页面展示的容错率与稳定性。
+
+实现细节:
+
+1. **渲染逻辑健壮性提升**
+   - 优化了 `src/components/payload/BlockRenderer.tsx` 内部的属性传递和未匹配类型的 fallback 策略。
+   - 确保即便 CMS 下发了当前前端尚未注册的 Block 结构，页面也不会因此崩溃，而是提供优雅的默认降级处理。
+
+文件变更:
+修改文件:
+- `src/components/payload/BlockRenderer.tsx`
+- `package.json` / `package-lock.json`
+
+改进效果:
+- 防止前台页面因个别异常或未知的 Block 数据而导致整体白屏崩溃。
+- 增强了 CMS 组件化渲染机制的鲁棒性。
+
+影响范围:
+- 所有依赖 `BlockRenderer` 进行动态渲染的 CMS 页面。
+
+---
+
 V1.32.1 chore(deploy): 优化构建部署脚本并沉淀 5 月官网正式上线记录
 
 类型: chore
