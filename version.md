@@ -67,6 +67,37 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.30.1 chore(config): 配置 CMS 子域名并使用 Middleware 接管 admin 路由
+
+类型: chore
+
+范围: config
+
+说明:
+本次提交将 Payload CMS 管理后台的访问方式从主站的 `/admin` 路径迁移至专属子域名 `cms.unitc.cn`。为了保持 Next.js App Router 的原生路由拦截能力与风格一致的 404 处理，移除了 Nginx 层面的暴力拦截，改由 Next.js Middleware 统一接管。
+
+实现细节:
+
+1. **中间件域名级路由拦截**
+   - 修改 `src/middleware.ts`，将 `/admin` 纳入拦截范围。
+   - 当请求头 `host` 为 `cms.unitc.cn` 时，直接放行，避开 `next-intl` 多语言重写。
+   - 当从其他域名（如主站）访问时，内部重写至 `/404` 以触发 Next.js 的原生 404 页面，确保 UI 风格统一。
+
+文件变更:
+修改文件:
+- `src/middleware.ts` (增加基于域名的 admin 路由守卫)
+- `package.json` / `package-lock.json` (版本号递增至 1.30.1)
+
+改进效果:
+- 增强了 CMS 管理后台的安全性，实现后台访问域名的物理级与代码级双重隔离。
+- 取消了 Nginx 层的 Hack 拦截，令非法访问 `/admin` 的 404 页面展示效果与仓库主站的 Not Found 风格完全一致。
+
+影响范围:
+- 团队需使用 `cms.unitc.cn/admin` 访问后台。
+- Next.js Middleware 路由拦截逻辑更新。
+
+---
+
 V1.30.0 feat(footer): 页脚底部法律标签接入 CMS 国际化管理
 
 类型: feat
