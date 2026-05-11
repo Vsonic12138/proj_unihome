@@ -92,7 +92,7 @@ ${title}
 
               while (index !== -1) {
                 count++;
-                if (count === 3) {
+                if (count === 4) {
                   insertionPoint = index + insertMarker.length;
                   break;
                 }

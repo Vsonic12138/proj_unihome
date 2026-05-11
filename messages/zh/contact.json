@@ -18,7 +18,15 @@
       ],
       "messageLabel": "您的留言",
       "messagePlaceholder": "请填写想咨询的问题",
-      "submit": "提交工单"
+      "submit": "提交工单",
+      "captchaLoadingMessage": "正在加载安全验证，请稍候。",
+      "captchaReadyMessage": "请完成安全验证后提交。",
+      "captchaExpiredMessage": "验证已过期，请重新完成验证。",
+      "captchaErrorMessage": "安全验证加载失败，请刷新页面后重试。",
+      "captchaLoadingButtonLabel": "正在加载验证…",
+      "captchaReadyButtonLabel": "请完成验证",
+      "captchaExpiredButtonLabel": "请重新验证",
+      "captchaErrorButtonLabel": "验证加载失败"
     }
   }
 }

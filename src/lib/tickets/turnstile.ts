@@ -1,5 +1,12 @@
 import "server-only";
 
+import {
+  getExpectedTurnstileHostname,
+  TICKET_TURNSTILE_ACTION,
+  validateTurnstileConfig,
+  validateTurnstileVerificationResult,
+} from "@/lib/tickets/turnstileConfig";
+
 type TurnstileSuccess = {
   ok: true;
 };
@@ -17,6 +24,8 @@ export type { TurnstileFailure };
 type TurnstileResponse = {
   success: boolean;
   "error-codes"?: string[];
+  hostname?: string;
+  action?: string;
 };
 
 export function isTurnstileRequired() {
@@ -27,6 +36,20 @@ export async function verifyTurnstileToken(args: {
   token: string | null;
   ip: string;
 }): Promise<TurnstileSuccess | TurnstileFailure> {
+  const config = validateTurnstileConfig({
+    mode: process.env.NODE_ENV,
+    siteKey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+    secretKey: process.env.TURNSTILE_SECRET_KEY,
+  });
+  if (config.ok === false) {
+    return {
+      ok: false,
+      code: "captcha_configuration_error",
+      status: 503,
+      error: config.error,
+    };
+  }
+
   const secret = process.env.TURNSTILE_SECRET_KEY?.trim();
 
   if (!secret) {
@@ -57,6 +80,7 @@ export async function verifyTurnstileToken(args: {
     formData.set("secret", secret);
     formData.set("response", args.token);
     formData.set("remoteip", args.ip);
+    const signal = AbortSignal.timeout(5000);
 
     const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST",
@@ -65,6 +89,7 @@ export async function verifyTurnstileToken(args: {
       },
       body: formData.toString(),
       cache: "no-store",
+      signal,
     });
 
     if (!response.ok) {
@@ -86,6 +111,26 @@ export async function verifyTurnstileToken(args: {
         status: 400,
         error: "Captcha verification failed.",
         details: data["error-codes"] ?? [],
+      };
+    }
+
+    const verification = validateTurnstileVerificationResult(
+      {
+        success: data.success,
+        hostname: data.hostname,
+        action: data.action,
+      },
+      {
+        expectedHostname: getExpectedTurnstileHostname(process.env.NEXT_PUBLIC_SERVER_URL),
+        expectedAction: TICKET_TURNSTILE_ACTION,
+      },
+    );
+    if (verification.ok === false) {
+      return {
+        ok: false,
+        code: "captcha_verification_failed",
+        status: 400,
+        error: verification.error,
       };
     }
 

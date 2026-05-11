@@ -67,6 +67,53 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.31.0 feat(tickets): 集成 Turnstile 人机验证与完整工单邮件通知链路
+
+类型: feat
+
+范围: tickets
+
+说明:
+本次提交为官网联系表单建立独立的公开工单提交链路，统一接入服务端参数校验、防刷限制和 Turnstile 人机验证。同时，工单提交通知由匿名直接创建升级为后端统一校验，并接入了阿里云 Direct Mail 实现了完整的定制化 HTML 邮件通知链路。
+
+实现细节:
+
+1. **新增公开工单接口与验证逻辑**
+   - 新增 `POST /api/public/tickets`，统一处理工单提交。
+   - 新增工单防刷模块与 Cloudflare Turnstile 服务端校验逻辑。
+2. **集成邮件通知机制**
+   - 新增 `notification.ts` 和 `notificationTemplate.ts`，支持基于官网风格的 HTML 邮件模板。
+   - 当用户在表单中填写邮箱时，通知邮件将携带 `Reply-To` 指向用户邮箱，便于客服直接回复。
+3. **前端表单升级**
+   - 联系表单组件接入 Turnstile Widget。
+   - 表单提交改为调用新的公开接口，支持展示友好的错误提示与请求编号。
+
+文件变更:
+新增文件:
+- `src/app/api/public/tickets/route.ts`
+- `src/lib/tickets/notification.ts`
+- `src/lib/tickets/turnstile.ts`
+- `src/lib/tickets/clientIp.ts`
+- `src/lib/tickets/notificationTemplate.ts`
+- `src/lib/tickets/turnstileConfig.ts`
+- `src/components/TurnstileWidget/index.tsx`
+- `docs/turnstile-ticket-verification.md`
+- `docs/mail-service.md`
+
+修改文件:
+- `src/components/Contact/index.tsx`
+- `messages/{zh,en,ja}/contact.json`
+
+改进效果:
+- 显著提升了工单接口的安全性，有效防止恶意刷单。
+- 客服能收到排版美观且支持直接回信的工单通知邮件。
+
+影响范围:
+- 官网联系表单提交链路。
+- Payload `tickets` 集合的创建方式。
+
+---
+
 V1.30.1 chore(config): 配置 CMS 子域名并使用 Middleware 接管 admin 路由
 
 类型: chore

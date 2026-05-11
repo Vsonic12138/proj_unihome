@@ -1,6 +1,7 @@
 import "server-only";
 
 import nodemailer from "nodemailer";
+import { buildTicketNotificationEmail } from "@/lib/tickets/notificationTemplate";
 
 type TicketNotificationArgs = {
   ticketId: string | number;
@@ -28,48 +29,6 @@ function redact(value: string) {
   if (!value) return value;
   if (value.length <= 6) return "***";
   return `${value.slice(0, 3)}***${value.slice(-3)}`;
-}
-
-function buildText(args: TicketNotificationArgs) {
-  return [
-    "New service ticket submitted.",
-    "",
-    `Request ID: ${args.requestId}`,
-    `Ticket ID: ${args.ticketId}`,
-    "",
-    `Name: ${args.name}`,
-    `Email: ${args.email ?? ""}`,
-    `Phone: ${args.phone}`,
-    `Intention: ${args.intention}`,
-    `Message: ${args.message ?? ""}`,
-    "",
-    `IP: ${args.ip}`,
-    `User-Agent: ${args.userAgent ?? ""}`,
-  ].join("\n");
-}
-
-function buildHtml(args: TicketNotificationArgs) {
-  const esc = (v: string) =>
-    v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
-
-  return `
-    <div style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;">
-      <h2 style="margin:0 0 12px;">New service ticket submitted</h2>
-      <p style="margin:0 0 12px;color:#555;">
-        Request ID: <code>${esc(args.requestId)}</code><br/>
-        Ticket ID: <code>${esc(String(args.ticketId))}</code>
-      </p>
-      <table cellpadding="6" cellspacing="0" border="0" style="border-collapse:collapse;">
-        <tr><td><b>Name</b></td><td>${esc(args.name)}</td></tr>
-        <tr><td><b>Email</b></td><td>${esc(args.email ?? "")}</td></tr>
-        <tr><td><b>Phone</b></td><td>${esc(args.phone)}</td></tr>
-        <tr><td><b>Intention</b></td><td>${esc(args.intention)}</td></tr>
-        <tr><td><b>Message</b></td><td>${esc(args.message ?? "")}</td></tr>
-        <tr><td><b>IP</b></td><td>${esc(args.ip)}</td></tr>
-        <tr><td><b>User-Agent</b></td><td>${esc(args.userAgent ?? "")}</td></tr>
-      </table>
-    </div>
-  `.trim();
 }
 
 async function sendViaWebhook(args: TicketNotificationArgs): Promise<NotificationResult> {
@@ -131,7 +90,7 @@ async function sendViaResend(args: TicketNotificationArgs): Promise<Notification
   }
 
   try {
-    const subject = `[Ticket] ${args.name} - ${args.intention}`;
+    const email = buildTicketNotificationEmail(args);
     const replyTo = getReplyTo(args.email);
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -142,9 +101,9 @@ async function sendViaResend(args: TicketNotificationArgs): Promise<Notification
       body: JSON.stringify({
         from,
         to,
-        subject,
-        text: buildText(args),
-        html: buildHtml(args),
+        subject: email.subject,
+        text: email.text,
+        html: email.html,
         ...(replyTo ? { reply_to: replyTo } : {}),
       }),
       cache: "no-store",
@@ -196,6 +155,7 @@ async function sendViaSmtp(args: TicketNotificationArgs): Promise<NotificationRe
   const replyTo = getReplyTo(args.email);
 
   try {
+    const email = buildTicketNotificationEmail(args);
     const transport = nodemailer.createTransport({
       host,
       port,
@@ -206,9 +166,9 @@ async function sendViaSmtp(args: TicketNotificationArgs): Promise<NotificationRe
     await transport.sendMail({
       from,
       to,
-      subject: `[Ticket] ${args.name} - ${args.intention}`,
-      text: buildText(args),
-      html: buildHtml(args),
+      subject: email.subject,
+      text: email.text,
+      html: email.html,
       ...(replyTo ? { replyTo } : {}),
     });
 

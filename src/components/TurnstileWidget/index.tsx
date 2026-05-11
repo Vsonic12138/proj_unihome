@@ -1,5 +1,6 @@
 "use client";
 
+import { TICKET_TURNSTILE_ACTION } from "@/lib/tickets/turnstileConfig";
 import Script from "next/script";
 import { useEffect, useId, useRef, useState } from "react";
 
@@ -13,6 +14,7 @@ declare global {
           callback?: (token: string) => void;
           "expired-callback"?: () => void;
           "error-callback"?: () => void;
+          action?: string;
           theme?: "light" | "dark" | "auto";
         },
       ) => string;
@@ -25,14 +27,26 @@ declare global {
 type TurnstileWidgetProps = {
   siteKey?: string;
   onTokenChange: (token: string | null) => void;
+  onStatusChange?: (status: TurnstileStatus) => void;
   resetKey?: string | number;
 };
 
-export default function TurnstileWidget({ siteKey, onTokenChange, resetKey }: TurnstileWidgetProps) {
+export type TurnstileStatus = "disabled" | "loading" | "ready" | "verified" | "expired" | "error";
+
+export default function TurnstileWidget({
+  siteKey,
+  onTokenChange,
+  onStatusChange,
+  resetKey,
+}: TurnstileWidgetProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
   const [scriptReady, setScriptReady] = useState(false);
   const fallbackId = useId();
+
+  useEffect(() => {
+    onStatusChange?.(siteKey ? "loading" : "disabled");
+  }, [onStatusChange, siteKey]);
 
   useEffect(() => {
     if (!siteKey || !scriptReady || !containerRef.current || !window.turnstile) return;
@@ -41,10 +55,21 @@ export default function TurnstileWidget({ siteKey, onTokenChange, resetKey }: Tu
     widgetIdRef.current = window.turnstile.render(containerRef.current, {
       sitekey: siteKey,
       theme: "auto",
-      callback: (token) => onTokenChange(token),
-      "expired-callback": () => onTokenChange(null),
-      "error-callback": () => onTokenChange(null),
+      action: TICKET_TURNSTILE_ACTION,
+      callback: (token) => {
+        onTokenChange(token);
+        onStatusChange?.("verified");
+      },
+      "expired-callback": () => {
+        onTokenChange(null);
+        onStatusChange?.("expired");
+      },
+      "error-callback": () => {
+        onTokenChange(null);
+        onStatusChange?.("error");
+      },
     });
+    onStatusChange?.("ready");
 
     return () => {
       if (widgetIdRef.current && window.turnstile?.remove) {
@@ -52,13 +77,14 @@ export default function TurnstileWidget({ siteKey, onTokenChange, resetKey }: Tu
       }
       widgetIdRef.current = null;
     };
-  }, [onTokenChange, scriptReady, siteKey]);
+  }, [onStatusChange, onTokenChange, scriptReady, siteKey]);
 
   useEffect(() => {
     if (!widgetIdRef.current || !window.turnstile?.reset) return;
     window.turnstile.reset(widgetIdRef.current);
     onTokenChange(null);
-  }, [onTokenChange, resetKey]);
+    onStatusChange?.("ready");
+  }, [onStatusChange, onTokenChange, resetKey]);
 
   if (!siteKey) {
     return null;
@@ -69,7 +95,11 @@ export default function TurnstileWidget({ siteKey, onTokenChange, resetKey }: Tu
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
         strategy="afterInteractive"
-        onLoad={() => setScriptReady(true)}
+        onReady={() => setScriptReady(true)}
+        onError={() => {
+          onTokenChange(null);
+          onStatusChange?.("error");
+        }}
       />
       <div className="mb-8">
         <div ref={containerRef} id={`turnstile-${fallbackId}`} />

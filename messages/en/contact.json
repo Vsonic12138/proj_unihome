@@ -18,7 +18,15 @@
       ],
       "messageLabel": "Your Message",
       "messagePlaceholder": "Let us know what you need help with",
-      "submit": "Submit Ticket"
+      "submit": "Submit Ticket",
+      "captchaLoadingMessage": "Loading security verification. Please wait.",
+      "captchaReadyMessage": "Please complete the security verification before submitting.",
+      "captchaExpiredMessage": "The verification has expired. Please complete it again.",
+      "captchaErrorMessage": "Security verification failed to load. Please refresh the page and try again.",
+      "captchaLoadingButtonLabel": "Loading verification…",
+      "captchaReadyButtonLabel": "Complete verification",
+      "captchaExpiredButtonLabel": "Verify again",
+      "captchaErrorButtonLabel": "Verification failed to load"
     }
   }
 }

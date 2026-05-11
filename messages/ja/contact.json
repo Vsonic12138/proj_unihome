@@ -18,7 +18,15 @@
       ],
       "messageLabel": "メッセージ",
       "messagePlaceholder": "ご相談内容をお書きください",
-      "submit": "チケットを送信"
+      "submit": "チケットを送信",
+      "captchaLoadingMessage": "セキュリティ認証を読み込んでいます。しばらくお待ちください。",
+      "captchaReadyMessage": "送信前にセキュリティ認証を完了してください。",
+      "captchaExpiredMessage": "認証の有効期限が切れました。もう一度完了してください。",
+      "captchaErrorMessage": "セキュリティ認証の読み込みに失敗しました。ページを更新して再試行してください。",
+      "captchaLoadingButtonLabel": "認証を読み込み中…",
+      "captchaReadyButtonLabel": "認証を完了してください",
+      "captchaExpiredButtonLabel": "再認証してください",
+      "captchaErrorButtonLabel": "認証の読み込み失敗"
     }
   }
 }

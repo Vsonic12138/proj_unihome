@@ -1,4 +1,5 @@
 import { tryGetPayloadClient } from "@/lib/payload";
+import { getClientIpFromHeaders } from "@/lib/tickets/clientIp";
 import { notifyTicketSubmitted, describeNotificationConfigForLogs } from "@/lib/tickets/notification";
 import { checkTicketSpam, type SpamCheckResult } from "@/lib/tickets/spamProtection";
 import { verifyTurnstileToken, type TurnstileFailure } from "@/lib/tickets/turnstile";
@@ -25,20 +26,9 @@ function jsonError(payload: ErrorPayload, status: number, headers?: Record<strin
   });
 }
 
-function getClientIp(req: Request) {
-  const xff = req.headers.get("x-forwarded-for");
-  if (xff) {
-    const first = xff.split(",")[0]?.trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get("x-real-ip")?.trim();
-  if (realIp) return realIp;
-  return "0.0.0.0";
-}
-
 export async function POST(req: Request) {
   const requestId = crypto.randomUUID();
-  const ip = getClientIp(req);
+  const ip = getClientIpFromHeaders(req.headers);
   const userAgent = req.headers.get("user-agent");
 
   try {
@@ -192,9 +182,6 @@ export async function POST(req: Request) {
         requestId,
         ticketId: created.id,
         emailSent: notification.sent,
-        warning: notification.sent
-          ? undefined
-          : "Ticket was created, but the email notification failed. Check server logs with the requestId.",
       },
       { status: 200, headers: { "Cache-Control": "no-store" } },
     );

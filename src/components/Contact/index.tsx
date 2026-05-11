@@ -1,6 +1,7 @@
 "use client";
 
 import TurnstileWidget from "@/components/TurnstileWidget";
+import type { TurnstileStatus } from "@/components/TurnstileWidget";
 import { useEffect, useState } from "react";
 
 type ContactProps = {
@@ -13,15 +14,56 @@ const Contact = ({ copy }: ContactProps) => {
   const [requestId, setRequestId] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaStatus, setCaptchaStatus] = useState<TurnstileStatus>("disabled");
   const [formStartedAt, setFormStartedAt] = useState<number>(() => Date.now());
   const [captchaResetKey, setCaptchaResetKey] = useState(0);
   const form = copy?.form ?? {};
   const submitLabel = form.submit ?? form.submitLabel;
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const isTurnstileEnabled = Boolean(turnstileSiteKey);
+  const requiresCaptchaToken = isTurnstileEnabled && !captchaToken;
+  const captchaMessages = {
+    loading: form.captchaLoadingMessage ?? "正在加载安全验证，请稍候。",
+    ready: form.captchaReadyMessage ?? "请完成安全验证后提交。",
+    expired: form.captchaExpiredMessage ?? "验证已过期，请重新完成验证。",
+    error: form.captchaErrorMessage ?? "安全验证加载失败，请刷新页面后重试。",
+  };
+  const captchaButtonLabels = {
+    loading: form.captchaLoadingButtonLabel ?? "正在加载验证…",
+    ready: form.captchaReadyButtonLabel ?? "请完成验证",
+    expired: form.captchaExpiredButtonLabel ?? "请重新验证",
+    error: form.captchaErrorButtonLabel ?? "验证加载失败",
+  };
+  const captchaMessage =
+    captchaStatus === "loading"
+      ? captchaMessages.loading
+      : captchaStatus === "expired"
+        ? captchaMessages.expired
+        : captchaStatus === "error"
+          ? captchaMessages.error
+          : requiresCaptchaToken
+            ? captchaMessages.ready
+            : null;
+  const captchaButtonLabel =
+    captchaStatus === "loading"
+      ? captchaButtonLabels.loading
+      : captchaStatus === "expired"
+        ? captchaButtonLabels.expired
+        : captchaStatus === "error"
+          ? captchaButtonLabels.error
+          : requiresCaptchaToken
+            ? captchaButtonLabels.ready
+            : null;
 
   useEffect(() => {
     setFormStartedAt(Date.now());
   }, []);
+
+  const resetCaptcha = () => {
+    if (!isTurnstileEnabled) return;
+    setCaptchaToken(null);
+    setCaptchaResetKey((value) => value + 1);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,8 +72,16 @@ const Contact = ({ copy }: ContactProps) => {
     setRequestId(null);
     setErrorMessage(null);
 
+    if (requiresCaptchaToken) {
+      setErrorMessage(captchaMessage ?? captchaMessages.ready);
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
     const form = e.currentTarget;
     const formData = new FormData(form);
+    const submittedWithCaptcha = Boolean(captchaToken);
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -63,18 +113,19 @@ const Contact = ({ copy }: ContactProps) => {
       const payload = await res.json().catch(() => null);
       const rid = payload?.requestId ? String(payload.requestId) : null;
       if (rid) setRequestId(rid);
-      setErrorMessage(payload?.warning ? String(payload.warning) : null);
+      setErrorMessage(null);
 
       setSubmitStatus("success");
       form.reset();
-      setCaptchaToken(null);
-      setCaptchaResetKey((value) => value + 1);
       setFormStartedAt(Date.now());
     } catch (error) {
       console.error("Ticket submission error:", error);
       setErrorMessage(error instanceof Error ? error.message : "Failed to submit ticket");
       setSubmitStatus("error");
     } finally {
+      if (submittedWithCaptcha) {
+        resetCaptcha();
+      }
       setIsSubmitting(false);
     }
   };
@@ -231,15 +282,25 @@ const Contact = ({ copy }: ContactProps) => {
                     <TurnstileWidget
                       siteKey={turnstileSiteKey}
                       onTokenChange={setCaptchaToken}
+                      onStatusChange={setCaptchaStatus}
                       resetKey={captchaResetKey}
                     />
+                    {captchaMessage ? (
+                      <p className="-mt-4 mb-8 text-sm text-body-color">
+                        {captchaMessage}
+                      </p>
+                    ) : null}
                   </div>
                   <div className="w-full px-4">
                     <button
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || requiresCaptchaToken}
                       className="rounded-xs bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-70 dark:shadow-submit-dark"
                     >
-                      {isSubmitting ? "提交中..." : (submitLabel ?? "提交工单")}
+                      {isSubmitting
+                        ? "提交中..."
+                        : captchaButtonLabel
+                          ? captchaButtonLabel
+                          : (submitLabel ?? "提交工单")}
                     </button>
                   </div>
                 </div>
