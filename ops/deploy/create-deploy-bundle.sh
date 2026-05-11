@@ -13,6 +13,7 @@ IMAGE_TAG_DEFAULT="proj-unihome-app:production"
 PROFILE="init"
 POSTGRES_IMAGE_DEFAULT="postgres:16"
 BUILD_ORIGIN=""
+BUILD_TURNSTILE_SITE_KEY=""
 
 log() {
   echo "==> $*"
@@ -34,7 +35,7 @@ need_cmd() {
 usage() {
   cat <<'EOF'
 Usage:
-  bash ops/deploy/create-deploy-bundle.sh [--profile init|update] [--origin <origin>]
+  bash ops/deploy/create-deploy-bundle.sh [--profile init|update] [--origin <origin>] [--turnstile-site-key <site-key>]
 
 Profiles:
   init   Full bundle for first-time deploy / disaster recovery. Includes db dump and media backup.
@@ -51,6 +52,10 @@ parse_args() {
         ;;
       --origin)
         BUILD_ORIGIN="${2:-}"
+        shift 2
+        ;;
+      --turnstile-site-key)
+        BUILD_TURNSTILE_SITE_KEY="${2:-}"
         shift 2
         ;;
       --help|-h)
@@ -242,6 +247,7 @@ build_image() {
   docker build \
     -f ops/docker/Dockerfile \
     --build-arg NEXT_PUBLIC_SERVER_URL="$build_origin" \
+    --build-arg NEXT_PUBLIC_TURNSTILE_SITE_KEY="$BUILD_TURNSTILE_SITE_KEY" \
     --build-arg DATABASE_URI="$build_db_uri" \
     --build-arg PAYLOAD_SCHEMA_PUSH=false \
     --build-arg BUILD_SKIP_PAYLOAD=true \

@@ -67,6 +67,49 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.32.1 chore(deploy): 优化构建部署脚本并沉淀 5 月官网正式上线记录
+
+类型: chore
+
+范围: deploy
+
+说明:
+本次提交聚焦于 DevOps 层面的优化与知识沉淀。一方面优化了部署打包脚本和 Dockerfile，增强了自动化部署的健壮性；另一方面，将 2026 年 5 月 9 日官网正式上线过程中的各项检查结果、Nginx 限流策略等运维经验以文档的形式固定下来，为后续的监控与维护提供参考。
+
+实现细节:
+
+1. **部署脚本与构建优化**
+   - 调整了 `ops/deploy/create-deploy-bundle.sh` 和 `ops/deploy/remote/aliyun-deploy.sh`，优化了环境变量透传与产物打包逻辑。
+   - 优化 `ops/docker/Dockerfile`，确保生产镜像构建更为精简与安全。
+2. **沉淀上线状态报告**
+   - 新增 `docs/launch-status-2026-05-09.md`，详细记录了正式上线时的各模块验证结论（含域名、跳转、SEO、邮件、工单防刷等）及待办事项。
+3. **补充运维配置文档**
+   - 新增 `docs/nginx-rate-limit.md`，记录了针对 API、后台和工单等不同路径实施的 Nginx 速率限制（Rate Limiting）策略。
+   - 更新了 `docs/README.md` 和 `docs/database.md`，保持文档索引与数据库维护指南与最新架构同步。
+
+文件变更:
+修改文件:
+- `ops/deploy/create-deploy-bundle.sh`
+- `ops/deploy/remote/aliyun-deploy.sh`
+- `ops/docker/Dockerfile`
+- `docs/README.md`
+- `docs/database.md`
+- `package.json` / `package-lock.json`
+
+新增文件:
+- `docs/launch-status-2026-05-09.md`
+- `docs/nginx-rate-limit.md`
+
+改进效果:
+- 提升了自动化部署脚本的执行稳定性。
+- 官网初次上线的宝贵运维经验得到了规范化沉淀，降低了后续团队接手的理解成本。
+
+影响范围:
+- 部署脚本链路与环境构建上下文。
+- 项目的配套运维文档集合。
+
+---
+
 V1.32.0 feat(seo): 新增百度站点验证文件与 SEO 搜索收录指南
 
 类型: feat

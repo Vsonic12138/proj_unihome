@@ -67,3 +67,48 @@ INCLUDE_MEDIA=true bash backup.sh run  # [服务器执行] 在备份时同时包
 ## 恢复
 
 首次部署或恢复场景下，`bash deploy.sh init` 会在备份存在时自动执行数据库与媒体恢复。
+
+## 媒体目录权限
+
+生产环境 Payload 媒体目录位于：
+
+```text
+/opt/proj_unihome/media
+```
+
+该目录挂载到应用容器内：
+
+```text
+/app/media
+```
+
+当前应用容器运行用户：
+
+```text
+uid=1001(nextjs) gid=1001(nodejs)
+```
+
+因此生产媒体目录需要允许 `1001:1001` 写入。上传图片报错时，如果应用日志出现：
+
+```text
+EACCES: permission denied, open 'media/...'
+上传文件时出现了问题。
+```
+
+优先检查并修复目录权限：
+
+```bash
+chown -R 1001:1001 /opt/proj_unihome/media
+find /opt/proj_unihome/media -type d -exec chmod 755 {} +
+find /opt/proj_unihome/media -type f -exec chmod 644 {} +
+```
+
+修复后验证容器内可写：
+
+```bash
+cd /opt/proj_unihome/deploy
+docker compose --project-directory . \
+  -f compose.prod.yml \
+  --env-file ../shared/.env.production \
+  exec app sh -lc 'touch /app/media/.write-test && rm /app/media/.write-test'
+```

@@ -7,13 +7,14 @@ SERVER_DIR="/opt/proj_unihome"
 MODE="update" # init|update
 DOMAIN=""
 ORIGIN=""
+TURNSTILE_SITE_KEY=""
 BUNDLE_NAME="proj-unihome-deploy-bundle.tar.gz"
 PKG_DIR="proj-unihome-deploy-bundle"
 
 usage() {
   cat <<'EOF'
 Usage:
-  bash ops/deploy/remote/aliyun-deploy.sh --mode init|update [--host <ssh-host>] [--server-dir <dir>] [--domain <domain>] [--origin <origin>]
+  bash ops/deploy/remote/aliyun-deploy.sh --mode init|update [--host <ssh-host>] [--server-dir <dir>] [--domain <domain>] [--origin <origin>] [--turnstile-site-key <site-key>]
 
 Notes:
   - init: uploads full bundle and initializes server (db restore/media restore optional).
@@ -35,6 +36,8 @@ parse_args() {
         DOMAIN="${2:-}"; shift 2 ;;
       --origin)
         ORIGIN="${2:-}"; shift 2 ;;
+      --turnstile-site-key)
+        TURNSTILE_SITE_KEY="${2:-}"; shift 2 ;;
       -h|--help)
         usage; exit 0 ;;
       *)
@@ -79,8 +82,43 @@ resolve_remote_origin() {
   " || true
 }
 
+resolve_remote_env_value() {
+  local key="$1"
+  remote "set -euo pipefail
+    env_file=\"$SERVER_DIR/shared/.env.production\"
+    if [ ! -f \"\$env_file\" ]; then
+      exit 0
+    fi
+    value=\$(grep -E '^${key}=' \"\$env_file\" | tail -n 1 | cut -d '=' -f2- || true)
+    if [ -n \"\$value\" ]; then
+      printf '%s' \"\$value\"
+    fi
+  " || true
+}
+
+validate_turnstile_pair() {
+  local mode="$1"
+  local site_key="$2"
+  local secret_key="$3"
+
+  if [ "$mode" != "production" ]; then
+    return 0
+  fi
+
+  if [ -n "$site_key" ] && [ -z "$secret_key" ]; then
+    echo "[error] NEXT_PUBLIC_TURNSTILE_SITE_KEY 已配置，但 TURNSTILE_SECRET_KEY 缺失。生产环境必须同时配置二者。" >&2
+    exit 1
+  fi
+
+  if [ -z "$site_key" ] && [ -n "$secret_key" ]; then
+    echo "[error] TURNSTILE_SECRET_KEY 已配置，但 NEXT_PUBLIC_TURNSTILE_SITE_KEY 缺失。生产环境必须同时配置二者。" >&2
+    exit 1
+  fi
+}
+
 main() {
   parse_args "$@"
+  local remote_turnstile_secret=""
 
   if [ -z "$ORIGIN" ]; then
     if [ -n "$DOMAIN" ]; then
@@ -101,19 +139,33 @@ main() {
     fi
   fi
 
+  if [ "$MODE" = "update" ] && [ -z "$TURNSTILE_SITE_KEY" ]; then
+    TURNSTILE_SITE_KEY="$(resolve_remote_env_value NEXT_PUBLIC_TURNSTILE_SITE_KEY)"
+    if [ -n "$TURNSTILE_SITE_KEY" ]; then
+      echo "[info] Reuse remote NEXT_PUBLIC_TURNSTILE_SITE_KEY for build"
+    else
+      echo "[info] Remote NEXT_PUBLIC_TURNSTILE_SITE_KEY is empty; Turnstile widget will not be rendered in this build"
+    fi
+  fi
+
+  if [ "$MODE" = "update" ]; then
+    remote_turnstile_secret="$(resolve_remote_env_value TURNSTILE_SECRET_KEY)"
+    validate_turnstile_pair "production" "$TURNSTILE_SITE_KEY" "$remote_turnstile_secret"
+  fi
+
   echo "==> Build bundle (mode=$MODE)"
   if [ "$MODE" = "init" ]; then
     if [ -n "$ORIGIN" ]; then
-      npm run deploy:bundle:init -- --origin "$ORIGIN"
+      npm run deploy:bundle:init -- --origin "$ORIGIN" --turnstile-site-key "$TURNSTILE_SITE_KEY"
     else
-      npm run deploy:bundle:init
+      npm run deploy:bundle:init -- --turnstile-site-key "$TURNSTILE_SITE_KEY"
     fi
   else
     [ -n "$ORIGIN" ] || {
       echo "[error] update 模式无法确定构建所需的 NEXT_PUBLIC_SERVER_URL，请通过 --domain 或 --origin 显式传入，或确保服务器 shared/.env.production 已配置该值" >&2
       exit 1
     }
-    npm run deploy:bundle:update -- --origin "$ORIGIN"
+    npm run deploy:bundle:update -- --origin "$ORIGIN" --turnstile-site-key "$TURNSTILE_SITE_KEY"
   fi
 
   echo "==> Upload bundle to $HOST:$SERVER_DIR/$BUNDLE_NAME"
