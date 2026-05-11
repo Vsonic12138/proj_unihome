@@ -19,6 +19,8 @@ import {
 } from "@/lib/payload";
 import { getPublicServerUrl } from "@/lib/seo";
 
+const BAIDU_SITE_VERIFICATION = "codeva-8hCxnEikGb";
+
 function resolveMediaURL(media: any): string | null {
   if (!media) return null;
   if (typeof media === "string") return media;
@@ -46,6 +48,11 @@ export async function generateMetadata({
   if (!payload) {
     return {
       ...(metadataBase ? { metadataBase } : {}),
+      verification: {
+        other: {
+          "baidu-site-verification": BAIDU_SITE_VERIFICATION,
+        },
+      },
       icons: {
         icon: "/icon.svg",
       },
@@ -95,6 +102,11 @@ export async function generateMetadata({
       title: seoTitle,
       description: seoDesc,
       images: [seoImage],
+    },
+    verification: {
+      other: {
+        "baidu-site-verification": BAIDU_SITE_VERIFICATION,
+      },
     },
     icons: {
       icon: favicon,

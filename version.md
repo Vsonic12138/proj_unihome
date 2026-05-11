@@ -67,6 +67,44 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.32.0 feat(seo): 新增百度站点验证文件与 SEO 搜索收录指南
+
+类型: feat
+
+范围: seo
+
+说明:
+本次提交主要为了满足国内搜索引擎（尤其是百度搜索资源平台）的站点验证要求，加速官网主域名收录。通过在代码库中补充验证文件和 meta 标签，配合完善的 SEO 搜索收录指南，使官网符合各大站长平台的准入标准。
+
+实现细节:
+
+1. **新增百度站点文件验证**
+   - 新增验证探针文件 `public/baidu_verify_codeva-8hCxnEikGb.html`，用于响应百度的蜘蛛探活与所有权校验。
+2. **新增全局 HTML 标签验证**
+   - 修改全局根布局 `src/app/[locale]/layout.tsx`，在页面头部的 Metadata 中注入百度验证专用的 meta 标签（`baidu-site-verification`），作为备用的所有权验证方案。
+3. **补充搜索引擎收录策略指南**
+   - 撰写专门的搜索收录说明文档 `docs/search-indexing.md`。
+   - 记录了在百度、Google、Bing 各大平台提交 Sitemap 的标准流程、主动推送方式以及收录时间线预期。
+
+文件变更:
+新增文件:
+- `public/baidu_verify_codeva-8hCxnEikGb.html`
+- `docs/search-indexing.md`
+
+修改文件:
+- `src/app/[locale]/layout.tsx`
+- `package.json` / `package-lock.json`
+
+改进效果:
+- 使得 `unitc.cn` 能够顺利通过百度搜索资源平台的所有权验证。
+- 后续维护人员可参考文档快速掌握官网的 SEO 提交流程和排查方式。
+
+影响范围:
+- 根布局页面的 `<head>` 区域会多出一个 meta 验证标签。
+- 静态资源目录下增加了一个 HTML 文件，不影响原有业务。
+
+---
+
 V1.31.0 feat(tickets): 集成 Turnstile 人机验证与完整工单邮件通知链路
 
 类型: feat
