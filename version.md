@@ -67,6 +67,53 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.33.0 remove(icons): 替换旧 SVG 图标为标准站点图标资源
+
+类型: remove
+
+范围: icons
+
+说明:
+本次提交将站点图标体系从旧的 SVG 资源切换为标准的 ICO / PNG 资源，并同步更新前台 metadata 与 manifest，保证浏览器标签页、苹果设备和 PWA 场景使用统一的图标集。
+
+实现细节:
+
+1. **替换旧 SVG 图标资源**
+   - 删除 `public/favicon.svg` 与 `src/app/icon.svg`。
+   - 新增 `public/favicon.ico`、`public/icon-192.png`、`public/icon-512.png` 和 `public/apple-icon.png`。
+2. **更新前台布局的 metadata 图标声明**
+   - 修改 `src/app/[locale]/layout.tsx`，将默认 icon fallback 从 `icon.svg` 切换为 `favicon.ico`。
+   - 在 `icons` 配置中同时声明 `favicon.ico`、`icon-192.png`、`icon-512.png` 与 `apple-icon.png`。
+3. **更新 Web App manifest**
+   - 修改 `src/app/manifest.ts`，将 manifest 图标从单一 SVG 改为 192px 与 512px 的 PNG 图标。
+
+文件变更:
+修改文件:
+- `src/app/[locale]/layout.tsx`
+- `src/app/manifest.ts`
+
+新增文件:
+- `public/apple-icon.png`
+- `public/favicon.ico`
+- `public/icon-192.png`
+- `public/icon-512.png`
+
+删除文件:
+- `public/favicon.svg`
+- `src/app/icon.svg`
+
+改进效果:
+- 浏览器和设备对站点图标的兼容性更好。
+- Apple 设备、PWA 场景和常规浏览器标签页使用更明确的图标资源。
+- 前台 metadata 与 manifest 的图标引用保持一致。
+
+影响范围:
+- 浏览器标签页图标与 Apple Touch 图标。
+- Web App manifest 与 PWA 安装图标。
+- 前台根布局的 metadata 头部声明。
+
+---
+
 V1.32.3 fix(cookie): 完善 Cookie 同意存储与隐私披露
 
 类型: fix

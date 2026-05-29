@@ -54,7 +54,12 @@ export async function generateMetadata({
         },
       },
       icons: {
-        icon: "/icon.svg",
+        icon: [
+          { url: "/favicon.ico", sizes: "any" },
+          { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+          { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+        ],
+        apple: "/apple-icon.png",
       },
     };
   }
@@ -66,7 +71,7 @@ export async function generateMetadata({
   });
 
   const favicon =
-    resolveMediaURL(globals?.siteSettings?.frontendBranding?.favicon) ?? "/icon.svg";
+    resolveMediaURL(globals?.siteSettings?.frontendBranding?.favicon) ?? "/favicon.ico";
   
   const companyName = globals?.siteSettings?.companyName || "UniTech";
   const seoConfig = globals?.siteSettings?.seoDefaults;
@@ -109,8 +114,12 @@ export async function generateMetadata({
       },
     },
     icons: {
-      icon: favicon,
-      apple: favicon, // fallback apple icon
+      icon: [
+        { url: favicon, sizes: "any" },
+        { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+        { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      ],
+      apple: "/apple-icon.png",
     },
   };
 }
