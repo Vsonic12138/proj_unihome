@@ -67,6 +67,34 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.33.1 chore(config): 排除备份与部署产物目录的类型检查
+
+类型: chore
+
+范围: config
+
+说明:
+本次提交仅调整 TypeScript 的扫描范围，将备份文件目录和部署产物目录排除在类型检查之外，避免这些非源码产物干扰本地开发与构建流程。
+
+实现细节:
+
+1. **调整 TypeScript 排除项**
+   - 修改 `tsconfig.json`，在 `exclude` 中新增 `backups` 与 `proj-unihome-deploy-bundle`。
+
+文件变更:
+修改文件:
+- `tsconfig.json`
+
+改进效果:
+- 防止备份目录与部署产物目录被 TypeScript 误扫描。
+- 降低无关文件对编辑器和类型检查性能的影响。
+
+影响范围:
+- TypeScript 编译与类型检查阶段。
+- 本地开发环境中对仓库根目录下备份和部署产物目录的扫描行为。
+
+---
+
 V1.33.0 remove(icons): 替换旧 SVG 图标为标准站点图标资源
 
 类型: remove
