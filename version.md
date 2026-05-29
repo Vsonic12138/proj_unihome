@@ -67,6 +67,37 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.33.2 chore(ignore): 统一忽略本地备份与 superpowers 文档产物
+
+类型: chore
+
+范围: ignore
+
+说明:
+本次提交整理仓库内的本地产物，补充统一忽略规则，避免环境备份、数据库导出、superpowers 文档资料和备份目录继续污染工作区。
+
+实现细节:
+
+1. **补充忽略规则**
+   - 修改 `.gitignore`，新增对 `/.superpowers/`、`/docs/superpowers/`、`/backups/`、`/backup_proj_unihome.sql` 和 `.env.bak.*` 的忽略。
+2. **统一本地产物归档口径**
+   - 保持 `backups/` 作为备份归档目录，不再将其纳入版本控制。
+   - 保持 `superpowers` 相关本地资料留在工作区外部，仅作为本地辅助产物使用。
+
+文件变更:
+修改文件:
+- `.gitignore`
+
+改进效果:
+- 本地备份和辅助资料不会再次进入 `git status`。
+- 工作区更接近源码仓库本身，减少无关噪音。
+
+影响范围:
+- Git 忽略规则。
+- 本地备份文件、数据库导出和 superpowers 文档资料的工作区可见性。
+
+---
+
 V1.33.1 chore(config): 排除备份与部署产物目录的类型检查
 
 类型: chore
