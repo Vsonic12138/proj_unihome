@@ -1,6 +1,6 @@
 {
   "name": "proj_uinhome",
-  "version": "1.32.2",
+  "version": "1.32.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -31,6 +31,7 @@
     "cms:data:migrate:footer:contact-info": "node --import tsx/esm scripts/payload/migrations/data/migrate-footer-contact-info.ts",
     "cms:data:migrate:footer:legal-labels": "node --import tsx/esm scripts/payload/migrations/data/migrate-footer-legal-labels.ts",
     "cms:data:migrate:cookie-privacy-link:localized": "node --import tsx/esm scripts/payload/migrations/data/migrate-cookie-privacy-link-localized.ts",
+    "cms:data:migrate:cookie-policy-disclosure": "node --import tsx/esm scripts/payload/migrations/data/migrate-cookie-policy-disclosure.ts",
     "cms:schema:create": "payload migrate:create",
     "cms:schema:migrate": "payload migrate",
     "cms:schema:status": "payload migrate:status",

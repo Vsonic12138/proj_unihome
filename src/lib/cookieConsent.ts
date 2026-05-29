@@ -41,11 +41,31 @@ export const getConsentStatus = (): ConsentStatus => {
     cookie.trim().startsWith(`${CONSENT_CONFIG.cookieName}=`)
   );
 
-  if (!consentCookie) return null;
+  if (!consentCookie) {
+    try {
+      const storedValue = localStorage.getItem(CONSENT_CONFIG.cookieName);
+      if (storedValue === 'accepted' || storedValue === 'rejected') {
+        return storedValue;
+      }
+    } catch {
+      // Ignore localStorage unavailability in privacy modes.
+    }
+
+    return null;
+  }
 
   const value = consentCookie.split('=')[1]?.trim();
   if (value === 'accepted' || value === 'rejected') {
     return value;
+  }
+
+  try {
+    const storedValue = localStorage.getItem(CONSENT_CONFIG.cookieName);
+    if (storedValue === 'accepted' || storedValue === 'rejected') {
+      return storedValue;
+    }
+  } catch {
+    // Ignore localStorage unavailability in privacy modes.
   }
 
   return null;
@@ -58,14 +78,18 @@ export const getConsentStatus = (): ConsentStatus => {
 export const setConsentStatus = (status: 'accepted' | 'rejected'): void => {
   if (typeof document === 'undefined') return;
 
-  const cookieString = [
+  const cookieParts = [
     `${CONSENT_CONFIG.cookieName}=${status}`,
     `max-age=${CONSENT_CONFIG.cookieMaxAge}`,
     `path=${CONSENT_CONFIG.cookiePath}`,
     `SameSite=${CONSENT_CONFIG.cookieSameSite}`,
-  ].join('; ');
+  ];
 
-  document.cookie = cookieString;
+  if (typeof location !== 'undefined' && location.protocol === 'https:') {
+    cookieParts.push('Secure');
+  }
+
+  document.cookie = cookieParts.join('; ');
 
   // Backup to localStorage in case cookies are disabled
   try {

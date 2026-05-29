@@ -67,6 +67,58 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.32.3 fix(cookie): 完善 Cookie 同意存储与隐私披露
+
+类型: fix
+
+范围: cookie
+
+说明:
+本次提交完善 Cookie 同意状态的前台存储策略与隐私披露内容，确保用户在 Cookie 不可用或受限的浏览环境中仍能保留同意选择，并同步补充三语隐私说明与 CMS 数据迁移入口。
+
+实现细节:
+
+1. **Cookie 同意状态存储增强**
+   - 修改 `src/lib/cookieConsent.ts`，在读取同意状态时支持从 `localStorage` 回退读取。
+   - 写入同意 Cookie 时，在 HTTPS 页面自动附加 `Secure` 属性。
+   - 保留 `localStorage` 备份写入逻辑，提高隐私模式或 Cookie 限制环境下的稳定性。
+2. **Cookie 偏好入口行为调整**
+   - 修改 `src/components/Common/CookiePreferencesButton.tsx`，点击偏好入口时直接打开 Cookie 面板，不再先清除已有同意状态。
+3. **三语隐私披露内容补充**
+   - 更新 `messages/{zh,en,ja}/common.json` 中的 Cookie 同意与隐私政策文案。
+   - 补充必要 Cookie、本地存储、语言偏好、悬浮联系入口提示和 Cloudflare Turnstile 安全验证说明。
+4. **CMS 内容迁移脚本**
+   - 新增 `scripts/payload/migrations/data/migrate-cookie-policy-disclosure.ts`，用于将最新 Cookie 同意文案与隐私政策内容同步到 `siteSettings`。
+   - 在 `package.json` 中新增 `cms:data:migrate:cookie-policy-disclosure` 命令。
+5. **测试覆盖**
+   - 新增 `src/lib/__tests__/cookieConsent.test.ts`，覆盖 HTTPS 下 Secure Cookie 写入和 Cookie 不可用时的 `localStorage` 回退读取。
+
+文件变更:
+修改文件:
+- `messages/en/common.json`
+- `messages/ja/common.json`
+- `messages/zh/common.json`
+- `package.json` / `package-lock.json`
+- `src/components/Common/CookiePreferencesButton.tsx`
+- `src/lib/cookieConsent.ts`
+
+新增文件:
+- `scripts/payload/migrations/data/migrate-cookie-policy-disclosure.ts`
+- `src/lib/__tests__/cookieConsent.test.ts`
+
+改进效果:
+- Cookie 同意状态在更多浏览器隐私限制场景下保持可用。
+- Cookie 偏好入口行为更符合“查看/调整偏好”的语义，不会意外清除用户已有选择。
+- 隐私政策对本地存储和 Turnstile 安全验证的披露更完整。
+- CMS 中的站点设置可通过脚本同步最新披露内容。
+
+影响范围:
+- 前台 Cookie 同意横幅与页脚 Cookie 偏好入口。
+- 三语隐私政策与 Cookie 同意文案。
+- Payload `siteSettings` 全局配置的数据迁移流程。
+
+---
+
 V1.32.2 fix(cms): 优化/修复 Payload BlockRenderer 的前台渲染逻辑
 
 类型: fix

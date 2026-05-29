@@ -162,7 +162,7 @@
   },
   "cookieConsent": {
     "ariaLabel": "Cookie 同意横幅",
-    "message": "我们使用 Cookie 来提升您的浏览体验和网站功能。",
+    "message": "我们使用必要 Cookie 和本地存储保障网站运行、保存语言/界面偏好，并在联系表单中使用安全验证防止滥用。当前不默认启用分析或营销追踪。",
     "learnMore": "了解更多",
     "acceptAll": "接受全部",
     "rejectNonEssential": "仅必要 Cookie"
@@ -188,9 +188,18 @@
       {
         "title": "当前站点中的主要项目",
         "body": [
-          "cookie-consent-status：记录您接受全部或仅必要的选择。",
-          "proj_uinhome-language：记录您主动切换的站点语言。",
-          "theme 本地存储：记录您选择的明暗主题偏好。"
+          "cookie-consent-status：记录您接受全部或仅必要的选择，保存期限最长约 12 个月。",
+          "proj_uinhome-language：记录您主动切换的站点语言，保存期限最长约 12 个月。",
+          "theme 本地存储：记录您选择的明暗主题偏好。",
+          "floatingContactVisited 本地存储：记录是否已经展示过浮动联系入口提示，避免重复打扰。"
+        ]
+      },
+      {
+        "title": "安全验证与第三方服务",
+        "body": [
+          "联系表单可能加载 Cloudflare Turnstile，用于识别自动化提交和防止滥用。",
+          "该安全验证可能会处理浏览器和设备信号、IP 地址、User-Agent、验证结果和交互时间等信息。相关处理受 Cloudflare 的服务条款和隐私说明约束。",
+          "Turnstile 仅用于安全和反滥用目的，不用于本站的广告投放或营销画像。"
         ]
       },
       {

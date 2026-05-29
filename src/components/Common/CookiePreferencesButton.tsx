@@ -1,7 +1,5 @@
 "use client";
 
-import { resetConsent } from "@/lib/cookieConsent";
-
 type CookiePreferencesButtonProps = {
   label: string;
 };
@@ -10,7 +8,6 @@ const CookiePreferencesButton = ({ label }: CookiePreferencesButtonProps) => {
   const resolvedLabel = String(label ?? "").trim();
 
   const handleClick = () => {
-    resetConsent();
     window.dispatchEvent(new CustomEvent("cookie-consent:open"));
   };
 

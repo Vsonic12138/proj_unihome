@@ -162,7 +162,7 @@
   },
   "cookieConsent": {
     "ariaLabel": "Cookie consent banner",
-    "message": "We use cookies to enhance your browsing experience and improve website functionality.",
+    "message": "We use necessary cookies and local storage to run the site, remember language/interface preferences, and protect contact forms with security verification. Analytics and marketing tracking are not enabled by default.",
     "learnMore": "Learn more",
     "acceptAll": "Accept All",
     "rejectNonEssential": "Essential Only"
@@ -188,9 +188,18 @@
       {
         "title": "Main items currently in use",
         "body": [
-          "cookie-consent-status stores whether you accepted all cookies or chose essential only.",
-          "proj_uinhome-language stores the website language you actively selected.",
-          "theme local storage stores your preferred light or dark theme."
+          "cookie-consent-status stores whether you accepted all cookies or chose essential only, for up to about 12 months.",
+          "proj_uinhome-language stores the website language you actively selected, for up to about 12 months.",
+          "theme local storage stores your preferred light or dark theme.",
+          "floatingContactVisited local storage records whether the floating contact hint has already been shown, so it does not keep reappearing."
+        ]
+      },
+      {
+        "title": "Security verification and third-party services",
+        "body": [
+          "Contact forms may load Cloudflare Turnstile to detect automated submissions and prevent abuse.",
+          "This security verification may process browser and device signals, IP address, User-Agent, verification results, and interaction timing. That processing is governed by Cloudflare's applicable terms and privacy notices.",
+          "Turnstile is used only for security and abuse-prevention purposes on this site, not for advertising delivery or marketing profiling."
         ]
       },
       {
