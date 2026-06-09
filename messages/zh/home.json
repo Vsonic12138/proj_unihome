@@ -46,6 +46,21 @@
       "slideLabel": "第{id}张"
     }
   },
+  "sponsorLogos": {
+    "heading": "合作伙伴与赞助支持",
+    "description": "携手生态伙伴，共同推进具身智能教育、科研与应用落地。",
+    "speed": "normal",
+    "pauseOnHover": true,
+    "logos": [
+      {
+        "name": "地瓜机器人",
+        "lightLogo": "/images/sponsors/digua-robotics-light.png",
+        "darkLogo": "/images/sponsors/digua-robotics-dark.png",
+        "url": "https://developer.d-robotics.cc/",
+        "openInNewTab": true
+      }
+    ]
+  },
   "features": {
     "title": "产品平台",
     "paragraph": "基于「启发、探索、创新、分享」的理念，我们构建涵盖硬件、软件、课程与服务的具身智能产品平台，让教学、科研与产业落地一步到位。",
@@ -54,11 +69,7 @@
       "description": "围绕“入门启发 → 项目进阶 → 科研创新”三大阶段，精选具有代表性的具身智能产品组合，帮助不同教学目标快速落地。",
       "ctaDescription": "想了解更多教学与科研场景的搭配？",
       "viewAllLabel": "浏览全部产品",
-      "slugs": [
-        "ubot-mr40",
-        "gx-mat-09s",
-        "rai-p4"
-      ]
+      "slugs": ["ubot-mr40", "gx-mat-09s", "rai-p4"]
     },
     "highlights": [
       {

@@ -13,6 +13,7 @@
 - `nginx-rate-limit.md`：生产 Nginx 限流配置
 - `turnstile-ticket-verification.md`：工单 Turnstile 验证码机制
 - `cms.md`：Payload CMS 结构与常用脚本
+- `cms-draft-pages.md`：当前 CMS 草稿页面记录
 - `launch-status-2026-05-09.md`：`unitc.cn` 正式上线检查记录
 
 ## 环境模板

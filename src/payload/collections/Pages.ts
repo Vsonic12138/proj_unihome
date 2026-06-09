@@ -8,6 +8,7 @@ import { HeroBlock } from "../blocks/HeroBlock";
 import { ImageGalleryBlock } from "../blocks/ImageGalleryBlock";
 import { ProductsCatalogBlock } from "../blocks/ProductsCatalogBlock";
 import { RichTextBlock } from "../blocks/RichTextBlock";
+import { SponsorLogosBlock } from "../blocks/SponsorLogosBlock";
 import { getPublicServerUrl } from "../../lib/seo";
 
 export const Pages: CollectionConfig = {
@@ -32,7 +33,7 @@ export const Pages: CollectionConfig = {
     },
   },
   admin: {
-        group: {
+    group: {
       zh: "页面与搭建",
       en: "Pages & Layout",
       ja: "ページとレイアウト",
@@ -40,7 +41,9 @@ export const Pages: CollectionConfig = {
     preview: (doc, { locale }) => {
       const secret = process.env.PREVIEW_SECRET;
       const slug = String((doc as any)?.slug ?? "").trim();
-      const resolvedLocale = ["zh", "en", "ja"].includes(String(locale)) ? String(locale) : "zh";
+      const resolvedLocale = ["zh", "en", "ja"].includes(String(locale))
+        ? String(locale)
+        : "zh";
 
       if (!secret || !slug) return null;
 
@@ -145,6 +148,7 @@ export const Pages: CollectionConfig = {
               required: true,
               blocks: [
                 HeroBlock,
+                SponsorLogosBlock,
                 FeaturesBlock,
                 ProductsCatalogBlock,
                 AboutBlock,

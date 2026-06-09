@@ -67,6 +67,75 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.34.0 feat(cms): 新增赞助商 Logo 区块与 CMS 内容运维脚本
+
+类型: feat
+
+范围: cms
+
+说明:
+本次提交在 Payload CMS 页面模型中新增赞助商 Logo 轮换区块，并补齐本地同步生产 CMS、应用本地 CMS 补丁、草稿页面记录和多语言内容审查报告，为后续将赞助商内容安全发布到生产环境做准备。
+
+实现细节:
+
+1. **新增赞助商 Logo 区块**
+   - 新增 Payload `sponsorLogos` 区块，支持标题、说明、Logo 列表、浅色/深色图片、链接和自动轮播配置。
+   - 注册到页面内容区块，并在前端 BlockRenderer 中加入渲染支持。
+   - 新增 SponsorLogos 前端组件与样式，补充首页中英日种子内容和赞助商图片资源。
+2. **补齐 CMS 内容与运维脚本**
+   - 新增本地 CMS 补丁脚本，用于写入赞助商媒体和首页区块内容。
+   - 新增生产到本地 CMS 同步脚本，支持同步数据库与媒体资源。
+   - 调整 CMS 备份脚本和种子脚本，使本地内容维护流程更完整。
+3. **整理文档与状态记录**
+   - 新增 CMS 多语言字段审查报告，记录中文、英文、日文字段差异与调整建议。
+   - 新增 CMS 草稿页面记录，明确 `developers` 页面已转为草稿且不再发布。
+   - 更新数据库文档，补充生产同步到本地的操作说明。
+4. **维护项目元信息**
+   - 补充忽略规则，排除本地生产同步媒体备份目录和 Antigravity 本地产物。
+   - 调整 Manifest 图标兜底逻辑，避免缺少图标资源时影响构建。
+
+文件变更:
+新增文件:
+- `docs/cms-draft-pages.md`
+- `docs/cms-locale-adjustment-report-2026-06-09.md`
+- `public/images/sponsors/digua-robotics-dark.png`
+- `public/images/sponsors/digua-robotics-light.png`
+- `scripts/payload/ops/apply-local-cms-patches.ts`
+- `scripts/payload/ops/sync-prod-to-local.sh`
+- `src/components/SponsorLogos/index.tsx`
+- `src/payload/blocks/SponsorLogosBlock.ts`
+
+修改文件:
+- `.gitignore`
+- `docs/README.md`
+- `docs/database.md`
+- `messages/en/home.json`
+- `messages/ja/home.json`
+- `messages/zh/home.json`
+- `package.json`
+- `package-lock.json`
+- `scripts/payload/ops/backup-all.sh`
+- `scripts/payload/seed/seed.ts`
+- `src/app/manifest.ts`
+- `src/components/payload/BlockRenderer.tsx`
+- `src/payload-types.ts`
+- `src/payload/collections/Pages.ts`
+- `src/styles/index.css`
+- `version.md`
+
+改进效果:
+- 首页可以通过 CMS 配置和渲染赞助商 Logo 轮换内容。
+- 本地可从生产数据库和媒体资源同步后，再应用本地 CMS 补丁，减少内容漂移。
+- 草稿页面和多语言字段调整有文档记录，便于后续复核与发布前检查。
+
+影响范围:
+- Payload CMS 页面区块模型与生成类型。
+- 首页 CMS 种子内容和赞助商媒体资源。
+- 本地 CMS 运维、备份、同步和内容补丁流程。
+- 项目版本号与变更记录。
+
+---
+
 V1.33.2 chore(ignore): 统一忽略本地备份与 superpowers 文档产物
 
 类型: chore

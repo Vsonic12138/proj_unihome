@@ -46,6 +46,21 @@
       "slideLabel": "Slide {id}"
     }
   },
+  "sponsorLogos": {
+    "heading": "Partner & Sponsor Support",
+    "description": "Working with ecosystem partners to advance embodied intelligence education, research, and deployment.",
+    "speed": "normal",
+    "pauseOnHover": true,
+    "logos": [
+      {
+        "name": "Digua Robotics",
+        "lightLogo": "/images/sponsors/digua-robotics-light.png",
+        "darkLogo": "/images/sponsors/digua-robotics-dark.png",
+        "url": "https://developer.d-robotics.cc/",
+        "openInNewTab": true
+      }
+    ]
+  },
   "features": {
     "title": "Product Platform",
     "paragraph": "Guided by the principles of Inspire, Explore, Innovate, and Share, we deliver an embodied intelligence product platform that unifies hardware, software, curriculum, and services for seamless teaching, research, and deployment.",
@@ -54,26 +69,22 @@
       "description": "We highlight three representative solutions covering activation, advanced courses, and research scenarios—helping teams launch embodied intelligence programs faster.",
       "ctaDescription": "Need the full catalog tailored to your teaching or research plans?",
       "viewAllLabel": "Browse all products",
-      "slugs": [
-        "ubot-mr40",
-        "gx-mat-09s",
-        "rai-p4"
-      ]
+      "slugs": ["ubot-mr40", "gx-mat-09s", "rai-p4"]
     },
-      "highlights": [
-        {
-          "title": "General Cognition - M Series",
-          "description": "Modular Embodied Composite Robot Innovation Platform\nCovers all configurations of embodied AI robots, providing users with a comprehensive understanding of embodied AI technology. Designed for zero-foundation robot design learners."
-        },
-        {
-          "title": "Functional Design - P Series",
-          "description": "Deeply deconstructs embodied AI technology, allowing users to deeply understand embodied composite robot technology. Positioned for higher education and scientific research scenarios."
-        },
-        {
-          "title": "Innovative Application - X Series",
-          "description": "Practical operational robots based on scenario applications, positioned for scientific research and industry application scenarios."
-        }
-      ]
+    "highlights": [
+      {
+        "title": "General Cognition - M Series",
+        "description": "Modular Embodied Composite Robot Innovation Platform\nCovers all configurations of embodied AI robots, providing users with a comprehensive understanding of embodied AI technology. Designed for zero-foundation robot design learners."
+      },
+      {
+        "title": "Functional Design - P Series",
+        "description": "Deeply deconstructs embodied AI technology, allowing users to deeply understand embodied composite robot technology. Positioned for higher education and scientific research scenarios."
+      },
+      {
+        "title": "Innovative Application - X Series",
+        "description": "Practical operational robots based on scenario applications, positioned for scientific research and industry application scenarios."
+      }
+    ]
   },
   "about": {
     "sectionOne": {

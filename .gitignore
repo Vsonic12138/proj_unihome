@@ -75,6 +75,7 @@ Thumbs.db
 CLAUDE.md
 AGENT.md
 .roo
+.antigravitycli/
 .codex
 .codex/
 .kilo/
@@ -83,6 +84,7 @@ AGENT.md
 
 # Payload CMS 运行时上传目录
 /media/
+/media.local-before-prod-sync-*/
 
 # Docker 生产数据库持久化目录
 /postgres-data/

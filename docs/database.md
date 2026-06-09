@@ -64,6 +64,60 @@ cd /opt/proj_unihome/deploy
 INCLUDE_MEDIA=true bash backup.sh run  # [服务器执行] 在备份时同时包含整个 media/ 媒体资源目录
 ```
 
+## 从生产同步到本地开发库
+
+当本地 CMS 内容落后于线上时，不要运行 `cms:seed:*` 覆盖线上内容。标准方向是：
+
+1. 生产服务器导出 PostgreSQL dump 和 `media/`
+2. 本地先备份当前数据库
+3. 清空本地 PostgreSQL `public` schema
+4. 恢复生产 dump
+5. 用生产 `media/` 覆盖本地 `media/`
+6. 对当前本地代码执行一次 schema push，补齐本地代码新增但线上 dump 尚不存在的表
+7. 执行本地 CMS 补丁，补回当前代码已新增但线上尚未上线的内容模块
+
+推荐使用脚本：
+
+```bash
+npm run cms:sync:prod:local -- --yes
+```
+
+默认配置：
+
+- SSH 主机：`aliyun`
+- 服务器目录：`/opt/proj_unihome`
+- 本地 Postgres 容器：`proj_unihome_postgres`
+- 本地数据库：`proj_unihome`
+
+可用环境变量覆盖：
+
+```bash
+SSH_HOST=aliyun \
+SERVER_DIR=/opt/proj_unihome \
+POSTGRES_CONTAINER_NAME=proj_unihome_postgres \
+POSTGRES_USER=proj_unihome \
+POSTGRES_DB=proj_unihome \
+RUN_SCHEMA_PUSH=true \
+RUN_LOCAL_CMS_PATCHES=true \
+npm run cms:sync:prod:local -- --yes
+```
+
+脚本会在本地保留旧数据：
+
+- 旧数据库 dump：`backups/local-before-prod-sync/`
+- 旧媒体目录：`media.local-before-prod-sync-*`
+- 从生产拉取的备份：`backups/from-prod/`
+
+同步后如果 `npm run dev` 已经在运行，重启 dev server。Payload 客户端会缓存 schema 和全局数据，数据库恢复或 schema push 后继续使用旧进程可能出现 `/manifest.webmanifest` 500 或旧内容残留。
+
+当前本地 CMS 补丁入口是：
+
+```bash
+npm run cms:local:patches
+```
+
+它用于将仍未进入生产库的本地 CMS 结构补丁写回开发库，例如首页赞助商 Logo 滚动条。
+
 ## 恢复
 
 首次部署或恢复场景下，`bash deploy.sh init` 会在备份存在时自动执行数据库与媒体恢复。

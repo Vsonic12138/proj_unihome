@@ -56,13 +56,19 @@ function buildFeaturesBlocksFromCategories(categories: any[]): any[] {
   return blocks;
 }
 
-async function readMessagesJSON<T = any>(locale: Locale, filename: string): Promise<T> {
+async function readMessagesJSON<T = any>(
+  locale: Locale,
+  filename: string,
+): Promise<T> {
   const filePath = path.resolve(process.cwd(), "messages", locale, filename);
   const raw = await fs.readFile(filePath, "utf8");
   return JSON.parse(raw) as T;
 }
 
-async function getMediaIdBySourcePath(payload: any, src: string): Promise<number | null> {
+async function getMediaIdBySourcePath(
+  payload: any,
+  src: string,
+): Promise<number | null> {
   const res = await payload.find({
     collection: "media",
     where: { sourcePath: { equals: src } },
@@ -72,7 +78,12 @@ async function getMediaIdBySourcePath(payload: any, src: string): Promise<number
   return (res.docs?.[0]?.id as number | undefined) ?? null;
 }
 
-async function upsertPageBySlug(payload: any, slug: string, data: any, locale: Locale) {
+async function upsertPageBySlug(
+  payload: any,
+  slug: string,
+  data: any,
+  locale: Locale,
+) {
   const existing = await payload.find({
     collection: "pages",
     where: { slug: { equals: slug } },
@@ -83,7 +94,7 @@ async function upsertPageBySlug(payload: any, slug: string, data: any, locale: L
   if (existing.docs.length === 0) {
     return payload.create({
       collection: "pages",
-      data: { ...data, slug },
+      data: { ...data, slug, _status: "published" },
       locale,
       overrideAccess: true,
       draft: false, // 直接发布，_status = published
@@ -93,14 +104,19 @@ async function upsertPageBySlug(payload: any, slug: string, data: any, locale: L
   return payload.update({
     collection: "pages",
     id: existing.docs[0].id,
-    data,
+    data: { ...data, _status: "published" },
     locale,
     overrideAccess: true,
     draft: false, // 直接发布，_status = published
   });
 }
 
-async function upsertProductSeries(payload: any, key: string, data: any, locale: Locale) {
+async function upsertProductSeries(
+  payload: any,
+  key: string,
+  data: any,
+  locale: Locale,
+) {
   const existing = await payload.find({
     collection: "productSeries",
     where: { key: { equals: key } },
@@ -126,7 +142,12 @@ async function upsertProductSeries(payload: any, key: string, data: any, locale:
   });
 }
 
-async function upsertProductBySlug(payload: any, slug: string, data: any, locale: Locale) {
+async function upsertProductBySlug(
+  payload: any,
+  slug: string,
+  data: any,
+  locale: Locale,
+) {
   const existing = await payload.find({
     collection: "products",
     where: { slug: { equals: slug } },
@@ -137,7 +158,7 @@ async function upsertProductBySlug(payload: any, slug: string, data: any, locale
   if (existing.docs.length === 0) {
     return payload.create({
       collection: "products",
-      data: { ...data, slug },
+      data: { ...data, slug, _status: "published" },
       locale,
       overrideAccess: true,
       draft: false, // 直接发布，_status = published
@@ -147,14 +168,17 @@ async function upsertProductBySlug(payload: any, slug: string, data: any, locale
   return payload.update({
     collection: "products",
     id: existing.docs[0].id,
-    data,
+    data: { ...data, _status: "published" },
     locale,
     overrideAccess: true,
     draft: false, // 直接发布，_status = published
   });
 }
 
-function extractAddressFromFooterDescription(description: string, locale: Locale): string {
+function extractAddressFromFooterDescription(
+  description: string,
+  locale: Locale,
+): string {
   const text = String(description ?? "");
   const lines = text.split("\n");
 
@@ -203,7 +227,11 @@ async function main() {
       ja: await readMessagesJSON("ja", "contact.json"),
     };
 
-    const buildContactBlock = (locale: Locale, title?: string, description?: string) => {
+    const buildContactBlock = (
+      locale: Locale,
+      title?: string,
+      description?: string,
+    ) => {
       const contact = contactMessages[locale]?.contact ?? {};
       const form = contact?.form ?? {};
 
@@ -220,14 +248,149 @@ async function main() {
           phonePlaceholder: form?.phonePlaceholder,
           intentionLabel: form?.intentionLabel,
           intentionPlaceholder: form?.intentionPlaceholder,
-          intentionOptions: (form?.intentionOptions ?? []).map((opt: string) => ({ option: opt })),
+          intentionOptions: (form?.intentionOptions ?? []).map(
+            (opt: string) => ({ option: opt }),
+          ),
           messageLabel: form?.messageLabel,
           messagePlaceholder: form?.messagePlaceholder,
           submitLabel: form?.submit,
           submitSuccessMessage: contact?.submitSuccessMessage,
           submitErrorMessage: contact?.submitErrorMessage,
         },
-      };
+        };
+    };
+
+    const buildHomeBlocks = async (
+      locale: Locale,
+      featuredProductIds: Array<number | string> = [],
+    ) => {
+      const hero = home[locale]?.hero;
+      const sponsorLogos = home[locale]?.sponsorLogos;
+      const features = home[locale]?.features;
+      const about = home[locale]?.about;
+      const contact = contactMessages[locale]?.contact;
+
+      const heroSlides = [];
+      const hdSlides = hero?.slides ?? [];
+      for (let i = 0; i < hdSlides.length; i++) {
+        const slide = hdSlides[i];
+        const mediaSrc = slide?.media?.src;
+        const mediaId = mediaSrc
+          ? await getMediaIdBySourcePath(payload, mediaSrc)
+          : null;
+        if (!mediaId) continue;
+        heroSlides.push({
+          slideId: i + 1,
+          media: mediaId,
+          alt: slide?.media?.alt,
+          action: slide?.action
+            ? {
+                href: slide.action.href,
+                label: slide.action.label,
+              }
+            : undefined,
+        });
+      }
+
+      const aboutImageSrc = about?.sectionOne?.image?.src;
+      const aboutImageId = aboutImageSrc
+        ? await getMediaIdBySourcePath(payload, aboutImageSrc)
+        : null;
+
+      const sponsorLogoRows = [];
+      for (const logo of sponsorLogos?.logos ?? []) {
+        const lightLogoId = logo?.lightLogo
+          ? await getMediaIdBySourcePath(payload, logo.lightLogo)
+          : null;
+        if (!lightLogoId) continue;
+
+        const darkLogoId = logo?.darkLogo
+          ? await getMediaIdBySourcePath(payload, logo.darkLogo)
+          : null;
+
+        sponsorLogoRows.push({
+          name: logo?.name,
+          lightLogo: lightLogoId,
+          darkLogo: darkLogoId ?? undefined,
+          url: logo?.url,
+          openInNewTab: logo?.openInNewTab ?? true,
+        });
+      }
+
+      const featuredProductsRows = featuredProductIds
+        .map((id) => (typeof id === "number" || typeof id === "string" ? id : null))
+        .filter((id): id is number | string => Boolean(id));
+
+      return [
+        {
+          blockType: "hero",
+          autoPlayInterval: hero?.autoPlayInterval ?? 6000,
+          slides: heroSlides,
+        },
+        {
+          blockType: "features",
+          title: features?.title,
+          paragraph: features?.paragraph,
+          featuredProducts: {
+            title: features?.featuredProducts?.title,
+            description: features?.featuredProducts?.description,
+            ctaDescription: features?.featuredProducts?.ctaDescription,
+            viewAllLabel: features?.featuredProducts?.viewAllLabel,
+            slugs: featuredProductsRows,
+          },
+          highlights: (features?.highlights ?? []).map((h: any, i: number) => ({
+            title: h?.title,
+            description: h?.description,
+          })),
+        },
+        {
+          blockType: "about",
+          title: about?.sectionOne?.title,
+          description: about?.sectionOne?.description,
+          highlights: (about?.sectionOne?.highlights ?? []).map(
+            (t: string, i: number) => ({ text: t }),
+          ),
+          image: aboutImageId ?? undefined,
+          imageAlt: about?.sectionOne?.image?.alt,
+          items: (about?.sectionTwo?.items ?? []).map((it: any, i: number) => ({
+            title: it?.title,
+            paragraph: it?.paragraph,
+          })),
+        },
+        ...(sponsorLogoRows.length > 0
+          ? [
+              {
+                blockType: "sponsorLogos",
+                heading: sponsorLogos?.heading,
+                description: sponsorLogos?.description,
+                speed: sponsorLogos?.speed ?? "normal",
+                pauseOnHover: sponsorLogos?.pauseOnHover ?? true,
+                logos: sponsorLogoRows,
+              },
+            ]
+          : []),
+        {
+          blockType: "contact",
+          title: contact?.formTitle,
+          description: contact?.formDescription,
+          form: {
+            nameLabel: contact?.form?.nameLabel,
+            namePlaceholder: contact?.form?.namePlaceholder,
+            emailLabel: contact?.form?.emailLabel,
+            emailPlaceholder: contact?.form?.emailPlaceholder,
+            phoneLabel: contact?.form?.phoneLabel,
+            phonePlaceholder: contact?.form?.phonePlaceholder,
+            intentionLabel: contact?.form?.intentionLabel,
+            intentionPlaceholder: contact?.form?.intentionPlaceholder,
+            intentionOptions: (contact?.form?.intentionOptions ?? []).map(
+              (opt: string) => ({ option: opt }),
+            ),
+            messageLabel: contact?.form?.messageLabel,
+            messagePlaceholder: contact?.form?.messagePlaceholder,
+            submitLabel: contact?.form?.submit,
+          },
+        },
+      ];
     };
 
     // 1) Navigation global
@@ -243,7 +406,10 @@ async function main() {
             label: menu?.developer,
             href: "/developers",
             children: [
-              { label: submenu?.knowledgeBase, href: "/developers/knowledge-base" },
+              {
+                label: submenu?.knowledgeBase,
+                href: "/developers/knowledge-base",
+              },
               { label: submenu?.openSource, href: "/developers/open-source" },
             ],
           },
@@ -252,10 +418,22 @@ async function main() {
             label: menu?.caseStudies,
             href: "/case-studies",
             children: [
-              { label: submenu?.casePracticalTeaching, href: "/case-studies/practical-teaching" },
-              { label: submenu?.caseSciTechInnovation, href: "/case-studies/sci-tech-innovation" },
-              { label: submenu?.caseInnovationCompetition, href: "/case-studies/innovation-competition" },
-              { label: submenu?.caseTrainingBase, href: "/case-studies/training-base" },
+              {
+                label: submenu?.casePracticalTeaching,
+                href: "/case-studies/practical-teaching",
+              },
+              {
+                label: submenu?.caseSciTechInnovation,
+                href: "/case-studies/sci-tech-innovation",
+              },
+              {
+                label: submenu?.caseInnovationCompetition,
+                href: "/case-studies/innovation-competition",
+              },
+              {
+                label: submenu?.caseTrainingBase,
+                href: "/case-studies/training-base",
+              },
             ],
           },
           { label: menu?.about, href: "/about" },
@@ -273,17 +451,26 @@ async function main() {
     // 2) Footer global + Site settings
     for (const locale of LOCALES) {
       const footer = common[locale].footer;
+      const contact = footer?.contact ?? {};
 
-      const sections = Object.entries(footer?.columns ?? {}).map(([key, col]: [string, any]) => ({
-        title: col?.title,
-        links: (col?.items ?? []).map((item: any, i: number) => ({
-          label: item?.label,
-          href: item?.path,
-        })),
-      }));
+      const sections = Object.entries(footer?.columns ?? {}).map(
+        ([key, col]: [string, any]) => ({
+          title: col?.title,
+          links: (col?.items ?? []).map((item: any, i: number) => ({
+            label: item?.label,
+            href: item?.path,
+          })),
+        }),
+      );
 
-      const qqQR = await getMediaIdBySourcePath(payload, "/images/contact/qq-group-qrcode.jpg");
-      const wechatQR = await getMediaIdBySourcePath(payload, "/images/contact/weChat-official-account.jpg");
+      const qqQR = await getMediaIdBySourcePath(
+        payload,
+        "/images/contact/qq-group-qrcode.jpg",
+      );
+      const wechatQR = await getMediaIdBySourcePath(
+        payload,
+        "/images/contact/weChat-official-account.jpg",
+      );
 
       const contactItems = [
         footer?.contact?.taobaoHref
@@ -328,17 +515,27 @@ async function main() {
         overrideAccess: true,
         data: {
           description: lexicalFromPlainText(String(footer?.description ?? "")),
+          legal: {
+            privacyPolicyLabel:
+              common[locale]?.footer?.legal?.privacyPolicy ??
+              common[locale]?.cookieConsent?.learnMore,
+            cookieSettingsLabel:
+              common[locale]?.footer?.legal?.cookieSettings ??
+              common[locale]?.cookieConsent?.rejectNonEssential,
+          },
           sections,
           contactInfo: {
             phone: contact?.phoneNumber,
-            address: extractAddressFromFooterDescription(String(footer?.description ?? ""), locale),
+            address: extractAddressFromFooterDescription(
+              String(footer?.description ?? ""),
+              locale,
+            ),
           },
           contactItems,
         },
       });
 
       const homeMeta = pages[locale]?.pages?.home;
-      const contact = footer?.contact ?? {};
 
       await payload.updateGlobal({
         slug: "siteSettings",
@@ -351,31 +548,42 @@ async function main() {
             description: homeMeta?.description,
           },
           ctaDefaults: {
-            viewDetailsCta: productsMessages[locale]?.products?.catalog?.viewDetailsCta,
+            viewDetailsCta:
+              productsMessages[locale]?.products?.catalog?.viewDetailsCta,
           },
           productDetailLabels: {
-            applicable: productsMessages[locale]?.products?.detailLabels?.applicable,
-            features: productsMessages[locale]?.products?.detailLabels?.features,
-            sampleCases: productsMessages[locale]?.products?.detailLabels?.sampleCases,
+            applicable:
+              productsMessages[locale]?.products?.detailLabels?.applicable,
+            features:
+              productsMessages[locale]?.products?.detailLabels?.features,
+            sampleCases:
+              productsMessages[locale]?.products?.detailLabels?.sampleCases,
             modules: productsMessages[locale]?.products?.detailLabels?.modules,
             chassis: productsMessages[locale]?.products?.detailLabels?.chassis,
             arms: productsMessages[locale]?.products?.detailLabels?.arms,
-            composites: productsMessages[locale]?.products?.detailLabels?.compositeRobots,
-            configuration: productsMessages[locale]?.products?.detailLabels?.configuration,
-            sensorConfig: productsMessages[locale]?.products?.detailLabels?.sensorConfig,
-            controllerConfig: productsMessages[locale]?.products?.detailLabels?.controllerConfig,
-            softwareConfig: productsMessages[locale]?.products?.detailLabels?.softwareConfig,
-            experiments: productsMessages[locale]?.products?.detailLabels?.experiments,
+            composites:
+              productsMessages[locale]?.products?.detailLabels?.compositeRobots,
+            configuration:
+              productsMessages[locale]?.products?.detailLabels?.configuration,
+            sensorConfig:
+              productsMessages[locale]?.products?.detailLabels?.sensorConfig,
+            controllerConfig:
+              productsMessages[locale]?.products?.detailLabels
+                ?.controllerConfig,
+            softwareConfig:
+              productsMessages[locale]?.products?.detailLabels?.softwareConfig,
+            experiments:
+              productsMessages[locale]?.products?.detailLabels?.experiments,
             specs: productsMessages[locale]?.products?.detailLabels?.specs,
           },
-          legalText: lexicalFromPlainText(""),
           cookieConsent: {
             ariaLabel: common[locale]?.cookieConsent?.ariaLabel,
             message: common[locale]?.cookieConsent?.message,
             privacyPolicyLink: common[locale]?.cookieConsent?.privacyPolicyLink,
             learnMore: common[locale]?.cookieConsent?.learnMore,
             acceptAll: common[locale]?.cookieConsent?.acceptAll,
-            rejectNonEssential: common[locale]?.cookieConsent?.rejectNonEssential,
+            rejectNonEssential:
+              common[locale]?.cookieConsent?.rejectNonEssential,
           },
           floatingContact: {
             panelLabel: common[locale]?.floatingContact?.panelLabel,
@@ -422,90 +630,7 @@ async function main() {
 
     // 3) Home page (Pages collection)
     for (const locale of LOCALES) {
-      const hero = home[locale]?.hero;
-      const features = home[locale]?.features;
-      const about = home[locale]?.about;
-      const contact = contactMessages[locale]?.contact;
       const meta = pages[locale]?.pages?.home;
-
-      const heroSlides = [];
-      const hdSlides = hero?.slides ?? [];
-      for (let i = 0; i < hdSlides.length; i++) {
-        const slide = hdSlides[i];
-        const mediaSrc = slide?.media?.src;
-        const mediaId = mediaSrc ? await getMediaIdBySourcePath(payload, mediaSrc) : null;
-        if (!mediaId) continue;
-        heroSlides.push({
-          slideId: i + 1,
-          media: mediaId,
-          alt: slide?.media?.alt,
-          action: slide?.action
-            ? {
-                href: slide.action.href,
-                label: slide.action.label,
-              }
-            : undefined,
-        });
-      }
-
-      const aboutImageSrc = about?.sectionOne?.image?.src;
-      const aboutImageId = aboutImageSrc ? await getMediaIdBySourcePath(payload, aboutImageSrc) : null;
-
-      const blocks = [
-        {
-          blockType: "hero",
-          autoPlayInterval: hero?.autoPlayInterval ?? 6000,
-          slides: heroSlides,
-        },
-        {
-          blockType: "features",
-          title: features?.title,
-          paragraph: features?.paragraph,
-          featuredProducts: {
-            title: features?.featuredProducts?.title,
-            description: features?.featuredProducts?.description,
-            ctaDescription: features?.featuredProducts?.ctaDescription,
-            viewAllLabel: features?.featuredProducts?.viewAllLabel,
-            slugs: (features?.featuredProducts?.slugs ?? []).map((slug: string) => ({ slug })),
-          },
-          highlights: (features?.highlights ?? []).map((h: any, i: number) => ({
-            title: h?.title,
-            description: h?.description,
-          })),
-        },
-        {
-          blockType: "about",
-          title: about?.sectionOne?.title,
-          description: about?.sectionOne?.description,
-          highlights: (about?.sectionOne?.highlights ?? []).map((t: string, i: number) => ({ text: t })),
-          image: aboutImageId ?? undefined,
-          imageAlt: about?.sectionOne?.image?.alt,
-          items: (about?.sectionTwo?.items ?? []).map((it: any, i: number) => ({
-            title: it?.title,
-            paragraph: it?.paragraph,
-          })),
-        },
-        {
-          blockType: "contact",
-          title: contact?.formTitle,
-          description: contact?.formDescription,
-          form: {
-            nameLabel: contact?.form?.nameLabel,
-            namePlaceholder: contact?.form?.namePlaceholder,
-            emailLabel: contact?.form?.emailLabel,
-            emailPlaceholder: contact?.form?.emailPlaceholder,
-            phoneLabel: contact?.form?.phoneLabel,
-            phonePlaceholder: contact?.form?.phonePlaceholder,
-            intentionLabel: contact?.form?.intentionLabel,
-            intentionPlaceholder: contact?.form?.intentionPlaceholder,
-            intentionOptions: (contact?.form?.intentionOptions ?? []).map((opt: string) => ({ option: opt })),
-            messageLabel: contact?.form?.messageLabel,
-            messagePlaceholder: contact?.form?.messagePlaceholder,
-            submitLabel: contact?.form?.submit,
-          },
-        },
-      ];
-
       await upsertPageBySlug(
         payload,
         "home",
@@ -515,7 +640,7 @@ async function main() {
             title: meta?.title,
             description: ensureDescription(meta?.description, locale),
           },
-          blocks,
+          blocks: await buildHomeBlocks(locale),
         },
         locale,
       );
@@ -525,19 +650,38 @@ async function main() {
     const pagesToSeed: Array<{
       slug: string;
       key: string;
-      kind?: "about" | "contact" | "customSolutions" | "knowledgeBase" | "openSource";
+      kind?:
+        | "about"
+        | "contact"
+        | "customSolutions"
+        | "knowledgeBase"
+        | "openSource";
     }> = [
       { slug: "about", key: "about", kind: "about" },
       { slug: "contact", key: "contact", kind: "contact" },
       { slug: "products", key: "products" },
       { slug: "developers", key: "developerServices" },
-      { slug: "developers-knowledge-base", key: "knowledgeBase", kind: "knowledgeBase" },
+      {
+        slug: "developers-knowledge-base",
+        key: "knowledgeBase",
+        kind: "knowledgeBase",
+      },
       { slug: "developers-open-source", key: "openSource", kind: "openSource" },
-      { slug: "custom-solutions", key: "customSolutions", kind: "customSolutions" },
+      {
+        slug: "custom-solutions",
+        key: "customSolutions",
+        kind: "customSolutions",
+      },
       { slug: "case-studies", key: "caseStudies" },
       { slug: "case-studies-practical-teaching", key: "casePracticalTeaching" },
-      { slug: "case-studies-sci-tech-innovation", key: "caseSciTechInnovation" },
-      { slug: "case-studies-innovation-competition", key: "caseInnovationCompetition" },
+      {
+        slug: "case-studies-sci-tech-innovation",
+        key: "caseSciTechInnovation",
+      },
+      {
+        slug: "case-studies-innovation-competition",
+        key: "caseInnovationCompetition",
+      },
       { slug: "case-studies-training-base", key: "caseTrainingBase" },
     ];
 
@@ -554,23 +698,31 @@ async function main() {
 
         if (item.kind === "about") {
           const aboutImageSrc = aboutFromHome?.sectionOne?.image?.src;
-          const aboutImageId = aboutImageSrc ? await getMediaIdBySourcePath(payload, aboutImageSrc) : null;
+          const aboutImageId = aboutImageSrc
+            ? await getMediaIdBySourcePath(payload, aboutImageSrc)
+            : null;
 
-          const highlights = (aboutFromHome?.sectionOne?.highlights ?? []).map((text: string) => ({ text }));
-          const items = (aboutFromHome?.sectionTwo?.items ?? []).map((it: any) => ({
-            title: it?.title,
-            paragraph: it?.paragraph,
-          }));
+          const highlights = (aboutFromHome?.sectionOne?.highlights ?? []).map(
+            (text: string) => ({ text }),
+          );
+          const items = (aboutFromHome?.sectionTwo?.items ?? []).map(
+            (it: any) => ({
+              title: it?.title,
+              paragraph: it?.paragraph,
+            }),
+          );
 
           blocks = [
             {
               blockType: "about",
               title: aboutFromHome?.sectionOne?.title,
               description: aboutFromHome?.sectionOne?.description,
-              highlights: highlights.length > 0 ? highlights : [{ text: title }],
+              highlights:
+                highlights.length > 0 ? highlights : [{ text: title }],
               image: aboutImageId ?? undefined,
               imageAlt: aboutFromHome?.sectionOne?.image?.alt,
-              items: items.length > 0 ? items : [{ title, paragraph: description }],
+              items:
+                items.length > 0 ? items : [{ title, paragraph: description }],
             },
           ];
         } else if (item.kind === "contact") {
@@ -587,10 +739,14 @@ async function main() {
               blockType: "features",
               title,
               paragraph: description,
-              highlights: highlights.length > 0 ? highlights : [{ title, description }],
+              highlights:
+                highlights.length > 0 ? highlights : [{ title, description }],
             },
           ];
-        } else if (item.kind === "knowledgeBase" || item.kind === "openSource") {
+        } else if (
+          item.kind === "knowledgeBase" ||
+          item.kind === "openSource"
+        ) {
           blocks = buildFeaturesBlocksFromCategories(meta?.categories ?? []);
         }
 
@@ -617,12 +773,16 @@ async function main() {
 
     // 4) Product series + products + global FAQ
     // Build a stable ordering from zh catalog
-    const zhCatalogSeries = productsMessages.zh?.products?.catalog?.series ?? [];
-    const seriesOrder: string[] = zhCatalogSeries.map((s: any) => s?.key).filter(Boolean);
+    const zhCatalogSeries =
+      productsMessages.zh?.products?.catalog?.series ?? [];
+    const seriesOrder: string[] = zhCatalogSeries
+      .map((s: any) => s?.key)
+      .filter(Boolean);
 
     // Upsert series first
     for (const locale of LOCALES) {
-      const seriesList = productsMessages[locale]?.products?.catalog?.series ?? [];
+      const seriesList =
+        productsMessages[locale]?.products?.catalog?.series ?? [];
       for (let idx = 0; idx < seriesList.length; idx++) {
         const s = seriesList[idx];
         await upsertProductSeries(
@@ -631,7 +791,10 @@ async function main() {
           {
             title: s.title,
             description: s.description,
-            sortOrder: seriesOrder.indexOf(s.key) === -1 ? idx : seriesOrder.indexOf(s.key),
+            sortOrder:
+              seriesOrder.indexOf(s.key) === -1
+                ? idx
+                : seriesOrder.indexOf(s.key),
           },
           locale,
         );
@@ -652,7 +815,8 @@ async function main() {
     // Upsert products
     const allSlugs = new Set<string>();
     for (const locale of LOCALES) {
-      const seriesList = productsMessages[locale]?.products?.catalog?.series ?? [];
+      const seriesList =
+        productsMessages[locale]?.products?.catalog?.series ?? [];
       for (const s of seriesList) {
         for (const item of s.items ?? []) {
           if (item?.slug) allSlugs.add(item.slug);
@@ -662,15 +826,20 @@ async function main() {
 
     for (const slug of [...allSlugs]) {
       for (const locale of LOCALES) {
-        const catalogSeries = productsMessages[locale]?.products?.catalog?.series ?? [];
+        const catalogSeries =
+          productsMessages[locale]?.products?.catalog?.series ?? [];
         const inCatalog = catalogSeries
-          .flatMap((s: any) => (s.items ?? []).map((it: any) => ({ ...it, __seriesKey: s.key })))
+          .flatMap((s: any) =>
+            (s.items ?? []).map((it: any) => ({ ...it, __seriesKey: s.key })),
+          )
           .find((it: any) => it.slug === slug);
 
         const details = productsMessages[locale]?.products?.details?.[slug];
 
         const heroImageSrc = details?.image ?? inCatalog?.image;
-        const heroImageId = heroImageSrc ? await getMediaIdBySourcePath(payload, heroImageSrc) : null;
+        const heroImageId = heroImageSrc
+          ? await getMediaIdBySourcePath(payload, heroImageSrc)
+          : null;
 
         const seriesId = inCatalog?.__seriesKey
           ? seriesIdByKey.get(inCatalog.__seriesKey)
@@ -678,32 +847,42 @@ async function main() {
 
         const features = (details?.features ?? []).map((f: any, i: number) => ({
           title: f?.title,
-          content: f?.content ? lexicalFromPlainText(String(f.content)) : undefined,
+          content: f?.content
+            ? lexicalFromPlainText(String(f.content))
+            : undefined,
         }));
 
         const sampleCases = details?.sampleCases ?? {};
         const sampleCasesModules = [];
         for (let i = 0; i < (sampleCases?.modules ?? []).length; i++) {
           const m = sampleCases?.modules[i];
-          const img = m?.image ? await getMediaIdBySourcePath(payload, m.image) : null;
+          const img = m?.image
+            ? await getMediaIdBySourcePath(payload, m.image)
+            : null;
           sampleCasesModules.push({ name: m?.name, image: img ?? undefined });
         }
         const sampleCasesChassis = [];
         for (let i = 0; i < (sampleCases?.chassis ?? []).length; i++) {
           const m = sampleCases?.chassis[i];
-          const img = m?.image ? await getMediaIdBySourcePath(payload, m.image) : null;
+          const img = m?.image
+            ? await getMediaIdBySourcePath(payload, m.image)
+            : null;
           sampleCasesChassis.push({ name: m?.name, image: img ?? undefined });
         }
         const sampleCasesArms = [];
         for (let i = 0; i < (sampleCases?.arms ?? []).length; i++) {
           const m = sampleCases?.arms[i];
-          const img = m?.image ? await getMediaIdBySourcePath(payload, m.image) : null;
+          const img = m?.image
+            ? await getMediaIdBySourcePath(payload, m.image)
+            : null;
           sampleCasesArms.push({ name: m?.name, image: img ?? undefined });
         }
         const sampleCasesComposite = [];
         for (let i = 0; i < (sampleCases?.compositeRobots ?? []).length; i++) {
           const m = sampleCases?.compositeRobots[i];
-          const img = m?.image ? await getMediaIdBySourcePath(payload, m.image) : null;
+          const img = m?.image
+            ? await getMediaIdBySourcePath(payload, m.image)
+            : null;
           sampleCasesComposite.push({ name: m?.name, image: img ?? undefined });
         }
 
@@ -718,11 +897,14 @@ async function main() {
             brief: inCatalog?.brief,
             details: {
               subtitle: details?.subtitle,
-              overview: details?.overview ? lexicalFromPlainText(String(details.overview)) : undefined,
+              overview: details?.overview
+                ? lexicalFromPlainText(String(details.overview))
+                : undefined,
               applicable: details?.applicable,
               features,
               sampleCases: {
-                title: productsMessages[locale]?.products?.detailLabels?.sampleCases,
+                title:
+                  productsMessages[locale]?.products?.detailLabels?.sampleCases,
                 description: sampleCases?.description
                   ? lexicalFromPlainText(String(sampleCases.description))
                   : undefined,
@@ -735,7 +917,9 @@ async function main() {
               controllerConfig: details?.controllerConfig,
               softwareConfig: details?.softwareConfig,
               experiments: details?.experiments,
-              highlights: (details?.highlights ?? []).map((h: string) => ({ text: h })),
+              highlights: (details?.highlights ?? []).map((h: string) => ({
+                text: h,
+              })),
               specs: (details?.specs ?? []).map((s: string) => {
                 const parts = String(s).split(/[:：]/);
                 return { key: parts[0], value: parts.slice(1).join("：") || s };
@@ -745,6 +929,40 @@ async function main() {
           locale,
         );
       }
+    }
+
+    const productDocs = await payload.find({
+      collection: "products",
+      limit: 500,
+      overrideAccess: true,
+    });
+    const productIdBySlug = new Map<string, number | string>();
+    for (const doc of productDocs.docs as any[]) {
+      const slug = String(doc?.slug ?? "").trim();
+      if (slug) {
+        productIdBySlug.set(slug, doc.id as number | string);
+      }
+    }
+
+    for (const locale of LOCALES) {
+      const meta = pages[locale]?.pages?.home;
+      const featuredSlugs = (home[locale]?.features?.featuredProducts?.slugs ?? [])
+        .map((slug: string) => productIdBySlug.get(slug))
+        .filter((id): id is number | string => Boolean(id));
+
+      await upsertPageBySlug(
+        payload,
+        "home",
+        {
+          title: meta?.title ?? "Home",
+          seo: {
+            title: meta?.title,
+            description: ensureDescription(meta?.description, locale),
+          },
+          blocks: await buildHomeBlocks(locale, featuredSlugs),
+        },
+        locale,
+      );
     }
 
     // Global FAQ

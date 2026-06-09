@@ -9,18 +9,22 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
   let description = "Advanced Robotics Solutions";
 
   if (payload) {
-    const globals = await tryGetGlobals({
-      payload,
-      // fallback onto en as base language for PWA metadata
-      locale: "en",
-      depth: 1,
-    });
-    
-    if (globals?.siteSettings?.companyName) {
-      companyName = globals.siteSettings.companyName;
-    }
-    if (globals?.siteSettings?.seoDefaults?.description) {
-      description = globals.siteSettings.seoDefaults.description;
+    try {
+      const globals = await tryGetGlobals({
+        payload,
+        // fallback onto en as base language for PWA metadata
+        locale: "en",
+        depth: 1,
+      });
+
+      if (globals?.siteSettings?.companyName) {
+        companyName = globals.siteSettings.companyName;
+      }
+      if (globals?.siteSettings?.seoDefaults?.description) {
+        description = globals.siteSettings.seoDefaults.description;
+      }
+    } catch (error) {
+      console.warn("[manifest] Failed to load CMS globals:", error);
     }
   }
 

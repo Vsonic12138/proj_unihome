@@ -258,6 +258,23 @@ export interface Page {
         blockType: 'hero';
       }
     | {
+        heading?: string | null;
+        description?: string | null;
+        speed?: ('slow' | 'normal' | 'fast') | null;
+        pauseOnHover?: boolean | null;
+        logos: {
+          name: string;
+          lightLogo: number | Media;
+          darkLogo?: (number | null) | Media;
+          url?: string | null;
+          openInNewTab?: boolean | null;
+          id?: string | null;
+        }[];
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'sponsorLogos';
+      }
+    | {
         title?: string | null;
         paragraph?: string | null;
         featuredProducts?: {
@@ -864,6 +881,26 @@ export interface PagesSelect<T extends boolean = true> {
                           href?: T;
                           label?: T;
                         };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        sponsorLogos?:
+          | T
+          | {
+              heading?: T;
+              description?: T;
+              speed?: T;
+              pauseOnHover?: T;
+              logos?:
+                | T
+                | {
+                    name?: T;
+                    lightLogo?: T;
+                    darkLogo?: T;
+                    url?: T;
+                    openInNewTab?: T;
                     id?: T;
                   };
               id?: T;

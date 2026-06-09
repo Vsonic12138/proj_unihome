@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 BACKUPS_DIR="$ROOT_DIR/backups"
 CONTAINER_NAME="${POSTGRES_CONTAINER_NAME:-proj_unihome_postgres}"
 DB_USER="${POSTGRES_USER:-proj_unihome}"
