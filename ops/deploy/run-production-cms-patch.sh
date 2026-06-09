@@ -63,10 +63,15 @@ compose() {
 docker_network_name() {
   local container
   for container in proj_unihome_app proj_unihome_postgres; do
-    docker inspect "$container" \
+    local network
+    network="$(docker inspect "$container" \
       --format '{{range $name, $_ := .NetworkSettings.Networks}}{{println $name}}{{end}}' \
-      2>/dev/null | head -n 1
-  done | head -n 1
+      2>/dev/null | head -n 1 || true)"
+    if [ -n "$network" ]; then
+      echo "$network"
+      return 0
+    fi
+  done
 }
 
 cmd_check() {

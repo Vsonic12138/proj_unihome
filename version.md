@@ -67,6 +67,37 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.35.1 fix(deploy): 修复 CMS 补丁脚本网络检测退出问题
+
+类型: fix
+
+范围: deploy
+
+说明:
+本次提交修复生产 CMS 补丁执行脚本在 `set -euo pipefail` 下解析 Docker network 时可能因 `head` 提前结束触发 `141` 退出的问题，避免补丁脚本在执行 `check` 阶段无日志中断。
+
+实现细节:
+
+1. **修复 Docker network 检测**
+   - 将 `docker inspect | head -n 1` 管道改为逐容器解析并显式返回第一个非空 network。
+   - 保留 app 容器和 Postgres 容器双来源兜底，支持 app 暂时未运行但 Postgres 已运行的补丁场景。
+
+文件变更:
+修改文件:
+- `ops/deploy/run-production-cms-patch.sh`
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 生产 CMS 补丁脚本 `check` 不会再因为管道 SIGPIPE 被误判为失败。
+- 后续执行 `run-production-cms-patch.sh apply` 时可稳定通过 Docker network 解析。
+
+影响范围:
+- 生产 CMS 补丁发布流程。
+
+---
+
 V1.35.0 feat(deploy): 新增生产 CMS 补丁发布流程
 
 类型: feat
