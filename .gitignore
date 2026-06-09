@@ -106,4 +106,5 @@ AGENT.md
 # 打包与部署产物
 /deploy-pkg/ # legacy
 /proj-unihome-deploy-bundle/
+/proj-unihome-cms-patch-bundle/
 *.tar.gz

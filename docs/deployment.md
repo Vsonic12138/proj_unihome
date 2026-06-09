@@ -29,7 +29,24 @@ npm run deploy:bundle:update      # [本地执行] 生成更新部署包：仅�
 npm run deploy:aliyun:bootstrap   # [本地执行] 远程初始化阿里云服务器：安装 Docker、Nginx 并配置基础的反向代理，准备生产目录环境
 npm run deploy:aliyun:init        # [本地执行] 远程首次部署：自动执行打包 init、上传部署包并在服务器执行 deploy.sh init，初始化密钥和环境
 npm run deploy:aliyun:update      # [本地执行] 远程更新部署：自动执行打包 update、上传部署包并在服务器执行 deploy.sh update，实现零停机（或极短停机）更新
+npm run deploy:aliyun:cms-patch   # [本地执行] 上传生产 CMS 补丁包；加 -- --apply 可在服务器备份后执行补丁
 ```
+
+## 生产 CMS 补丁
+
+普通 `update` 只更新应用镜像，不修改生产数据库和媒体目录。
+
+当发布内容依赖新的 Payload schema 或需要写入生产 CMS 数据时，使用独立 CMS 补丁流程：
+
+```bash
+npm run deploy:aliyun:update             # 先发布包含新 schema 的应用
+npm run deploy:aliyun:cms-patch          # 再上传 CMS 补丁包
+npm run deploy:aliyun:cms-patch -- --apply  # 或上传后立即备份并执行补丁
+```
+
+完整流程见：
+
+- `docs/production-cms-patch-flow.md`
 
 ## 生产结构
 
@@ -72,6 +89,7 @@ npm run deploy:aliyun:update      # [本地执行] 远程更新部署：自动�
 npm run deploy:aliyun:bootstrap   # [本地执行] 远程初始化服务器环境（Docker/Nginx/目录）
 npm run deploy:aliyun:init        # [本地执行] 远程首次部署全量包（含数据库与媒体初始化）
 npm run deploy:aliyun:update      # [本地执行] 远程更新部署增量包（仅更新代码镜像）
+npm run deploy:aliyun:cms-patch   # [本地执行] 上传生产 CMS 补丁包；加 -- --apply 可执行补丁
 ```
 
 建议使用方式：

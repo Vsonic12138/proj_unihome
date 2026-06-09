@@ -7,6 +7,7 @@
 - `overview.md`：项目整体结构
 - `development.md`：本地开发方式与常用命令
 - `deployment.md`：生产部署方式
+- `production-cms-patch-flow.md`：生产 CMS 补丁发布流程
 - `database.md`：数据库与备份恢复
 - `mail-service.md`：工单邮件通知服务配置与排查
 - `search-indexing.md`：Google、Bing、百度搜索收录流程

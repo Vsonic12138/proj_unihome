@@ -67,6 +67,61 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.35.0 feat(deploy): 新增生产 CMS 补丁发布流程
+
+类型: feat
+
+范围: deploy
+
+说明:
+本次提交新增独立的生产 CMS 补丁发布流程，用于在普通应用镜像更新之外，安全地将 CMS schema 初始化、媒体注册和内容补丁写入生产数据库。
+
+实现细节:
+
+1. **新增 CMS 补丁包构建脚本**
+   - 新增 `npm run cms:patch:bundle`，生成 `proj-unihome-cms-patch-bundle.tar.gz`。
+   - 补丁包包含 Payload 配置、必要源码、CMS 补丁脚本、messages 内容和赞助商图片资源。
+   - 生成 `CMS_PATCH_RELEASE.json` 和 `SHA256SUMS`，便于服务器端确认版本与文件完整性。
+2. **新增服务器端补丁执行脚本**
+   - 新增 `run-production-cms-patch.sh`，支持 `check`、`backup`、`apply`。
+   - 执行前检查生产 env、Docker Compose、app/Postgres 容器、数据库健康状态和版本一致性。
+   - `apply` 会先备份生产数据库和媒体，再临时启用 `PAYLOAD_SCHEMA_PUSH=true` 初始化 schema，随后关闭 schema push 并执行 CMS 内容补丁。
+3. **新增阿里云远程入口**
+   - 新增 `npm run deploy:aliyun:cms-patch`，支持上传补丁包但不执行。
+   - 支持 `npm run deploy:aliyun:cms-patch -- --apply` 上传后立即在服务器备份并执行补丁。
+   - 补丁包默认上传到 `/opt/proj_unihome/cms-patches/<patch-id>/`。
+4. **补充发布文档**
+   - 新增生产 CMS 补丁发布流程文档，明确与普通 `deploy:aliyun:update` 的边界。
+   - 更新部署文档、文档索引和 Payload 脚本说明。
+
+文件变更:
+新增文件:
+- `docs/production-cms-patch-flow.md`
+- `ops/deploy/run-production-cms-patch.sh`
+- `ops/deploy/remote/aliyun-cms-patch.sh`
+- `scripts/payload/ops/create-cms-patch-bundle.sh`
+
+修改文件:
+- `.gitignore`
+- `docs/README.md`
+- `docs/deployment.md`
+- `package.json`
+- `package-lock.json`
+- `scripts/payload/README.md`
+- `version.md`
+
+改进效果:
+- 生产 CMS 数据补丁不再混入普通应用镜像更新流程。
+- 执行生产 CMS 补丁前会自动备份数据库和媒体资源。
+- 补丁版本默认要求与当前部署版本一致，降低 schema/content 不匹配风险。
+
+影响范围:
+- 阿里云生产发布流程。
+- Payload CMS schema 初始化和内容补丁运维流程。
+- 本地部署包构建与远程执行脚本。
+
+---
+
 V1.34.0 feat(cms): 新增赞助商 Logo 区块与 CMS 内容运维脚本
 
 类型: feat

@@ -1,6 +1,6 @@
 {
   "name": "proj_uinhome",
-  "version": "1.34.0",
+  "version": "1.35.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -21,6 +21,7 @@
     "cms:seed:knowledge-base": "node --import tsx/esm scripts/payload/seed/seed-knowledge-base.ts",
     "cms:backup:local": "bash scripts/payload/ops/backup-all.sh",
     "cms:local:patches": "node --import tsx/esm scripts/payload/ops/apply-local-cms-patches.ts",
+    "cms:patch:bundle": "bash scripts/payload/ops/create-cms-patch-bundle.sh",
     "cms:sync:prod:local": "bash scripts/payload/ops/sync-prod-to-local.sh",
     "cms:snapshot:export": "node --import tsx/esm scripts/payload/ops/export-cms-snapshot.ts",
     "cms:snapshot:restore": "node --import tsx/esm scripts/payload/ops/restore-cms-snapshot.ts",
@@ -49,7 +50,8 @@
     "deploy:bundle:update": "bash ops/deploy/create-deploy-bundle.sh --profile update",
     "deploy:aliyun:bootstrap": "bash ops/deploy/remote/aliyun-bootstrap.sh --host aliyun",
     "deploy:aliyun:init": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode init",
-    "deploy:aliyun:update": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode update"
+    "deploy:aliyun:update": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode update",
+    "deploy:aliyun:cms-patch": "bash ops/deploy/remote/aliyun-cms-patch.sh --host aliyun"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",
