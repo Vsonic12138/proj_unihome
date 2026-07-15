@@ -2,6 +2,11 @@ import "server-only";
 
 import type { Payload } from "payload";
 import net from "node:net";
+import {
+  buildPublishedNewsWhere,
+  normalizeNewsListItem,
+  type NewsListItem,
+} from "./news";
 
 export type PayloadLocale = "zh" | "en" | "ja";
 
@@ -271,6 +276,50 @@ export async function tryGetProductBySlug(args: {
   });
 
   return res.docs?.[0] ?? null;
+}
+
+export async function tryGetNewsBySlug(args: {
+  payload: Payload;
+  locale: PayloadLocale;
+  slug: string;
+  depth?: number;
+  draft?: boolean;
+}) {
+  const { payload, locale, slug, depth = 2, draft = false } = args;
+  const res = await payload.find({
+    collection: "news",
+    where: draft
+      ? { slug: { equals: slug } }
+      : buildPublishedNewsWhere({ slug: { equals: slug } }),
+    limit: 1,
+    depth,
+    locale,
+    overrideAccess: true,
+    draft: draft ? true : undefined,
+  });
+
+  return res.docs?.[0] ?? null;
+}
+
+export async function tryGetLatestNews(args: {
+  payload: Payload;
+  locale: PayloadLocale;
+  limit?: number;
+}): Promise<NewsListItem[]> {
+  const { payload, locale, limit = 3 } = args;
+  const res = await payload.find({
+    collection: "news",
+    where: buildPublishedNewsWhere(),
+    limit,
+    sort: "-publishDate",
+    depth: 2,
+    locale,
+    overrideAccess: true,
+  });
+
+  return (res.docs ?? [])
+    .map((doc) => normalizeNewsListItem(doc))
+    .filter((doc): doc is NewsListItem => Boolean(doc));
 }
 
 export async function tryGetProductSlugs(args: {

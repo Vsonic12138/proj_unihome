@@ -3,18 +3,25 @@ import "dotenv/config";
 import { getPayload } from "payload";
 import config from "../../../payload.config";
 
-type CollectionSlug = "pages" | "products" | "caseStudies";
+type CollectionSlug = "pages" | "products" | "caseStudies" | "news";
 
 function getCollectionsFromArgs(): CollectionSlug[] {
   const raw = process.argv.slice(2);
   if (raw.length === 0 || raw.includes("all")) {
-    return ["pages", "products", "caseStudies"];
+    return ["pages", "products", "caseStudies", "news"];
   }
 
-  const allowed = new Set<CollectionSlug>(["pages", "products", "caseStudies"]);
+  const allowed = new Set<CollectionSlug>([
+    "pages",
+    "products",
+    "caseStudies",
+    "news",
+  ]);
   const unique = [...new Set(raw)] as string[];
   const collections = unique.filter((s): s is CollectionSlug => allowed.has(s as CollectionSlug));
-  return collections.length > 0 ? collections : ["pages", "products", "caseStudies"];
+  return collections.length > 0
+    ? collections
+    : ["pages", "products", "caseStudies", "news"];
 }
 
 async function publishCollection(payload: any, collection: CollectionSlug) {

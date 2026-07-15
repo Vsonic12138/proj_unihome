@@ -2,6 +2,7 @@ import { tryGetPayloadClient } from "@/lib/payload";
 import { locales } from "@/i18n/routing";
 import { buildSitemapAlternates, getPublicServerUrl } from "@/lib/seo";
 import type { MetadataRoute } from "next";
+import { buildNewsDetailPath, getNewsPathSuffix } from "@/lib/news";
 
 export const dynamic = "force-dynamic";
 
@@ -124,6 +125,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.7,
             alternates: buildSitemapAlternates({
               pathSuffix: `/case-studies/${cs.slug}`,
+              serverUrl,
+            }),
+          });
+        }
+      }
+    });
+
+    // 5. Fetch News
+    const news = await payload.find({
+      collection: "news",
+      where: { _status: { equals: "published" } },
+      limit: 1000,
+    });
+
+    news.docs.forEach((item) => {
+      if (item.slug) {
+        for (const locale of locales) {
+          routes.push({
+            url: new URL(
+              buildNewsDetailPath(locale, item.slug),
+              serverUrl,
+            ).toString(),
+            lastModified: new Date(item.updatedAt),
+            changeFrequency: "monthly",
+            priority: 0.7,
+            alternates: buildSitemapAlternates({
+              pathSuffix: getNewsPathSuffix(item.slug),
               serverUrl,
             }),
           });

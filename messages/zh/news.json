@@ -1,0 +1,21 @@
+{
+  "news": {
+    "showcase": {
+      "title": "最新动态",
+      "description": "了解有你同创的产品进展、行业观察与媒体报道。",
+      "readMore": "阅读详情"
+    },
+    "category": {
+      "company": "公司动态",
+      "industry": "行业动态",
+      "media": "媒体报道",
+      "generic": "新闻"
+    },
+    "detail": {
+      "home": "首页",
+      "news": "新闻",
+      "breadcrumbLabel": "面包屑导航",
+      "coverAlt": "{title}封面图"
+    }
+  }
+}

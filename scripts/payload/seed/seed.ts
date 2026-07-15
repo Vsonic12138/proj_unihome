@@ -226,6 +226,11 @@ async function main() {
       en: await readMessagesJSON("en", "contact.json"),
       ja: await readMessagesJSON("ja", "contact.json"),
     };
+    const newsMessages: Record<Locale, any> = {
+      zh: await readMessagesJSON("zh", "news.json"),
+      en: await readMessagesJSON("en", "news.json"),
+      ja: await readMessagesJSON("ja", "news.json"),
+    };
 
     const buildContactBlock = (
       locale: Locale,
@@ -342,6 +347,12 @@ async function main() {
             title: h?.title,
             description: h?.description,
           })),
+        },
+        {
+          blockType: "newsShowcase",
+          title: newsMessages[locale]?.news?.showcase?.title,
+          description: newsMessages[locale]?.news?.showcase?.description,
+          limit: 3,
         },
         {
           blockType: "about",

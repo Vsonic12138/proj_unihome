@@ -24,6 +24,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
     pages,
     error,
     cases,
+    news,
   ] = await Promise.all([
     import(`../../messages/${resolvedLocale}/common.json`),
     import(`../../messages/${resolvedLocale}/home.json`),
@@ -37,6 +38,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
     import(`../../messages/${resolvedLocale}/pages.json`),
     import(`../../messages/${resolvedLocale}/error.json`),
     import(`../../messages/${resolvedLocale}/cases.json`),
+    import(`../../messages/${resolvedLocale}/news.json`),
   ]);
 
   return {
@@ -54,6 +56,7 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
       ...pages,
       ...error,
       ...cases,
+      ...news,
     },
   };
 });

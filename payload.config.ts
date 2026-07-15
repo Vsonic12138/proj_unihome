@@ -13,6 +13,7 @@ import { CaseStudies } from "./src/payload/collections/CaseStudies";
 import { FAQ } from "./src/payload/collections/FAQ";
 import { Media } from "./src/payload/collections/Media";
 import { MediaFolders } from "./src/payload/collections/MediaFolders";
+import { News } from "./src/payload/collections/News";
 import { Pages } from "./src/payload/collections/Pages";
 import { Products } from "./src/payload/collections/Products";
 import { ProductSeries } from "./src/payload/collections/ProductSeries";
@@ -111,6 +112,7 @@ export default buildConfig({
     Products,
     FAQ,
     CaseStudies,
+    News,
     Tickets,
   ],
   globals: [SiteSettings, Navigation, Footer],
