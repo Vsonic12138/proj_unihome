@@ -1,0 +1,21 @@
+{
+  "news": {
+    "showcase": {
+      "title": "最新ニュース",
+      "description": "UniHomeの製品情報、業界動向、メディア掲載情報をお届けします。",
+      "readMore": "詳細を見る"
+    },
+    "category": {
+      "company": "企業ニュース",
+      "industry": "業界ニュース",
+      "media": "メディア掲載",
+      "generic": "ニュース"
+    },
+    "detail": {
+      "home": "ホーム",
+      "news": "ニュース",
+      "breadcrumbLabel": "パンくずリスト",
+      "coverAlt": "{title}のカバー画像"
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { ContactBlock } from "../blocks/ContactBlock";
 import { FeaturesBlock } from "../blocks/FeaturesBlock";
 import { HeroBlock } from "../blocks/HeroBlock";
 import { ImageGalleryBlock } from "../blocks/ImageGalleryBlock";
+import { NewsShowcaseBlock } from "../blocks/NewsShowcaseBlock";
 import { ProductsCatalogBlock } from "../blocks/ProductsCatalogBlock";
 import { RichTextBlock } from "../blocks/RichTextBlock";
 import { SponsorLogosBlock } from "../blocks/SponsorLogosBlock";
@@ -151,6 +152,7 @@ export const Pages: CollectionConfig = {
                 SponsorLogosBlock,
                 FeaturesBlock,
                 ProductsCatalogBlock,
+                NewsShowcaseBlock,
                 AboutBlock,
                 CaseStudiesListBlock,
                 ContactBlock,

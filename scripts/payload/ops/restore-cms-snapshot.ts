@@ -130,6 +130,10 @@ function caseStudyKey(doc: SnapshotDoc) {
   return String(doc?.slug ?? "").trim();
 }
 
+function newsKey(doc: SnapshotDoc) {
+  return String(doc?.slug ?? "").trim();
+}
+
 function faqKey(doc: SnapshotDoc) {
   return String(doc?.sortOrder ?? 0);
 }
@@ -246,10 +250,21 @@ async function main() {
         docId = await resolveExistingDocId(payload, collection, buildWhere(canonicalDoc));
       }
 
+      const restoreAsDraft = docStatus(canonicalDoc) === "draft";
+      if (docId && restoreAsDraft) {
+        // Unpublish first so the localized snapshot writes below remain the latest draft.
+        await payload.update({
+          collection,
+          id: docId,
+          overrideAccess: true,
+          data: { _status: "draft" },
+        });
+      }
+
       for (const locale of LOCALES) {
         const localizedDoc = findLocalizedDoc(localeDocs, locale, getKey, canonicalDoc);
         const transformed = transformValue(localizedDoc) as Record<string, unknown>;
-        const draft = docStatus(canonicalDoc) !== "published";
+        const draft = restoreAsDraft;
 
         if (!docId) {
           const created = await payload.create({
@@ -372,6 +387,13 @@ async function main() {
     localeDocs: Object.fromEntries(LOCALES.map((locale) => [locale, snapshot.collections[locale].caseStudies ?? []])) as Record<Locale, SnapshotDoc[]>,
     getKey: caseStudyKey,
     buildWhere: (doc) => ({ slug: { equals: caseStudyKey(doc) } }),
+  });
+
+  await upsertLocalizedCollection({
+    collection: "news",
+    localeDocs: Object.fromEntries(LOCALES.map((locale) => [locale, snapshot.collections[locale].news ?? []])) as Record<Locale, SnapshotDoc[]>,
+    getKey: newsKey,
+    buildWhere: (doc) => ({ slug: { equals: newsKey(doc) } }),
   });
 
   await upsertLocalizedCollection({

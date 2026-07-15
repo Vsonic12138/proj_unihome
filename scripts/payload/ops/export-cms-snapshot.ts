@@ -9,7 +9,7 @@ import config from "../../../payload.config";
 
 const LOCALES = ["zh", "en", "ja"] as const;
 const GLOBAL_SLUGS = ["siteSettings", "navigation", "footer"] as const;
-const COLLECTION_SLUGS = ["mediaFolders", "media", "pages", "productSeries", "products", "faq", "caseStudies"] as const;
+const COLLECTION_SLUGS = ["mediaFolders", "media", "pages", "productSeries", "products", "faq", "caseStudies", "news"] as const;
 
 async function findAllDocs(payload: any, collection: (typeof COLLECTION_SLUGS)[number], locale: (typeof LOCALES)[number]) {
   const docs: unknown[] = [];

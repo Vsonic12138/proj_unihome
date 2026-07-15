@@ -1,0 +1,21 @@
+{
+  "news": {
+    "showcase": {
+      "title": "Latest News",
+      "description": "Follow UniHome product updates, industry perspectives, and media coverage.",
+      "readMore": "Read more"
+    },
+    "category": {
+      "company": "Company News",
+      "industry": "Industry News",
+      "media": "Media Coverage",
+      "generic": "News"
+    },
+    "detail": {
+      "home": "Home",
+      "news": "News",
+      "breadcrumbLabel": "Breadcrumb",
+      "coverAlt": "Cover image for {title}"
+    }
+  }
+}

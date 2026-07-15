@@ -75,6 +75,7 @@ export interface Config {
     products: Product;
     faq: Faq;
     caseStudies: CaseStudy;
+    news: News;
     tickets: Ticket;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -91,6 +92,7 @@ export interface Config {
     products: ProductsSelect<false> | ProductsSelect<true>;
     faq: FaqSelect<false> | FaqSelect<true>;
     caseStudies: CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -320,6 +322,20 @@ export interface Page {
         id?: string | null;
         blockName?: string | null;
         blockType: 'productsCatalog';
+      }
+    | {
+        /**
+         * Optional; uses the translated default news heading when empty.
+         */
+        title?: string | null;
+        description?: string | null;
+        /**
+         * Shows the latest 1 to 6 published news items by publish date.
+         */
+        limit: number;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'newsShowcase';
       }
     | {
         title?: string | null;
@@ -645,6 +661,45 @@ export interface CaseStudy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: number;
+  title: string;
+  /**
+   * Use lowercase letters, numbers, and hyphens only, for example company-launch-2026.
+   */
+  slug: string;
+  category: 'company' | 'industry' | 'media';
+  coverImage?: (number | null) | Media;
+  summary?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  publishDate: string;
+  seo?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tickets".
  */
 export interface Ticket {
@@ -713,6 +768,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'caseStudies';
         value: number | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'news';
+        value: number | News;
       } | null)
     | ({
         relationTo: 'tickets';
@@ -953,6 +1012,15 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        newsShowcase?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              limit?: T;
+              id?: T;
+              blockName?: T;
+            };
         about?:
           | T
           | {
@@ -1149,6 +1217,29 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   category?: T;
   coverImage?: T;
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  category?: T;
+  coverImage?: T;
+  summary?: T;
+  content?: T;
+  publishDate?: T;
+  seo?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   _status?: T;

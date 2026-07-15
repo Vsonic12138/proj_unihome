@@ -3,6 +3,7 @@ import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import { CaseStudyGrid } from "@/components/Cases/CaseStudyGrid";
 import Features from "@/components/Features";
 import Hero from "@/components/Hero";
+import { NewsShowcase } from "@/components/News/NewsShowcase";
 import SponsorLogos from "@/components/SponsorLogos";
 import Contact from "@/components/Contact";
 import RichText from "@/components/payload/RichText";
@@ -11,10 +12,12 @@ import {
   resolveMediaURL,
   tryGetPayloadClient,
   tryGetProductsCatalog,
+  tryGetLatestNews,
   tryGetGlobals,
   toPayloadLocale,
   type ProductsCatalog,
 } from "@/lib/payload";
+import { clampNewsShowcaseLimit } from "@/lib/news";
 import Image from "next/image";
 import { draftMode } from "next/headers";
 import { unstable_noStore as noStore } from "next/cache";
@@ -80,6 +83,7 @@ const BlockRenderer = async ({
     locale,
     namespace: "contact.form",
   });
+  const newsMessages = await getTranslations({ locale, namespace: "news" });
   const contactCaptchaCopy = {
     captchaLoadingMessage: contactFormMessages("captchaLoadingMessage"),
     captchaReadyMessage: contactFormMessages("captchaReadyMessage"),
@@ -95,6 +99,39 @@ const BlockRenderer = async ({
     try {
       const blockType = block?.blockType as string | undefined;
       if (!blockType) return null;
+
+      if (blockType === "newsShowcase") {
+        const payload = await tryGetPayloadClient();
+        if (!payload) return null;
+
+        const items = await tryGetLatestNews({
+          payload,
+          locale: toPayloadLocale(locale),
+          limit: clampNewsShowcaseLimit((block as any)?.limit),
+        });
+        if (items.length === 0) return null;
+
+        const title = String((block as any)?.title ?? "").trim();
+        const description = String((block as any)?.description ?? "").trim();
+
+        return (
+          <NewsShowcase
+            key={`block-${blockType}-${index}`}
+            locale={locale}
+            title={title || newsMessages("showcase.title")}
+            description={description || newsMessages("showcase.description")}
+            items={items}
+            copy={{
+              readMore: newsMessages("showcase.readMore"),
+              categoryLabels: {
+                company: newsMessages("category.company"),
+                industry: newsMessages("category.industry"),
+                media: newsMessages("category.media"),
+              },
+            }}
+          />
+        );
+      }
 
       if (blockType === "productsCatalog") {
         const payload = await tryGetPayloadClient();

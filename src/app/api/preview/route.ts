@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { draftMode } from "next/headers";
+import { buildNewsDetailPath } from "@/lib/news";
 
 const LOCALES = ["zh", "en", "ja"] as const;
 type Locale = (typeof LOCALES)[number];
 
-type Collection = "pages" | "products" | "caseStudies";
+type Collection = "pages" | "products" | "caseStudies" | "news";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +44,7 @@ function computeRedirectPath(args: {
   if (collection === "pages") return pageSlugToPath(locale, slug);
   if (collection === "products") return `/${locale}/products/${slug}`;
   if (collection === "caseStudies") return `/${locale}/case-studies/${slug}`;
+  if (collection === "news") return buildNewsDetailPath(locale, slug);
 
   return `/${locale}`;
 }
@@ -67,7 +69,10 @@ export async function GET(req: Request) {
   const slug = url.searchParams.get("slug");
   const localeParam = url.searchParams.get("locale");
 
-  if (!collection || !["pages", "products", "caseStudies"].includes(collection)) {
+  if (
+    !collection ||
+    !["pages", "products", "caseStudies", "news"].includes(collection)
+  ) {
     return NextResponse.json(
       { error: "Missing or invalid collection" },
       { status: 400 },
