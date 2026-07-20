@@ -55,10 +55,11 @@ assemble_pkg() {
   copy_path "package-lock.json"
   copy_path "payload.config.ts"
   copy_path "tsconfig.json"
-  copy_path "scripts/payload/dev/push-schema.ts"
+  copy_path "scripts/payload/ops/migrate-news-schema.ts"
   copy_path "scripts/payload/ops/apply-local-cms-patches.ts"
   copy_path "scripts/payload/seed/seed-news.ts"
   copy_path "scripts/payload/lib"
+  copy_path "src/migrations"
   copy_path "src/payload"
   copy_path "src/lib"
   copy_path "src/i18n"
@@ -79,7 +80,7 @@ assemble_pkg() {
   "gitCommit": "${git_commit}",
   "builtAtUtc": "${built_at}",
   "patches": [
-    "payload-schema-push",
+    "news-schema-migration",
     "home-sponsor-logos",
     "news-seed-and-home-showcase"
   ]

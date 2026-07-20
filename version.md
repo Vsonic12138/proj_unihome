@@ -67,6 +67,44 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.3 fix(deploy): 生产 CMS 补丁改为定向执行新闻 migration
+
+类型: fix
+
+范围: deploy
+
+说明:
+修复 1.36.2 上线后首页 500：生产 CMS 补丁原先只初始化 Payload，不会创建 news 表。现改为非交互定向执行 `20260714_013342_news_showcase` migration，再写入赞助商与新闻演示内容。
+
+实现细节:
+
+1. **新增** `scripts/payload/ops/migrate-news-schema.ts`
+   - 仅执行新闻 migration，跳过已应用记录
+   - 不调用会触发 dev-mode 交互确认的全量 migrate
+2. **生产补丁**
+   - `run-production-cms-patch.sh` 先跑新闻 migration，再跑赞助商补丁与 seed-news
+   - 补丁包包含 `src/migrations` 与定向脚本
+3. **文档**
+   - 更新 production-cms-patch-flow 补丁内容说明
+
+文件变更:
+- `scripts/payload/ops/migrate-news-schema.ts`
+- `scripts/payload/ops/create-cms-patch-bundle.sh`
+- `ops/deploy/run-production-cms-patch.sh`
+- `docs/production-cms-patch-flow.md`
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 生产补丁可创建 news / _news_v / newsShowcase 相关表
+- 避免历史未登记 migration 被全量执行
+
+影响范围:
+- 生产 CMS 补丁 apply 阶段；应用镜像版本需同步到 1.36.3
+
+---
+
 V1.36.2 chore(deploy): CMS 补丁纳入新闻种子与首页展示块
 
 类型: chore

@@ -115,7 +115,7 @@ INCLUDE_MEDIA=true bash backup.sh run
 
 当前 CMS 补丁包包含：
 
-- Payload schema 初始化（含 News collection / NewsShowcase block）
+- 定向执行已审阅的 News migration（不执行线上未登记的历史 migration）
 - 首页 `sponsorLogos` 区块写入
 - `public/images/sponsors/` 下的赞助商 Logo 媒体注册
 - 中英日首页赞助商字段内容
