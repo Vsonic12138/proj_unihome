@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-HOST="aliyun"
+HOST="unibot_aliyun"
 SERVER_DIR="/opt/proj_unihome"
 APPLY="false"
 BUNDLE_NAME="proj-unihome-cms-patch-bundle.tar.gz"

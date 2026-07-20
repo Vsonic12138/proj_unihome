@@ -4,7 +4,7 @@
 
 状态：`ACTIVE`（最近审查：2026-04-15）
 
-如果本地已经配置好了 SSH（例如 `Host aliyun`），推荐直接使用本仓库提供的一键脚本完成 bootstrap 与发布：
+如果本地已经配置好了 SSH（例如 `Host unibot_aliyun`），推荐直接使用本仓库提供的一键脚本完成 bootstrap 与发布：
 
 ```bash
 # 在 ECS 上安装并启用 Docker Engine、Docker Compose 插件与 Nginx，并写入最小可用的 HTTP 反向代理配置

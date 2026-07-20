@@ -84,7 +84,7 @@ npm run cms:sync:prod:local -- --yes
 
 默认配置：
 
-- SSH 主机：`aliyun`
+- SSH 主机：`unibot_aliyun`
 - 服务器目录：`/opt/proj_unihome`
 - 本地 Postgres 容器：`proj_unihome_postgres`
 - 本地数据库：`proj_unihome`
@@ -92,7 +92,7 @@ npm run cms:sync:prod:local -- --yes
 可用环境变量覆盖：
 
 ```bash
-SSH_HOST=aliyun \
+SSH_HOST=unibot_aliyun \
 SERVER_DIR=/opt/proj_unihome \
 POSTGRES_CONTAINER_NAME=proj_unihome_postgres \
 POSTGRES_USER=proj_unihome \

@@ -338,14 +338,14 @@ https://www.unitc.cn/ -> 301 https://unitc.cn/ -> 307 /zh -> 200 OK
 已从本地同步脚本：
 
 ```bash
-scp ops/deploy/backup.sh aliyun:/opt/proj_unihome/deploy/backup.sh
-ssh aliyun 'chmod +x /opt/proj_unihome/deploy/backup.sh'
+scp ops/deploy/backup.sh unibot_aliyun:/opt/proj_unihome/deploy/backup.sh
+ssh unibot_aliyun 'chmod +x /opt/proj_unihome/deploy/backup.sh'
 ```
 
 已执行检查：
 
 ```bash
-ssh aliyun 'cd /opt/proj_unihome/deploy && bash backup.sh check'
+ssh unibot_aliyun 'cd /opt/proj_unihome/deploy && bash backup.sh check'
 ```
 
 检查结果：
@@ -368,7 +368,7 @@ ssh aliyun 'cd /opt/proj_unihome/deploy && bash backup.sh check'
 当前通过 SSH 主机别名连接：
 
 ```bash
-ssh aliyun
+ssh unibot_aliyun
 ```
 
 当前服务器主机名：

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-HOST="aliyun"
+HOST="unibot_aliyun"
 SERVER_DIR="/opt/proj_unihome"
 MODE="update" # init|update
 DOMAIN=""

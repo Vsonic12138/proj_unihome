@@ -1,6 +1,6 @@
 {
   "name": "proj_uinhome",
-  "version": "1.36.0",
+  "version": "1.36.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -50,10 +50,10 @@
     "deploy:bundle": "bash ops/deploy/create-deploy-bundle.sh --profile init",
     "deploy:bundle:init": "bash ops/deploy/create-deploy-bundle.sh --profile init",
     "deploy:bundle:update": "bash ops/deploy/create-deploy-bundle.sh --profile update",
-    "deploy:aliyun:bootstrap": "bash ops/deploy/remote/aliyun-bootstrap.sh --host aliyun",
-    "deploy:aliyun:init": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode init",
-    "deploy:aliyun:update": "bash ops/deploy/remote/aliyun-deploy.sh --host aliyun --mode update",
-    "deploy:aliyun:cms-patch": "bash ops/deploy/remote/aliyun-cms-patch.sh --host aliyun"
+    "deploy:aliyun:bootstrap": "bash ops/deploy/remote/aliyun-bootstrap.sh --host unibot_aliyun",
+    "deploy:aliyun:init": "bash ops/deploy/remote/aliyun-deploy.sh --host unibot_aliyun --mode init",
+    "deploy:aliyun:update": "bash ops/deploy/remote/aliyun-deploy.sh --host unibot_aliyun --mode update",
+    "deploy:aliyun:cms-patch": "bash ops/deploy/remote/aliyun-cms-patch.sh --host unibot_aliyun"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.0.0",

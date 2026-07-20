@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
-SSH_HOST="${SSH_HOST:-aliyun}"
+SSH_HOST="${SSH_HOST:-unibot_aliyun}"
 SERVER_DIR="${SERVER_DIR:-/opt/proj_unihome}"
 LOCAL_CONTAINER="${POSTGRES_CONTAINER_NAME:-proj_unihome_postgres}"
 DB_USER="${POSTGRES_USER:-proj_unihome}"
@@ -21,7 +21,7 @@ Usage:
   npm run cms:sync:prod:local -- --yes
 
 Environment overrides:
-  SSH_HOST=aliyun
+  SSH_HOST=unibot_aliyun
   SERVER_DIR=/opt/proj_unihome
   POSTGRES_CONTAINER_NAME=proj_unihome_postgres
   POSTGRES_USER=proj_unihome

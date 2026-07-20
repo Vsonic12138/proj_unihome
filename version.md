@@ -67,6 +67,45 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.1 chore(deploy): 默认 SSH 主机改为 unibot_aliyun
+
+类型: chore
+
+范围: deploy
+
+说明:
+将阿里云远程部署与生产数据同步脚本的默认 SSH Host 从 `aliyun` 调整为 `unibot_aliyun`，与当前本机 SSH config 别名保持一致，避免默认主机解析到不可达地址。
+
+实现细节:
+
+1. **脚本默认值**
+   - `ops/deploy/remote/aliyun-*.sh` 默认 `HOST=unibot_aliyun`
+   - `scripts/payload/ops/sync-prod-to-local.sh` 默认 `SSH_HOST=unibot_aliyun`
+   - `package.json` 中 `deploy:aliyun:*` 命令显式传入 `--host unibot_aliyun`
+2. **文档同步**
+   - 更新 database / CMS 补丁 / 部署相关文档中的 SSH 示例。
+
+文件变更:
+- `package.json`
+- `package-lock.json`
+- `ops/deploy/remote/aliyun-bootstrap.sh`
+- `ops/deploy/remote/aliyun-deploy.sh`
+- `ops/deploy/remote/aliyun-cms-patch.sh`
+- `scripts/payload/ops/sync-prod-to-local.sh`
+- `docs/database.md`
+- `docs/production-cms-patch-flow.md`
+- `docs/launch-status-2026-05-09.md`
+- `docs/archive/deploy/aliyun-ecs.md`
+- `version.md`
+
+改进效果:
+- 本地执行 `npm run deploy:aliyun:update` / `cms:sync:prod:local` 时默认连上正确 ECS。
+
+影响范围:
+- 仅影响本地到阿里云的 SSH 默认主机名；生产运行时与业务功能无变化。
+
+---
+
 V1.36.0 feat(news): 新增新闻展示区块并统一首页卡片风格
 
 类型: feat

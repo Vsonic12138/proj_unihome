@@ -66,7 +66,7 @@ npm run deploy:aliyun:cms-patch
 4. 登录服务器检查补丁
 
 ```bash
-ssh aliyun
+ssh unibot_aliyun
 cd /opt/proj_unihome/cms-patches
 find . -maxdepth 2 -name run-production-cms-patch.sh -print
 ```
