@@ -67,6 +67,42 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.2 chore(deploy): CMS 补丁纳入新闻种子与首页展示块
+
+类型: chore
+
+范围: deploy
+
+说明:
+生产 CMS 补丁流程原先只推 schema 与赞助商内容。本次将新闻演示数据种子与首页 newsShowcase 区块写入纳入补丁包，确保应用 1.36 上线后首页新闻区可直接可见。
+
+实现细节:
+
+1. **补丁包内容**
+   - `create-cms-patch-bundle.sh` 增加 `seed-news.ts` 与 `scripts/payload/lib`
+   - `CMS_PATCH_RELEASE.json` patches 增加 `news-seed-and-home-showcase`
+2. **服务器执行**
+   - `run-production-cms-patch.sh apply` 在赞助商补丁后执行 `cms:seed:news` 等价脚本
+3. **文档**
+   - 同步 `docs/production-cms-patch-flow.md` 当前补丁内容说明
+
+文件变更:
+- `scripts/payload/ops/create-cms-patch-bundle.sh`
+- `ops/deploy/run-production-cms-patch.sh`
+- `docs/production-cms-patch-flow.md`
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 生产发版后无需手工再跑新闻种子。
+- 首页新闻区与 News 详情可在补丁完成后直接验收。
+
+影响范围:
+- 生产 CMS 补丁 apply 阶段；会 upsert 3 条演示新闻并写入首页 newsShowcase 区块。
+
+---
+
 V1.36.1 chore(deploy): 默认 SSH 主机改为 unibot_aliyun
 
 类型: chore

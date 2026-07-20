@@ -83,7 +83,7 @@ cmd_check() {
   [ -f "$SCRIPT_DIR/package.json" ] || die "补丁包缺少 package.json"
   [ -f "$SCRIPT_DIR/package-lock.json" ] || die "补丁包缺少 package-lock.json"
   [ -f "$SCRIPT_DIR/payload.config.ts" ] || die "补丁包缺少 payload.config.ts"
-  [ -f "$SCRIPT_DIR/scripts/payload/ops/apply-local-cms-patches.ts" ] || die "补丁包缺少 CMS 补丁脚本"
+  [ -f "$SCRIPT_DIR/scripts/payload/seed/seed-news.ts" ] || die "补丁包缺少新闻种子脚本"
   [ -d "$SCRIPT_DIR/src/payload" ] || die "补丁包缺少 src/payload"
   [ -d "$SCRIPT_DIR/messages" ] || die "补丁包缺少 messages"
   [ -d "$SCRIPT_DIR/public/images/sponsors" ] || die "补丁包缺少赞助商图片"
@@ -164,6 +164,7 @@ cmd_apply() {
       npm ci
       PAYLOAD_SCHEMA_PUSH=true node --import tsx/esm scripts/payload/dev/push-schema.ts
       PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/ops/apply-local-cms-patches.ts
+      PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/seed/seed-news.ts
     '
 
   log "修复 media 目录权限"

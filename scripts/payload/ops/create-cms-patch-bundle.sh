@@ -57,6 +57,8 @@ assemble_pkg() {
   copy_path "tsconfig.json"
   copy_path "scripts/payload/dev/push-schema.ts"
   copy_path "scripts/payload/ops/apply-local-cms-patches.ts"
+  copy_path "scripts/payload/seed/seed-news.ts"
+  copy_path "scripts/payload/lib"
   copy_path "src/payload"
   copy_path "src/lib"
   copy_path "src/i18n"
@@ -78,7 +80,8 @@ assemble_pkg() {
   "builtAtUtc": "${built_at}",
   "patches": [
     "payload-schema-push",
-    "home-sponsor-logos"
+    "home-sponsor-logos",
+    "news-seed-and-home-showcase"
   ]
 }
 EOF
