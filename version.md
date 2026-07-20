@@ -67,6 +67,50 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.0 feat(news): 新增新闻展示区块并统一首页卡片风格
+
+类型: feat
+
+范围: news
+
+说明:
+本次提交新增新闻（News）内容模型、首页 NewsShowcase 展示区块与多语言新闻详情路由，并将首页新闻卡片视觉对齐产品/案例区的圆角、标题层级与 CTA 样式，作为官网内容运营能力的一部分。
+
+实现细节:
+
+1. **CMS 与数据**
+   - 新增 `news` collection 与 `newsShowcase` page block。
+   - 补充 schema migration，并将新闻接入 seed / publish / snapshot 运维脚本。
+2. **前台路由与展示**
+   - 新增 `/{locale}/news/[slug]` 详情页。
+   - 首页通过 BlockRenderer 拉取最新新闻并渲染 NewsShowcase。
+   - 新闻卡片统一为居中 SectionTitle、rounded-2xl 卡片、16:9 封面占位与实心 CTA。
+3. **工程配套**
+   - 新增 `cms:seed:news`、`cms:publish:news` 与相关单测/校验脚本。
+   - 同步 `payload-types` 与 i18n messages（zh/en/ja）。
+
+文件变更:
+主要新增/修改:
+- `src/payload/collections/News.ts`
+- `src/payload/blocks/NewsShowcaseBlock.ts`
+- `src/components/News/NewsShowcase.tsx`
+- `src/app/[locale]/news/[slug]/page.tsx`
+- `src/lib/news.ts`
+- `src/migrations/20260714_013342_news_showcase.*`
+- `messages/*/news.json`
+- `package.json`
+- `version.md`
+
+改进效果:
+- 官网可运营发布公司动态、行业动态与媒体报道。
+- 首页新闻区与既有产品/案例视觉语言一致。
+
+影响范围:
+- 首页区块渲染、新闻详情路由、CMS 内容模型与运维脚本。
+- 生产上线仍需 `deploy:aliyun:update` 与 CMS 补丁流程，本次仅合入代码仓。
+
+---
+
 V1.35.1 fix(deploy): 修复 CMS 补丁脚本网络检测退出问题
 
 类型: fix
