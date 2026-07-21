@@ -27,13 +27,19 @@ The frontend always uses locale-prefixed routes. `/admin`, `/api`, `/_next`, and
 - `src/app/`: App Router routes and pages, including localized routes under `src/app/[locale]`
 - `src/components/`: reusable frontend UI components
 - `src/i18n/`: locale config and request wiring
-- `src/payload/`: collections, globals, blocks, admin customizations
+- `src/payload/`: collections, globals, blocks, admin customizations (content backend)
+- `src/lib/`: shared data access, SEO, and helpers used by frontend and CMS-backed pages
+- `src/migrations/`: Payload schema migrations
 - `messages/`: frontend translation JSON and seed data source
 - `scripts/payload/`: CMS checks, seed, publish, snapshot, migration, and ops scripts
 - `ops/`: Docker, deployment scripts, deployment templates, env examples
 - `docs/`: current project docs
+- `docs/repo-layout.md`: repository layout, ownership boundaries, and future monorepo map
 - `docs/archive/`: archived docs and historical materials
+- `media/`: local CMS uploads (gitignored; do not commit)
 - `backups/`: generated CMS snapshots and database backups; do not edit unless the task is explicitly backup/restore related
+
+Do not restructure into `apps/web` or split frontend/backend repositories unless an independent deployable service is being introduced. Prefer documenting boundaries first.
 
 ## Required Env
 App and CMS boot require:

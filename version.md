@@ -67,6 +67,44 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.6 chore(docs): 整理仓库布局说明并清理根目录杂项
+
+类型: chore
+
+范围: docs
+
+说明:
+阶段 1 仓库卫生：删除无引用的 startup-pro.webp，收紧 AI 工具缓存忽略规则，新增 docs/repo-layout.md 说明当前边界与未来 monorepo 演进；不搬迁 src，不影响运行时功能。
+
+实现细节:
+
+1. **清理**
+   - 移除未引用资源 `startup-pro.webp`
+   - `.gitignore` 补充 `.agents/` 等本地工具目录
+2. **文档**
+   - 新增 `docs/repo-layout.md`
+   - 更新 `AGENTS.md` / `README.md` / `docs/README.md` 入口
+
+文件变更:
+- `docs/repo-layout.md`
+- `docs/README.md`
+- `AGENTS.md`
+- `README.md`
+- `.gitignore`
+- `startup-pro.webp`（删除）
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 根目录职责更清晰，避免误以为 media/backups 是源码混乱
+- 明确暂不进行 apps/web 大搬家
+
+影响范围:
+- 文档与忽略规则；无业务运行时变更
+
+---
+
 V1.36.5 fix(middleware): 开发环境放行本地访问 CMS Admin
 
 类型: fix

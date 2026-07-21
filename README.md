@@ -37,9 +37,18 @@ npm run dev
 - `ops/env/.env.local.mailpit.example`
 - `ops/env/.env.production.example`
 
+## 仓库结构
+
+- 应用主体：`src/`（前台 + Payload CMS）
+- 运维脚本：`scripts/`、`ops/`
+- 文档入口：见下方列表；布局说明见 `docs/repo-layout.md`
+
+本地数据目录 `media/`、`backups/`、`node_modules/` 不入库，属于正常运行时/缓存，不是源码混乱。
+
 ## 文档入口
 
 - `docs/overview.md`
+- `docs/repo-layout.md`
 - `docs/development.md`
 - `docs/deployment.md`
 - `docs/database.md`

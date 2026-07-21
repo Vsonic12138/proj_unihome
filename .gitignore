@@ -71,15 +71,16 @@ Thumbs.db
 # 平台配置
 .vercel
 
-# AI 辅助说明
+# AI / agent tooling (local only; do not commit caches)
 CLAUDE.md
 AGENT.md
 .roo
 .antigravitycli/
+.agents/
 .codex
 .codex/
 .kilo/
-/.superpowers/
+.superpowers/
 /docs/superpowers/
 
 # Payload CMS 运行时上传目录
