@@ -67,6 +67,35 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.5 fix(middleware): 开发环境放行本地访问 CMS Admin
+
+类型: fix
+
+范围: middleware
+
+说明:
+本地开发时允许任意 host 访问 `/admin`，避免仅 `cms.unitc.cn` 可通过导致 localhost 打开后台被 rewrite 到 404；生产仍仅允许 `cms.unitc.cn`。
+
+实现细节:
+
+1. **middleware**
+   - `/admin` 判断增加 `NODE_ENV === "development"` 分支
+   - 生产域名限制逻辑不变
+
+文件变更:
+- `src/middleware.ts`
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 本地可直接用 `localhost:3000/admin` 调试 CMS
+
+影响范围:
+- 仅开发环境路由；生产 Admin 仍绑定 CMS 子域名
+
+---
+
 V1.36.4 feat(cms): 案例集合支持 sortOrder 运营排序
 
 类型: feat

@@ -24,8 +24,8 @@ export default function middleware(request: NextRequest) {
 
   // Handle Payload CMS admin route subdomain restriction
   if (url.pathname.startsWith('/admin')) {
-    // If accessed via the correct CMS subdomain, bypass next-intl entirely
-    if (host === 'cms.unitc.cn') {
+    // Local dev: allow any host so localhost/LAN can open CMS admin
+    if (host === 'cms.unitc.cn' || process.env.NODE_ENV === 'development') {
       return NextResponse.next();
     }
     // If accessed via the main domain, rewrite to a non-existent path to trigger native 404
