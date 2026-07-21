@@ -84,6 +84,7 @@ cmd_check() {
   [ -f "$SCRIPT_DIR/package-lock.json" ] || die "补丁包缺少 package-lock.json"
   [ -f "$SCRIPT_DIR/payload.config.ts" ] || die "补丁包缺少 payload.config.ts"
   [ -f "$SCRIPT_DIR/scripts/payload/ops/migrate-news-schema.ts" ] || die "补丁包缺少新闻 schema migration 脚本"
+  [ -f "$SCRIPT_DIR/scripts/payload/ops/migrate-case-studies-sort-order.ts" ] || die "补丁包缺少案例排序 migration 脚本"
   [ -d "$SCRIPT_DIR/src/payload" ] || die "补丁包缺少 src/payload"
   [ -d "$SCRIPT_DIR/messages" ] || die "补丁包缺少 messages"
   [ -d "$SCRIPT_DIR/public/images/sponsors" ] || die "补丁包缺少赞助商图片"
@@ -149,7 +150,7 @@ cmd_apply() {
 
   mkdir -p "$SERVER_DIR/media"
 
-  log "在临时 Node 容器中安装依赖并执行新闻 migration + CMS 内容补丁"
+  log "在临时 Node 容器中安装依赖并执行 schema migration + CMS 内容补丁"
   docker run --rm \
     --network "$network" \
     --env-file "$ENV_FILE" \
@@ -163,6 +164,7 @@ cmd_apply() {
     bash -lc 'set -euo pipefail
       npm ci
       PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/ops/migrate-news-schema.ts
+      PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/ops/migrate-case-studies-sort-order.ts
       PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/ops/apply-local-cms-patches.ts
       PAYLOAD_SCHEMA_PUSH=false node --import tsx/esm scripts/payload/seed/seed-news.ts
     '

@@ -59,7 +59,7 @@ export const CaseStudies: CollectionConfig = {
       return url.toString();
     },
     useAsTitle: "slug",
-    defaultColumns: ["slug", "category", "updatedAt"],
+    defaultColumns: ["slug", "category", "sortOrder", "updatedAt"],
   },
   versions: {
     drafts: true,
@@ -142,6 +142,24 @@ export const CaseStudies: CollectionConfig = {
         ja: "カバー画像",
       },
       relationTo: "media",
+    },
+    {
+      name: "sortOrder",
+      type: "number",
+      label: {
+        zh: "排序",
+        en: "Sort Order",
+        ja: "並び順",
+      },
+      defaultValue: 0,
+      admin: {
+        position: "sidebar",
+        description: {
+          zh: "数字越小越靠前。建议使用 10/20/30 间隔，便于插入。",
+          en: "Lower numbers appear first. Prefer steps of 10/20/30 for easy inserts.",
+          ja: "数字が小さいほど前に表示されます。10/20/30 の間隔を推奨します。",
+        },
+      },
     },
     {
       name: "content",

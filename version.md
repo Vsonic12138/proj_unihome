@@ -67,6 +67,50 @@ npm run version:patch   # fix / docs / ui / chore / test 类变更
 
 ---
 
+V1.36.4 feat(cms): 案例集合支持 sortOrder 运营排序
+
+类型: feat
+
+范围: cms
+
+说明:
+为 caseStudies 增加 sortOrder 字段，分类案例列表按该字段升序展示；配套定向 migration 与生产 CMS 补丁入口，避免全量 migrate。
+
+实现细节:
+
+1. **集合**
+   - `CaseStudies` 增加 `sortOrder`（默认 0，sidebar）
+   - Admin 列表列展示 sortOrder
+2. **前台**
+   - `caseStudiesList` 查询 `sort: "sortOrder"`
+3. **迁移/补丁**
+   - `20260721_020000_case_studies_sort_order`
+   - `migrate-case-studies-sort-order.ts` 非交互定向执行
+   - 生产补丁 apply 序列接入该脚本
+
+文件变更:
+- `src/payload/collections/CaseStudies.ts`
+- `src/components/payload/BlockRenderer.tsx`
+- `src/migrations/20260721_020000_case_studies_sort_order.ts`
+- `src/migrations/index.ts`
+- `scripts/payload/ops/migrate-case-studies-sort-order.ts`
+- `scripts/payload/ops/create-cms-patch-bundle.sh`
+- `ops/deploy/run-production-cms-patch.sh`
+- `docs/production-cms-patch-flow.md`
+- `src/payload-types.ts`
+- `package.json`
+- `package-lock.json`
+- `version.md`
+
+改进效果:
+- 运营可在 CMS 控制案例卡片顺序
+- 生产可安全加列，不跑历史全量 migration
+
+影响范围:
+- 案例分类列表页展示顺序；需部署 1.36.4 应用 + CMS 补丁
+
+---
+
 V1.36.3 fix(deploy): 生产 CMS 补丁改为定向执行新闻 migration
 
 类型: fix

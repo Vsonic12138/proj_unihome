@@ -640,6 +640,10 @@ export interface CaseStudy {
   slug: string;
   category: 'practical-teaching' | 'sci-tech-innovation' | 'innovation-competition' | 'training-base';
   coverImage?: (number | null) | Media;
+  /**
+   * Lower numbers appear first. Prefer steps of 10/20/30 for easy inserts.
+   */
+  sortOrder?: number | null;
   content?: {
     root: {
       type: string;
@@ -1216,6 +1220,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   slug?: T;
   category?: T;
   coverImage?: T;
+  sortOrder?: T;
   content?: T;
   updatedAt?: T;
   createdAt?: T;

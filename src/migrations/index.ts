@@ -5,6 +5,7 @@ import * as migration_20260421_173200_site_settings_compliance from './20260421_
 import * as migration_20260422_055512 from './20260422_055512';
 import * as migration_20260714_013300_sponsor_schema_baseline from './20260714_013300_sponsor_schema_baseline';
 import * as migration_20260714_013342_news_showcase from './20260714_013342_news_showcase';
+import * as migration_20260721_020000_case_studies_sort_order from './20260721_020000_case_studies_sort_order';
 
 export const migrations = [
   {
@@ -40,6 +41,11 @@ export const migrations = [
   {
     up: migration_20260714_013342_news_showcase.up,
     down: migration_20260714_013342_news_showcase.down,
-    name: '20260714_013342_news_showcase'
+    name: '20260714_013342_news_showcase',
+  },
+  {
+    up: migration_20260721_020000_case_studies_sort_order.up,
+    down: migration_20260721_020000_case_studies_sort_order.down,
+    name: '20260721_020000_case_studies_sort_order',
   },
 ];

@@ -56,6 +56,7 @@ assemble_pkg() {
   copy_path "payload.config.ts"
   copy_path "tsconfig.json"
   copy_path "scripts/payload/ops/migrate-news-schema.ts"
+  copy_path "scripts/payload/ops/migrate-case-studies-sort-order.ts"
   copy_path "scripts/payload/ops/apply-local-cms-patches.ts"
   copy_path "scripts/payload/seed/seed-news.ts"
   copy_path "scripts/payload/lib"
@@ -81,6 +82,7 @@ assemble_pkg() {
   "builtAtUtc": "${built_at}",
   "patches": [
     "news-schema-migration",
+    "case-studies-sort-order",
     "home-sponsor-logos",
     "news-seed-and-home-showcase"
   ]

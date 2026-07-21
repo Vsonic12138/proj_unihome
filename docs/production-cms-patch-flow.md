@@ -115,11 +115,12 @@ INCLUDE_MEDIA=true bash backup.sh run
 
 当前 CMS 补丁包包含：
 
-- 定向执行已审阅的 News migration（不执行线上未登记的历史 migration）
-- 首页 `sponsorLogos` 区块写入
-- `public/images/sponsors/` 下的赞助商 Logo 媒体注册
-- 中英日首页赞助商字段内容
-- 演示新闻条目 upsert 与首页 `newsShowcase` 区块写入
+ - 定向执行已审阅的 News migration（不执行线上未登记的历史 migration）
+ - 定向执行案例 `sortOrder` migration（`case_studies.sort_order` / `_case_studies_v.version_sort_order`）
+ - 首页 `sponsorLogos` 区块写入
+ - `public/images/sponsors/` 下的赞助商 Logo 媒体注册
+ - 中英日首页赞助商字段内容
+ - 演示新闻条目 upsert 与首页 `newsShowcase` 区块写入
 
 ## 版本一致性
 

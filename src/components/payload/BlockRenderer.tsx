@@ -257,8 +257,8 @@ const BlockRenderer = async ({
           locale: payloadLocale,
           depth: 2,
           limit,
+          sort: "sortOrder",
           overrideAccess: true,
-          // 案例列表同上：页面预览不应把草稿案例暴露在列表中
         });
 
         const normalizedCases = (res.docs as any[])
